@@ -1,1 +1,4 @@
-Voce: Azienda Definizione: Ente interessato al servizio offeto
+Voce: Azienda 
+Definizione: Azienda o un semplice privato interessato a utilizzare uno o piú servizi offerti da un programmatore
+Voce: programmatore
+Definizione: Utente registrato che fornisce uno o piú servizi alle aziende
