@@ -1,4 +1,18 @@
 Voce: Azienda 
 Definizione: Azienda o un semplice privato interessato a utilizzare uno o piú servizi offerti da un programmatore
-Voce: programmatore
+Voce: Programmatore
 Definizione: Utente registrato che fornisce uno o piú servizi alle aziende
+Voce: Credenziali
+Definizione: Metodo di accesso al servizio, basato su username e password
+Voce: Account
+Definizione: Insieme di Credenziali e informazioni che identifica una Azienda/Programmatore
+Voce: Utente
+Definizione: Utilizzatore del srvizio(Sia Azienda che Programmatore)
+Voce: Username
+Definizione: Stringa alfanumerica che identifica il nome dell'utente che sta tentando l'accesso
+Voce: Password
+Definizione: Stringa alfanumerica generata da un utente del servizio
+Voce: Autenticazione
+Definizione: Meccanismo di accesso con nome alla piattaforma
+Voce: Registrazione 
+Definizione: Funzione di iscrizione alla piattaforma
