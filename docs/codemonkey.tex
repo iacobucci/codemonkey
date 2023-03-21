@@ -3,6 +3,20 @@
 \usepackage{tocloft}
 \usepackage{tabularx}
 \usepackage{graphicx}
+\usepackage{array}
+\usepackage{tabu}
+
+\newcommand{\monkeytable}[2]{
+\begin{center}
+\setlength{\tabulinesep}{0.5em} % Imposta il padding
+\begin{tabu} to \textwidth { |*{#1}{X[c,m]|}}
+\hline
+\everyrow{\hline}
+#2
+\end{tabu}
+\end{center}
+}
+
 
 \title{Codemonkey}
 
