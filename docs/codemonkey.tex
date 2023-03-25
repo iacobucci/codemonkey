@@ -5,19 +5,37 @@
 \usepackage{graphicx}
 \usepackage{array}
 \usepackage{tabu}
+\usepackage[table]{xcolor}
 
+%creazione dei colori custom
+\definecolor{tableGreen}{RGB}{25, 200, 60}
+
+
+
+%macro per andare a capo nelle tabelle
+\newcommand{\n}{
+   \\\hline 
+}
+
+%macro per generare le tabelle
 \newcommand{\monkeytable}[2]{
+
 \begin{center}
-\setlength{\tabulinesep}{0.5em} % Imposta il padding
-\begin{tabu} to \textwidth { |*{#1}{X[c,m]|}}
-\hline
-\everyrow{\hline}
+\begin{table}[h!]
+\setlength{\extrarowheight}{5pt} %padding
+\begin{tabularx}{\textwidth}
 #2
-\end{tabu}
+\n %necessaria per chiudere la tabella
+\end{tabularx}
+\end{table}
+\label{tab:monkeytable}
 \end{center}
 }
 
 
+
+
+%inizio documento vero e proprio
 \title{Codemonkey}
 
 \begin{document}
@@ -39,6 +57,8 @@
 \input{raccolta_requisiti}
 \pagebreak
 \input{vocabolario}
+\pagebreak
+\input{tabellaRequisiti}
 \pagebreak
 
 \end{document}

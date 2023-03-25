@@ -1,14 +1,26 @@
 \section {Vocabolario}
 
+\newcommand{\orange}{%onde evitare caos il colore della tabella viene dichiarato qui
+   \\
+   \rowcolor{orange!10}
+   \hline
+}
+
 \monkeytable{3} {
-    \textbf{Voce} &\textbf{Definizione} &\textbf{Sinonimo} \\
-    Programmatore& Utente registrato che fornisce uno o piú servizi alle aziende & \\
-    Azienda& Azienda o un semplice privato interessato a utilizzare uno o piú servizi offerti da un programmatore &\\
-    Credenziali& Metodo di accesso al servizio, basato su username e password &\\
-    Account& Insieme di Credenziali e informazioni che identifica una Azienda/Programmatore&\\
-    Utente & Utilizzatore del servizio (Sia Azienda che  Programmatore) &\\
-    Username & Stringa alfanumericache identifica il nome dell'utente che statentando l'accesso & Identificativo \\
-    Password & Stringa alfanumerica generata da un utente del servizio&\\
-    Autenticazione & Meccanismo di accessocon nome alla piattaforma& Log in\\
-    Registrazione& Funzione di iscrizione alla piattaforma&\\
+    {|>{\centering\arraybackslash}X|>{\raggedright\arraybackslash}m{5cm}|>{\centering\arraybackslash}X|}
+%{\opzioni}, m{xcm} per dimensione custom o X per dimensione automatica, elementi racchiusi da ||
+
+\hline %riga in cima alla colonna    
+\rowcolor{orange!45}%settare il colore della colonna principale 
+\textbf{Voce} &\textbf{Definizione} &\textbf{Sinonimo} %voci della prima colonna
+    
+    \n      Programmatore& Utente registrato che fornisce uno o piú servizi alle aziende & 
+    \orange Azienda& Azienda o un semplice privato interessato a utilizzare uno o piú servizi offerti da un programmatore &
+    \n      Credenziali& Metodo di accesso al servizio, basato su username e password &
+    \orange Account& Insieme di Credenziali e informazioni che identifica una Azienda/Programmatore& 
+    \n      Utente & Utilizzatore del servizio (Sia Azienda che  Programmatore) &
+    \orange Username & Stringa alfanumericache identifica il nome dell'utente che statentando l'accesso & Identificativo 
+    \n      Password & Stringa alfanumerica generata da un utente del servizio&
+    \orange Autenticazione & Meccanismo di accessocon nome alla piattaforma& Log in
+    \n      Registrazione& Funzione di iscrizione alla piattaforma&
 }
