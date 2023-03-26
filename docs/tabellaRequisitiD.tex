@@ -1,0 +1,26 @@
+\newcommand{\tableBlue}{%onde evitare caos il colore della tabella viene dichiarato qui
+    \\
+    \rowcolor{tableBlue!20}
+    \hline
+}
+
+\newcommand{\ntableBlue}{
+    \\
+    \rowcolor{tableBlue!7}
+    \hline
+}
+
+\monkeytable{3} {
+{|>{\arraybackslash}m{1.5cm}|>{\centering\arraybackslash}X|}
+
+\hline
+\rowcolor{tableBlue!70}
+\multicolumn{2}{|c|}{\textbf{Requisiti di DOminio}}
+\n \rowcolor{tableBlue!50} \textbf{ID} & \textbf{Requisito}
+\ntableBlue    R1D& 
+\tableBlue     R2D& 
+\ntableBlue    R3D& 
+\tableBlue     R5D& 
+\ntableBlue    R6D& 
+\tableBlue     R7D& 
+}

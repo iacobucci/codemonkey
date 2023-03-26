@@ -1,0 +1,33 @@
+\section {Tabelle dei Requisiti}
+
+
+\newcommand{\tableGreen}{%onde evitare caos il colore della tabella viene dichiarato qui
+    \\
+    \rowcolor{tableGreen!15}
+    \hline
+}
+
+\newcommand{\ntableGreen}{
+    \\
+    \rowcolor{tableGreen!5}
+    \hline
+}
+
+\monkeytable{3} {
+{|>{\arraybackslash}m{1.5cm}|>{\centering\arraybackslash}X|}
+
+\hline
+\rowcolor{tableGreen!70}
+\multicolumn{2}{|c|}{\textbf{Requisiti Funzionali}}
+\n \rowcolor{tableGreen!50} \textbf{ID} & \textbf{Requisito}
+\ntableGreen    R1F& un utente qualsiasi può sfogliare il sito e vedere tutti i programmatori
+\tableGreen     R2F& il sito deve fornire la possibilità di inserire dei filtri per cercare programmatori con specifiche caratteristiche
+\ntableGreen    R3F& è presente una sezione nella quale un utente o una azienda possono autenticarsi
+\tableGreen     R4F& è presente una sezione nella quale un utente o una azienda possono registrarsi
+\ntableGreen    R5F& una azienda potrà contattare un programmatore solo previa autenicazione
+\tableGreen     R6F& un programmatore può accedere previa autenticazione alla pagina del suo profilo
+\ntableGreen    R7F& possono essere effettuate modifiche delle informazioni del programmatore dalla pagina principale
+\tableGreen     R8F& possono essere accettati i lavori e mandati i preventivi sempre da essa
+\ntableGreen    R9F& viene fornita la valutazione di ogni programmatore anche filtrata secondo specifici linguaggi
+\tableGreen     R10F& viene fornita la possibilità di vedere se un programmatore sta lavorando ad un progetto o meno
+}
