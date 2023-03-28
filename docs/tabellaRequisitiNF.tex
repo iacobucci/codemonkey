@@ -1,15 +1,20 @@
+\newcounter{redC}
+
 \newcommand{\tableRed}{%onde evitare caos il colore della tabella viene dichiarato qui
     \\
     \rowcolor{tableRed!15}
     \hline
+    \stepcounter{redC}
+    R\theredC NF
 }
 
 \newcommand{\ntableRed}{
     \\
     \rowcolor{tableRed!5}
     \hline
+    \stepcounter{redC}
+    R\theredC NF
 }
-
 \monkeytable{3} {
 {|>{\arraybackslash}m{1.5cm}|>{\centering\arraybackslash}X|}
 
@@ -17,10 +22,10 @@
 \rowcolor{tableRed!70}
 \multicolumn{2}{|c|}{\textbf{Requisiti Non Funzionali}}
 \n \rowcolor{tableRed!50} \textbf{ID} & \textbf{Requisito}
-\ntableRed    R1NF& 
-\tableRed     R2NF& 
-\ntableRed    R3NF& 
-\tableRed     R4NF& 
-\ntableRed    R5NF& 
-\tableRed     R6NF& 
+\ntableRed    &
+\tableRed     &
+\ntableRed    &
+\tableRed     &
+\ntableRed    &
+\tableRed     &
 }
