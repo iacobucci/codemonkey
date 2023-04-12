@@ -1,31 +1,36 @@
-\newcounter{redC}
+\newcounter{yellowC}
 
-\newcommand{\tableRed}{%onde evitare caos il colore della tabella viene dichiarato qui
+\newcommand{\Yellow}{%onde evitare caos il colore della tabella viene dichiarato qui
     \\
-    \rowcolor{tableRed!15}
+    \rowcolor{tableYellow!15}
     \hline
-    \stepcounter{redC}
-    R\theredC NF
+    \stepcounter{yellowC}
+    R\theyellowC NF
 }
 
-\newcommand{\ntableRed}{
+\newcommand{\nYellow}{
     \\
-    \rowcolor{tableRed!5}
+    \rowcolor{tableYellow!5}
     \hline
-    \stepcounter{redC}
-    R\theredC NF
+    \stepcounter{yellowC}
+    R\theyellowC NF
 }
 \monkeytable{3} {
-{|>{\arraybackslash}m{1.5cm}|>{\centering\arraybackslash}X|}
+{|>{\arraybackslash}m{1.5cm}|>{\arraybackslash}X|}
 
 \hline
-\rowcolor{tableRed!70}
+\rowcolor{tableYellow!70}
 \multicolumn{2}{|c|}{\textbf{Requisiti Non Funzionali}}
-\n \rowcolor{tableRed!50} \textbf{ID} & \textbf{Requisito}
-\ntableRed    &
-\tableRed     &
-\ntableRed    &
-\tableRed     &
-\ntableRed    &
-\tableRed     &
+\n \rowcolor{tableYellow!50} \textbf{ID} & \centering\textbf{Requisito} \endline
+\rowcolor{tableYellow!15}
+\hline
+\stepcounter{yellowC}
+R\theyellowC NF 
+            & test
+\nYellow    &
+\Yellow     &
+\nYellow    &
+\Yellow     &
+\nYellow    &
+\Yellow     &
 }

@@ -8,10 +8,11 @@
 \usepackage[table]{xcolor}
 
 %creazione dei colori custom
-\definecolor{tableGreen}{RGB}{25, 200, 60}
-\definecolor{tableRed}{RGB}{220 ,15, 5}
+\definecolor{tableGreen}{RGB}{30, 190, 50}
+\definecolor{tableYellow}{RGB}{255, 220, 0}
 \definecolor{tableBlue}{RGB}{0 ,20, 210}
-\definecolor{tableCyan}{RGB}{0 ,175, 185}
+\definecolor{tableCyan}{RGB}{0 ,160, 160}
+\definecolor{tableRed}{RGB}{220 ,15, 5}
 
 %macro per andare a capo nelle tabelle
 \newcommand{\n}{
@@ -20,10 +21,11 @@
 
 %macro per generare le tabelle
 \newcommand{\monkeytable}[2]{
-
 \begin{center}
+\renewcommand{\arraystretch}{2}%padding top and bottom
 \begin{table}[h!]
-\setlength{\extrarowheight}{5pt} %padding
+%\setlength{\extrarowheight}{2pt}%rowheight 
+\setlength\tabcolsep{5pt}%padding bordo lat
 \begin{tabularx}{\textwidth}
 #2
 \n %necessaria per chiudere la tabella
@@ -32,6 +34,7 @@
 \label{tab:monkeytable}
 \end{center}
 }
+
 
 
 
@@ -50,6 +53,7 @@
    \label{fig:nome-etichetta}
 \end{figure}
 
+
 \pagebreak
 \tableofcontents
 \pagebreak
@@ -60,10 +64,10 @@
 \input{vocabolario}
 \pagebreak
 \input{tabellaRequisitiF}
-\pagebreak
 \input{tabellaRequisitiNF}
-\pagebreak
 \input{tabellaRequisitiD}
 \pagebreak
 \input{scenari}
+\pagebreak
+\input{analisiDelRischio}
 \end{document}
