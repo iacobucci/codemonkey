@@ -1,0 +1,29 @@
+docs
+    [x] abstract
+    analisi dei requisiti   
+        [ ] vocabolario
+        [ ] scenari
+        [ ] analisi del rischio
+    analisi del probelma
+        [ ] analisi delle funzionalità
+        [ ] analisi ruoli e responsabilità
+        [ ] analisi de dominio
+        [ ] architettura logica
+            [ ] struttura
+            [ ] interazione
+        [ ] piano di lavoro
+    progettazione
+        [ ] scelte tecnologiche
+        [ ] progettazione architetturale
+            [ ] client (frontend)
+            [ ] server (backend)
+            [ ] persistenza (database)
+        [ ] collaudo (test)
+        [ ] deployment
+            containerizzazione e servizi web
+    
+source
+    frontend
+        [ ] toolbar
+        [ ] dark mode
+    backend
