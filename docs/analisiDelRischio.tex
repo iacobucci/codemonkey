@@ -1,4 +1,4 @@
-\section {Analisi del rischio}
+\section{Analisi del rischio}
 
 \newcommand{\tableRed}{%onde evitare caos il colore della tabella viene dichiarato qui
     \\
@@ -12,24 +12,7 @@
     \hline
 }
 
-
-
-
-%macro per generare le tabelle
-\newcommand{\monkeRisk}[2]{
-\renewcommand{\arraystretch}{2}%padding top and bottom
-%\setlength{\extrarowheight}{2pt}%rowheight 
-\setlength\tabcolsep{5pt}%padding bordo lat
-\begin{table}
-\begin{tabularx}{\textwidth}
-#2
-\n %necessaria per chiudere la tabella
-\end{tabularx}\end{table}
-\label{tab:riskytable}
-}
-
-
-\monkeRisk{3} {
+\monkeytable{3} {
 {|p{2.6cm}|X|X|}
 \hline \rowcolor{tableRed!70}  \multicolumn{3}{|c|}{\textbf{Valutazione dei beni}}\\
 \hline \rowcolor{tableRed!50} \centering \textbf{Bene} & \centering \textbf{Valore} &  \centering \textbf{Esposizione}\endline

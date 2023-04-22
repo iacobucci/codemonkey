@@ -1,9 +1,9 @@
-\section {Scenari}
+\section{Scenari}
 
 
-\newcommand{\tableCyan}{%onde evitare caos il colore della tabella viene dichiarato qui
+\newcommand{\tableCyan}{%ondewsl evitare caos il colore della tabella viene dichiarato qui
     \\
-    \hline 
+    \hline
     \rowcolor{tableCyan!10}
     \cellcolor{tableCyan!22}
 }
@@ -17,25 +17,71 @@
 
 
 \monkeytable{3} {
-{|>{\arraybackslash }m{3cm}|>{\arraybackslash}X|}
+{|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
 
-\hline \rowcolor{tableCyan!37} \centering\textbf{Titolo} & \centering\textbf{...}\endline
+\hline \rowcolor{tableCyan!37} \centering\textbf{Titolo} &
+\centering\textbf{Registrazione}\endline
 \hline 
 \rowcolor{tableCyan!10}
 \cellcolor{tableCyan!22}
 
-               Descrizione &test
-\ntableCyan    Attori &
-\tableCyan     Relazioni &
-\ntableCyan    Precondizioni &
-\tableCyan     Postcondizioni &
-\ntableCyan    Scenario Principale &
-\tableCyan     Scenari Alternativi &
-\ntableCyan    Requisiti NF &
-\tableCyan     Punti Aperti &
+                Descrizione & Un Utente si registra alla piattaforma
+\ntableCyan     Attori & Utente
+\tableCyan      Relazioni & 
+\ntableCyan     Precondizioni & 
+\tableCyan      Postcondizioni & L'Utente viene registrato nel sistema come Codemonkey o come cliente
+\ntableCyan     Scenario Principale & L'Utente inserisce le credenziali (nomeUtente, e-mail, chiave di accesso) per la creazione di un account e specifica se vuole essere registrato come Cliente o Codemonkey
+\tableCyan      Scenari Alternativi & Se il nome Utente é giá stato scelto da qualcun'altro non sará possibile registrare l'account
+                \newline Se si inserisce una e-mail uguale a quella associata a un'altro account non sará possibile registrare l'account
+\ntableCyan     Requisiti NF & Sia nel caso che venga inserito un username giá esistente che nel caso venga inserita una email associata ad un account giá registrato dovrá essere segnalato all'Utente che non puó registrasi
+                \newline La password dovrá essere inserita e poi conferata dall'Utente per evitare possibli errori di battitura
+\tableCyan      Punti Aperti & Nel caso si stia registrando una Codemonkey sará possibile anche inserire dati per completare il proprio account
+                \newline Verrá fornita la possibilitá di attivare l'autenticazione a 2 fattori 
 }
 
+\monkeytable{3} {
+{|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
 
+\hline \rowcolor{tableCyan!37} \centering\textbf{Titolo} & \centering\textbf{Autenticazione}\endline
+\hline 
+\rowcolor{tableCyan!10}
+\cellcolor{tableCyan!22}
+
+                Descrizione & L'Utente effettua il login nel sistema
+\ntableCyan     Attori & Utente, Admin
+\tableCyan      Relazioni & Gestione Profilo, Proponi Lavoro, Fornisci recensione, Area personale, Gestione Utenti
+\ntableCyan     Precondizioni & L'Utente o l'amministratore deve essere giá stato registrato nel sistema
+\tableCyan      Postcondizioni &
+\ntableCyan     Scenario Principale &L'Utente fornisce le credenziali e dopo essere state validate verrá reindirizzato alla pagina precedente con la possibilitá di effettuare operazioni che pria erano protette 
+\tableCyan      Scenari Alternativi &Nel caso i dati forniti per l'autenticazione siano incorretti verrá visualizzato un messaggio di errore
+                \newline Nel caso l'utente sia stato sospeso da un admin verrá fornito un messaggio di errore con la spiegazione del perché sia stato sospeso
+\ntableCyan     Requisiti NF &Sará sempre presente un bottone per il recupero della password
+\tableCyan      Punti Aperti &Come fare nel caso un Utente o un Admin debbano usare l'autenticazione a 2 fattori?
+}
+
+\monkeytable{3} {
+{|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
+
+\hline \rowcolor{tableCyan!37} \centering\textbf{Titolo} & \centering\textbf{Gestione profilo}\endline
+\hline 
+\rowcolor{tableCyan!10}
+\cellcolor{tableCyan!22}
+
+                Descrizione &Gestione del profilo Utente 
+\ntableCyan     Attori & Cliente, Codemonkey
+\tableCyan      Relazioni &Autenticazione
+\ntableCyan     Precondizioni &L'Utente deve essere autenticato
+\tableCyan      Postcondizioni &
+\ntableCyan     Scenario Principale &
+                Un Utente autenticato accede alla pagina di Gestione account\newline
+                Il sistema potrá permettere all'utente di cambiare immagine di profilo, descrizione, contatti, username, e-mail e password dell'account autenticato\newline
+                Una Codemonkey potrá inoltre inserire ció che é in grado di fare per farsi trovare dai clienti
+\tableCyan      Scenari Alternativi &
+\ntableCyan     Requisiti NF &Deve essere presente un'anteprima del profilo accanto alle opzioni di modifica
+\tableCyan      Punti Aperti &Cosa succede se il cliente cambia l'e-mail collegata all'account o i prorpi contatti mentre ha una collaborazioen aperta con una Codemonkey?\newline
+                Cosa succede se la Codemonkey cambia i propri contatti mentre sta collaborando con un Cliente\newline
+                Sará possibile cambiare la valutazione fornita sulla Codemonkey una volta che é stata resa pubblica o a seguito di collaborazioni successive? Oppure sará piú giusto bloccare la possibilitá di bloccare la modifica delle valutazoni passate?
+}
 
 
 
@@ -51,22 +97,22 @@
 %Non  riempitela scimmieeeee                                       monke
 
 \monkeytable{3} {
-{|>{\arraybackslash }m{3cm}|>{\arraybackslash}X|}
+{|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
 
 \hline \rowcolor{tableCyan!37} \centering\textbf{Titolo} & \centering\textbf{...}\endline
 \hline 
 \rowcolor{tableCyan!10}
 \cellcolor{tableCyan!22}
 
-               Descrizione &test
-\ntableCyan    Attori &
-\tableCyan     Relazioni &
-\ntableCyan    Precondizioni &
-\tableCyan     Postcondizioni &
-\ntableCyan    Scenario Principale &
-\tableCyan     Scenari Alternativi &
-\ntableCyan    Requisiti NF &
-\tableCyan     Punti Aperti &
+                Descrizione &
+\ntableCyan     Attori &
+\tableCyan      Relazioni &
+\ntableCyan     Precondizioni &
+\tableCyan      Postcondizioni &
+\ntableCyan     Scenario Principale &
+\tableCyan      Scenari Alternativi &
+\ntableCyan     Requisiti NF &
+\tableCyan      Punti Aperti &
 }
 
     % NO    % NO    % NO    % NO    % NO

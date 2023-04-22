@@ -1,5 +1,4 @@
-\documentclass{article}
-
+\documentclass{artikel1}
 \usepackage{tocloft}
 \usepackage{tabularx}
 \usepackage{graphicx}
@@ -23,7 +22,7 @@
 \newcommand{\monkeytable}[2]{
 \begin{center}
 \renewcommand{\arraystretch}{2}%padding top and bottom
-\begin{table}[h!]
+\begin{table}[!htbp]
 %\setlength{\extrarowheight}{2pt}%rowheight 
 \setlength\tabcolsep{5pt}%padding bordo lat
 \begin{tabularx}{\textwidth}
@@ -44,7 +43,7 @@
 
 \begin{document}
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
    \centering
    \includegraphics[width=0.5\linewidth]{images/icon}
    \begin{titlepage}
