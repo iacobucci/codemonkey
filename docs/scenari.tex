@@ -54,7 +54,7 @@
 \tableCyan      Postcondizioni &
 \ntableCyan     Scenario Principale &L'Utente fornisce le credenziali e dopo essere state validate verrá reindirizzato alla pagina precedente con la possibilitá di effettuare operazioni che pria erano protette 
 \tableCyan      Scenari Alternativi &Nel caso i dati forniti per l'autenticazione siano incorretti verrá visualizzato un messaggio di errore
-                \newline Nel caso l'utente sia stato sospeso da un admin verrá fornito un messaggio di errore con la spiegazione del perché sia stato sospeso
+                \newline Nel caso l'utente sia stato Bloccato da un admin verrá fornito un messaggio di errore con la spiegazione del perché sia stato sospeso
 \ntableCyan     Requisiti NF &Sará sempre presente un bottone per il recupero della password
 \tableCyan      Punti Aperti &Come fare nel caso un Utente o un Admin debbano usare l'autenticazione a 2 fattori?
 }
@@ -121,7 +121,7 @@
 \ntableCyan     Precondizioni & Un Utente deve essere autenticato come Cliente
 \tableCyan      Postcondizioni &
 \ntableCyan     Scenario Principale & Un Cliente dalla sezione di gestione del profilo apre la sezione dedicata ai lavori attivi accettati dalle codmonkey e puó decidere se terminare un lavoro attivo. Per terminare un lavoro dovrá inserire una valutazione obbligatoria sul lavoro svolto dalla Codemonkey e potrá anche inserire una recensione scritta (opzionale)
-\tableCyan      Scenari Alternativi &
+\tableCyan      Scenari Alternativi & Se il Cliente é limitato non puó lasciare la valutazione scritta
 \ntableCyan     Requisiti NF &Possibilitá di vedere tutte le collaborazioni presenti e passate in una lista separata da quella delle collaborazioni attive e possibilitá di generare nuove prposte di lavoro per quste Codemonkey
 \tableCyan      Punti Aperti &Sará fornita la possibilitá di dare una recensione per ogni lavo eseguito da una Codemonkey o sará meglio di no per evitare frodi?\newline
                 Sará possibile modificare recensioni giá pubblicate?
@@ -142,8 +142,8 @@
 \ntableCyan     Precondizioni &Un utente deve trovarsi nella homepage del sito
 \tableCyan      Postcondizioni &
 \ntableCyan     Scenario Principale &Un Utente autenticato o meno dalla pagina principale del sito puó sfogliare tutti i proili delle Codemonkey, una volta che ha trovato la Codmonkey ideale puó cliccare sull'apposito bottone per proporre un lavoro, se si tratta di un Cliente il bottone aprirá una sezione nella quale sará possiblie mandare la richiesta di lavoro ad una Codmonkey con in allegato un messaggio di descrizione del lavoro, invece se é un utente a cliccare sul pulsante verrá aperta la pagina per effettuare l'autenticazione
-\tableCyan      Scenari Alternativi &
-\ntableCyan     Requisiti NF & Una volta che l'utente che ha cliccatp sul pulsante per proporre il lavoro si é autenticato invece che venir mandato alla pagina di gestione account gli verrá presentato il modulo per inviare la richiesta
+\tableCyan      Scenari Alternativi &Un Cliente limitato non puó fare alcuna richiesta di lavoro, pertanto invece che aprire una sezione dedicata alla proposta di lavoro verrá visualizzata una pagina di errore con la motivazione della sospensione
+\ntableCyan     Requisiti NF & Una volta che l'utente che ha cliccato sul pulsante per proporre il lavoro si é autenticato invece che venir mandato alla pagina di gestione account gli verrá presentato il modulo per inviare la richiesta
 \tableCyan      Punti Aperti &Per evitare che vengano madate per errore richieste di lavoro senza oggetto bisognerá mettere obbligatorio un certo numero di caratteri per la descrizione per descrivere in modo accurato il problema
 }
 
@@ -182,7 +182,7 @@
 \tableCyan      Relazioni &
 \ntableCyan     Precondizioni &L'Amministratore deve essere stato autenticato
 \tableCyan      Postcondizioni &
-\ntableCyan     Scenario Principale &Dopo essersi autenticato l'Amministratore potrá accedere alla pagina dedicata alla gestione degli Utenti dove potrá Limitare Sospendere o eliminare un Utente Autenticato e moderare le recensioni fornite alle varie Codemonkey
+\ntableCyan     Scenario Principale &Dopo essersi autenticato l'Amministratore potrá accedere alla pagina dedicata alla gestione degli Utenti dove potrá Limitare, Sospendere, bloccare o eliminare un Utente Autenticato e moderare le recensioni fornite alle varie Codemonkey
 \tableCyan      Scenari Alternativi &
 \ntableCyan     Requisiti NF &
 \tableCyan      Punti Aperti &Potrebbe servire un sistema di report per codmonkey e clienti per aiutare gli admi a risolvere problemi?

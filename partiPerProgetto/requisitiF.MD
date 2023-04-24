@@ -1,23 +1,26 @@
 Deve esistere un sistema per registrare nuovi Utenti
 ___
-Deve essere disposto un sistema di autenticazione per gli Utenti giá registrati 
+Deve essere disposto un sistema di autenticazione per Utenti giá registrati 
 ___
-Deve essere possibile eseguire una Ricerca di Codmonkey Filtrata
+Deve essere possibile eseguire una Ricerca di Codmonkey con l'utilizzo di Filtri
 ___
-Un'Azienda potrà contattare un programmatore solo previa autenicazione
+Solo un Cliente potrà effettuare una proposta di lavoro ad una Codmonkey
 ___
-Una Codmonkey può modificare i suoi dati solo previa autenticazione
+Una Codmonkey e un Cliente potranno modificare i propri dati da un'area personale
 ___
-Un'azienda autenticata puó presentare domanda di lavoro ad un programmatore
+Una Codmonkey puó accettare o rifiutare una proposta di lavoro presentata da un Cliente
 ___
-Un programmatore puó accettare o rifiutare domande di lavoro presentate da aziende
+Ua Codmonkey potrá essere visualizzata solo se ha un Profilo Completo
 ___
-Ua Codmonkey puó essere visualizzata solo se ha inserito nel sistema ció che é in grado di fare
+Un Amministratore deve poter essere in grado di eliminare, bloccare, sospendere e limitare qualsiasi Utene
 ___
-Un Amministratore deve poter essere in grado di eliminare, sospendere e limitare gli Utenti registrati
+Un Cliente in stato di sospensione una volta autenticata non potrá piú contattare nuove Codmonkey, potrá solo portare a termine i lavori giá avviati
 ___
-Un'azienda sospesa una volta autenticata non potrá piú contattare nuove Codmonkey, potrá solo portare a termine i lavori giá avviati
-____
-Una Codmonkey sospesa non deve piú comparire nelle ricerche
+Un Cliente limitato potrá solo fornire una valutazione della Codmonkey senza commenti
 ___
-Un qualsiasi utente che viene eliminato termina immediatamente tutte le collaborazioni
+Una Codmonkey sospesa non deve piú comparire nelle ricerche effettuate dagli utenti
+___
+Un qualsiasi Utente Registrato che viene Eliminato termina immediatamente tutte le collaborazioni e verrá eliminato dal sistema
+___
+Un Utente Registrato quando viene Bloccato termina immediatamente tutte le collaborazioni e non potrá avviarne di nuove
+___
