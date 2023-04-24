@@ -10,7 +10,7 @@ Una Codmonkey e un Cliente potranno modificare i propri dati da un'area personal
 ___
 Una Codmonkey puó accettare o rifiutare una proposta di lavoro presentata da un Cliente
 ___
-Ua Codmonkey potrá essere visualizzata solo se ha un Profilo Completo
+Una Codmonkey potrá essere visualizzata solo se ha un Profilo Completo
 ___
 Un Amministratore deve poter essere in grado di eliminare, bloccare, sospendere e limitare qualsiasi Utene
 ___
