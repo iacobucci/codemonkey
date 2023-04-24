@@ -10,7 +10,7 @@
 \definecolor{tableGreen}{RGB}{30, 190, 50}
 \definecolor{tableYellow}{RGB}{255, 220, 0}
 \definecolor{tableBlue}{RGB}{0 ,20, 210}
-\definecolor{tableCyan}{RGB}{0 ,160, 160}
+\definecolor{tableCyan}{RGB}{0 ,160, 156}
 \definecolor{tableRed}{RGB}{220 ,15, 5}
 
 %macro per andare a capo nelle tabelle
@@ -20,18 +20,18 @@
 
 %macro per generare le tabelle
 \newcommand{\monkeytable}[2]{
-\begin{center}
 \renewcommand{\arraystretch}{2}%padding top and bottom
 \begin{table}[!htbp]
+\begin{center}
 %\setlength{\extrarowheight}{2pt}%rowheight 
 \setlength\tabcolsep{5pt}%padding bordo lat
 \begin{tabularx}{\textwidth}
 #2
 \n %necessaria per chiudere la tabella
 \end{tabularx}
+\end{center}
 \end{table}
 \label{tab:monkeytable}
-\end{center}
 }
 
 
