@@ -1,38 +1,53 @@
 \section {Vocabolario}
 
-\newcommand{\orange}{%onde evitare caos il colore della tabella viene dichiarato qui
-    \\
-    \rowcolor{orange!20}
-    \hline
-}
-\newcommand{\norange}{
-    \\
-    \rowcolor{orange!5}
-    \hline
-}
-
-\monkeytable{3} {
-{|>{\centering\arraybackslash}X|>{\raggedright\arraybackslash}m{5cm}|>{\centering\arraybackslash}X|}
-%{\opzioni}, m{xcm} per dimensione custom o X per dimensione automatica, elementi racchiusi da ||
-
+\renewcommand{\arraystretch}{2}%padding sopra sotto
+\setlength\tabcolsep{5pt}%padding bordo lat
+\rowcolors{2}{orange!20}{orange!5}%colori alternati
+\begin{adjustwidth}{-1.8cm}{0cm}
+\resizebox{1.3\textwidth}{!}{%tabella piú larga
+\begin{tabular}
+{|m{3.5cm}|m{8cm}|m{2.5cm}|}%Opzioni per formato tabella
 \hline %riga in cima alla colonna    
 \rowcolor{orange!50}%settare il colore della colonna principale 
+
 \textbf{Voce} &\textbf{Definizione}\centering &\textbf{Sinonimo} %voci della prima colonna
 
-\norange    Utente& Persona non autenticatacon nessun permesso &
-\orange     Azienda& Azienda o un semplice privato interessato a utilizzare uno o piú servizi offerti da un programmatore &
-\norange    Codmonkey& Utente registrato o autenticato come programmatore &
-\orange     Autenticazione& Metodo di accesso al servizio, basato su username e password&
-\norange    Account & Iniseme di Credenziali e informazioni che identifica una Azienda &
-\orange     Username & Stringa alfanumericache identifica il nome di un Utente&
-\norange    Password & Stringa alfanumerica generata da un utente del servizio&
-\orange     Autenticazione & Meccanismo di accesso con nome alla piattaforma& Log in
-\norange    Registrazione& Funzione di iscrizione alla piattaforma&
-\orange     Valutazione Filtrata & Valutazione di una codomonkey generata dinamicamente in base ai Filtri di ricerca inseriti da un Utente che ha eseguito la ricerca &
-\norange    Filtri di Ricerca & I Filtri di Ricerca sono delle parole chiave che permettono di trovare le Codmonkey, saranno quindi i linguaggi di programmazione e le applicazioni che sono in grado di utilizzare
-\orange     Amministratore & Addetto o addetti in grado di eliminare,sospendere o limitare &
-\norange    Limitare un Cliente & rimuovere la possibilità per un utente di lasciare Recensioni &
-\orange     Sospendere un Cliente o una Codmonkey & rimuovere la possibilità di avviare nuove collaborazioni per un Cliente e non rendere piu visibile la Codmonkey &
-\norange    Bloccare un Cliente o una Codmonkey & disabilitare la possibilità di accedere alla piattaforma &
-\orange     Profilo Completo & Il profilo di una Codmonkey si dice completo se sono state inserite una descrizione delle capacitá della Codmonkey e sono stati impostati i propri Filtri di Ricerca (almeno un filtro) &
+\n  Utente& Persona non autenticatacon nessun permesso &
+\n  Cliente& Azienda o un semplice privato interessato a utilizzare uno o piú servizi offerti da una o piú Codmonkey &
+\n  Codmonkey& Utente registrato o autenticato come programmatore &
+\n  Autenticazione& Metodo di accesso al servizio, basato su username e password&
+\n  Account & Iniseme di Credenziali e informazioni che identifica una Azienda &
+\n  Nome Utente & Stringa alfanumericache identifica il nome di un Utente&Username
+\n  Chiave di accesso & Stringa alfanumerica generata da un utente del servizio&Password
+\n  Autenticazione & Meccanismo di accesso con nome alla piattaforma& Log in
+\n  Registrazione& Funzione di iscrizione alla piattaforma&
+\n  Valutazione Filtrata & Valutazione di una codomonkey generata dinamicamente in base ai Filtri di ricerca inseriti da un Utente che ha eseguito la ricerca &
+\n
+\end{tabular}
 }
+\label{tab:monkeytable:vocabolario1}
+\end{adjustwidth}
+
+
+\begin{adjustwidth}{-1.8cm}{0cm}
+\resizebox{1.3\textwidth}{!}{%tabella piú larga
+\begin{tabular}
+{|m{3.5cm}|m{8cm}|m{2.5cm}|}%Opzioni per formato tabella
+\hline %riga in cima alla colonna    
+\rowcolor{orange!50}%settare il colore della colonna principale 
+
+\textbf{Voce} &\textbf{Definizione}\centering &\textbf{Sinonimo} %voci della prima colonna
+
+\n  Filtri di Ricerca & I Filtri di Ricerca sono delle parole chiave che permettono di trovare le Codmonkey, saranno quindi i linguaggi di programmazione e le applicazioni che sono in grado di utilizzare&
+\n  Amministratore & Addetto o addetti in grado di eliminare,sospendere o limitare &
+\n  Limitare un Cliente & rimuovere la possibilità per un utente di lasciare Recensioni &
+\n  Sospendere un Cliente o una Codmonkey & rimuovere la possibilità di avviare nuove collaborazioni per un Cliente e non rendere piu visibile la Codmonkey &
+\n  Bloccare un Cliente o una Codmonkey & Disabilitare l'accesso ad una piattaforma per un Cliente o una Codmonkey &Ban
+\n  Profilo Completo & Il profilo di una Codmonkey si dice completo se sono state inserite una descrizione delle capacitá della Codmonkey e sono stati impostati i propri Filtri di Ricerca (almeno un filtro) &
+\n
+\end{tabular}
+}
+\label{tab:monkeytable:vocabolario2}
+\end{adjustwidth}
+
+

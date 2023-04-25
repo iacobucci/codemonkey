@@ -1,95 +1,104 @@
 \section{Analisi del rischio}
+    
+\renewcommand{\arraystretch}{2}%padding sopra sotto
+\setlength\tabcolsep{5pt}%padding bordo lat
+\rowcolors{2}{tableRed!15}{tableRed!6}%colori alternati
+\begin{center}
+\begin{adjustwidth}{-1.8cm}{0cm} 
+\resizebox{1.3\textwidth}{!}{%tabella piú larga
+\begin{tabular}{|m{4cm}|m{6cm}|m{5cm}|}
 
-\newcommand{\tableRed}{%onde evitare caos il colore della tabella viene dichiarato qui
-    \\
-    \rowcolor{tableRed!15}
-    \hline
-}
+\hline  \rowcolor{tableRed!70}  \multicolumn{3}{|c|}{\textbf{Valutazione dei beni}}
+\n      \rowcolor{tableRed!50}  \textbf{Bene} &  \textbf{Valore} &   \textbf{Esposizione}
 
-\newcommand{\ntableRed}{
-    \\
-    \rowcolor{tableRed!6}
-    \hline
-}
+\n      Credenziali di accesso Codemonkey&Alto:\newline
+        Possibilità di modificare le informazioni relative alle Codemonkey.\newline
+        Possibilità di rifiutare lavori per conto delle Codemonkey&
+        Alta:\newline
+        Possibilie perdita economica per la Codemonkey\newline
+        Danno di immagine
 
-\monkeytable{3} {
-{|p{2.6cm}|X|X|}
-\hline \rowcolor{tableRed!70}  \multicolumn{3}{|c|}{\textbf{Valutazione dei beni}}\\
-\hline \rowcolor{tableRed!50} \centering \textbf{Bene} & \centering \textbf{Valore} &  \centering \textbf{Esposizione}\endline
-\rowcolor{tableRed!6}
-\hline          Credenziali di accesso Codemonkey&Alto:\newline
-                Possibilità di modificare le informazioni relative alle Codemonkey.\newline
-                Possibilità di rifiutare lavori per conto delle Codemonkey&
-                Alta:\newline
-                Possibilie perdita economica per la Codemonkey\newline
-                Danno di immagine
-\tableRed       Credenziali di accesso Clienti&
-                Alto:\newline
-                Possibilità di proporre lavori fasulli\newline
-                Possono essere scritte recensioni false&
-                Alta:\newline
-                Costi di ripristino\newline
-                Possibili spese di rimborso per lavori fasulli già iniziati\newline
-                Danno di immmagine
+\n      Credenziali di accesso Clienti&
+        Alto:\newline
+        Possibilità di proporre lavori fasulli\newline
+        Possono essere scritte recensioni false&
+        Alta:\newline
+        Costi di ripristino\newline
+        Possibili spese di rimborso per lavori fasulli già iniziati\newline
+        Danno di immmagine
 
-\ntableRed      Credenziali di accesso Amministratori&
-                Molto Alto\newline
-                Completa gestione di tutti gli Utenti registrati\newline
-                Possibilità di vedere lavori non ancora terminati&
-                Molto Alta:\newline
-                Costi di ripristino di sistema\newline
-                Possibile danno di immagine nel caso la notizia diventi di pubblico dominio
-\tableRed       DB Utenti Registrati&
-                Alto:\newline
-                Accesso a tutti i dati degli Utenti registrati&
-                lo mettiamo?
+\n      Credenziali di accesso Amministratori&
+        Molto Alto\newline
+        Completa gestione di tutti gli Utenti registrati\newline
+        Possibilità di vedere lavori non ancora terminati&
+        Molto Alta:\newline
+        Costi di ripristino di sistema\newline
+        Possibile danno di immagine nel caso la notizia diventi di pubblico dominio
+
+\n      DB Utenti Registrati&
+        Alto:\newline
+        Accesso a tutti i dati degli Utenti registrati&
+        lo mettiamo?
                 
-
+\n
+\end{tabular}
 }
+\label{tab:monkeytable:monkerisk:valutaBanane}
+\end{adjustwidth}
 
-\monkeytable{3} {
-{|>{\arraybackslash}p{2.2cm}|>{\arraybackslash}X|>{\arraybackslash}X|>{\arraybackslash}X|}
-\hline \rowcolor{tableRed!70}  \multicolumn{4}{|c|}{\textbf{Minacce e Controlli}}\\
-\hline \rowcolor{tableRed!50} \centering \textbf{Minaccia} & \centering \textbf{Probabilità} &  \centering \textbf{Controllo} &\centering \textbf{Fattibilità} \endline
-\rowcolor{tableRed!6}
-\hline      Furto identità Amministratore &
-            Molto Bassa\newline
-            Username e password stabiliti dall'Amministratore insieme a un sistema per autenticazione a 2 fattori&
-            Numero di tentativi disponibili limitato nel tempo\newline
-            Autenticazione a 2 fattori che rende valida la sessione corrente\newline
-            Log di ogni tentativo di accesso&
-            Costo di implementazione Medio-Basso
-\tableRed   Furto identità cliente o Codemonkey&
-            Media o Bassa\newline
-            Username e password scelti in fase di registrazione&
-            Numero di tentativi disponibili limitato nel tempo\newline
-            Possibilità per un utente registrato di attivare l'autenticazione a 2 fattori\newline
-            Possibilità di recuperare l'accouynt tramite mail&
-            Costo di implementazione Medio-Basso\newline
-\ntableRed  Intercettazione delle comunicazioni&
-            Media\newline
-            Il servizio è realizzato in rete&
-            Utilizzo di un sistema crittografico per la cifratura delle comunicazioni&
-            Costo di implementazione Basso\newline
-\tableRed   Deny of Service&
-            Bassa\newline
-            Bassa probabilità di un attacco dos&
-            Numero di operazioni di rete possibili limitato nel tempo&
-            Basso Costo\newline
-            Gestione delle richieste e della rete delegata agli Amministratori
+\begin{adjustwidth}{-2.6cm}{0cm} 
+\centering
+\resizebox{1.4\textwidth}{!}{
+\begin{tabular}{|m{3.25cm}|m{4cm}|m{4.75cm}|m{4cm}|}
+ 
+\hline  \rowcolor{tableRed!70}  \multicolumn{4}{|c|}{\textbf{Minacce e Controlli}}
+\n      \rowcolor{tableRed!50}  \textbf{Minaccia} &  \textbf{Probabilità} &   \textbf{Controllo} & \textbf{Fattibilità} 
 
+\n      Furto identità Amministratore &
+        Molto Bassa\newline
+        Username e password stabiliti dall'Amministratore insieme a un sistema per autenticazione a 2 fattori&
+        Numero di tentativi disponibili limitato nel tempo\newline
+        Autenticazione a 2 fattori che rende valida la sessione corrente\newline
+        Log di ogni tentativo di accesso&
+        Costo di implementazione Medio-Basso
+\n      Furto identità cliente o Codemonkey&
+        Media o Bassa\newline
+        Username e password scelti in fase di registrazione&
+        Numero di tentativi disponibili limitato nel tempo\newline
+        Possibilità per un utente registrato di attivare l'autenticazione a 2 fattori\newline
+        Possibilità di recuperare l'accouynt tramite mail&
+        Costo di implementazione Medio-Basso\newline
+\n      Intercettazione delle comunicazioni&
+        Media\newline
+        Il servizio è realizzato in rete&
+        Utilizzo di un sistema crittografico per la cifratura delle comunicazioni&
+        Costo di implementazione Basso\newline
+\n      Deny of Service&
+        Bassa\newline
+        Bassa probabilità di un attacco dos&
+        Numero di operazioni di rete possibili limitato nel tempo&
+        Basso Costo\newline
+        Gestione delle richieste e della rete delegata agli Amministratori
+\n
 
+\end{tabular}
+\label{tab:monkeytable:monkerisk:monkeMinacciataMaMonkeControlla}
 }
+\end{adjustwidth}
 
-\monkeytable{3} {
-{|>{\arraybackslash}X|>{\arraybackslash}X|}
-\hline \rowcolor{tableRed!70}  \multicolumn{2}{|c|}{\textbf{Tecnologia e Vulnerabilità}}\\
-\hline \rowcolor{tableRed!50} \centering \textbf{Tecnologia} & \centering \textbf{Vulnerabilità}  \endline
-\rowcolor{tableRed!6}
-\hline      Autenticazione & 
-            Utente registrato rivela username e password volontariamente o per errore e non ha attivato l'autenticazione a due fattori
-\tableRed  Architettura Client/Server &
-            Attacco Deny of Service\newline
-            Intercettazione delle comunicazioni:\newline
-            Man in the middle, Sniffing
-}
+\newpage
+\begin{tabular}{|m{4cm}|m{7cm}|}
+\hline \rowcolor{tableRed!70}  \multicolumn{2}{|c|}{\textbf{Tecnologia e Vulnerabilità}}
+\n \rowcolor{tableRed!50}  \textbf{Tecnologia} &  \textbf{Vulnerabilità}  
+\n  Autenticazione & 
+        Utente registrato rivela username e password volontariamente o per errore e non ha attivato l'autenticazione a due fattori
+\n      Architettura Client/Server &
+        Attacco Deny of Service\newline
+        Intercettazione delle comunicazioni:\newline
+        Man in the middle, Sniffing
+\n
+\end{tabular}
+\label{tab:monkeytable:monkerisk:monkeVulnerabile}
+
+\end{center}
+
