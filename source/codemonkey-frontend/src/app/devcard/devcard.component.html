@@ -1,0 +1,38 @@
+<style>
+    .scroll-container {
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .example-spacer {
+        flex: 1 1 auto;
+    }
+
+    .scroll-item {
+        margin-right: 8px;
+    }
+</style>
+
+<mat-card class="example-card">
+    <mat-card-header>
+        <img mat-card-avatar [src]="imageUrl" alt="Immagine di profilo">
+        <mat-card-title>{{firstName}} {{lastName}}</mat-card-title>
+        <mat-card-subtitle>Codemonkey</mat-card-subtitle>
+        <span class="example-spacer"></span>
+        <app-valutazione [rating]="valutazione"></app-valutazione>
+    </mat-card-header>
+    <img mat-card-image [src]="imageUrl" alt="Immagine di profilo">
+    <mat-divider></mat-divider>
+
+    {{description}}
+
+    <mat-divider></mat-divider>
+
+    <div class="scroll-container">
+        <div *ngFor="let item of items" class="scroll-item">
+            <button mat-raised-button>{{ item }}</button>
+        </div>
+    </div>
+
+</mat-card>

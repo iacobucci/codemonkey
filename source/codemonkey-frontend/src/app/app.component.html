@@ -1,28 +1,37 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-<mat-toolbar>
+<style>
+  .example-spacer {
+    flex: 1 1 auto;
+  }
 
-  <!-- align to left-->
+  .title {
+    font-size: 1.5em;
+    margin: 0 0 0 0;
+  }
+</style>
 
-  <h1>
+<mat-toolbar color="accent">
+
+  <img src="favicon.ico" height="100%" alt="logo"
+    style="margin-right: 10px; margin-left: 10px; margin-top: 5px; margin-bottom: 5px;" routerLink="/"/>
+
+  <!-- align title to left-->
+
+  <h1 class="title">
     {{title}}
   </h1>
 
+  <!-- home button-->
+
+  <button mat-button routerLink="/page1">1</button>
+  <button mat-button routerLink="/page2">2</button>
+
   <!-- align to right-->
+  <span class="example-spacer"></span>
 
   <app-theme-switcher></app-theme-switcher>
 
 </mat-toolbar>
-
-<div class="container">
-
-  <div>
-  </div>
-  <div class="row">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget</p>
-    <p>tincidunt luctus, nisl nisl aliquet nisl, eget aliquet nisl nisl sit amet</p>
-    <p>ligula. Nullam auctor, nisl eget tincidunt luctus, nisl nisl aliquet nisl,</p>
-  </div>
-</div>
 
 <router-outlet></router-outlet>

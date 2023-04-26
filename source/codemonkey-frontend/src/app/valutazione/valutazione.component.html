@@ -1,0 +1,9 @@
+<span *ngFor="let star of filledStars | range">
+  <mat-icon>star</mat-icon>
+</span>
+<span *ngIf="hasHalfStar">
+  <mat-icon>star_half</mat-icon>
+</span>
+<span *ngFor="let star of emptyStars | range">
+  <mat-icon>star_border</mat-icon>
+</span>
