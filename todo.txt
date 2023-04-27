@@ -1,11 +1,11 @@
 docs
     [x] abstract
     analisi dei requisiti   
-        [ ] vocabolario
-        [ ] scenari
-        [ ] analisi del rischio
+        [x] vocabolario
+        [x] scenari
+        [x] analisi del rischio
     analisi del probelma
-        [ ] analisi delle funzionalità
+        [] analisi delle funzionalità
         [ ] analisi ruoli e responsabilità
         [ ] analisi de dominio
         [ ] architettura logica
@@ -27,3 +27,12 @@ source
         [ ] toolbar
         [ ] dark mode
     backend
+
+
+
+roba da limare
+    [ ] Req funz e non funz post analisi sicurezza aggiornati
+
+    [ ] Casi d'uso aggiornati(aggiungiamo il log?)
+
+    [ ] se punto sopra c'é da fare anche lo scenario del log
