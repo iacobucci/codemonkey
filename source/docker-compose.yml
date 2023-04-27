@@ -1,0 +1,12 @@
+version "3.8"
+
+services:
+    backend:
+      build: ./backend
+
+    database:
+      build: ./database
+
+    frontend:
+      build: ./frontend
+
