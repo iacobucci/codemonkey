@@ -1,5 +1,7 @@
-\documentclass{article}
-
+\documentclass[11pt]{artikel1}
+\usepackage{adjustbox}
+\usepackage{changepage}
+\usepackage{multirow}
 \usepackage{tocloft}
 \usepackage{tabularx}
 \usepackage{graphicx}
@@ -11,7 +13,7 @@
 \definecolor{tableGreen}{RGB}{30, 190, 50}
 \definecolor{tableYellow}{RGB}{255, 220, 0}
 \definecolor{tableBlue}{RGB}{0 ,20, 210}
-\definecolor{tableCyan}{RGB}{0 ,160, 160}
+\definecolor{tableCyan}{RGB}{0 ,160, 156}
 \definecolor{tableRed}{RGB}{220 ,15, 5}
 
 %macro per andare a capo nelle tabelle
@@ -21,18 +23,16 @@
 
 %macro per generare le tabelle
 \newcommand{\monkeytable}[2]{
-\begin{center}
 \renewcommand{\arraystretch}{2}%padding top and bottom
-\begin{table}[h!]
+\begin{center}
 %\setlength{\extrarowheight}{2pt}%rowheight 
 \setlength\tabcolsep{5pt}%padding bordo lat
 \begin{tabularx}{\textwidth}
 #2
 \n %necessaria per chiudere la tabella
 \end{tabularx}
-\end{table}
-\label{tab:monkeytable}
 \end{center}
+\label{tab:monkeytable}
 }
 
 %inizio documento vero e proprio
@@ -40,7 +40,7 @@
 
 \begin{document}
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
    \centering
    \includegraphics[width=0.5\linewidth]{images/icon}
    \begin{titlepage}

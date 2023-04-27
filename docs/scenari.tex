@@ -1,9 +1,9 @@
-\section {Scenari}
+\section{Scenari}
 
 
-\newcommand{\tableCyan}{%onde evitare caos il colore della tabella viene dichiarato qui
+\newcommand{\tableCyan}{%ondewsl evitare caos il colore della tabella viene dichiarato qui
     \\
-    \hline 
+    \hline
     \rowcolor{tableCyan!10}
     \cellcolor{tableCyan!22}
 }
@@ -15,29 +15,178 @@
     \cellcolor{tableCyan!12}
 }
 
-
 \monkeytable{3} {
-{|>{\arraybackslash }m{3cm}|>{\arraybackslash}X|}
+{|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
 
-\hline \rowcolor{tableCyan!37} \centering\textbf{Titolo} & \centering\textbf{...}\endline
+\hline \rowcolor{tableCyan!37} \centering\textbf{Titolo} &
+\centering\textbf{Registrazione} \endline
 \hline 
 \rowcolor{tableCyan!10}
 \cellcolor{tableCyan!22}
 
-               Descrizione &test
-\ntableCyan    Attori &
-\tableCyan     Relazioni &
-\ntableCyan    Precondizioni &
-\tableCyan     Postcondizioni &
-\ntableCyan    Scenario Principale &
-\tableCyan     Scenari Alternativi &
-\ntableCyan    Requisiti NF &
-\tableCyan     Punti Aperti &
+                Descrizione & Un Utente si registra alla piattaforma
+\ntableCyan     Attori & Utente
+\tableCyan      Relazioni & 
+\ntableCyan     Precondizioni & 
+\tableCyan      Postcondizioni & L'Utente viene registrato nel sistema come Codemonkey o come cliente
+\ntableCyan     Scenario Principale & L'Utente inserisce le credenziali (nomeUtente, e-mail, chiave di accesso) per la creazione di un account e specifica se vuole essere registrato come Cliente o Codemonkey
+\tableCyan      Scenari Alternativi & Se il nome Utente é giá stato scelto da qualcun'altro non sará possibile registrare l'account\newline
+                Se si inserisce una e-mail uguale a quella associata a un'altro account non sará possibile registrare l'account
+\ntableCyan     Requisiti NF & Sia nel caso che venga inserito un username giá esistente che nel caso venga inserita una email associata ad un account giá registrato dovrá essere segnalato all'Utente che non puó registrasi\newline 
+                La password dovrá essere inserita e poi conferata dall'Utente per evitare possibli errori di battitura
+\tableCyan      Punti Aperti & Nel caso si stia registrando una Codemonkey sará possibile anche inserire dati per completare il proprio account\newline
+                Verrá fornita la possibilitá di attivare l'autenticazione a 2 fattori 
 }
 
+\monkeytable{3} {
+{|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
 
+\hline \rowcolor{tableCyan!37} \centering\textbf{Titolo} & 
+\centering\textbf{Autenticazione}\endline
+\hline 
+\rowcolor{tableCyan!10}
+\cellcolor{tableCyan!22}
 
+                Descrizione & L'Utente effettua il login nel sistema
+\ntableCyan     Attori & Utente, Admin
+\tableCyan      Relazioni & Gestione Profilo, Proponi Lavoro, Fornisci recensione, Area personale, Gestione Utenti
+\ntableCyan     Precondizioni & L'Utente o l'amministratore deve essere giá stato registrato nel sistema
+\tableCyan      Postcondizioni &
+\ntableCyan     Scenario Principale &L'Utente fornisce le credenziali e dopo essere state validate verrá reindirizzato alla pagina precedente con la possibilitá di effettuare operazioni che pria erano protette 
+\tableCyan      Scenari Alternativi &Nel caso i dati forniti per l'autenticazione siano incorretti verrá visualizzato un messaggio di errore
+                \newline Nel caso l'utente sia stato Bloccato da un admin verrá fornito un messaggio di errore con la spiegazione del perché sia stato sospeso
+\ntableCyan     Requisiti NF &Sará sempre presente un bottone per il recupero della password
+\tableCyan      Punti Aperti &Come fare nel caso un Utente o un Admin debbano usare l'autenticazione a 2 fattori?
+}
 
+\monkeytable{3} {
+{|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
+
+\hline \rowcolor{tableCyan!37} \centering\textbf{Titolo} & 
+\centering\textbf{Gestione profilo}\endline
+\hline 
+\rowcolor{tableCyan!10}
+\cellcolor{tableCyan!22}
+
+                Descrizione &Gestione del profilo Utente 
+\ntableCyan     Attori & Cliente, Codemonkey
+\tableCyan      Relazioni &Autenticazione
+\ntableCyan     Precondizioni &L'Utente deve essere autenticato
+\tableCyan      Postcondizioni &
+\ntableCyan     Scenario Principale &
+                Un Utente autenticato accede alla pagina di Gestione account\newline
+                Il sistema potrá permettere all'utente di cambiare immagine di profilo, descrizione, contatti, username, e-mail e password dell'account autenticato\newline
+                Una Codemonkey potrá inoltre inserire ció che é in grado di fare per farsi trovare dai clienti
+\tableCyan      Scenari Alternativi &
+\ntableCyan     Requisiti NF &Deve essere presente un'anteprima del profilo accanto alle opzioni di modifica
+\tableCyan      Punti Aperti &Cosa succede se il cliente cambia l'e-mail collegata all'account o i prorpi contatti mentre ha una collaborazioen aperta con una Codemonkey?\newline
+                Cosa succede se la Codemonkey cambia i propri contatti mentre sta collaborando con un Cliente\newline
+                Sará possibile cambiare la valutazione fornita sulla Codemonkey una volta che é stata resa pubblica o a seguito di collaborazioni successive? Oppure sará piú giusto bloccare la possibilitá di bloccare la modifica delle valutazoni passate?
+}
+
+\monkeytable{3} {
+{|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
+
+\hline \rowcolor{tableCyan!37} \centering\textbf{Titolo} &
+\centering\textbf{Accetta/Rifiuta proposta di lavoro}\endline
+\hline 
+\rowcolor{tableCyan!10}
+\cellcolor{tableCyan!22}
+
+                Descrizione & Sezione all'interno della gestione del profilo di una Codemonkey per visualizzare e accettare o rifiutare le proposte di lavoro
+\ntableCyan     Attori & Codemonkey
+\tableCyan      Relazioni & Gestione Profilo
+\ntableCyan     Precondizioni & Sará consentito l'accesso solo ad un Utente autenticato come Codemonkey
+\tableCyan      Postcondizioni &
+\ntableCyan     Scenario Principale &La Codemonkey all'interno della gestione del profilo potrá accedere alla lista di proposte di lavoro dei vari clienti e potrá accettare o rifiutare ogni proposta di lavoro
+\tableCyan      Scenari Alternativi &La Codemonkey oltre le proposte di lavoro troverá anche lavori giá accettati e anch'essi potranno essere rifiutati
+\ntableCyan     Requisiti NF &La lista di lavori da accettare deve essere separata da quella dei lavori giá accettati\newline
+                Ogni volta che si accetta o rifiuta un lavoro si deve presentare un modulo dove bisogna dare una conferma di voler procedere
+\tableCyan      Punti Aperti &Nel caso si voglia rifiutare o accettare un lavoro bisognerá fornire un periodo per far discutere l'azienda e la Codemonkey dove il lavoro rimane in una sorta di limbo?\newline
+                Cosa succede se una Codemonkey rifiuta un lavoro giá iniziato? Potrá essere valutata dal cliente?
+}
+
+\monkeytable{3} {
+{|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
+
+\hline \rowcolor{tableCyan!37} \centering\textbf{Titolo} &
+\centering\textbf{Valutazione Codemonkey}\endline
+\hline 
+\rowcolor{tableCyan!10}
+\cellcolor{tableCyan!22}
+
+                Descrizione &Sezione all'interno della Gestione Profilo per fornire valutazioni di una Codemonkey
+\ntableCyan     Attori & Cliente
+\tableCyan      Relazioni & Gestione Profilo
+\ntableCyan     Precondizioni & Un Utente deve essere autenticato come Cliente
+\tableCyan      Postcondizioni &
+\ntableCyan     Scenario Principale & Un Cliente dalla sezione di gestione del profilo apre la sezione dedicata ai lavori attivi accettati dalle codmonkey e puó decidere se terminare un lavoro attivo. Per terminare un lavoro dovrá inserire una valutazione obbligatoria sul lavoro svolto dalla Codemonkey e potrá anche inserire una recensione scritta (opzionale)
+\tableCyan      Scenari Alternativi & Se il Cliente é limitato non puó lasciare la valutazione scritta
+\ntableCyan     Requisiti NF &Possibilitá di vedere tutte le collaborazioni presenti e passate in una lista separata da quella delle collaborazioni attive e possibilitá di generare nuove prposte di lavoro per quste Codemonkey
+\tableCyan      Punti Aperti &Sará fornita la possibilitá di dare una recensione per ogni lavo eseguito da una Codemonkey o sará meglio di no per evitare frodi?\newline
+                Sará possibile modificare recensioni giá pubblicate?
+}
+
+\monkeytable{3} {
+{|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
+
+\hline \rowcolor{tableCyan!37} \centering\textbf{Titolo} &
+\centering\textbf{Proponi Lavoro}\endline
+\hline 
+\rowcolor{tableCyan!10}
+\cellcolor{tableCyan!22}
+
+                Descrizione &Sezione all'interno della quale é possibile mandare una richiesta di lavoro ad una Codemonkey
+\ntableCyan     Attori &Cliente
+\tableCyan      Relazioni &Autenticazione
+\ntableCyan     Precondizioni &Un utente deve trovarsi nella homepage del sito
+\tableCyan      Postcondizioni &
+\ntableCyan     Scenario Principale &Un Utente autenticato o meno dalla pagina principale del sito puó sfogliare tutti i proili delle Codemonkey, una volta che ha trovato la Codmonkey ideale puó cliccare sull'apposito bottone per proporre un lavoro, se si tratta di un Cliente il bottone aprirá una sezione nella quale sará possiblie mandare la richiesta di lavoro ad una Codmonkey con in allegato un messaggio di descrizione del lavoro, invece se é un utente a cliccare sul pulsante verrá aperta la pagina per effettuare l'autenticazione
+\tableCyan      Scenari Alternativi &Un Cliente limitato non puó fare alcuna richiesta di lavoro, pertanto invece che aprire una sezione dedicata alla proposta di lavoro verrá visualizzata una pagina di errore con la motivazione della sospensione
+\ntableCyan     Requisiti NF & Una volta che l'utente che ha cliccato sul pulsante per proporre il lavoro si é autenticato invece che venir mandato alla pagina di gestione account gli verrá presentato il modulo per inviare la richiesta
+\tableCyan      Punti Aperti &Per evitare che vengano madate per errore richieste di lavoro senza oggetto bisognerá mettere obbligatorio un certo numero di caratteri per la descrizione per descrivere in modo accurato il problema
+}
+
+\monkeytable{3} {
+{|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
+
+\hline \rowcolor{tableCyan!37} \centering\textbf{Titolo} &
+\centering\textbf{Homepage}\endline
+\hline 
+\rowcolor{tableCyan!10}
+\cellcolor{tableCyan!22}
+
+                Descrizione & Pagina principale dell'applicazione nella quale si possono eseguire ricerche di Codemonkey
+\ntableCyan     Attori & Utente, Cliente
+\tableCyan      Relazioni &
+\ntableCyan     Precondizioni &
+\tableCyan      Postcondizioni &
+\ntableCyan     Scenario Principale &Pagina principale contenente una lista di Codmonkey, un Utente o cliente possono eseguire ricerche inserendo dei filtri per trovare la Codemonkey ideale a sviluppare il looro progetto
+\tableCyan      Scenari Alternativi &
+\ntableCyan     Requisiti NF &Interfaccia grafica intuitiva e dall'estetica pulita\newline
+                Saranno caricati un numero limitato di profili Codemonkey a schermo e quando sará raggiunta la penultima riga dela lista verrá avviato il download del blocco successivo
+\tableCyan      Punti Aperti &
+}
+
+\monkeytable{3} {
+{|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
+
+\hline \rowcolor{tableCyan!37} \centering\textbf{Titolo} &
+\centering\textbf{Gestione Utenti}\endline
+\hline 
+\rowcolor{tableCyan!10}
+\cellcolor{tableCyan!22}
+
+                Descrizione &Pagina dedicata agli admin per la gestione degli Utenti
+\ntableCyan     Attori &Admin  
+\tableCyan      Relazioni &
+\ntableCyan     Precondizioni &L'Amministratore deve essere stato autenticato
+\tableCyan      Postcondizioni &
+\ntableCyan     Scenario Principale &Dopo essersi autenticato l'Amministratore potrá accedere alla pagina dedicata alla gestione degli Utenti dove potrá Limitare, Sospendere, bloccare o eliminare un Utente Autenticato e moderare le recensioni fornite alle varie Codemonkey
+\tableCyan      Scenari Alternativi &
+\ntableCyan     Requisiti NF &
+\tableCyan      Punti Aperti &Potrebbe servire un sistema di report per codmonkey e clienti per aiutare gli admi a risolvere problemi?
+}
 
 
 
@@ -51,22 +200,23 @@
 %Non  riempitela scimmieeeee                                       monke
 
 \monkeytable{3} {
-{|>{\arraybackslash }m{3cm}|>{\arraybackslash}X|}
+{|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
 
-\hline \rowcolor{tableCyan!37} \centering\textbf{Titolo} & \centering\textbf{...}\endline
+\hline \rowcolor{tableCyan!37} \centering\textbf{Titolo} &
+\centering\textbf{...}\endline
 \hline 
 \rowcolor{tableCyan!10}
 \cellcolor{tableCyan!22}
 
-               Descrizione &test
-\ntableCyan    Attori &
-\tableCyan     Relazioni &
-\ntableCyan    Precondizioni &
-\tableCyan     Postcondizioni &
-\ntableCyan    Scenario Principale &
-\tableCyan     Scenari Alternativi &
-\ntableCyan    Requisiti NF &
-\tableCyan     Punti Aperti &
+                Descrizione &
+\ntableCyan     Attori &
+\tableCyan      Relazioni &
+\ntableCyan     Precondizioni &
+\tableCyan      Postcondizioni &
+\ntableCyan     Scenario Principale &
+\tableCyan      Scenari Alternativi &
+\ntableCyan     Requisiti NF &
+\tableCyan      Punti Aperti &
 }
 
     % NO    % NO    % NO    % NO    % NO
