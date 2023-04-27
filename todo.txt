@@ -23,21 +23,25 @@ docs
             containerizzazione e servizi web
     
 source
+    [x] development enviroment
+    [x] nginx reverse proxy
     frontend
         [x] toolbar
         [/] dark mode
+            fix con regole css compliant
+        [x] fetch from api
     backend
-		programmatori
-			codemonkey.it/codemonkey/<nickname>/<linguaggio>/<progetto>
-        [ ] toolbar
+        [x] datbase connection
+        orm
+            [x] ActiveRecord
+    database
+        [x] logins table        [ ] toolbar
         [ ] dark mode
     backend
 
 
 
 roba da limare
-    [ ] Req funz e non funz post analisi sicurezza aggiornati
-
-    [ ] Casi d'uso aggiornati(aggiungiamo il log?)
-
+    [ ] req funz e non funz post analisi sicurezza aggiornati
+    [ ] casi d'uso aggiornati(aggiungiamo il log?)
     [ ] se punto sopra c'é da fare anche lo scenario del log
