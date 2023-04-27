@@ -23,9 +23,16 @@ docs
             containerizzazione e servizi web
     
 source
+    [x] development enviroment
+    [x] nginx reverse proxy
     frontend
         [x] toolbar
         [/] dark mode
+            fix con regole css compliant
+        [x] fetch from api
     backend
-		programmatori
-			codemonkey.it/codemonkey/<nickname>/<linguaggio>/<progetto>
+        [x] datbase connection
+        orm
+            [x] ActiveRecord
+    database
+        [x] logins table
