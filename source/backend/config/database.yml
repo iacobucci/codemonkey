@@ -30,6 +30,8 @@ default: &default
 development:
   <<: *default
   database: codemonkeydb
+  host: localhost
+  port: 5432
 
   username: <%= ENV['BACKEND_DATABASE_USER'] %>
   password: <%= ENV['BACKEND_DATABASE_PASSWORD'] %>

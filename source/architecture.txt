@@ -1,0 +1,3 @@
+development
+    [x] reverse proxy
+
