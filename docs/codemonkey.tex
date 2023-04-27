@@ -21,12 +21,14 @@
    \\\hline 
 }
 
+%robe per tabelle
+\renewcommand{\arraystretch}{2.4}%padding sopra sotto
+\setlength\tabcolsep{6pt}%padding bordo lat
+
+
 %macro per generare le tabelle
 \newcommand{\monkeytable}[2]{
-\renewcommand{\arraystretch}{2}%padding top and bottom
 \begin{center}
-%\setlength{\extrarowheight}{2pt}%rowheight 
-\setlength\tabcolsep{5pt}%padding bordo lat
 \begin{tabularx}{\textwidth}
 #2
 \n %necessaria per chiudere la tabella
@@ -66,4 +68,6 @@
 \input{scenari}
 \pagebreak
 \input{analisiDelRischio}
+\pagebreak
+\input{securityUseCaseEMisuseCase_scenari}
 \end{document}
