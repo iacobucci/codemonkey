@@ -1,0 +1,22 @@
+\newcounter{reqDCounter}%counter
+
+\newcommand{\nReqD}{
+    \n
+    \stepcounter{reqDCounter}
+    R\thereqDCounter D
+}
+
+\begin{center}
+    \rowcolors{2}{tableBlue!4}{tableBlue!8}%colori alternati
+    \begin{tabularx}{\textwidth}
+        {|c|X|}
+        \hline\rowcolor{tableBlue!50}
+        \multicolumn{2}{|c|}{\Large\textbf{Requisiti di Dominio}}
+        \n \rowcolor{tableBlue!25} \large\textbf{ID} & \large\textbf{Requisito}
+        \nReqD & Non serve essere autenticati per cercare la Codmonkey
+        \nReqD & Solo un Cliente potrà effettuare una proposta di lavoro ad una Codmonkey
+        \nReqD & Gli amministratori del sistema devono essere creati prima dell'avvio del sistema e non se ne possono aggiungere durante l'esecuzione
+        \nReqD & Deve essere disposto un sistema di gestione del profilo sia per le Codmonkey che per i Clienti dove sia possibile modificare i propri dati personali come e-mail passw e descrizione personale
+        \n
+    \end{tabularx}
+\end{center}
