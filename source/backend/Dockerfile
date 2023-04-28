@@ -22,7 +22,9 @@ COPY . /myapp
 EXPOSE 3000
 
 ENV BACKEND_DATABASE_USER=admin \
-    BACKEND_DATABASE_PASSWORD=password
+    BACKEND_DATABASE_PASSWORD=password \
+    RAILS_MASTER_KEY=4c61fe7c0395dc5e96de25ed0f093a4f \
+	RAILS_ENV=production
 
 # Esegui il comando "rails server" quando si avvia il container
 CMD ["rails", "server", "-b", "0.0.0.0"]

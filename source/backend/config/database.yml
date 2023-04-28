@@ -97,7 +97,7 @@ test:
 production:
   <<: *default
   database: codemonkeydb
-  host: localhost
+  host: codemonkey-database
   port: 5432
   username: <%= ENV["BACKEND_DATABASE_USER"] %>
   password: <%= ENV["BACKEND_DATABASE_PASSWORD"] %>

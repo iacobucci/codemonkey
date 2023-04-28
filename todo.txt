@@ -13,17 +13,20 @@ docs
             [ ] interazione
         [ ] piano di lavoro
     progettazione
-        [ ] scelte tecnologiche
+        [x] scelte tecnologiche
         [ ] progettazione architetturale
-            [ ] client (frontend)
-            [ ] server (backend)
-            [ ] persistenza (database)
+            [x] client (frontend)
+            [x] server (backend)
+            [x] persistenza (database)
         [ ] collaudo (test)
-        [ ] deployment
-            containerizzazione e servizi web
+        deployment
+            [x] containerizzazione
+            [ ] deploy
     
 source
-    [x] development enviroment
+    [x] development environment
+    [x] release environment
+
     [x] nginx reverse proxy
     frontend
         [x] toolbar
@@ -34,11 +37,14 @@ source
         [x] datbase connection
         orm
             [x] ActiveRecord
+        mailer
+            [ ] 2fa
+                htop
+                provider email esterno
+                opendkim
+                sms
     database
-        [x] logins table        [ ] toolbar
-        [ ] dark mode
-    backend
-
+        [x] logins table
 
 
 roba da limare
