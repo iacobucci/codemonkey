@@ -4,23 +4,31 @@
 
     \rowcolors{2}{tableGreen!6}{tableGreen!12}%colori alternati
 
-    \begin{tabularx}{\textwidth}
-        {|>{\centering}m{3cm}|X|X|m{3cm}|}
+    \begin{xltabular}{\textwidth}
+        {|>{\centering}m{3.5cm}|m{4.5cm}|>{\centering}m{2.5cm}|m{2.5cm}|}
         \hline  \rowcolor{tableGreen!70}
         \multicolumn{4}{|c|}{\Large\textbf{Tabella delle Funzionalitá}}
         \n      \rowcolor{tableGreen!50}
-        \large\textbf{Funzionalitá}                & \large\textbf{Tipo}                                                         & \large\textbf{Complessitá} & \large\textbf{Reqisiti}
-        \n      Registrazione                      & Memorizzazione dati                                                         & Semplice                   & R1F
-        \n      Autenticazione                     & Interazione con l'esterno\newline Gestione dati                             & Semplice                   & R2F
-        \n      Homepage                           & Interazione con l'estreno                                                   & Semplice                   & R3F, R6F, R11F, R12F
-        \n      Gestione Profilo                   & Interazione con l'esterno\newline Memorizzazione dati\newline Gestione dati & Complessa                  & R4F, R12F
-        \n      Accetta/Rifiuta proposta di lavoro & Interazione con l'esterno\newline Gestione dati                             & Semplice                   & R5f
-        \n      Valutazione Codmonkey              & Interazione con l'esterno\newline Memorizzazione dati\newline Gestione dati & Semplice                   & R10F
-        \n      Proponi lavoro                     & Interazione con l'esterno\newline Memorizzazione dati                       & Semplice                   & R8F, R9F
-        \n      Gestione utenti                    & Interazione con l'esterno\newline Gestione dati                             & Complessa                  & R7F, R12F
-        \n      Visualizza log                     & Interazione con 'esterno                                                    & Semplice                   & R13F
+        \large \textbf{Funzionalitá}                     & \centering\large\textbf{Tipo}                                                         & \large\textbf{Complessitá} & \centering\large\textbf{Reqisiti}\tabularnewline \hline
+        \endhead Registrazione                           & Memorizzazione dati                                                         & Semplice                   & R1F
+        \n       Autenticazione                          & Interazione con l'esterno\newline Gestione dati                             & Semplice                   & R2F
+        \n       Homepage                                & Interazione con l'estreno                                                   & Complessa                  & R3F, R6F\newline R11F, R12F
+        \n       Gestione Profilo                        & Interazione con l'esterno\newline Memorizzazione dati\newline Gestione dati & Complessa                  & R4F, R12F
+        \n       Modifica dati personali                 & Interazione con l'esterno\newline Memorizzazione dati\newline Gestione dati & Semplice                   & R4F
+        \n       Cambia password                         & Interazione con l'esterno\newline Memorizzazione dati\newline Gestione dati & Semplice                   & R4F
+        \n       Impostazione autenticazione a 2 fattori & Interazione con l'esterno\newline Gestione dati                             & Semplice                   & R4F
+        \n       Elimina account                         & Interazione con l'esterno\newline Memorizzazione dati\newline Gestione dati & Semplice                   & R4F
+        \n       Lista collaborazioni                    & Interazione con l'esterno                                                   & Semplice                   & R4F
+        \n       Accetta/Rifiuta proposta di lavoro      & Interazione con l'esterno\newline Gestione dati                             & Semplice                   & R5F
+        \n       Valutazione Codmonkey                   & Interazione con l'esterno\newline Memorizzazione dati\newline Gestione dati & Semplice                   & R10F
+        \n       Proponi lavoro                          & Interazione con l'esterno\newline Memorizzazione dati                       & Semplice                   & R8F, R9F
+        \n       Gestione utenti                         & Interazione con l'esterno\newline Gestione dati                             & Complessa                  & R7F
+        \n       Utenti limitati                         & Interazione con l'esterno\newline Gestione dati                             & Semplice                   & R7F
+        \n       Utenti sospesi                          & Interazione con l'esterno\newline Gestione dati                             & Semplice                   & R7F
+        \n       Utenti bloccati                         & Interazione con l'esterno\newline Gestione dati                             & Semplice                   & R7F
+        \n       Visualizza log                          & Interazione con l'esterno                                                   & Semplice                   & R13F
         \n
-    \end{tabularx}
+    \end{xltabular}
     \label{tab:monkeytable:problema:analisiFunzionalita}
 \end{center}
 
@@ -33,15 +41,5 @@
 
 
 \begin{comment}
-\n      Modifica dati personali            &                                                                             &                            &
-\n      Impostazione autenticazione a 2 fattori         &                                                                             &                            &
-\n      Cambia password                    &                                                                             &                            &
-\n      Elimina account                    &                                                                             &                            &
-\n      Lista collaborazioni               &                                                                             &                            &
-\n      Visualizza segnalazioni            &                                                                             &                            &
-\n      Utenti limitati                    &                                                                             &                            &
-\n      Utenti sospesi                     &                                                                             &                            &
-\n      Utenti bloccati                    &                                                                             &                            &
-
 ...
 \end{comment}

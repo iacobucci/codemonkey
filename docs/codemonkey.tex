@@ -12,6 +12,7 @@
 \usepackage{longtable}
 \usepackage{wrapfig}
 \usepackage{verbatim}
+\usepackage{xltabular}
 \usepackage[table]{xcolor}
 
 %creazione dei colori custom
@@ -23,7 +24,7 @@
 
 %macro per andare a capo nelle tabelle
 \newcommand{\n}{
-   \\\hline 
+   \tabularnewline\hline
 }
 
 \tolerance=1
@@ -81,5 +82,7 @@
 \input{monkerisk/securityUseCaseEMisuseCase_scenari.tex}
 \pagebreak
 \input{analisiDelProblema/funzionalita.tex}
+\pagebreak
+\input{analisiDelProblema/tabelleInformazioniFLusso.tex}
 \pagebreak
 \end{document}
