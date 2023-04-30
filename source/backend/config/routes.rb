@@ -9,5 +9,9 @@ Rails.application.routes.draw do
   namespace :api do
     post 'getappname', to: 'app_names#getappname'
     post 'showpassword', to: 'logins#show_password'
+    get "rails", to: "rails#index"
+
+    post 'auth', to: 'auth#create'
+    resources :registrations, only: :create
   end
 end
