@@ -7,6 +7,6 @@
 # avviamo come root, si potrebbe fare di meglio :(
 sudo nginx -c $(pwd)/devel.conf
 
-docker stop codemonkey-database-image
-
 wait
+
+docker stop codemonkey-database-image
