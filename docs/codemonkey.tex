@@ -1,4 +1,6 @@
-\documentclass[11pt]{artikel1}
+\documentclass{article}
+\usepackage{blindtext}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
 \usepackage{adjustbox}
 \usepackage{changepage}
 \usepackage{multirow}
@@ -7,10 +9,14 @@
 \usepackage{graphicx}
 \usepackage{array}
 \usepackage{tabu}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{verbatim}
+\usepackage{xltabular}
 \usepackage[table]{xcolor}
 
 %creazione dei colori custom
-\definecolor{tableGreen}{RGB}{30, 190, 50}
+\definecolor{tableGreen}{RGB}{25, 175, 45}
 \definecolor{tableYellow}{RGB}{255, 220, 0}
 \definecolor{tableBlue}{RGB}{0 ,20, 210}
 \definecolor{tableCyan}{RGB}{0 ,160, 156}
@@ -18,8 +24,12 @@
 
 %macro per andare a capo nelle tabelle
 \newcommand{\n}{
-   \\\hline 
+   \tabularnewline\hline
 }
+
+\tolerance=1
+\hyphenpenalty=10000
+\hbadness=10000
 
 %robe per tabelle
 \renewcommand{\arraystretch}{2.4}%padding sopra sotto
@@ -57,18 +67,22 @@
 \pagebreak
 \input{abstract}
 \pagebreak
-\input{requisiti/raccolta_requisiti}
+\input{raccoltaRequisiti/raccolta_requisiti}
 \pagebreak
-\input{requisiti/vocabolario}
+\input{raccoltaRequisiti/vocabolario}
 \pagebreak
-\input{requisiti/tabellaRequisitiF}
-\input{requisiti/tabellaRequisitiNF}
-\input{requisiti/tabellaRequisitiD}
+\input{raccoltaRequisiti/tabellaRequisitiF}
+\input{raccoltaRequisiti/tabellaRequisitiNF}
+\input{raccoltaRequisiti/tabellaRequisitiD}
 \pagebreak
 \input{scenari}
 \pagebreak
 \input{monkerisk/analisiDelRischio}
 \pagebreak
-\pagebreak
 \input{monkerisk/securityUseCaseEMisuseCase_scenari.tex}
+\pagebreak
+\input{analisiDelProblema/funzionalita.tex}
+\pagebreak
+\input{analisiDelProblema/tabelleInformazioniFLusso.tex}
+\pagebreak
 \end{document}
