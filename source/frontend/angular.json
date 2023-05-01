@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/codemonkey-frontend/browser",
+            "outputPath": "dist/codemonkey-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -30,7 +30,6 @@
               "src/assets"
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -94,70 +93,12 @@
               "src/assets"
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
           }
-        },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "dist/codemonkey-frontend/server",
-            "main": "server.ts",
-            "tsConfig": "tsconfig.server.json",
-            "inlineStyleLanguage": "scss"
-          },
-          "configurations": {
-            "production": {
-              "outputHashing": "media"
-            },
-            "development": {
-              "optimization": false,
-              "sourceMap": true,
-              "extractLicenses": false,
-              "vendorChunk": true
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve-ssr": {
-          "builder": "@nguniversal/builders:ssr-dev-server",
-          "configurations": {
-            "development": {
-              "browserTarget": "codemonkey-frontend:build:development",
-              "serverTarget": "codemonkey-frontend:server:development"
-            },
-            "production": {
-              "browserTarget": "codemonkey-frontend:build:production",
-              "serverTarget": "codemonkey-frontend:server:production"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "prerender": {
-          "builder": "@nguniversal/builders:prerender",
-          "options": {
-            "routes": [
-              "/"
-            ]
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "codemonkey-frontend:build:production",
-              "serverTarget": "codemonkey-frontend:server:production"
-            },
-            "development": {
-              "browserTarget": "codemonkey-frontend:build:development",
-              "serverTarget": "codemonkey-frontend:server:development"
-            }
-          },
-          "defaultConfiguration": "production"
         }
       }
     }
-  },
-  "cli": {
-    "analytics": false
   }
 }

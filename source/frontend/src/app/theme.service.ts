@@ -1,26 +1,21 @@
 import { Injectable } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ThemeService {
-  private isDarkTheme = false;
+  private darkTheme = new BehaviorSubject<boolean>(false);
+  isDarkTheme = this.darkTheme.asObservable();
 
-  constructor(private overlayContainer: OverlayContainer) { }
+  constructor() {}
 
   toggleTheme(): void {
-    this.isDarkTheme = !this.isDarkTheme;
-    if (this.isDarkTheme) {
-      document.body.classList.add('dark-theme');
-      this.overlayContainer.getContainerElement().classList.add('dark-theme');
-    } else {
-      document.body.classList.remove('dark-theme');
-      this.overlayContainer.getContainerElement().classList.remove('dark-theme');
-    }
+    this.darkTheme.next(!this.darkTheme.value);
   }
-
-  isDark(): boolean {
-    return this.isDarkTheme;
+  
+  public isDark(): boolean {
+    return this.darkTheme.value;
   }
 }
