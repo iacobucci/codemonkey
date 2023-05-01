@@ -6,13 +6,17 @@ import { ThemeService } from '../theme.service';
   templateUrl: './theme-switcher.component.html'
 })
 export class ThemeSwitcherComponent {
-  constructor(private themeService: ThemeService) {}
+  constructor(private themeService: ThemeService) { }
 
   isDark(): boolean {
-    return this.themeService.isDark();
+    return this.themeService.isDarkMode();
   }
 
   toggleTheme() {
-    this.themeService.toggleTheme();
+    if (this.isDark()) {
+      this.themeService.update('light-mode');
+    } else {
+      this.themeService.update('dark-mode');
+    }
   }
 }

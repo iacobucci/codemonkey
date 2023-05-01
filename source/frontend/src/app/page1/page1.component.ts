@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { RegistrazioneComponent } from '../registrazione/registrazione.component';
 
 @Component({
   selector: 'app-page1',
@@ -7,6 +9,8 @@ import { Component } from '@angular/core';
 })
 
 export class Page1Component {
+
+  constructor(public dialog: MatDialog){}
 
   async getAppName(): Promise<void> {
     try {
@@ -58,5 +62,9 @@ export class Page1Component {
       if (passwordCard)
         passwordCard.innerText = "error!";
     }
+  }
+
+  async showQr(): Promise<void> {
+    this.dialog.open(RegistrazioneComponent);
   }
 }

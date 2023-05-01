@@ -11,6 +11,7 @@
   }
 </style>
 
+<div class="theme-transition" [class.light-theme]="!isDark" [class.dark-theme]="!isDark">
 <mat-toolbar color="accent">
 
   <img src="favicon.ico" height="100%" alt="logo"
@@ -33,3 +34,4 @@
 </mat-toolbar>
 
 <router-outlet></router-outlet>
+</div>

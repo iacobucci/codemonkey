@@ -12,4 +12,8 @@ export class AppComponent {
   title = 'Codemonkey';
 
   constructor(public themeService: ThemeService) {}
+
+  isDark(): boolean {
+    return this.themeService.isDarkMode();
+  }
 }

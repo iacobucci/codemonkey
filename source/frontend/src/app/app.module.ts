@@ -12,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { ThemeSwitcherComponent } from './theme-switcher/theme-switcher.component';
 import { Page1Component } from './page1/page1.component';
@@ -21,6 +22,9 @@ import { DevcardComponent } from './devcard/devcard.component';
 
 import { ValutazioneComponent } from './valutazione/valutazione.component';
 import { RangePipe } from './range.pipe';
+import { RegistrazioneComponent } from './registrazione/registrazione.component';
+
+import { NgxQRCodeModule } from 'ngx-qrcode2'
 
 @NgModule({
   declarations: [
@@ -31,7 +35,8 @@ import { RangePipe } from './range.pipe';
     HomeComponent,
     DevcardComponent,
     ValutazioneComponent,
-    RangePipe
+    RangePipe,
+    RegistrazioneComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +49,8 @@ import { RangePipe } from './range.pipe';
     MatToolbarModule,
     MatCardModule,
     MatListModule,
+    NgxQRCodeModule,
+    MatDialogModule,
 
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
