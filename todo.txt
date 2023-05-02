@@ -30,21 +30,16 @@ source
     [x] nginx reverse proxy
     frontend
         [x] toolbar
-        [/] dark mode
-            fix con regole css compliant
+        [x] dark mode
         [x] fetch from api
     backend
         [x] datbase connection
         orm
             [x] ActiveRecord
-        mailer
-            [ ] 2fa
-                htop
-                provider email esterno
-                opendkim
-                sms
+        [ ] 2FA TOTP
     database
         [x] logins table
+        [ ] rails migration
 
 
 roba da limare

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { RegistrazioneComponent } from '../registrazione/registrazione.component';
 
 @Component({
   selector: 'app-page1',
@@ -64,7 +63,4 @@ export class Page1Component {
     }
   }
 
-  async showQr(): Promise<void> {
-    this.dialog.open(RegistrazioneComponent);
-  }
 }

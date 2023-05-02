@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,30 +14,34 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatRippleModule } from '@angular/material/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 
 import { ThemeSwitcherComponent } from './theme-switcher/theme-switcher.component';
-import { Page1Component } from './page1/page1.component';
-import { Page2Component } from './page2/page2.component';
+import { FeedComponent } from './feed/feed.component';
 import { HomeComponent } from './home/home.component';
 import { DevcardComponent } from './devcard/devcard.component';
-
 import { ValutazioneComponent } from './valutazione/valutazione.component';
 import { RangePipe } from './range.pipe';
 import { RegistrazioneComponent } from './registrazione/registrazione.component';
-
-import { NgxQRCodeModule } from 'ngx-qrcode2'
+import { LoginComponent } from './login/login.component'
+import { AuthGuard } from './auth.guard';
+import { RegistrazionePopupComponent } from './registrazione-popup/registrazione-popup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ThemeSwitcherComponent,
-    Page1Component,
-    Page2Component,
     HomeComponent,
     DevcardComponent,
     ValutazioneComponent,
     RangePipe,
-    RegistrazioneComponent
+    RegistrazioneComponent,
+    LoginComponent,
+    RegistrazionePopupComponent,
+    FeedComponent
   ],
   imports: [
     BrowserModule,
@@ -51,11 +56,16 @@ import { NgxQRCodeModule } from 'ngx-qrcode2'
     MatListModule,
     NgxQRCodeModule,
     MatDialogModule,
+    MatRippleModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
 
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
-      { path: 'page1', component: Page1Component },
-      { path: 'page2', component: Page2Component },
+      { path: 'login', component: LoginComponent },
+      { path: 'registrazione', component: RegistrazioneComponent },
+      { path: 'feed', component: FeedComponent, canActivate: [AuthGuard] },
     ])
   ],
   providers: [],

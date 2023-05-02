@@ -1,13 +1,25 @@
-<mat-card style="width: 480px; height: 360px;">
+<div style="display: flex; justify-content: center;">
+    <form (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; width: 25%; align-items: center;">
+        <h1>Registrazione</h1>
+        <mat-form-field appearance="fill">
+            <mat-label>Username</mat-label>
+            <input matInput type="text" placeholder="Username" name="username" [(ngModel)]="username" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput type="text" placeholder="Email" name="email" [(ngModel)]="email" required>
+        </mat-form-field>
 
-        <div class="container">
-            <div class="element element-1">
-                Usa il codice QR nella tua app di autenticazione
-            </div>
-
-            <div class="element element-2">
-                <ngx-qrcode value="otpauth://totp/test_user2?secret=ODXMP5PHWTMJZ3LTFLAMW64KAIK5FIU5" ></ngx-qrcode>
-            </div>
-        </div>
-
-</mat-card>
+        <!-- TODO matching passwords -->
+        <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" placeholder="Password" name="password" [(ngModel)]="password" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Conferma password</mat-label>
+            <input matInput type="password" placeholder="Conferma Password" name="passwordconfirmation"
+                [(ngModel)]="password_confirmation" required>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">Registrati</button>
+    </form>
+</div>

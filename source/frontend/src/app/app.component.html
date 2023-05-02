@@ -4,27 +4,22 @@
   .example-spacer {
     flex: 1 1 auto;
   }
-
   .title {
     font-size: 1.5em;
     margin: 0 0 0 0;
   }
 </style>
 
-<div class="theme-transition" [class.light-theme]="!isDark" [class.dark-theme]="!isDark">
-<mat-toolbar color="accent">
+<mat-toolbar color="accent" style="position: fixed; top: 0; left: 0; right: 0; z-index:100">
 
   <img src="favicon.ico" height="100%" alt="logo"
-    style="margin-right: 10px; margin-left: 10px; margin-top: 5px; margin-bottom: 5px;" routerLink="/"/>
+    style="margin-right: 10px; margin-left: 10px; margin-top: 5px; margin-bottom: 5px;" routerLink="/" />
 
   <!-- align title to left-->
 
   <h1 class="title">
     {{title}}
   </h1>
-
-  <button mat-button routerLink="/page1">1</button>
-  <button mat-button routerLink="/page2">2</button>
 
   <!-- align to right-->
   <span class="example-spacer"></span>
@@ -33,5 +28,6 @@
 
 </mat-toolbar>
 
-<router-outlet></router-outlet>
+<div style="margin-top: 64px;">
+  <router-outlet></router-outlet>
 </div>
