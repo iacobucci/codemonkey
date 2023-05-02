@@ -29,6 +29,7 @@ import { RegistrazioneComponent } from './registrazione/registrazione.component'
 import { LoginComponent } from './login/login.component'
 import { AuthGuard } from './auth.guard';
 import { RegistrazionePopupComponent } from './registrazione-popup/registrazione-popup.component';
+import { LoginPopupComponent } from './login-popup/login-popup.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { RegistrazionePopupComponent } from './registrazione-popup/registrazione
     RegistrazioneComponent,
     LoginComponent,
     RegistrazionePopupComponent,
-    FeedComponent
+    FeedComponent,
+    LoginPopupComponent
   ],
   imports: [
     BrowserModule,

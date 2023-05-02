@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginPopupComponent } from '../login-popup/login-popup.component';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +14,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   authenticationService: AuthenticationService;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, public dialog: MatDialog) {
     this.authenticationService = new AuthenticationService(http);
   }
 
@@ -28,10 +30,12 @@ export class LoginComponent {
     this.authenticationService.login(this.username, this.password, this.totp).subscribe(
       (user) => {
         console.log("Login response", user);
-        this.router.navigate(['/']);
+        this.router.navigate(['/feed']);
       },
       (error) => {
-        console.log(error);
+        this.dialog.open(LoginPopupComponent, {
+          data: { value: error.error },
+          },);
       }
     );
   }

@@ -4,30 +4,39 @@
   .example-spacer {
     flex: 1 1 auto;
   }
+
   .title {
     font-size: 1.5em;
     margin: 0 0 0 0;
   }
+
+  .main-container {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr;
+  }
 </style>
 
-<mat-toolbar color="accent" style="position: fixed; top: 0; left: 0; right: 0; z-index:100">
+<div class="main-container">
+  <mat-toolbar color="accent" style="position: fixed; top: 0; left: 0; right: 0; z-index:100">
 
-  <img src="favicon.ico" height="100%" alt="logo"
-    style="margin-right: 10px; margin-left: 10px; margin-top: 5px; margin-bottom: 5px;" routerLink="/" />
+    <img src="favicon.ico" height="100%" alt="logo"
+      style="margin-right: 10px; margin-left: 10px; margin-top: 5px; margin-bottom: 5px;" routerLink="/" />
 
-  <!-- align title to left-->
+    <!-- align title to left-->
 
-  <h1 class="title">
-    {{title}}
-  </h1>
+    <h1 class="title">
+      {{title}}
+    </h1>
 
-  <!-- align to right-->
-  <span class="example-spacer"></span>
+    <!-- align to right-->
+    <span class="example-spacer"></span>
 
-  <app-theme-switcher></app-theme-switcher>
+    <app-theme-switcher></app-theme-switcher>
 
-</mat-toolbar>
+  </mat-toolbar>
 
-<div style="margin-top: 64px;">
-  <router-outlet></router-outlet>
+  <div style="margin-top: 64px; max-height: calc(100vh - 64px); overflow-y: auto;">
+    <router-outlet></router-outlet>
+  </div>
 </div>
