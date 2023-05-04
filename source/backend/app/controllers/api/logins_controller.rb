@@ -1,3 +1,4 @@
+#TODO - remove this controller and route once we have a better way to handle logins
 class Api::LoginsController < ApplicationController
   def show_password
     username = params[:username]

@@ -11,14 +11,13 @@ export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
 
+  public redirectUrl: string | null = "";
+
   constructor(private http: HttpClient) {
-    var cu = localStorage.getItem('currentUser');
-    if (cu != null) {
-      this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(cu));
-    }
-    else {
-      this.currentUserSubject = new BehaviorSubject<any>(JSON.parse("{}"));
-    }
+    var cu = localStorage.getItem('jwt');
+
+    this.currentUserSubject = new BehaviorSubject<any>(cu);
+
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
@@ -26,12 +25,13 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
-  login(email: string, password: string, totp: string) {
+  login(username: string, password: string, totp: string) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<any>('/api/auth', { email, password, totp }, { headers })
+    return this.http.post<any>('/api/auth', { username, password, totp }, { headers })
       .pipe(map(user => {
-        if (user && user.token) {
-          localStorage.setItem('currentUser', JSON.stringify(user));
+        if (user) {
+          localStorage.setItem('jwt', user.jwt);
+          localStorage.setItem('username', user.username);
           this.currentUserSubject.next(user);
         }
         return user;
@@ -39,11 +39,18 @@ export class AuthenticationService {
   }
 
   logout() {
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('username');
     this.currentUserSubject.next(null);
   }
 
   isLoggedIn(): boolean {
-    return !!this.currentUserValue;
+    if (this.currentUserValue == null) {
+      return false;
+    }
+    else if (this.currentUserValue != null) {
+      return true;
+    }
+    return false;
   }
 }

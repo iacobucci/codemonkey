@@ -31,18 +31,36 @@ source
     frontend
         [x] toolbar
         [x] dark mode
-        [x] fetch from api
+        [x] login
+            [ ] salvataggio stato con JWT
+        [x] registrazione
+            [ ] matching passwords
+            [x] qr code
     backend
-        [x] datbase connection
+        [x] database connection
         orm
             [x] ActiveRecord
-        [ ] 2FA TOTP
+        [x] 2FA TOTP
+        [x] JWT
     database
-        [x] logins table
         [ ] rails migration
+        
+        model
+            [ ] codemonkey
+                lavori codemonkey
+                linguaggi di programmazione conosciuti
+            [ ] azienda
+                lavori azienda
+            [ ] admin
+
+deploy
+	azure
 
 
 roba da limare
     [ ] req funz e non funz post analisi sicurezza aggiornati
     [ ] casi d'uso aggiornati(aggiungiamo il log?)
     [ ] se punto sopra c'é da fare anche lo scenario del log
+
+
+localStorage.currentUser = "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODM3MDk3NTMsInVzZXJfaWQiOjIxfQ.CAkwihEoqJWraWH5-568Cofmk5V8Xrse7g9UKeqoJdU"

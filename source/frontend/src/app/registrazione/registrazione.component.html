@@ -1,25 +1,39 @@
 <div style="display: flex; justify-content: center;">
-    <form (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; width: 25%; align-items: center;">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()"
+        style="display: flex; flex-direction: column; width: 25%; align-items: center;">
         <h1>Registrazione</h1>
         <mat-form-field appearance="fill">
             <mat-label>Username</mat-label>
-            <input matInput type="text" placeholder="Username" name="username" [(ngModel)]="username" required>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>Email</mat-label>
-            <input matInput type="text" placeholder="Email" name="email" [(ngModel)]="email" required>
+            <input matInput type="text" placeholder="Username" formControlName="username" [(ngModel)]="username"
+                required>
         </mat-form-field>
 
-        <!-- TODO matching passwords -->
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput type="text" placeholder="Email" formControlName="email" [(ngModel)]="email" required>
+        </mat-form-field>
+
         <mat-form-field appearance="fill">
             <mat-label>Password</mat-label>
-            <input matInput type="password" placeholder="Password" name="password" [(ngModel)]="password" required>
+            <input matInput type="password" placeholder="Password" formControlName="password" required>
         </mat-form-field>
+
         <mat-form-field appearance="fill">
             <mat-label>Conferma password</mat-label>
-            <input matInput type="password" placeholder="Conferma Password" name="passwordconfirmation"
-                [(ngModel)]="password_confirmation" required>
+            <input matInput type="password" placeholder="Conferma Password" formControlName="password_confirmation"
+                required>
+            <mat-error
+                *ngIf="registerForm?.controls?.['password_confirmation']?.touched && registerForm?.controls?.['password_confirmation']?.errors?.['mismatch']">Non
+                corrisponde.</mat-error>
         </mat-form-field>
+
+        <!-- <mat-form-field appearance="fill"> -->
+            <mat-radio-group matInput formControlName="tipo" [(ngModel)]="tipo" required>
+                <mat-radio-button value="auto">Azienda</mat-radio-button>
+                <mat-radio-button value="always">Codemonkey</mat-radio-button>
+            </mat-radio-group>
+        <!-- </mat-form-field> -->
+
         <button mat-raised-button color="primary" type="submit">Registrati</button>
     </form>
 </div>

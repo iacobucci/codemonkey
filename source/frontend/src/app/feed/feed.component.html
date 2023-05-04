@@ -3,6 +3,10 @@
 
         <h1>Homepage per utenti loggati</h1>
 
+        <button mat-raised-button color="primary" (click)="hello()">Fai fetch con JWT</button>
+        
+        <app-image-uploader [endpoint]="'/api/uploads'"></app-image-uploader>
+
         <div style="height: 48px"> </div>
 
         <app-devcard firstName="Mario" lastName="Rossi" imageUrl="assets/img/1.png"
