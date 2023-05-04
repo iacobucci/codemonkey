@@ -1,0 +1,157 @@
+\section{Tabella di Informazione/Flusso}
+
+\begin{center}
+
+    \rowcolors{2}{tableGreen!6}{tableGreen!12}%colori alternati
+
+
+    \begin{tabular}
+        {|>{\centering}m{2.8cm}|>{\centering}m{1.65cm}|>{\centering}m{2.7cm}|>{\centering}m{2.3cm}|>{\raggedright}m{3.85cm}|}
+        \hline  \rowcolor{tableGreen!70}
+        \multicolumn{5}{|c|}{\Large\textbf{Registrazione}}
+        \n      \rowcolor{tableGreen!50}
+        \large \textbf{Informazione} & \large\textbf{Tipo} & \large\textbf{Livello protezione /privacy} & \large\textbf{Input /Output} & \centering\large\textbf{Vincoli}\tabularnewline
+        \hline   Username            & Complesso           & Medio                                      & Input                        & Lunghezza di massimo 42 caratteri\newline Non saranno accettati caratteri speciali
+        \n       Password            & Semplice            & Molto Alto                                 & Input                        & Almeno 8 caratteri massimo 42
+        \n
+    \end{tabular}
+    \label{tab:monkeytable:problema:tabFlusso:Registrazione}
+
+
+
+    \phantom{M} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+    \begin{tabular}
+        {|>{\centering}m{2.8cm}|>{\centering}m{1.65cm}|>{\centering}m{2.7cm}|>{\centering}m{2.3cm}|>{\raggedright}m{3.85cm}|}
+        \hline  \rowcolor{tableGreen!70}
+        \multicolumn{5}{|c|}{\Large\textbf{Autenticazione}}
+        \n      \rowcolor{tableGreen!50}
+        \large \textbf{Informazione} & \large\textbf{Tipo} & \large\textbf{Livello protezione /privacy} & \large\textbf{Input /Output} & \centering\large\textbf{Vincoli}\tabularnewline
+        \hline   Username            & Semplice            & Medio                                      & Input                        & Lunghezza di massimo 42 caratteri\newline Non saranno accettati caratteri speciali
+        \n       Password            & Semplice            & Molto Alto                                 & Input                        & Almeno 8 caratteri massimo 42
+        \n
+    \end{tabular}
+    \label{tab:monkeytable:problema:tabFlusso:Autenticazione}
+
+
+    \pagebreak %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    \begin{tabular}
+        {|>{\centering}m{2.8cm}|>{\centering}m{1.65cm}|>{\centering}m{2.7cm}|>{\centering}m{2.3cm}|>{\raggedright}m{3.85cm}|}
+        \hline  \rowcolor{tableGreen!70}
+        \multicolumn{5}{|c|}{\Large\textbf{Homepage}}
+        \n      \rowcolor{tableGreen!50}
+        \large \textbf{Informazione}               & \large\textbf{Tipo} & \large\textbf{Livello protezione /privacy} & \large\textbf{Input /Output} & \centering\large\textbf{Vincoli}\tabularnewline
+        \hline     Profilo pubblico Codmonkey      & Complesso           & Pubblico                                   & Output                       &
+        \tabularnewline \textbf{Composto da:}      &                     &                                            &                              &
+        \tabularnewline Nome Codmonkey             & Semplice            & Pubblico                                   & Output                       & Massimo 32 caratteri
+        \tabularnewline Filtri di ricerca          & Semplice            & Pubblico                                   & Output                       & Filtri di massimo 32 caratteri, massimo 32 filtri per Codmonkey
+        \tabularnewline Descrizione Capacitá       & Semplice            & Pubblico                                   & Output                       & Descrizione della Codmonkey e di ció che sa fare di massimo 1024 caratteri
+        \tabularnewline Prezzi                     & Semplice            & Pubblico                                   & Output                       & Prezzi orari o per progetto espressi in Euro o Dollari maggiore di 0\newline Non si possono inserire piú di 64 prezzi diversi
+        \tabularnewline Valutazioni Codmonkey      & Semplice            & Pubblico                                   & Output                       & Le Valutazioni generali e filtrate delle codmonkey andranno da un minimo di 1 a un massimo di 10
+        \tabularnewline Immagine Profilo Codmonkey & Semplice            & Pubblico                                   & Output                       & Immagine di dimensioni limitate a 512x512 pixel
+        \n
+    \end{tabular}
+    \label{tab:monkeytable:problema:tabFlusso:Homepage}
+
+
+    \phantom{M} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    \begin{tabular}
+        {|>{\centering}m{2.8cm}|>{\centering}m{1.65cm}|>{\centering}m{2.7cm}|>{\centering}m{2.3cm}|>{\raggedright}m{3.85cm}|}
+        \hline  \rowcolor{tableGreen!70}
+        \multicolumn{5}{|c|}{\Large\textbf{Accetta/Rifiuta proposta di lavoro}}
+        \n      \rowcolor{tableGreen!50}
+        \large \textbf{Informazione}                       & \large\textbf{Tipo} & \large\textbf{Livello protezione /privacy} & \large\textbf{Input /Output} & \centering\large\textbf{Vincoli}\tabularnewline
+        \hline Proposta di lavoro                          & Complesso           & Medio                                      & Output                       & Massimo 5 proposte di lavoro per Codmonkey
+        \tabularnewline     \textbf{Composto da:}          &                     &                                            &                              &
+        \tabularnewline     Nome Cliente                   & Semplice            & Basso                                      & Output                       & Nome del Cliente di massimo 32 caratteri
+        \tabularnewline     Descrizione proposta di lavoro & Semplice            & Medio                                      & Input                        & Massimo 255 caratteri
+        \n                  Lavoro                         & Complesso           & Medio                                      & Output                       &
+        \tabularnewline     \textbf{Composto da:}          &                     &                                            &                              &
+        \tabularnewline     Nome Cliente                   & Semplice            & Basso                                      & Output                       & Massio 32 caratteri
+        \tabularnewline     Descrizione proposta di lavoro & Semplice            & Medio                                      & Input                        & Massimo 255 caratteri
+        \n                  Interrompi lavoro              & Semplice            & Medio                                      & Input                        & Massimo 255 caratteri
+        \n                  Segnala lavoro                 & Semplice            & Alto                                       & Input                        & Massimo 255 caratteri
+        \n
+    \end{tabular}
+    \label{tab:monkeytable:problema:tabFlusso:Accetta/Rifiuta}
+
+
+    \phantom{M} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    \begin{tabular}
+        {|>{\centering}m{2.8cm}|>{\centering}m{1.65cm}|>{\centering}m{2.7cm}|>{\centering}m{2.3cm}|>{\raggedright}m{3.85cm}|}
+        \hline  \rowcolor{tableGreen!70}
+        \multicolumn{5}{|c|}{\Large\textbf{?}}
+        \n      \rowcolor{tableGreen!50}
+        \large \textbf{Informazione} & \large\textbf{Tipo} & \large\textbf{Livello protezione /privacy} & \large\textbf{Input /Output} & \centering\large\textbf{Vincoli}\tabularnewline
+        \hline                       &                     &                                            &                              &
+        \n                           &                     &                                            &                              &
+        \n
+    \end{tabular}
+    \label{tab:monkeytable:problema:tabFlusso:}
+
+
+    \phantom{M} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    \begin{tabular}
+        {|>{\centering}m{2.8cm}|>{\centering}m{1.65cm}|>{\centering}m{2.7cm}|>{\centering}m{2.3cm}|>{\raggedright}m{3.85cm}|}
+        \hline  \rowcolor{tableGreen!70}
+        \multicolumn{5}{|c|}{\Large\textbf{Proponi lavoro}}
+        \n      \rowcolor{tableGreen!50}
+        \large \textbf{Informazione}                        & \large\textbf{Tipo} & \large\textbf{Livello protezione /privacy} & \large\textbf{Input /Output} & \centering\large\textbf{Vincoli}\tabularnewline
+        \hline               Descrizione proposta di lavoro & Semplice            & Medio                                      & Input                        & Massimo 255 caratteri
+        \n
+    \end{tabular}
+    \label{tab:monkeytable:problema:tabFlusso:}
+
+
+
+    \phantom{M} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%         Template non usare graxieee             %%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \begin{tabular}
+        {|>{\centering}m{2.8cm}|>{\centering}m{1.65cm}|>{\centering}m{2.7cm}|>{\centering}m{2.3cm}|>{\raggedright}m{3.85cm}|}
+        \hline  \rowcolor{tableGreen!70}
+        \multicolumn{5}{|c|}{\Large\textbf{?}}
+        \n      \rowcolor{tableGreen!50}
+        \large \textbf{Informazione} & \large\textbf{Tipo} & \large\textbf{Livello protezione /privacy} & \large\textbf{Input /Output} & \centering\large\textbf{Vincoli}\tabularnewline
+        \hline                       &                     &                                            &                              &
+        \n                           &                     &                                            &                              &
+        \n
+    \end{tabular}
+    \label{tab:monkeytable:problema:tabFlusso:}
+
+    \phantom{M} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\end{center}
+
+
+
+
+
+
+
+
+\begin{comment}
+...
+\tabularnewline                                     &                     &                                            &                              &
+
+\tabularnewline Contatti personali         & Semplice            & Pubblico                                   & Output                       & Massimo 128 caratteri per scrivere i propri contatti pesonali
+\n              Proponi lavoro                 & Semplice            & Medio                                      & Input                        &
+
+\end{comment}
