@@ -32,20 +32,10 @@ res
 	[ ] capire come ottenere parametri da componente genitore
 	[ ] modellare tabelle con rails db:migration
 	[ ] capire dove far vedere i lavori e se è possibile farlo in maniera fashion
+    [ ] activerecord di ruby
+    [ ] funzioni delle route ruby
     
-source
-    [x] development environment
-        [x] rails
-            [x] live reload
-        [x] angular
-            [x] nginx reverse proxy
-            [x] live reload
-        [x] postgres
-            [x] docker image
-
-    [x] release environment
-        [ ] problema nginx frontend
-
+misc
     frontend
         [x] toolbar
             [x] bug scrolling viewport
@@ -99,16 +89,24 @@ modello
                 blob
             [ ] valutazione_media
                 int null
+
+            [ ] stato
+                enum (attivo, bannato, sospeso)
                     
         [ ] azienda 1:1
             [ ] username
                 primary key varchar(255) foreign key to user
+            [ ] email
+                varchar(255)
             [ ] nome
                 varchar(255)
             [ ] bio
                 varchar(4095)
             [ ] propic
                 blob
+
+            [ ] stato
+                enum (attivo, bannato, sospeso)
 
         [ ] admin 1:1
             [ ] username
@@ -148,6 +146,12 @@ modello
                 foreign key a azienda
             [ ] tecnologie
                 foreign key a tecnologie
+        
+        [ ] lavori_tecnologie N:N
+            [ ] lavoro
+                foreign key a lavoro
+            [ ] tecnologia
+                foreign key a tecnologia
                 
         [ ] codemonkey_tecnologie N:N
             [ ] username
@@ -160,6 +164,16 @@ modello
                 foreign key a azienda
             [ ] tecnologia
                 foreign key a tecnologia
+        
+        [ ] report_user N:N
+            [ ] username_from
+                foreign key a user
+            [ ] username_to
+                foreign key a user
+            [ ] data
+                datetime
+            [ ] descrizione
+                varchar(1024)
 
         [ ] azioni 1:N
             [ ] id
@@ -177,6 +191,7 @@ modello
                         accetta?lavoro=<lavoro>
                         rifiuta?lavoro=<lavoro>
                         impostazioni?nome=password&<nome>&cognome=<cognome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
+                        report?codemonkey=<codemonkey.username>&azienda=<codemonkey.username>
                     azienda
                         registrazione
                         login
@@ -184,9 +199,10 @@ modello
                         proponi?lavoro=<lavoro>
                         termina?lavoro=<lavoro>
                         impostazioni?nome=password&<nome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
+                        report?codemonkey=<codemonkey.username>&azienda=<codemonkey.username>
                     admin
                         login
-                        ban?codemonkey=<codemonkey.username>&azienda=<codemonkey.username>
+                        set?[codemonkey=<codemonkey.username>||azienda=<codemonkey.username>]&stato=<attivo|bannato|sospeso>
                         
             [ ] username
                 foreign key a user
@@ -195,15 +211,176 @@ modello
                         azienda
                         admin
 
-static
-	trova_tipo_da_username(username:string) -> string | null
-		interroga il database per username nella tabella user
-			se presente
-				ritorna tipo
-			se non presente
-				ritorna null
-
 controller
+    user
+        tipo(username) -> string | null
+            interroga il database per username nella tabella user
+                se presente
+                    ritorna tipo
+                se non presente
+                    ritorna null
+        
+        tipo(jwt) -> string | null
+            get(get(jwt).username: username) -> string | null
+        
+        add(username, password, tipo) -> boolean
+            interroga il database per username nella tabella user
+                se presente
+                    ritorna false
+                se non presente
+                    aggiungi user
+                    se tipo==codemonkey
+                        aggiungi codemonkey a tabella codemonkey
+                    se tipo==azienda
+                        aggiungi azienda a tabella azienda
+                    ritorna true
+                    
+        get(username) -> user | null
+            interroga il database per username nella tabella user
+                se presente
+                    ritorna user
+                se non presente
+                    ritorna null
+                    
+        get(jwt) -> user | null
+            backend usa sistema di sicurezza (non trattato in questo documento) per ottenere user da jwt
+            
+        modifica(jwt, username, new_password) -> boolean
+            interroga il database per username nella tabella user
+                se presente
+                    se get(jwt).username==username
+                        modifica password
+                        ritorna true
+                ritorna false
+    
+    codemonkey extends user
+        get(username) -> codemonkey | null
+            interroga il database per username nella tabella codemonkey
+                se presente
+                    ritorna codemonkey
+                se non presente
+                    ritorna null
+        
+        get(jwt) -> codemonkey | null
+            get(user.get(jwt).username: username) -> codemonkey | null
+
+        modifica(jwt, username, new_email, new_password, new_nome, new_cognome, new_bio, tecnologie: list[tecnologia]) -> boolean
+            interroga il database per username nella tabella codemonkey
+                se presente
+                    se get(jwt).username==username
+                        user.modifica(jwt, username, new_password)
+                        modifica email, nome, cognome, bio
+                        ritorna true
+                ritorna false
+                
+        stato(username) -> string | null
+            interroga il database per username nella tabella codemonkey
+                se presente
+                    ritorna stato
+                se non presente
+                    ritorna null
+        
+    azienda extends user
+        get(username) -> azienda | null
+            interroga il database per username nella tabella azienda
+                se presente
+                    ritorna azienda
+                se non presente
+                    ritorna null
+        
+        get(jwt) -> azienda | null
+            get(user.get(jwt).username: username) -> azienda | null
+
+        modifica(jwt, username, new_email, new_password, new_nome, new_bio, tecnologie: list[tecnologia]) -> boolean
+            interroga il database per username nella tabella azienda
+                se presente
+                    se get(jwt).username==username
+                        user.modifica(jwt, username, new_password)
+                        modifica email, nome, cognome, bio
+                        ritorna true
+                ritorna false
+                
+                
+        stato(username) -> string | null
+            interroga il database per username nella tabella codemonkey
+                se presente
+                    ritorna stato
+                se non presente
+                    ritorna null
+    
+    lavoro
+        add(jwt, titolo, descrizione, data_proposta, data_inizio, data_fine, codemonkey.username, azienda.username, tecnologie: list[tecnologia]) -> boolean
+            se user.tipo(jwt)==azienda
+                se azienda.get(jwt).stato==attivo
+                    aggiungi lavoro
+                        data_proposta=Time.now()
+                        data_inizio=null
+                        data_fine=null
+                        
+                        titolo
+                        descrizione
+                        codemonkey.username
+                        tecnologie
+
+                    ritorna true
+                ritorna false
+
+            se user.tipo(jwt)==codemonkey
+                ritorna false
+            se user.tipo(jwt)==null
+                ritorna false
+
+        get(id:string) -> lavoro | null
+            interroga il database per id nella tabella lavoro
+                se presente
+                    ritorna lavoro
+                se non presente
+                    ritorna null
+
+        modifica(jwt, id, titolo, descrizione, data_proposta, data_inizio, data_fine, codemonkey.username, azienda.username, tecnologie: list[tecnologia], valutazione, commento)
+            interroga il database per id nella tabella lavoro
+                se presente
+                    se user.tipo(jwt)==codemonkey
+                        se codemonkey.get(jwt)==lavoro.codemonkey
+                            se lavoro.data_inizio==null
+                                se codemonkey.stato(jwt)==attivo
+                                    modifica data_inizio
+                                        ritorna true
+
+                    se user.tipo(jwt)==azienda
+                        se azienda.get(jwt)==lavoro.azienda
+                            se lavoro.data_inizio!=null
+                                modifica data_fine valutazione commento
+                                    ritorna true
+
+                    se user.tipo(jwt)==null
+                        ritorna false
+                
+                    ritorna true
+                ritorna false
+    
+    admin
+        stato(jwt, username, stato) -> boolean
+            se user.tipo(user.get(jwt).username)==admin
+                se user.tipo(username)==codemonkey
+                    modifica stato
+                se user.tipo(username)==azienda
+                    modifica stato
+                ritorna false
+
+    azione 
+        aggiungi(nome:string, descrizione:string, username:string) -> boolean
+            aggiungi azione
+
+        id(id:string) -> azione | null
+            interroga il database per id nella tabella azione
+                se presente
+                    ritorna azione
+                se non presente
+                    ritorna null
+    
+
+endpoint
 	public
 		[ ] /api/registrazione
 			1 frontend fa richiesta
@@ -310,10 +487,16 @@ controller
 					crea i componenti e visualizza
 				se error
 					mostra dialog.errore.richiesta.messaggio = "errore nel contattare il server"
+                    
+        [ ] /api/user
+            1 frontend fa richiesta
+                parametri
+                    username
 
-		[ ] /api/codemonkey/<username>
-
-		[ ] /api/azienda/<username>
+        [ ] /api/lavoro
+            1 frontend fa richiesta
+                parametri
+                    id
 
 	auth
 		[ ] /api/logout
@@ -343,12 +526,17 @@ controller
                     elimina jwt da localStorage    
                     elimina tipo da localStorage
                     forward a /feed
+        
+        [ ] /api/report
 
 		[ ] /api/dashboard
-
-		[ ] /api/modifica
         
-		[ ] /api/codemonkey/<codemonkey.username>/proponi
+        [ ] /api/azione
+
+		[ ] /api/user/modifica
+        
+        [ ] /api/lavoro/modifica
+
 
 
 componenti
@@ -461,6 +649,14 @@ componenti
         
     [ ] list
         [ ] tecnologie
+            [ ] lista scrollabile orizzontalmente
+            se in card codemonkey
+                [ ] link a /codemonkey/<codemonkey.username>?tecnologia=<tecnologia.id>
+            se in card azienda
+                [ ] link a /codemonkey/<codemonkey.username>?tecnologia=<tecnologia.id>
+
+    [ ] chips
+        [ ] tecnologie
 
 	[ ] datepicker
 		[ ] data inizio-data fine
@@ -481,7 +677,7 @@ viste
                 [ ] controllo password == password_confirmation
             [ ] azienda/codemonkey
 
-        [ ] popup registrazione
+        [ ] dialog.regisrazione
         [ ] forward a /impostazioni
                     
     [ ] /login
@@ -490,11 +686,11 @@ viste
             [ ] password
             [ ] totp
         se codemonkey  
-            vai a /feed?tipo=azienda
+            [ ] vai a /feed?tipo=azienda
         se azienda
-            vai a /feed?tipo=codemonkey
+            [ ] vai a /feed?tipo=codemonkey
         se admin
-            vai a /dashboard
+            [ ] vai a /dashboard
 
     [ ] /feed || /
 		parametri
@@ -538,22 +734,10 @@ viste
             
 	[ ] /codemonkey/<username>
 		se loggato come <username>
-            [ ] tasto impostazioni
-				parametri
-					[ ] email
-					[ ] password
-						[ ] vecchia password
-						[ ] nuova password
-						[ ] conferma nuova password
-					[ ] nome
-					[ ] cognome
-					[ ] bio
-					[ ] propic
-						[ ] caricamento immagine
-					[ ] tecnologie
-                        [ ] selezione da select.tecnologie
-			[ ] tasto logout
-			[ ] /logout
+            [ ] lista card.l
+                [ ] card.lavoro
+            [ ] lista lavori.in_corso
+                [ ] card.lavoro
 		
 		se loggato come azienda
 			[ ] /proponi
@@ -573,7 +757,7 @@ viste
 		se loggato come admin
 			[ ] tasto ban
 
-		[ ] lista di card.lavoro
+		[ ] lista card.lavoro
 		
 		[ ] /lavori
 			se loggato come <username>
@@ -616,10 +800,19 @@ test
 	[ ] admin
                 
 deploy
-	[ ] azure
-        [ ] acr
-    [ ] vps
+    [x] development environment
+        [x] rails
+            [x] live reload
+        [x] angular
+            [x] nginx reverse proxy
+            [x] live reload
+        [x] postgres
+            [x] docker image
 
+    [x] release environment
+        [ ] problema nginx frontend
 
-localStorage.currentUser
-    eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODM3MDk3NTMsInVzZXJfaWQiOjIxfQ.CAkwihEoqJWraWH5-568Cofmk5V8Xrse7g9UKeqoJdU
+    [ ] hosting
+        [ ] azure
+            [ ] acr
+        [ ] vps
