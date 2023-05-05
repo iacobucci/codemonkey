@@ -79,7 +79,6 @@ modello
         [ ] user 1:1
             [ ] username
                 primary key varchar(255)
-                abcdefghijklmnopqrstuvwxyz0123456789_
             [ ] password_digest
                 varchar(255)
             [ ] tipo
@@ -177,14 +176,14 @@ modello
                         logout
                         accetta?lavoro=<lavoro>
                         rifiuta?lavoro=<lavoro>
-                        modifica_profilo?nome=password&<nome>&cognome=<cognome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
+                        impostazioni?nome=password&<nome>&cognome=<cognome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
                     azienda
                         registrazione
                         login
                         logout
                         proponi?lavoro=<lavoro>
                         termina?lavoro=<lavoro>
-                        modifica_profilo?nome=password&<nome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
+                        impostazioni?nome=password&<nome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
                     admin
                         login
                         ban?codemonkey=<codemonkey.username>&azienda=<codemonkey.username>
@@ -197,7 +196,7 @@ modello
                         admin
 
 static
-	trova_tipo_da_username(username:string) -> string
+	trova_tipo_da_username(username:string) -> string | null
 		interroga il database per username nella tabella user
 			se presente
 				ritorna tipo
@@ -211,15 +210,24 @@ controller
 				parametri
 					tipo=<codemonkey|azienda>
 					username
+                    [ ] controllo caratteri
+                        abcdefghijklmnopqrstuvwxyz0123456789_
 					email
 					password
 					password_confirmation
-				[x] se password!=password_confirmatoin
-					messaggio di errore
+                    [x] se password!=password_confirmation
+                        messaggio di errore
 			2 backend interroga il database se username è gia presente in tabella user
+                [ ] controllo caratteri username
+                    abcdefghijklmnopqrstuvwxyz0123456789_
+                se non valido
+                    error json
+                        3 invia error json
+                            {"error":"username_non_valido"}
 				se presente
 					error json
 						3 invia error json
+                            {"error":"username_gia_presente"}
 				se non presente
 					crea un password_digest
 					fa insert in database
@@ -239,9 +247,10 @@ controller
 							inserisce in tabella azienda
 								username
 								email
-			3 backend genera un secret TOTP e payload json e lo invia al frontend
-				{"otp_provisioning_uri":"
-	otpauth://totp/<username>?secret=<secret>&issuer=Codemonkey&algorithm=sha1&digits=6&period=30"}
+			3 backend genera un secret TOTP e un JWT e li invia al frontend
+                viene fatto /api/login in automatico
+                    {"otp_provisioning_uri":"
+        otpauth://totp/<username>?secret=<secret>&issuer=Codemonkey&algorithm=sha1&digits=6&period=30", "username":"<username>", "tipo":"<tipo>", "jwt":"<jwt>"}
 				salvataggio azione nei log
 					datetime=Time.now
 					user=<username>
@@ -258,12 +267,11 @@ controller
 							disegna a schermo qrcode che l'utente può scansionare
 
 				login automatico
-					[ ] viene inviato payload json, senza bisogno di inviare anche totp
 					
 				se codemonkey
-					forward a /profilo/codemonkey/<username>/modifica
+					forward a /codemonkey/<username>/modifica
 				se azienda
-					forward a /profilo/azienda/<username>/modifica
+					forward a /azienda/<username>/modifica
 		
 		[ ] /api/login
 			1 frontend fa richiesta
@@ -303,9 +311,9 @@ controller
 				se error
 					mostra dialog.errore.richiesta.messaggio = "errore nel contattare il server"
 
-		[ ] /api/profilo/codemonkey/<username>
+		[ ] /api/codemonkey/<username>
 
-		[ ] /api/profilo/azienda/<username>
+		[ ] /api/azienda/<username>
 
 	auth
 		[ ] /api/logout
@@ -313,69 +321,70 @@ controller
 				parametri
 					username
 
-			2 backend controlla il jwt e se l'utente 
+			2 backend interroga il database se <username> esiste
 				se non corretto
 					3 invia error json
+                        {"error":"username_non_valido"}
 
-			3 backend 
+			3 backend contolla se azione è permessa
 				salvataggio azione nei log
 					datetime=Time.now
 					user=<username>
 					nome=logout
 					descrizione=""
+                genera payload
+                    {"logout":"ok"}
 
-			4 frontend salva payload in localStorage 
+			4 frontend analizza la risposta
+                se error json
+                    mostra dialog.errore.logout.messaggio = "errore nel contattare il server"
+                se payload json
+                    elimina username da localStorage
+                    elimina jwt da localStorage    
+                    elimina tipo da localStorage
+                    forward a /feed
 
 		[ ] /api/dashboard
 
 		[ ] /api/modifica
-
-		[ ] /api/profilo/codemonkey/<codemonkey.username>/proponi
+        
+		[ ] /api/codemonkey/<codemonkey.username>/proponi
 
 
 componenti
     [ ] card
         [ ] codemonkey
             [ ] username
-				link a /profilo/codemonkey/<username>
+				link a /codemonkey/<username>
 			[ ] nome
 			[ ] cognome
             [ ] propic
             [ ] valutazione media
                 [ ] component valutazione
-
             [ ] mailto
-			se azienda
-				[ ] proponi
-
             [ ] bio
             [ ] tecnologie
-                [ ] lista scrollabile orizzontalmente di tecnologie
-                    link a /profilo/codemonkey/<codemonkey.username>?tecnologia=<tecnologia>      
-
-            [ ] max 3 row lavori
+                [ ] list.tecnologie
 
         [ ] azienda
             [ ] username
-				link a /profilo/azienda/<username>
+				link a /azienda/<username>
 			[ ] nome
             [ ] propic
             [ ] mailto
             [ ] bio
             [ ] tecnologie
-                [ ] lista scrollabile orizzontalmente di tecnologie
-                    link a /profilo/azienda/<azienda.username>?tecnologia=<tecnologia>      
-            [ ] max 3 lavori recenti
+                [ ] list.tecnologie
 
         [ ] lavoro
             [ ] azienda
 				[ ] username
-					link a /profilo/azienda/<username>
+					link a /azienda/<username>
                 [ ] nome
                 [ ] propic
             [ ] codemonkey
 				[ ] username
-					link a /profilo/codemonkey/<username>
+					link a /codemonkey/<username>
                 [ ] nome
                 [ ] cognome
                 [ ] propic
@@ -404,26 +413,14 @@ componenti
 							action=rifiuta
 
     [ ] row
-        [ ] lavoro
-            se in card azienda
-                [ ] codemonkey
-                [ ] titolo
-                    link a /profilo/<azienda.username>/lavoro/<lavoro.id>
-                [ ] valutazione
-            se in card codemonkey
-                [ ] azienda
-                [ ] titolo
-                    link a /profilo/<codemonkey.username>/lavoro/<lavoro.id>
-                [ ] valutazione
-
         [ ] azione
             [ ] data
             [ ] nome
             [ ] username
                 se codemonkey
-                    link a /profilo/codemonkey/<codemonkey.username>
+                    link a /codemonkey/<codemonkey.username>
                 se azienda
-                    link a /profilo/azienda/<azienda.username>
+                    link a /azienda/<azienda.username>
             [ ] descrizione
     
     [ ] dialog
@@ -449,9 +446,21 @@ componenti
 
 		[ ] ban
 			[ ] conferma
+    
+    [ ] form
+        [ ] registrazione
+        [ ] login
+        [ ] modifica
+            [ ] caricamento_immagine
+        [ ] proponi
+        [ ] valutazione
+        [ ] ban
 	
 	[ ] select
 		[ ] tecnologie
+        
+    [ ] list
+        [ ] tecnologie
 
 	[ ] datepicker
 		[ ] data inizio-data fine
@@ -463,22 +472,20 @@ componenti
 
 viste
     [ ] /regisrazione
-        parametri post
+        form.registrazione
             [ ] username
             [ ] email
+                [ ] controllo email valida
             [ ] password
             [ ] password_confirmation
+                [ ] controllo password == password_confirmation
             [ ] azienda/codemonkey
 
         [ ] popup registrazione
-
-        se azienda
-            vai a /profilo/azienda/<azienda.username>/modifica
-        se codemonkey
-            vai a /profilo/codemonkey/<azienda.username>/modifica
+        [ ] forward a /impostazioni
                     
     [ ] /login
-        parametri post
+        form.login
             [ ] username
             [ ] password
             [ ] totp
@@ -489,94 +496,118 @@ viste
         se admin
             vai a /dashboard
 
-    [ ] /feed
-		parametri get
+    [ ] /feed || /
+		parametri
 			[ ] radio button
 				?tipo=azienda
 				?tipo=codemonkey
 				?tipo=tutto
-			[ ] menu a discesa
+			[ ] select.tecnologie
 				?tecnologie=<tecnologia1,tecnologia2,...>
-            
-    [ ] /profilo
-        [ ] /codemonkey/<username>
-            se loggato come <username>
-                [ ] tasto modifica
-                [ ] /modifica
-                    parametri
-                        [ ] email
-						[ ] password
-							[ ] vecchia password
-							[ ] nuova password
-							[ ] conferma nuova password
-                        [ ] nome
-                        [ ] cognome
-                        [ ] bio
-                        [ ] propic
-                            [ ] caricamento immagine
-                        [ ] tecnologie
-							[ ] selezione da select.tecnologia
-                [ ] tasto logout
-				[ ] /logout
-            
-            se loggato come azienda
-                [ ] /proponi
-					parametri
-						[ ] titolo
-						[ ] descrizione
-						[ ] tecnologie
-							[ ] selezione da select.tecnologia
-						[ ] azienda = <azienda.username>
-						[ ] codemonkey = <codemonkey.username>
-						[ ] data_inizio = null
-						[ ] data_fine = null
-						[ ] valutazione = null
-						[ ] commento = null
 
-
-            se loggato come admin
-                [ ] tasto ban
-
-            [ ] lista di card.lavoro
-            
-            [ ] /lavori
-                se loggato come <username>
-                    [ ] lista card di lavoro con accettato = false
-                [ ] /<id_lavoro>
-                    [ ] card lavoro
-                se lavori in corso
-                    [ ] card lavoro in corso
-
-                [ ] lavori effettuati
-                
-        [ ] /azienda/<username>
-            se loggato come <username>
-                [ ] tasto modifica
-                [ ] /modifica
-                    parametri
-						[ ] email
-						[ ] password
-							[ ] vecchia password
-							[ ] nuova password
-							[ ] conferma nuova password
-						[ ] nome
-						[ ] cognome
-						[ ] bio
-						[ ] propic
-                            [ ] caricamento immagine
-						[ ] tecnologie
-                [ ] tasto logout
-					[ ] /logout
-
-            [ ] /lavori
-                [ ] lavoro in corso
-                [ ] lavori effettuati
+    [ ] /impostazioni
+        form.impostazioni
+            se codemonkey
+                [ ] nome
+                [ ] cognome
+            se azienda
+                [ ] nome
+            [ ] email
+                [ ] controllo email valida
+            password
+                [ ] vecchia password
+                [ ] nuova password
+                [ ] conferma nuova password
+                    [ ] controllo nuova password == conferma nuova password
+            [ ] bio
+            [ ] propic
+            [ ] tecnologie
+                [ ] select.tecnologie
 
     [ ] /dashboard
-        [ ] tabella con row azioni
-		[ ] tasto download
-			[ ] /download
-			[ ] salva come txt
+        [ ] tabella con row.azioni
+            [ ] filtri
+                [ ] data
+                [ ] username
+                    se codemonkey
+                        [ ] link a /codemonkey/<username>
+                    se azienda
+                        [ ] link a /azienda/<username>
+                [ ] titolo
+                [ ] descrizione
+            
+	[ ] /codemonkey/<username>
+		se loggato come <username>
+            [ ] tasto impostazioni
+				parametri
+					[ ] email
+					[ ] password
+						[ ] vecchia password
+						[ ] nuova password
+						[ ] conferma nuova password
+					[ ] nome
+					[ ] cognome
+					[ ] bio
+					[ ] propic
+						[ ] caricamento immagine
+					[ ] tecnologie
+                        [ ] selezione da select.tecnologie
+			[ ] tasto logout
+			[ ] /logout
+		
+		se loggato come azienda
+			[ ] /proponi
+				parametri
+					[ ] titolo
+					[ ] descrizione
+					[ ] tecnologie
+						[ ] selezione da select.tecnologia
+					[ ] azienda = <azienda.username>
+					[ ] codemonkey = <codemonkey.username>
+					[ ] data_inizio = null
+					[ ] data_fine = null
+					[ ] valutazione = null
+					[ ] commento = null
+
+
+		se loggato come admin
+			[ ] tasto ban
+
+		[ ] lista di card.lavoro
+		
+		[ ] /lavori
+			se loggato come <username>
+				[ ] lista card di lavoro con accettato = false
+			[ ] /<id_lavoro>
+				[ ] card lavoro
+			se lavori in corso
+				[ ] card lavoro in corso
+
+			[ ] lavori effettuati
+			
+	[ ] /azienda/<username>
+		se loggato come <username>
+			[ ] tasto modifica
+			[ ] /modifica
+				parametri
+					[ ] email
+					[ ] password
+						[ ] vecchia password
+						[ ] nuova password
+						[ ] conferma nuova password
+					[ ] nome
+					[ ] cognome
+					[ ] bio
+					[ ] propic
+						[ ] caricamento immagine
+					[ ] tecnologie
+			[ ] tasto logout
+				[ ] /logout
+
+		[ ] /lavori
+			[ ] lavoro in corso
+			[ ] lavori effettuati
+
 
 test
 	[ ] utente non loggato
