@@ -1,0 +1,18 @@
+<div style="display: flex; justify-content: center;">
+  <form (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; width: 25%; align-items: center;">
+    <h1>Login</h1>
+    <mat-form-field appearance="fill">
+      <mat-label>Username</mat-label>
+      <input matInput type="text" placeholder="Username" name="username" [(ngModel)]="username" required>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" placeholder="Password" name="password" [(ngModel)]="password" required>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>TOTP</mat-label>
+      <input matInput type="password" placeholder="TOTP" name="totp" [(ngModel)]="totp" required>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Login</button>
+  </form>
+</div>

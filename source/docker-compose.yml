@@ -3,32 +3,52 @@ version: '3.8'
 services:
   codemonkey-backend:
     image: codemonkey-backend
-    container_name: codemonkey-backend-image
+    # image: codemonkey.azurecr.io/codemonkey-backend:latest
+    environment:
+      - BACKEND_DATABASE_USER=admin
+      - BACKEND_DATABASE_PASSWORD=password
+      - RAILS_ENV=production
+      - RAILS_MASTER_KEY=4c61fe7c0395dc5e96de25ed0f093a4f
+    container_name: codemonkey-backend-compose
     depends_on:
       - codemonkey-database
+    networks:
+      - codemonkey-network
 
   codemonkey-frontend:
     image: codemonkey-frontend
-    container_name: codemonkey-frontend-image
+    # image: codemonkey.azurecr.io/codemonkey-frontend:latest
+    container_name: codemonkey-frontend-compose
     depends_on:
       - codemonkey-backend
+    networks:
+      - codemonkey-network
 
   codemonkey-database:
     image: codemonkey-database
-    container_name: codemonkey-database-image
+    # image: codemonkey.azurecr.io/codemonkey-database:latest
+    container_name: codemonkey-database-compose
     ports:
       - '5432:5432'
+    networks:
+      - codemonkey-network
 
   nginx:
     image: nginx:latest
-    container_name: codemonkey-nginx
+    container_name: codemonkey-nginx-compose
     ports:
       # release
       # - '80:80'
       # development
       - '8080:80'
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - codemonkey-backend
       - codemonkey-frontend
+    networks:
+      - codemonkey-network
+
+networks:
+  codemonkey-network:
+    driver: bridge

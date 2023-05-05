@@ -1,0 +1,6 @@
+<div *ngIf="loggedIn">
+    <button mat-stroked-button (click)="logout()"><b>{{ ( this.username + ': Logout').toUpperCase() }}</b></button>
+</div>
+<div *ngIf="!loggedIn">
+    <button mat-stroked-button routerLink="/login"><b>{{ ('Login').toUpperCase() }}</b></button>
+</div>
