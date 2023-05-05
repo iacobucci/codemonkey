@@ -22,45 +22,381 @@ docs
         deployment
             [x] containerizzazione
             [ ] deploy
+
+    roba da limare
+        [ ] req funz e non funz post analisi sicurezza aggiornati
+        [ ] casi d'uso aggiornati(aggiungiamo il log?)
+        [ ] se punto sopra c'é da fare anche lo scenario del log
     
 source
     [x] development environment
-    [x] release environment
+        [x] rails
+            [x] live reload
+        [x] angular
+            [x] nginx reverse proxy
+            [x] live reload
+        [x] postgres
+            [x] docker image
 
-    [x] nginx reverse proxy
+    [x] release environment
+        [ ] problema nginx frontend
+
     frontend
         [x] toolbar
-        [x] dark mode
+            [x] bug scrolling viewport
+        [x] theme
+            [x] dark mode
+            [x] light mode
+            [x] colors
+                [x] accent
+                [x] primary
         [x] login
-            [ ] salvataggio stato con JWT
+            [x] salvataggio stato con JWT
+            [ ] bug forward a /feed
         [x] registrazione
-            [ ] matching passwords
+            [x] matching passwords
             [x] qr code
+                [x] bug libreria
+
     backend
         [x] database connection
-        orm
-            [x] ActiveRecord
+        [x] ActiveRecord
         [x] 2FA TOTP
         [x] JWT
+            [ ] architettura sistema di permessi
+                jwt -> user -> codemonkey | azienda | admin -> azione
+
     database
         [ ] rails migration
         
-        model
+model
+    entity
+        base
+            [ ] user 1:1
+                [ ] username
+                    primary key varchar(255)
+                [ ] password_digest
+                    varchar(255)
+                [ ] tipo
+                    enum (codemonkey, azienda, admin)
+
+            [ ] tecnologia
+                [ ] id
+                    primary key int
+                [ ] nome
+                    varchar(255)
+
+        [ ] codemonkey 1:1
+            [ ] username
+                primary key varchar(255) foreign key to user
+            [ ] email
+                varchar(255)
+            [ ] nome
+                varchar(255)
+            [ ] cognome
+                varchar(255)
+            [ ] bio
+                varchar(4095)
+            [ ] propic
+                blob
+            [ ] valutazione_media
+                int null
+                    
+        [ ] azienda 1:1
+            [ ] username
+                primary key varchar(255) foreign key to user
+            [ ] nome
+                varchar(255)
+            [ ] bio
+                varchar(4095)
+            [ ] propic
+                blob
+
+        [ ] admin 1:1
+            [ ] username
+                primary key varchar(255) foreign key to user
+
+    relation
+        [ ] lavoro 1:N
+            [ ] id
+                primary key int autoincrement
+            [ ] titolo
+                varchar(255)
+            [ ] descrizione
+                varchar(4095)
+
+            [ ] data_proposta
+                datetime
+
+            [ ] data_inizio
+                date
+
+            [ ] data_fine
+                date
+            [ ] valutazione
+                int null
+            [ ] commento
+                varchar(1024)
+                
             [ ] codemonkey
-                lavori codemonkey
-                linguaggi di programmazione conosciuti
+                foreign key a codemonkey
             [ ] azienda
-                lavori azienda
-            [ ] admin
+                foreign key a azienda
+            [ ] tecnologie
+                foreign key a tecnologie
+                
+        [ ] codemonkey_tecnologie N:N
+            [ ] username
+                foreign key a codemonkey
+            [ ] tecnologia
+                foreign key a tecnologia
 
+        [ ] aziende_tecnologie N:N
+            [ ] username
+                foreign key a azienda
+            [ ] tecnologia
+                foreign key a tecnologia
+
+        [ ] azioni 1:N
+            [ ] id
+                primary key
+            [ ] nome
+                varchar(255)
+            [ ] data
+                datetime
+            [ ] descrizione
+                varchar(8191)
+                    codemonkey
+                        registrazione
+                        login
+                        logout
+                        accetta?lavoro=<lavoro>
+                        rifiuta?lavoro=<lavoro>
+                        modifica_profilo?nome=password&<nome>&cognome=<cognome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
+                    azienda
+                        registrazione
+                        login
+                        logout
+                        proponi?lavoro=<lavoro>
+                        termina?lavoro=<lavoro>
+                        modifica_profilo?nome=password&<nome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
+                    admin
+                        login
+                        ban_codemonkey?username=<username>
+                        ban_azienda?username=<username>
+                        
+            [ ] username
+                foreign key a user
+                    user che invoca l'azione
+                        codemonkey
+                        azienda
+                        admin
+
+viste
+    [ ] /feed
+        [ ] generic
+            [ ] lista codemonkey e aziende
+        se loggato come codemonkey
+            [ ] lista card aziende
+            [ ] filtra per lista di tecnologie in AND
+        se loggato come azienda
+            [ ] lista card codemonkey
+            [ ] filtra per lista di tecnologie in AND
+        
+    [ ] card
+        [ ] codemonkey
+            [ ] username
+            [ ] propic
+            [ ] valutazione media
+                [ ] component valutazione
+            [ ] mailto
+            [ ] bio
+            [ ] tecnologie
+                [ ] lista scrollabile orizzontalmente di tecnologie
+                    link a /profilo/codemonkey/<codemonkey.username>?tecnologia=<tecnologia>      
+
+            [ ] max 3 row lavori
+
+        [ ] azienda
+            [ ] username
+            [ ] propic
+            [ ] mailto
+            [ ] bio
+            [ ] tecnologie
+                [ ] lista scrollabile orizzontalmente di tecnologie
+                    link a /profilo/azienda/<azienda.username>?tecnologia=<tecnologia>      
+            [ ] max 3 lavori recenti
+
+        [ ] lavoro
+            [ ] azienda
+                [ ] propic
+                [ ] nome
+            [ ] codemonkey
+                [ ] propic
+                [ ] nome
+                [ ] cognome
+            [ ] titolo
+            [ ] descrizione
+            [ ] tecnologie
+            se data_inizio != null
+                se loggato come azienda
+                    [ ] termina
+                        [ ] salva evento
+                        [ ] popup valutazione e commento
+
+                [ ] data_inizio
+                se data_fine != null
+                    [ ] data_fine
+                    [ ] valutazione
+                    [ ] commento
+                se data_fine == null
+                    [ ] in corso
+            se data_inizio == null
+                se loggato come codemonkey
+                    [ ] accetta
+                        [ ] popup conferma
+                    [ ] rifiuta
+                        [ ] popup conferma
+                se loggato come azienda
+                    [ ] elimina
+                        [ ] popup conferma
+
+    [ ] row
+        [ ] lavoro
+            se in card azienda
+                [ ] codemonkey
+                [ ] titolo
+                    link a /profilo/<azienda.username>/lavoro/<lavoro.id>
+                [ ] valutazione
+            se in card codemonkey
+                [ ] azienda
+                [ ] titolo
+                    link a /profilo/<codemonkey.username>/lavoro/<lavoro.id>
+                [ ] valutazione
+        [ ] azione
+            [ ] data
+            [ ] nome
+            [ ] username
+                se codemonkey
+                    link a /profilo/codemonkey/<codemonkey.username>
+                se azienda
+                    link a /profilo/azienda/<azienda.username>
+            [ ] descrizione
+        
+    
+    [ ] /regisrazione
+        [ ] salva azione
+        dati
+            [ ] username
+            [ ] email
+            [ ] password
+            [ ] password_confirmation
+            [ ] azienda/codemonkey
+
+        se azienda
+            vai a /profilo/azienda/<azienda.username>/modifica
+        se codemonkey
+            vai a /profilo/codemonkey/<azienda.username>/modifica
+                    
+    [ ] /login
+        [ ] salva azione
+        dati
+            [ ] username
+            [ ] password
+            [ ] TOTP
+        [ ] codemonkey  
+            vai a /feed
+        [ ] azienda
+            vai a /feed
+        [ ] admin
+            vai a /dashboard
+            
+    [ ] /dashboard
+        [ ] log azioni
+            dati
+                [ ] data
+                    [ ] sort 
+                [ ] utente che ha eseguito l'azione
+                    se codemonkey
+                        [ ] vai a /profilo/codemonkey/<codemonkey.username>
+                    se azienda
+                        [ ] vai a /profilo/azienda/<azienda.username>
+                [ ] nome azione
+                [ ] descrizione
+            [ ] salva come txt
+
+    [ ] /profilo
+        [ ] /codemonkey/<username>
+            se loggato come <username>
+                [ ] tasto modifica
+                [ ] tasto logout
+                [ ] /modifica
+                    [ ] salva azione
+                    dati
+                        [ ] email
+                        [ ] password
+                        [ ] vecchia password
+                        [ ] nuova password
+                        [ ] conferma nuova password
+                        [ ] nome
+                        [ ] cognome
+                        [ ] bio
+                        [ ] propic
+                            [ ] caricamento immagine
+                        [ ] tecnologie
+            
+            se loggato come azienda
+                [ ] /proponi
+                    [ ] crea un lavoro
+                        [ ] salva azione
+                        dati
+                            [ ] titolo
+                            [ ] descrizione
+                            [ ] tecnologie
+                            [ ] azienda = <azienda.username>
+                            [ ] codemonkey = <codemonkey.username>
+                            [ ] data_inizio = null
+                            [ ] data_fine = null
+                            [ ] valutazione = null
+                            [ ] commento = null
+
+            se loggato come admin
+                [ ] tasto ban
+                [ ] salva azione
+
+            [ ] lista di card lavoro
+            
+            [ ] /lavoro
+                se loggato come <username>
+                    [ ] lista card di lavoro con accettato = false
+                [ ] /<id_lavoro>
+                    [ ] card lavoro
+                se lavori in corso
+                    [ ] card lavoro in corso
+
+                [ ] lavori effettuati
+                
+        [ ] /azienda/<username>
+            [ ] /modifica
+                [ ] salva azione
+                dati
+                    [ ] email
+                    [ ] password
+                    [ ] nome
+                    [ ] cognome
+                    [ ] bio
+                    [ ] propic
+                    [ ] tecnologie
+
+            [ ] /lavori
+                [ ] lavoro in corso
+                [ ] lavori effettuati
+                
 deploy
-	azure
+	[ ] azure
+        [ ] acr
+    [ ] vps
 
 
-roba da limare
-    [ ] req funz e non funz post analisi sicurezza aggiornati
-    [ ] casi d'uso aggiornati(aggiungiamo il log?)
-    [ ] se punto sopra c'é da fare anche lo scenario del log
-
-
-localStorage.currentUser = "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODM3MDk3NTMsInVzZXJfaWQiOjIxfQ.CAkwihEoqJWraWH5-568Cofmk5V8Xrse7g9UKeqoJdU"
+localStorage.currentUser
+    eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODM3MDk3NTMsInVzZXJfaWQiOjIxfQ.CAkwihEoqJWraWH5-568Cofmk5V8Xrse7g9UKeqoJdU

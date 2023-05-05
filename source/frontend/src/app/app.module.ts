@@ -19,7 +19,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
-import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { QRCodeModule } from "angularx-qrcode"
 
 import { ThemeSwitcherComponent } from './theme-switcher/theme-switcher.component';
 import { FeedComponent } from './feed/feed.component';
@@ -63,7 +63,7 @@ import { ImageUploaderComponent } from './image-uploader/image-uploader.componen
     MatToolbarModule,
     MatCardModule,
     MatListModule,
-    NgxQRCodeModule,
+    QRCodeModule,
     MatDialogModule,
     MatRadioModule,
     MatRippleModule,
