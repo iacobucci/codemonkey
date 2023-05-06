@@ -31,7 +31,6 @@ docs
 res
 	[ ] capire come ottenere parametri da componente genitore
 	[ ] modellare tabelle con rails db:migration
-	[ ] capire dove far vedere i lavori e se è possibile farlo in maniera fashion
     [ ] activerecord di ruby
     [ ] funzioni delle route ruby
     
@@ -71,6 +70,8 @@ modello
                 primary key varchar(255)
             [ ] password_digest
                 varchar(255)
+            [ ] totp_secret
+                varchar(255)
             [ ] tipo
                 enum (codemonkey, azienda, admin)
 
@@ -91,7 +92,7 @@ modello
                 int null
 
             [ ] stato
-                enum (attivo, bannato, sospeso)
+                enum (attivo, bannato)
                     
         [ ] azienda 1:1
             [ ] username
@@ -106,7 +107,7 @@ modello
                 blob
 
             [ ] stato
-                enum (attivo, bannato, sospeso)
+                enum (attivo, bannato)
 
         [ ] admin 1:1
             [ ] username
@@ -117,6 +118,10 @@ modello
                 primary key int autoincrement
             [ ] nome
                 varchar(255)
+            [ ] approvata
+                boolean
+            [ ] rifiutata
+                boolean
 
     relation
         [ ] lavoro 1:N
@@ -152,7 +157,7 @@ modello
                 foreign key a lavoro
             [ ] tecnologia
                 foreign key a tecnologia
-                
+        
         [ ] codemonkey_tecnologie N:N
             [ ] username
                 foreign key a codemonkey
@@ -191,7 +196,8 @@ modello
                         accetta?lavoro=<lavoro>
                         rifiuta?lavoro=<lavoro>
                         impostazioni?nome=password&<nome>&cognome=<cognome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
-                        report?codemonkey=<codemonkey.username>&azienda=<codemonkey.username>
+                        suggerisci?tecnologia=<tecnologia>
+                        report?[codemonkey=<codemonkey.username>||azienda=<codemonkey.username>]
                     azienda
                         registrazione
                         login
@@ -199,10 +205,13 @@ modello
                         proponi?lavoro=<lavoro>
                         termina?lavoro=<lavoro>
                         impostazioni?nome=password&<nome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
-                        report?codemonkey=<codemonkey.username>&azienda=<codemonkey.username>
+                        suggerisci?tecnologia=<tecnologia>
+                        report?[codemonkey=<codemonkey.username>||azienda=<codemonkey.username>]
                     admin
                         login
                         set?[codemonkey=<codemonkey.username>||azienda=<codemonkey.username>]&stato=<attivo|bannato|sospeso>
+                        approva?tecnologia=<tecnologia>
+                        rifiuta?tecnologia=<tecnologia>
                         
             [ ] username
                 foreign key a user
@@ -376,6 +385,14 @@ controller
             interroga il database per id nella tabella azione
                 se presente
                     ritorna azione
+                se non presente
+                    ritorna null
+    
+    tecnologia
+        id(id:string) -> tecnologia | null
+            interroga il database per id nella tabella tecnologia
+                se presente
+                    ritorna tecnologia
                 se non presente
                     ritorna null
     
@@ -579,6 +596,7 @@ componenti
             [ ] titolo
             [ ] descrizione
             [ ] tecnologie
+                [ ] list.tecnologie
 
             se data_inizio != null
                 se loggato come azienda e <username>==<azienda.username>
@@ -646,6 +664,7 @@ componenti
 	
 	[ ] select
 		[ ] tecnologie
+            [ ] lista di checkbox scrollabile verticalmente
         
     [ ] list
         [ ] tecnologie
@@ -809,8 +828,17 @@ deploy
         [x] postgres
             [x] docker image
 
-    [x] release environment
-        [ ] problema nginx frontend
+    [ ] release environment
+        [ ] rails
+            [ ] build
+            [ ] run
+        [ ] angular
+            [x] build
+                [ ] ssr
+            [x] run
+        [x] postgres
+            [x] build
+            [x] run
 
     [ ] hosting
         [ ] azure
