@@ -33,6 +33,7 @@ res
 	[ ] modellare tabelle con rails db:migration
     [ ] activerecord di ruby
     [ ] funzioni delle route ruby
+    [ ] model azione
     
 misc
     frontend
@@ -63,7 +64,9 @@ misc
     database
         [ ] rails migration
         
-modello
+db
+    [x] timestamps di creazione
+    [x] timestamps di update
     entity
         [ ] user 1:1
             [ ] username
@@ -71,6 +74,8 @@ modello
             [ ] password_digest
                 varchar(255)
             [ ] totp_secret
+                varchar(255)
+            [ ] email
                 varchar(255)
             [ ] tipo
                 enum (codemonkey, azienda, admin)
@@ -82,17 +87,17 @@ modello
                 varchar(255)
             [ ] nome
                 varchar(255)
-            [ ] cognome
-                varchar(255)
             [ ] bio
                 varchar(4095)
             [ ] propic
                 blob
-            [ ] valutazione_media
-                int null
-
             [ ] stato
                 enum (attivo, bannato)
+
+            [ ] cognome
+                varchar(255)
+            [ ] valutazione_media
+                int null
                     
         [ ] azienda 1:1
             [ ] username
@@ -105,7 +110,6 @@ modello
                 varchar(4095)
             [ ] propic
                 blob
-
             [ ] stato
                 enum (attivo, bannato)
 
@@ -118,6 +122,10 @@ modello
                 primary key int autoincrement
             [ ] nome
                 varchar(255)
+            [ ] data_suggerimento
+                datetime
+            [ ] username
+                foreign key a user
             [ ] approvata
                 boolean
             [ ] rifiutata
@@ -190,27 +198,29 @@ modello
             [ ] descrizione
                 varchar(8191)
                     codemonkey
-                        registrazione
+                        signup
                         login
                         logout
-                        accetta?lavoro=<lavoro>
-                        rifiuta?lavoro=<lavoro>
-                        impostazioni?nome=password&<nome>&cognome=<cognome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
-                        suggerisci?tecnologia=<tecnologia>
+                        delete
+                        accept?lavoro=<lavoro>
+                        refuse?lavoro=<lavoro>
+                        settings?nome=password&<nome>&cognome=<cognome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
+                        suggest?tecnologia=<tecnologia>
                         report?[codemonkey=<codemonkey.username>||azienda=<codemonkey.username>]
                     azienda
-                        registrazione
+                        signup
                         login
                         logout
-                        proponi?lavoro=<lavoro>
-                        termina?lavoro=<lavoro>
-                        impostazioni?nome=password&<nome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
-                        suggerisci?tecnologia=<tecnologia>
+                        propose?lavoro=<lavoro>
+                        terminate?lavoro=<lavoro>
+                        settings?nome=password&<nome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
+                        suggest?tecnologia=<tecnologia>
                         report?[codemonkey=<codemonkey.username>||azienda=<codemonkey.username>]
                     admin
                         login
+                        logout
                         set?[codemonkey=<codemonkey.username>||azienda=<codemonkey.username>]&stato=<attivo|bannato|sospeso>
-                        approva?tecnologia=<tecnologia>
+                        approve?tecnologia=<tecnologia>
                         rifiuta?tecnologia=<tecnologia>
                         
             [ ] username
@@ -220,7 +230,7 @@ modello
                         azienda
                         admin
 
-controller
+model
     user
         tipo(username) -> string | null
             interroga il database per username nella tabella user
@@ -265,7 +275,7 @@ controller
     codemonkey extends user
         get(username) -> codemonkey | null
             interroga il database per username nella tabella codemonkey
-                se presente
+                se presclitnt
                     ritorna codemonkey
                 se non presente
                     ritorna null
@@ -309,9 +319,8 @@ controller
                         ritorna true
                 ritorna false
                 
-                
         stato(username) -> string | null
-            interroga il database per username nella tabella codemonkey
+            interroga il database per username nella tabella azienda
                 se presente
                     ritorna stato
                 se non presente
@@ -399,7 +408,7 @@ controller
 
 endpoint
 	public
-		[ ] /api/registrazione
+		[ ] /api/signup
 			1 frontend fa richiesta
 				parametri
 					tipo=<codemonkey|azienda>
@@ -494,6 +503,8 @@ endpoint
 				teconologie=<tecnologia1.id,tecnologia2.id>
 			2 backend interroga il database con una query filtrante
 				se tipo=tutti
+                se tipo=codemonkey
+                se tipo=azienda
 			3 backend invia i risultati
 				success
 					json payload
@@ -719,6 +730,9 @@ viste
 				?tipo=tutto
 			[ ] select.tecnologie
 				?tecnologie=<tecnologia1,tecnologia2,...>
+        [ ] lista card.codemonkey
+        [ ] lista card.azienda
+
 
     [ ] /impostazioni
         form.impostazioni
@@ -813,10 +827,11 @@ viste
 
 
 test
-	[ ] utente non loggato
-	[ ] codemonkey
-	[ ] azienda
-	[ ] admin
+    [ ] controller
+        [ ] utente non loggato
+        [ ] codemonkey
+        [ ] azienda
+        [ ] admin
                 
 deploy
     [x] development environment

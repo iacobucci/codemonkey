@@ -9,46 +9,27 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
---
--- Name: codemonkey; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA codemonkey;
-
-
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
 --
--- Name: logins; Type: TABLE; Schema: codemonkey; Owner: -
+-- Name: actions; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE codemonkey.logins (
-    username character varying(255) NOT NULL,
-    password character varying(255) NOT NULL
-);
-
-
---
--- Name: active_storage_attachments; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.active_storage_attachments (
+CREATE TABLE public.actions (
     id bigint NOT NULL,
-    name character varying NOT NULL,
-    record_type character varying NOT NULL,
-    record_id bigint NOT NULL,
-    blob_id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL
+    "user" character varying NOT NULL,
+    date timestamp(6) without time zone,
+    description text
 );
 
 
 --
--- Name: active_storage_attachments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: actions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.active_storage_attachments_id_seq
+CREATE SEQUENCE public.actions_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -57,76 +38,19 @@ CREATE SEQUENCE public.active_storage_attachments_id_seq
 
 
 --
--- Name: active_storage_attachments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: actions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.active_storage_attachments_id_seq OWNED BY public.active_storage_attachments.id;
+ALTER SEQUENCE public.actions_id_seq OWNED BY public.actions.id;
 
 
 --
--- Name: active_storage_blobs; Type: TABLE; Schema: public; Owner: -
+-- Name: admins; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.active_storage_blobs (
-    id bigint NOT NULL,
-    key character varying NOT NULL,
-    filename character varying NOT NULL,
-    content_type character varying,
-    metadata text,
-    service_name character varying NOT NULL,
-    byte_size bigint NOT NULL,
-    checksum character varying,
-    created_at timestamp(6) without time zone NOT NULL
+CREATE TABLE public.admins (
+    username character varying NOT NULL
 );
-
-
---
--- Name: active_storage_blobs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.active_storage_blobs_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: active_storage_blobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.active_storage_blobs_id_seq OWNED BY public.active_storage_blobs.id;
-
-
---
--- Name: active_storage_variant_records; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.active_storage_variant_records (
-    id bigint NOT NULL,
-    blob_id bigint NOT NULL,
-    variation_digest character varying NOT NULL
-);
-
-
---
--- Name: active_storage_variant_records_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.active_storage_variant_records_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: active_storage_variant_records_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.active_storage_variant_records_id_seq OWNED BY public.active_storage_variant_records.id;
 
 
 --
@@ -142,22 +66,36 @@ CREATE TABLE public.ar_internal_metadata (
 
 
 --
--- Name: images; Type: TABLE; Schema: public; Owner: -
+-- Name: codemonkeys; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.images (
-    id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL,
-    image character varying
+CREATE TABLE public.codemonkeys (
+    username character varying NOT NULL,
+    first_name character varying,
+    last_name character varying,
+    bio text,
+    propic bytea,
+    rating double precision,
+    status character varying
 );
 
 
 --
--- Name: images_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: codemonkeys_projects; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.images_id_seq
+CREATE TABLE public.codemonkeys_projects (
+    id bigint NOT NULL,
+    project_id bigint NOT NULL,
+    codemonkey_id character varying NOT NULL
+);
+
+
+--
+-- Name: codemonkeys_projects_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.codemonkeys_projects_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -166,30 +104,28 @@ CREATE SEQUENCE public.images_id_seq
 
 
 --
--- Name: images_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: codemonkeys_projects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.images_id_seq OWNED BY public.images.id;
+ALTER SEQUENCE public.codemonkeys_projects_id_seq OWNED BY public.codemonkeys_projects.id;
 
 
 --
--- Name: logins; Type: TABLE; Schema: public; Owner: -
+-- Name: codemonkeys_technologies; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.logins (
+CREATE TABLE public.codemonkeys_technologies (
     id bigint NOT NULL,
-    username character varying,
-    password_digest character varying,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    technology_id bigint NOT NULL,
+    codemonkey_id character varying NOT NULL
 );
 
 
 --
--- Name: logins_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: codemonkeys_technologies_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.logins_id_seq
+CREATE SEQUENCE public.codemonkeys_technologies_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -198,10 +134,182 @@ CREATE SEQUENCE public.logins_id_seq
 
 
 --
--- Name: logins_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: codemonkeys_technologies_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.logins_id_seq OWNED BY public.logins.id;
+ALTER SEQUENCE public.codemonkeys_technologies_id_seq OWNED BY public.codemonkeys_technologies.id;
+
+
+--
+-- Name: companies; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.companies (
+    username character varying NOT NULL,
+    name character varying,
+    bio text,
+    propic bytea,
+    status character varying
+);
+
+
+--
+-- Name: companies_projects; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.companies_projects (
+    id bigint NOT NULL,
+    project_id bigint NOT NULL,
+    company_id character varying NOT NULL
+);
+
+
+--
+-- Name: companies_projects_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.companies_projects_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: companies_projects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.companies_projects_id_seq OWNED BY public.companies_projects.id;
+
+
+--
+-- Name: companies_technologies; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.companies_technologies (
+    id bigint NOT NULL,
+    technology_id bigint NOT NULL,
+    company_id character varying NOT NULL
+);
+
+
+--
+-- Name: companies_technologies_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.companies_technologies_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: companies_technologies_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.companies_technologies_id_seq OWNED BY public.companies_technologies.id;
+
+
+--
+-- Name: projects; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.projects (
+    id bigint NOT NULL,
+    name character varying,
+    description text,
+    suggestion timestamp(6) without time zone,
+    start timestamp(6) without time zone,
+    "end" timestamp(6) without time zone,
+    rating double precision,
+    comment text,
+    codemonkey character varying,
+    company character varying
+);
+
+
+--
+-- Name: projects_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.projects_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: projects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.projects_id_seq OWNED BY public.projects.id;
+
+
+--
+-- Name: projects_technologies; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.projects_technologies (
+    id bigint NOT NULL,
+    project_id bigint NOT NULL,
+    technology_id bigint NOT NULL
+);
+
+
+--
+-- Name: projects_technologies_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.projects_technologies_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: projects_technologies_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.projects_technologies_id_seq OWNED BY public.projects_technologies.id;
+
+
+--
+-- Name: reports; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.reports (
+    id bigint NOT NULL,
+    "from" character varying,
+    "to" character varying,
+    date timestamp(6) without time zone,
+    description text
+);
+
+
+--
+-- Name: reports_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.reports_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: reports_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.reports_id_seq OWNED BY public.reports.id;
 
 
 --
@@ -214,26 +322,23 @@ CREATE TABLE public.schema_migrations (
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: -
+-- Name: technologies; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.users (
+CREATE TABLE public.technologies (
     id bigint NOT NULL,
-    username character varying,
-    email character varying,
-    password_digest character varying,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL,
-    totp_secret character varying,
-    otp_secret_encryption_key character varying
+    name character varying,
+    suggestion timestamp(6) without time zone,
+    approved boolean,
+    refused boolean
 );
 
 
 --
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: technologies_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.users_id_seq
+CREATE SEQUENCE public.technologies_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -242,84 +347,102 @@ CREATE SEQUENCE public.users_id_seq
 
 
 --
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: technologies_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
-
-
---
--- Name: active_storage_attachments id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.active_storage_attachments ALTER COLUMN id SET DEFAULT nextval('public.active_storage_attachments_id_seq'::regclass);
+ALTER SEQUENCE public.technologies_id_seq OWNED BY public.technologies.id;
 
 
 --
--- Name: active_storage_blobs id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.active_storage_blobs ALTER COLUMN id SET DEFAULT nextval('public.active_storage_blobs_id_seq'::regclass);
-
-
---
--- Name: active_storage_variant_records id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.active_storage_variant_records ALTER COLUMN id SET DEFAULT nextval('public.active_storage_variant_records_id_seq'::regclass);
-
-
---
--- Name: images id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.images ALTER COLUMN id SET DEFAULT nextval('public.images_id_seq'::regclass);
+CREATE TABLE public.users (
+    username character varying NOT NULL,
+    password_digest character varying,
+    email character varying,
+    kind character varying,
+    totp_secret character varying
+);
 
 
 --
--- Name: logins id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: actions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.logins ALTER COLUMN id SET DEFAULT nextval('public.logins_id_seq'::regclass);
-
-
---
--- Name: users id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+ALTER TABLE ONLY public.actions ALTER COLUMN id SET DEFAULT nextval('public.actions_id_seq'::regclass);
 
 
 --
--- Name: logins logins_pkey; Type: CONSTRAINT; Schema: codemonkey; Owner: -
+-- Name: codemonkeys_projects id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY codemonkey.logins
-    ADD CONSTRAINT logins_pkey PRIMARY KEY (username);
-
-
---
--- Name: active_storage_attachments active_storage_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.active_storage_attachments
-    ADD CONSTRAINT active_storage_attachments_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.codemonkeys_projects ALTER COLUMN id SET DEFAULT nextval('public.codemonkeys_projects_id_seq'::regclass);
 
 
 --
--- Name: active_storage_blobs active_storage_blobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: codemonkeys_technologies id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.active_storage_blobs
-    ADD CONSTRAINT active_storage_blobs_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.codemonkeys_technologies ALTER COLUMN id SET DEFAULT nextval('public.codemonkeys_technologies_id_seq'::regclass);
 
 
 --
--- Name: active_storage_variant_records active_storage_variant_records_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: companies_projects id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.active_storage_variant_records
-    ADD CONSTRAINT active_storage_variant_records_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.companies_projects ALTER COLUMN id SET DEFAULT nextval('public.companies_projects_id_seq'::regclass);
+
+
+--
+-- Name: companies_technologies id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.companies_technologies ALTER COLUMN id SET DEFAULT nextval('public.companies_technologies_id_seq'::regclass);
+
+
+--
+-- Name: projects id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.projects ALTER COLUMN id SET DEFAULT nextval('public.projects_id_seq'::regclass);
+
+
+--
+-- Name: projects_technologies id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.projects_technologies ALTER COLUMN id SET DEFAULT nextval('public.projects_technologies_id_seq'::regclass);
+
+
+--
+-- Name: reports id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports ALTER COLUMN id SET DEFAULT nextval('public.reports_id_seq'::regclass);
+
+
+--
+-- Name: technologies id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.technologies ALTER COLUMN id SET DEFAULT nextval('public.technologies_id_seq'::regclass);
+
+
+--
+-- Name: actions actions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.actions
+    ADD CONSTRAINT actions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: admins admins_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.admins
+    ADD CONSTRAINT admins_pkey PRIMARY KEY (username);
 
 
 --
@@ -331,19 +454,75 @@ ALTER TABLE ONLY public.ar_internal_metadata
 
 
 --
--- Name: images images_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: codemonkeys codemonkeys_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.images
-    ADD CONSTRAINT images_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.codemonkeys
+    ADD CONSTRAINT codemonkeys_pkey PRIMARY KEY (username);
 
 
 --
--- Name: logins logins_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: codemonkeys_projects codemonkeys_projects_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.logins
-    ADD CONSTRAINT logins_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.codemonkeys_projects
+    ADD CONSTRAINT codemonkeys_projects_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: codemonkeys_technologies codemonkeys_technologies_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.codemonkeys_technologies
+    ADD CONSTRAINT codemonkeys_technologies_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: companies companies_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.companies
+    ADD CONSTRAINT companies_pkey PRIMARY KEY (username);
+
+
+--
+-- Name: companies_projects companies_projects_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.companies_projects
+    ADD CONSTRAINT companies_projects_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: companies_technologies companies_technologies_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.companies_technologies
+    ADD CONSTRAINT companies_technologies_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: projects projects_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.projects
+    ADD CONSTRAINT projects_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: projects_technologies projects_technologies_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.projects_technologies
+    ADD CONSTRAINT projects_technologies_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: reports reports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports
+    ADD CONSTRAINT reports_pkey PRIMARY KEY (id);
 
 
 --
@@ -355,55 +534,233 @@ ALTER TABLE ONLY public.schema_migrations
 
 
 --
+-- Name: technologies technologies_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.technologies
+    ADD CONSTRAINT technologies_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.users
-    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT users_pkey PRIMARY KEY (username);
 
 
 --
--- Name: index_active_storage_attachments_on_blob_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_codemonkeys_projects_on_codemonkey_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_active_storage_attachments_on_blob_id ON public.active_storage_attachments USING btree (blob_id);
-
-
---
--- Name: index_active_storage_attachments_uniqueness; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_active_storage_attachments_uniqueness ON public.active_storage_attachments USING btree (record_type, record_id, name, blob_id);
+CREATE INDEX index_codemonkeys_projects_on_codemonkey_id ON public.codemonkeys_projects USING btree (codemonkey_id);
 
 
 --
--- Name: index_active_storage_blobs_on_key; Type: INDEX; Schema: public; Owner: -
+-- Name: index_codemonkeys_projects_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_active_storage_blobs_on_key ON public.active_storage_blobs USING btree (key);
-
-
---
--- Name: index_active_storage_variant_records_uniqueness; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_active_storage_variant_records_uniqueness ON public.active_storage_variant_records USING btree (blob_id, variation_digest);
+CREATE INDEX index_codemonkeys_projects_on_project_id ON public.codemonkeys_projects USING btree (project_id);
 
 
 --
--- Name: active_storage_variant_records fk_rails_993965df05; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: index_codemonkeys_technologies_on_codemonkey_id; Type: INDEX; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.active_storage_variant_records
-    ADD CONSTRAINT fk_rails_993965df05 FOREIGN KEY (blob_id) REFERENCES public.active_storage_blobs(id);
+CREATE INDEX index_codemonkeys_technologies_on_codemonkey_id ON public.codemonkeys_technologies USING btree (codemonkey_id);
 
 
 --
--- Name: active_storage_attachments fk_rails_c3b3935057; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: index_codemonkeys_technologies_on_technology_id; Type: INDEX; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.active_storage_attachments
-    ADD CONSTRAINT fk_rails_c3b3935057 FOREIGN KEY (blob_id) REFERENCES public.active_storage_blobs(id);
+CREATE INDEX index_codemonkeys_technologies_on_technology_id ON public.codemonkeys_technologies USING btree (technology_id);
+
+
+--
+-- Name: index_companies_projects_on_company_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_companies_projects_on_company_id ON public.companies_projects USING btree (company_id);
+
+
+--
+-- Name: index_companies_projects_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_companies_projects_on_project_id ON public.companies_projects USING btree (project_id);
+
+
+--
+-- Name: index_companies_technologies_on_company_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_companies_technologies_on_company_id ON public.companies_technologies USING btree (company_id);
+
+
+--
+-- Name: index_companies_technologies_on_technology_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_companies_technologies_on_technology_id ON public.companies_technologies USING btree (technology_id);
+
+
+--
+-- Name: index_projects_technologies_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_projects_technologies_on_project_id ON public.projects_technologies USING btree (project_id);
+
+
+--
+-- Name: index_projects_technologies_on_technology_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_projects_technologies_on_technology_id ON public.projects_technologies USING btree (technology_id);
+
+
+--
+-- Name: codemonkeys fk_rails_19e945a81f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.codemonkeys
+    ADD CONSTRAINT fk_rails_19e945a81f FOREIGN KEY (username) REFERENCES public.users(username);
+
+
+--
+-- Name: projects fk_rails_2b3bc98d95; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.projects
+    ADD CONSTRAINT fk_rails_2b3bc98d95 FOREIGN KEY (company) REFERENCES public.companies(username);
+
+
+--
+-- Name: reports fk_rails_2f0771e1d8; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports
+    ADD CONSTRAINT fk_rails_2f0771e1d8 FOREIGN KEY ("to") REFERENCES public.users(username);
+
+
+--
+-- Name: admins fk_rails_380ee00caa; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.admins
+    ADD CONSTRAINT fk_rails_380ee00caa FOREIGN KEY (username) REFERENCES public.users(username);
+
+
+--
+-- Name: companies fk_rails_382002dea0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.companies
+    ADD CONSTRAINT fk_rails_382002dea0 FOREIGN KEY (username) REFERENCES public.users(username);
+
+
+--
+-- Name: companies_technologies fk_rails_3ea760b7e2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.companies_technologies
+    ADD CONSTRAINT fk_rails_3ea760b7e2 FOREIGN KEY (technology_id) REFERENCES public.technologies(id);
+
+
+--
+-- Name: projects fk_rails_50f668cff5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.projects
+    ADD CONSTRAINT fk_rails_50f668cff5 FOREIGN KEY (codemonkey) REFERENCES public.codemonkeys(username);
+
+
+--
+-- Name: companies_projects fk_rails_5bb3e8ae2b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.companies_projects
+    ADD CONSTRAINT fk_rails_5bb3e8ae2b FOREIGN KEY (company_id) REFERENCES public.companies(username);
+
+
+--
+-- Name: codemonkeys_technologies fk_rails_6e3ceec533; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.codemonkeys_technologies
+    ADD CONSTRAINT fk_rails_6e3ceec533 FOREIGN KEY (technology_id) REFERENCES public.technologies(id);
+
+
+--
+-- Name: companies_projects fk_rails_7bceccc920; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.companies_projects
+    ADD CONSTRAINT fk_rails_7bceccc920 FOREIGN KEY (project_id) REFERENCES public.projects(id);
+
+
+--
+-- Name: codemonkeys_technologies fk_rails_9f269cf3de; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.codemonkeys_technologies
+    ADD CONSTRAINT fk_rails_9f269cf3de FOREIGN KEY (codemonkey_id) REFERENCES public.codemonkeys(username);
+
+
+--
+-- Name: actions fk_rails_afc7751fc4; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.actions
+    ADD CONSTRAINT fk_rails_afc7751fc4 FOREIGN KEY ("user") REFERENCES public.users(username);
+
+
+--
+-- Name: companies_technologies fk_rails_b9a0f4c59c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.companies_technologies
+    ADD CONSTRAINT fk_rails_b9a0f4c59c FOREIGN KEY (company_id) REFERENCES public.companies(username);
+
+
+--
+-- Name: reports fk_rails_bf356f56bf; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports
+    ADD CONSTRAINT fk_rails_bf356f56bf FOREIGN KEY ("from") REFERENCES public.users(username);
+
+
+--
+-- Name: projects_technologies fk_rails_d8f511fde6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.projects_technologies
+    ADD CONSTRAINT fk_rails_d8f511fde6 FOREIGN KEY (project_id) REFERENCES public.projects(id);
+
+
+--
+-- Name: projects_technologies fk_rails_ddd74c4e53; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.projects_technologies
+    ADD CONSTRAINT fk_rails_ddd74c4e53 FOREIGN KEY (technology_id) REFERENCES public.technologies(id);
+
+
+--
+-- Name: codemonkeys_projects fk_rails_de729917cd; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.codemonkeys_projects
+    ADD CONSTRAINT fk_rails_de729917cd FOREIGN KEY (project_id) REFERENCES public.projects(id);
+
+
+--
+-- Name: codemonkeys_projects fk_rails_ed7a4bfad3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.codemonkeys_projects
+    ADD CONSTRAINT fk_rails_ed7a4bfad3 FOREIGN KEY (codemonkey_id) REFERENCES public.codemonkeys(username);
 
 
 --
@@ -413,12 +770,18 @@ ALTER TABLE ONLY public.active_storage_attachments
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('20230426234604'),
-('20230429225324'),
-('20230429230923'),
-('20230429232751'),
-('20230502235155'),
-('20230502255101'),
-('20230503211005');
+('20230506132505'),
+('20230506132506'),
+('20230506132508'),
+('20230506132511'),
+('20230506132513'),
+('20230506132518'),
+('20230506132521'),
+('20230506132523'),
+('20230506132527'),
+('20230506132529'),
+('20230506132532'),
+('20230506132534'),
+('20230506132616');
 
 

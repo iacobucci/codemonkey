@@ -1,13 +1,20 @@
 class AuthenticationController < ApplicationController
-  # skip_before_action :verify_authenticity_token
-  
-  # def create
-  #   login = Login.find_by_username(params[:username])
-    
-  #   if login&.authenticate(params[:password])
-  #     render json: { message: "Logged in successfully" }, status: :ok
-  #   else
-  #     render json: { error: "Invalid username or password" }, status: :unauthorized
-  #   end
-  # end
+  before_action :authenticate_user!
+
+  private
+
+  def authenticate_user!
+    header = request.headers["Authorization"]
+    jwt = header.split(" ").last if header
+    @current_username ||= JsonWebToken.decode(jwt) if jwt
+    raise unless @current_user
+    @current_user = User.find(@current_username.dig("user_id"))
+    raise unless @current_user
+  rescue => exception
+    render json: { errors: ["Invalid token."] }, status: :unauthorized
+  end
+
+  def current_user
+    @current_user
+  end
 end

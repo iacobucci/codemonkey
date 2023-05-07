@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  from: one
+  to: one
+  date: 2023-05-06 15:25:21
+  description: MyText
+
+two:
+  from: two
+  to: two
+  date: 2023-05-06 15:25:21
+  description: MyText
