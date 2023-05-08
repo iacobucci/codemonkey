@@ -11,11 +11,8 @@ class CreateProjects < ActiveRecord::Migration[7.0]
       t.float :rating
       t.text :comment
 
-      t.string :codemonkey
-      t.string :company
+      t.references :codemonkey, type: :string, null: false, foreign_key: { to_table: :codemonkeys, primary_key: :username }
+      t.references :company, type: :string, null: false, foreign_key: { to_table: :companies, primary_key: :username }
     end
-
-    add_foreign_key :projects, :codemonkeys, column: :codemonkey, primary_key: :username
-    add_foreign_key :projects, :companies, column: :company, primary_key: :username
   end
 end

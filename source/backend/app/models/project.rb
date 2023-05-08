@@ -1,5 +1,4 @@
 class Project < ApplicationRecord
-  belongs_to :user
-  belongs_to :codemonkey
-  belongs_to :company
+  has_and_belongs_to_many :codemonkeys
+  has_and_belongs_to_many :companies
 end

@@ -30,9 +30,11 @@ docs
 
 res
 	[ ] capire come ottenere parametri da componente genitore
-	[ ] modellare tabelle con rails db:migration
-    [ ] activerecord di ruby
-    [ ] funzioni delle route ruby
+	[x] modellare tabelle con rails db:migration
+    [x] activerecord
+    [x] sti
+        [ ] project references codemonkey/company
+
     [ ] model azione
     
 misc
@@ -59,7 +61,7 @@ misc
         [x] 2FA totp
         [x] JWT
             [ ] architettura sistema di permessi
-                jwt -> user -> codemonkey | azienda | admin -> azione
+                jwt -> user -> codemonkey | company | admin -> azione
 
     database
         [ ] rails migration
@@ -78,7 +80,7 @@ db
             [ ] email
                 varchar(255)
             [ ] tipo
-                enum (codemonkey, azienda, admin)
+                enum (codemonkey, company, admin)
 
         [ ] codemonkey 1:1
             [ ] username
@@ -99,7 +101,7 @@ db
             [ ] valutazione_media
                 int null
                     
-        [ ] azienda 1:1
+        [ ] company 1:1
             [ ] username
                 primary key varchar(255) foreign key to user
             [ ] email
@@ -155,8 +157,8 @@ db
                 
             [ ] codemonkey
                 foreign key a codemonkey
-            [ ] azienda
-                foreign key a azienda
+            [ ] company
+                foreign key a company
             [ ] tecnologie
                 foreign key a tecnologie
         
@@ -174,7 +176,7 @@ db
 
         [ ] aziende_tecnologie N:N
             [ ] username
-                foreign key a azienda
+                foreign key a company
             [ ] tecnologia
                 foreign key a tecnologia
         
@@ -206,8 +208,8 @@ db
                         refuse?lavoro=<lavoro>
                         settings?nome=password&<nome>&cognome=<cognome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
                         suggest?tecnologia=<tecnologia>
-                        report?[codemonkey=<codemonkey.username>||azienda=<codemonkey.username>]
-                    azienda
+                        report?[codemonkey=<codemonkey.username>||company=<codemonkey.username>]
+                    company
                         signup
                         login
                         logout
@@ -215,11 +217,11 @@ db
                         terminate?lavoro=<lavoro>
                         settings?nome=password&<nome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
                         suggest?tecnologia=<tecnologia>
-                        report?[codemonkey=<codemonkey.username>||azienda=<codemonkey.username>]
+                        report?[codemonkey=<codemonkey.username>||company=<codemonkey.username>]
                     admin
                         login
                         logout
-                        set?[codemonkey=<codemonkey.username>||azienda=<codemonkey.username>]&stato=<attivo|bannato|sospeso>
+                        set?[codemonkey=<codemonkey.username>||company=<codemonkey.username>]&stato=<attivo|bannato|sospeso>
                         approve?tecnologia=<tecnologia>
                         rifiuta?tecnologia=<tecnologia>
                         
@@ -227,7 +229,7 @@ db
                 foreign key a user
                     user che invoca l'azione
                         codemonkey
-                        azienda
+                        company
                         admin
 
 model
@@ -250,8 +252,8 @@ model
                     aggiungi user
                     se tipo==codemonkey
                         aggiungi codemonkey a tabella codemonkey
-                    se tipo==azienda
-                        aggiungi azienda a tabella azienda
+                    se tipo==company
+                        aggiungi company a tabella company
                     ritorna true
                     
         get(username) -> user | null
@@ -299,19 +301,19 @@ model
                 se non presente
                     ritorna null
         
-    azienda extends user
-        get(username) -> azienda | null
-            interroga il database per username nella tabella azienda
+    company extends user
+        get(username) -> company | null
+            interroga il database per username nella tabella company
                 se presente
-                    ritorna azienda
+                    ritorna company
                 se non presente
                     ritorna null
         
-        get(jwt) -> azienda | null
-            get(user.get(jwt).username: username) -> azienda | null
+        get(jwt) -> company | null
+            get(user.get(jwt).username: username) -> company | null
 
         modifica(jwt, username, new_email, new_password, new_nome, new_bio, tecnologie: list[tecnologia]) -> boolean
-            interroga il database per username nella tabella azienda
+            interroga il database per username nella tabella company
                 se presente
                     se get(jwt).username==username
                         user.modifica(jwt, username, new_password)
@@ -320,16 +322,16 @@ model
                 ritorna false
                 
         stato(username) -> string | null
-            interroga il database per username nella tabella azienda
+            interroga il database per username nella tabella company
                 se presente
                     ritorna stato
                 se non presente
                     ritorna null
     
     lavoro
-        add(jwt, titolo, descrizione, data_proposta, data_inizio, data_fine, codemonkey.username, azienda.username, tecnologie: list[tecnologia]) -> boolean
-            se user.tipo(jwt)==azienda
-                se azienda.get(jwt).stato==attivo
+        add(jwt, titolo, descrizione, data_proposta, data_inizio, data_fine, codemonkey.username, company.username, tecnologie: list[tecnologia]) -> boolean
+            se user.tipo(jwt)==company
+                se company.get(jwt).stato==attivo
                     aggiungi lavoro
                         data_proposta=Time.now()
                         data_inizio=null
@@ -355,7 +357,7 @@ model
                 se non presente
                     ritorna null
 
-        modifica(jwt, id, titolo, descrizione, data_proposta, data_inizio, data_fine, codemonkey.username, azienda.username, tecnologie: list[tecnologia], valutazione, commento)
+        modifica(jwt, id, titolo, descrizione, data_proposta, data_inizio, data_fine, codemonkey.username, company.username, tecnologie: list[tecnologia], valutazione, commento)
             interroga il database per id nella tabella lavoro
                 se presente
                     se user.tipo(jwt)==codemonkey
@@ -365,8 +367,8 @@ model
                                     modifica data_inizio
                                         ritorna true
 
-                    se user.tipo(jwt)==azienda
-                        se azienda.get(jwt)==lavoro.azienda
+                    se user.tipo(jwt)==company
+                        se company.get(jwt)==lavoro.company
                             se lavoro.data_inizio!=null
                                 modifica data_fine valutazione commento
                                     ritorna true
@@ -382,7 +384,7 @@ model
             se user.tipo(user.get(jwt).username)==admin
                 se user.tipo(username)==codemonkey
                     modifica stato
-                se user.tipo(username)==azienda
+                se user.tipo(username)==company
                     modifica stato
                 ritorna false
 
@@ -411,7 +413,7 @@ endpoint
 		[ ] /api/signup
 			1 frontend fa richiesta
 				parametri
-					tipo=<codemonkey|azienda>
+					tipo=<codemonkey|company>
 					username
                     [ ] controllo caratteri
                         abcdefghijklmnopqrstuvwxyz0123456789_
@@ -442,12 +444,12 @@ endpoint
 							inserisce in tabella codemonkey
 								username
 								email
-						se tipo==azienda
+						se tipo==company
 							inserisce in user
 								username
-								tipo=azienda
+								tipo=company
 								password_digest
-							inserisce in tabella azienda
+							inserisce in tabella company
 								username
 								email
 			3 backend genera un secret TOTP e un JWT e li invia al frontend
@@ -473,8 +475,8 @@ endpoint
 					
 				se codemonkey
 					forward a /codemonkey/<username>/modifica
-				se azienda
-					forward a /azienda/<username>/modifica
+				se company
+					forward a /company/<username>/modifica
 		
 		[ ] /api/login
 			1 frontend fa richiesta
@@ -488,7 +490,7 @@ endpoint
 					3 invia error json
 
 			3 backend genera un jwt e payload json e lo invia al frontend
-				{"username":"username","tipo":"codemonkey|azienda|admin","jwt":"<payload.jwt>"}
+				{"username":"username","tipo":"codemonkey|company|admin","jwt":"<payload.jwt>"}
 				salvataggio azione nei log
 					datetime=Time.now
 					user=<username>
@@ -499,12 +501,12 @@ endpoint
 
 		[ ] /api/feed
 			1 frontend fa richiesta con parametri
-				tipo=<tutti|codemonkey|azienda>
+				tipo=<tutti|codemonkey|company>
 				teconologie=<tecnologia1.id,tecnologia2.id>
 			2 backend interroga il database con una query filtrante
 				se tipo=tutti
                 se tipo=codemonkey
-                se tipo=azienda
+                se tipo=company
 			3 backend invia i risultati
 				success
 					json payload
@@ -582,9 +584,9 @@ componenti
             [ ] tecnologie
                 [ ] list.tecnologie
 
-        [ ] azienda
+        [ ] company
             [ ] username
-				link a /azienda/<username>
+				link a /company/<username>
 			[ ] nome
             [ ] propic
             [ ] mailto
@@ -593,9 +595,9 @@ componenti
                 [ ] list.tecnologie
 
         [ ] lavoro
-            [ ] azienda
+            [ ] company
 				[ ] username
-					link a /azienda/<username>
+					link a /company/<username>
                 [ ] nome
                 [ ] propic
             [ ] codemonkey
@@ -610,7 +612,7 @@ componenti
                 [ ] list.tecnologie
 
             se data_inizio != null
-                se loggato come azienda e <username>==<azienda.username>
+                se loggato come company e <username>==<company.username>
                     [ ] termina
                         [ ] dialog lavoro.valutazione
                 [ ] data_inizio
@@ -636,8 +638,8 @@ componenti
             [ ] username
                 se codemonkey
                     link a /codemonkey/<codemonkey.username>
-                se azienda
-                    link a /azienda/<azienda.username>
+                se company
+                    link a /company/<company.username>
             [ ] descrizione
     
     [ ] dialog
@@ -682,7 +684,7 @@ componenti
             [ ] lista scrollabile orizzontalmente
             se in card codemonkey
                 [ ] link a /codemonkey/<codemonkey.username>?tecnologia=<tecnologia.id>
-            se in card azienda
+            se in card company
                 [ ] link a /codemonkey/<codemonkey.username>?tecnologia=<tecnologia.id>
 
     [ ] chips
@@ -705,7 +707,7 @@ viste
             [ ] password
             [ ] password_confirmation
                 [ ] controllo password == password_confirmation
-            [ ] azienda/codemonkey
+            [ ] company/codemonkey
 
         [ ] dialog.regisrazione
         [ ] forward a /impostazioni
@@ -716,8 +718,8 @@ viste
             [ ] password
             [ ] totp
         se codemonkey  
-            [ ] vai a /feed?tipo=azienda
-        se azienda
+            [ ] vai a /feed?tipo=company
+        se company
             [ ] vai a /feed?tipo=codemonkey
         se admin
             [ ] vai a /dashboard
@@ -725,13 +727,13 @@ viste
     [ ] /feed || /
 		parametri
 			[ ] radio button
-				?tipo=azienda
+				?tipo=company
 				?tipo=codemonkey
 				?tipo=tutto
 			[ ] select.tecnologie
 				?tecnologie=<tecnologia1,tecnologia2,...>
         [ ] lista card.codemonkey
-        [ ] lista card.azienda
+        [ ] lista card.company
 
 
     [ ] /impostazioni
@@ -739,7 +741,7 @@ viste
             se codemonkey
                 [ ] nome
                 [ ] cognome
-            se azienda
+            se company
                 [ ] nome
             [ ] email
                 [ ] controllo email valida
@@ -760,8 +762,8 @@ viste
                 [ ] username
                     se codemonkey
                         [ ] link a /codemonkey/<username>
-                    se azienda
-                        [ ] link a /azienda/<username>
+                    se company
+                        [ ] link a /company/<username>
                 [ ] titolo
                 [ ] descrizione
             
@@ -772,14 +774,14 @@ viste
             [ ] lista lavori.in_corso
                 [ ] card.lavoro
 		
-		se loggato come azienda
+		se loggato come company
 			[ ] /proponi
 				parametri
 					[ ] titolo
 					[ ] descrizione
 					[ ] tecnologie
 						[ ] selezione da select.tecnologia
-					[ ] azienda = <azienda.username>
+					[ ] company = <company.username>
 					[ ] codemonkey = <codemonkey.username>
 					[ ] data_inizio = null
 					[ ] data_fine = null
@@ -802,7 +804,7 @@ viste
 
 			[ ] lavori effettuati
 			
-	[ ] /azienda/<username>
+	[ ] /company/<username>
 		se loggato come <username>
 			[ ] tasto modifica
 			[ ] /modifica
@@ -830,7 +832,7 @@ test
     [ ] controller
         [ ] utente non loggato
         [ ] codemonkey
-        [ ] azienda
+        [ ] company
         [ ] admin
                 
 deploy

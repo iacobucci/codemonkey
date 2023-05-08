@@ -10,12 +10,12 @@ class Api::DeleteController < AuthenticationController
     when "company"
       @current_user.company.delete
     when "admin"
-      render json: { status: "Invalid request" }, status: :unauthorized
+      render json: { errors: ["Invalid request"] }, status: :unauthorized
       return
     end
 
     @current_user.delete
 
-    render json: { status: @current_user }, status: :ok
+    render json: { status: "Deleted" }, status: :ok
   end
 end

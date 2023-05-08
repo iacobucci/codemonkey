@@ -6,22 +6,6 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :email
       t.string :kind
       t.string :totp_secret
-
-      # STI type column
-      t.string :type
-
-      # Codemonkey fields
-      t.string :first_name
-      t.string :last_name
-      t.text :bio
-      t.binary :propic
-      t.float :rating
-      t.string :status
-
-      # Company fields
-      t.string :name
-
-      t.timestamps
     end
   end
 end

@@ -1,12 +1,10 @@
 class CreateReports < ActiveRecord::Migration[7.0]
   def change
     create_table :reports do |t|
-      t.string :from
-      t.string :to
+      t.references :to, type: :string, null: false, foreign_key: { to_table: :users, primary_key: :username }
+      t.references :from, type: :string, null: false, foreign_key: { to_table: :users, primary_key: :username }
       t.datetime :date
       t.text :description
     end
-    add_foreign_key :reports, :users, column: :from, primary_key: :username
-    add_foreign_key :reports, :users, column: :to, primary_key: :username
   end
 end

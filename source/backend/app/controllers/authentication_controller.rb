@@ -7,7 +7,7 @@ class AuthenticationController < ApplicationController
     header = request.headers["Authorization"]
     jwt = header.split(" ").last if header
     @current_username ||= JsonWebToken.decode(jwt) if jwt
-    raise unless @current_user
+    raise unless @current_username
     @current_user = User.find(@current_username.dig("user_id"))
     raise unless @current_user
   rescue => exception

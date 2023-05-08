@@ -18,6 +18,7 @@ class Api::SignupController < ApplicationController
       if kind.save
         render json: { user: user.username, kind: user.kind, otp_provisioning_uri: user.provisioning_uri }, status: :created
       else
+        puts errors.full_messages
         errors.push("Error creating kind")
         except 500
       end

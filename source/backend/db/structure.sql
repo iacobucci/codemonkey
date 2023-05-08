@@ -19,7 +19,7 @@ SET default_table_access_method = heap;
 
 CREATE TABLE public.actions (
     id bigint NOT NULL,
-    "user" character varying NOT NULL,
+    user_id character varying NOT NULL,
     date timestamp(6) without time zone,
     description text
 );
@@ -226,8 +226,8 @@ CREATE TABLE public.projects (
     "end" timestamp(6) without time zone,
     rating double precision,
     comment text,
-    codemonkey character varying,
-    company character varying
+    codemonkey_id character varying NOT NULL,
+    company_id character varying NOT NULL
 );
 
 
@@ -286,8 +286,8 @@ ALTER SEQUENCE public.projects_technologies_id_seq OWNED BY public.projects_tech
 
 CREATE TABLE public.reports (
     id bigint NOT NULL,
-    "from" character varying,
-    "to" character varying,
+    to_id character varying NOT NULL,
+    from_id character varying NOT NULL,
     date timestamp(6) without time zone,
     description text
 );
@@ -550,6 +550,13 @@ ALTER TABLE ONLY public.users
 
 
 --
+-- Name: index_actions_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_actions_on_user_id ON public.actions USING btree (user_id);
+
+
+--
 -- Name: index_codemonkeys_projects_on_codemonkey_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -606,6 +613,20 @@ CREATE INDEX index_companies_technologies_on_technology_id ON public.companies_t
 
 
 --
+-- Name: index_projects_on_codemonkey_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_projects_on_codemonkey_id ON public.projects USING btree (codemonkey_id);
+
+
+--
+-- Name: index_projects_on_company_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_projects_on_company_id ON public.projects USING btree (company_id);
+
+
+--
 -- Name: index_projects_technologies_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -620,27 +641,33 @@ CREATE INDEX index_projects_technologies_on_technology_id ON public.projects_tec
 
 
 --
+-- Name: index_reports_on_from_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reports_on_from_id ON public.reports USING btree (from_id);
+
+
+--
+-- Name: index_reports_on_to_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reports_on_to_id ON public.reports USING btree (to_id);
+
+
+--
+-- Name: projects fk_rails_084d8846e2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.projects
+    ADD CONSTRAINT fk_rails_084d8846e2 FOREIGN KEY (codemonkey_id) REFERENCES public.codemonkeys(username);
+
+
+--
 -- Name: codemonkeys fk_rails_19e945a81f; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.codemonkeys
     ADD CONSTRAINT fk_rails_19e945a81f FOREIGN KEY (username) REFERENCES public.users(username);
-
-
---
--- Name: projects fk_rails_2b3bc98d95; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.projects
-    ADD CONSTRAINT fk_rails_2b3bc98d95 FOREIGN KEY (company) REFERENCES public.companies(username);
-
-
---
--- Name: reports fk_rails_2f0771e1d8; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.reports
-    ADD CONSTRAINT fk_rails_2f0771e1d8 FOREIGN KEY ("to") REFERENCES public.users(username);
 
 
 --
@@ -668,11 +695,19 @@ ALTER TABLE ONLY public.companies_technologies
 
 
 --
--- Name: projects fk_rails_50f668cff5; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: projects fk_rails_44a549d7b3; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.projects
-    ADD CONSTRAINT fk_rails_50f668cff5 FOREIGN KEY (codemonkey) REFERENCES public.codemonkeys(username);
+    ADD CONSTRAINT fk_rails_44a549d7b3 FOREIGN KEY (company_id) REFERENCES public.companies(username);
+
+
+--
+-- Name: reports fk_rails_469361b016; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports
+    ADD CONSTRAINT fk_rails_469361b016 FOREIGN KEY (to_id) REFERENCES public.users(username);
 
 
 --
@@ -708,11 +743,11 @@ ALTER TABLE ONLY public.codemonkeys_technologies
 
 
 --
--- Name: actions fk_rails_afc7751fc4; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: reports fk_rails_b8d5d8776e; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.actions
-    ADD CONSTRAINT fk_rails_afc7751fc4 FOREIGN KEY ("user") REFERENCES public.users(username);
+ALTER TABLE ONLY public.reports
+    ADD CONSTRAINT fk_rails_b8d5d8776e FOREIGN KEY (from_id) REFERENCES public.users(username);
 
 
 --
@@ -721,14 +756,6 @@ ALTER TABLE ONLY public.actions
 
 ALTER TABLE ONLY public.companies_technologies
     ADD CONSTRAINT fk_rails_b9a0f4c59c FOREIGN KEY (company_id) REFERENCES public.companies(username);
-
-
---
--- Name: reports fk_rails_bf356f56bf; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.reports
-    ADD CONSTRAINT fk_rails_bf356f56bf FOREIGN KEY ("from") REFERENCES public.users(username);
 
 
 --
