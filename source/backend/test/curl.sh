@@ -25,6 +25,11 @@ function user/logout {
 	curl -X POST http://localhost:8080/api/user/logout -H "Authorization: Bearer $JWT"
 }
 
+function user/setttings {
+	JWT=$1
+	FILE=$2
+	curl -X POST http://localhost:8080/api/user/settings -H "Authorization: Bearer $JWT" -H "Content-Type: multipart/form-data" -F "propic=@$FILE"
+}
 
 function user/propic/download {
 	NAME=$1

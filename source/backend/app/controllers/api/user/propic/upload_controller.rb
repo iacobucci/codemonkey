@@ -5,8 +5,6 @@ class Api::User::Propic::UploadController < AuthenticationController
   def upload
     @current_user = current_user
 
-    puts "propic: #{params[:propic]}"
-
     image = MiniMagick::Image.read(params[:propic].read)
 
     image.combine_options do |b|
