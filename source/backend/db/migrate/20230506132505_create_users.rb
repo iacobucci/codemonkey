@@ -4,7 +4,6 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :username, null: false, primary_key: true
       t.string :password_digest
       t.string :email
-      t.string :kind
       t.string :totp_secret
 
       # STI type column
@@ -21,7 +20,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       # Company fields
       t.string :name
 
-      t.timestamps
+      # t.timestamps
     end
   end
 end

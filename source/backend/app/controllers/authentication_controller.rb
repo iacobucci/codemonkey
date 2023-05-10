@@ -11,7 +11,7 @@ class AuthenticationController < ApplicationController
     @current_user = User.find(@current_username.dig("user_id"))
     raise unless @current_user
   rescue => exception
-    render json: { errors: ["Invalid token."] }, status: :unauthorized
+    except 401, ["Invalid token"]
   end
 
   def current_user

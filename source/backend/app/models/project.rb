@@ -1,4 +1,5 @@
 class Project < ApplicationRecord
-  has_and_belongs_to_many :codemonkeys
-  has_and_belongs_to_many :companies
+  belongs_to :codemonkey
+  belongs_to :company
+  has_and_belongs_to_many :technologies, join_table: "projects_technologies"
 end

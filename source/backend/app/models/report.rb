@@ -1,4 +1,4 @@
 class Report < ApplicationRecord
-  belongs_to :from
-  belongs_to :to
+  belongs_to :sender, class_name: "User", foreign_key: "from_id"
+  belongs_to :reciever, class_name: "User", foreign_key: "to_id"
 end

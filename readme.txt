@@ -33,9 +33,10 @@ res
 	[x] modellare tabelle con rails db:migration
     [x] activerecord
     [x] sti
-        [ ] project references codemonkey/company
-
+    [x] project references codemonkey/company
     [ ] model azione
+    [ ] capire se progetto rifiutato da codemonkey cosa fare
+        notifica a company
     
 misc
     frontend
@@ -204,8 +205,8 @@ db
                         login
                         logout
                         delete
-                        accept?lavoro=<lavoro>
-                        refuse?lavoro=<lavoro>
+                        accept?project=<project.id>
+                        reject?project=<project.id>
                         settings?nome=password&<nome>&cognome=<cognome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
                         suggest?tecnologia=<tecnologia>
                         report?[codemonkey=<codemonkey.username>||company=<codemonkey.username>]
@@ -213,8 +214,8 @@ db
                         signup
                         login
                         logout
-                        propose?lavoro=<lavoro>
-                        terminate?lavoro=<lavoro>
+                        new?title=<project.id>&codemonkey=<codemonkey.username>&descrizione=<descrizione>&tecnologie=<tecnologia1,tecnologia2,...>
+                        terminate?project=<project.id>
                         settings?nome=password&<nome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
                         suggest?tecnologia=<tecnologia>
                         report?[codemonkey=<codemonkey.username>||company=<codemonkey.username>]
@@ -222,6 +223,7 @@ db
                         login
                         logout
                         set?[codemonkey=<codemonkey.username>||company=<codemonkey.username>]&stato=<attivo|bannato|sospeso>
+                        add?tecnologia=<tecnologia>
                         approve?tecnologia=<tecnologia>
                         rifiuta?tecnologia=<tecnologia>
                         
@@ -234,179 +236,14 @@ db
 
 model
     user
-        tipo(username) -> string | null
-            interroga il database per username nella tabella user
-                se presente
-                    ritorna tipo
-                se non presente
-                    ritorna null
-        
-        tipo(jwt) -> string | null
-            get(get(jwt).username: username) -> string | null
-        
-        add(username, password, tipo) -> boolean
-            interroga il database per username nella tabella user
-                se presente
-                    ritorna false
-                se non presente
-                    aggiungi user
-                    se tipo==codemonkey
-                        aggiungi codemonkey a tabella codemonkey
-                    se tipo==company
-                        aggiungi company a tabella company
-                    ritorna true
-                    
-        get(username) -> user | null
-            interroga il database per username nella tabella user
-                se presente
-                    ritorna user
-                se non presente
-                    ritorna null
-                    
-        get(jwt) -> user | null
-            backend usa sistema di sicurezza (non trattato in questo documento) per ottenere user da jwt
-            
-        modifica(jwt, username, new_password) -> boolean
-            interroga il database per username nella tabella user
-                se presente
-                    se get(jwt).username==username
-                        modifica password
-                        ritorna true
-                ritorna false
+        codemonkey
+        company
+        admin
     
-    codemonkey extends user
-        get(username) -> codemonkey | null
-            interroga il database per username nella tabella codemonkey
-                se presclitnt
-                    ritorna codemonkey
-                se non presente
-                    ritorna null
-        
-        get(jwt) -> codemonkey | null
-            get(user.get(jwt).username: username) -> codemonkey | null
-
-        modifica(jwt, username, new_email, new_password, new_nome, new_cognome, new_bio, tecnologie: list[tecnologia]) -> boolean
-            interroga il database per username nella tabella codemonkey
-                se presente
-                    se get(jwt).username==username
-                        user.modifica(jwt, username, new_password)
-                        modifica email, nome, cognome, bio
-                        ritorna true
-                ritorna false
-                
-        stato(username) -> string | null
-            interroga il database per username nella tabella codemonkey
-                se presente
-                    ritorna stato
-                se non presente
-                    ritorna null
-        
-    company extends user
-        get(username) -> company | null
-            interroga il database per username nella tabella company
-                se presente
-                    ritorna company
-                se non presente
-                    ritorna null
-        
-        get(jwt) -> company | null
-            get(user.get(jwt).username: username) -> company | null
-
-        modifica(jwt, username, new_email, new_password, new_nome, new_bio, tecnologie: list[tecnologia]) -> boolean
-            interroga il database per username nella tabella company
-                se presente
-                    se get(jwt).username==username
-                        user.modifica(jwt, username, new_password)
-                        modifica email, nome, cognome, bio
-                        ritorna true
-                ritorna false
-                
-        stato(username) -> string | null
-            interroga il database per username nella tabella company
-                se presente
-                    ritorna stato
-                se non presente
-                    ritorna null
-    
-    lavoro
-        add(jwt, titolo, descrizione, data_proposta, data_inizio, data_fine, codemonkey.username, company.username, tecnologie: list[tecnologia]) -> boolean
-            se user.tipo(jwt)==company
-                se company.get(jwt).stato==attivo
-                    aggiungi lavoro
-                        data_proposta=Time.now()
-                        data_inizio=null
-                        data_fine=null
-                        
-                        titolo
-                        descrizione
-                        codemonkey.username
-                        tecnologie
-
-                    ritorna true
-                ritorna false
-
-            se user.tipo(jwt)==codemonkey
-                ritorna false
-            se user.tipo(jwt)==null
-                ritorna false
-
-        get(id:string) -> lavoro | null
-            interroga il database per id nella tabella lavoro
-                se presente
-                    ritorna lavoro
-                se non presente
-                    ritorna null
-
-        modifica(jwt, id, titolo, descrizione, data_proposta, data_inizio, data_fine, codemonkey.username, company.username, tecnologie: list[tecnologia], valutazione, commento)
-            interroga il database per id nella tabella lavoro
-                se presente
-                    se user.tipo(jwt)==codemonkey
-                        se codemonkey.get(jwt)==lavoro.codemonkey
-                            se lavoro.data_inizio==null
-                                se codemonkey.stato(jwt)==attivo
-                                    modifica data_inizio
-                                        ritorna true
-
-                    se user.tipo(jwt)==company
-                        se company.get(jwt)==lavoro.company
-                            se lavoro.data_inizio!=null
-                                modifica data_fine valutazione commento
-                                    ritorna true
-
-                    se user.tipo(jwt)==null
-                        ritorna false
-                
-                    ritorna true
-                ritorna false
-    
-    admin
-        stato(jwt, username, stato) -> boolean
-            se user.tipo(user.get(jwt).username)==admin
-                se user.tipo(username)==codemonkey
-                    modifica stato
-                se user.tipo(username)==company
-                    modifica stato
-                ritorna false
-
-    azione 
-        aggiungi(nome:string, descrizione:string, username:string) -> boolean
-            aggiungi azione
-
-        id(id:string) -> azione | null
-            interroga il database per id nella tabella azione
-                se presente
-                    ritorna azione
-                se non presente
-                    ritorna null
-    
-    tecnologia
-        id(id:string) -> tecnologia | null
-            interroga il database per id nella tabella tecnologia
-                se presente
-                    ritorna tecnologia
-                se non presente
-                    ritorna null
-    
+    project
+    action 
+    technology
+    report
 
 endpoint
 	public

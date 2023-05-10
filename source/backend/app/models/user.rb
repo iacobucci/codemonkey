@@ -2,6 +2,15 @@ class User < ApplicationRecord
   include TwoFactorAuthentication
   has_secure_password
   before_create :generate_otp_secret
+  # serialize :propic, :binary
+
+  has_many :sent_reports, class_name: "Report", foreign_key: "from_id", dependent: :delete_all
+  has_many :recieved_reports, class_name: "Report", foreign_key: "from_id", dependent: :delete_all
+  has_many :actions, dependent: :delete_all
+
+  validates :username, presence: { message: "Username not given." }, uniqueness: { case_sensitive: false, message: "Username already taken." }, format: { with: /\A[a-z0-9_]+\z/, message: "Invalid username." }
+  validates :password, presence: { message: "Password not given." }, length: { minimum: 8, message: "Password must be at least 8 characters long." }
+  validates :email, presence: { message: "Email not given." }, uniqueness: { case_sensitive: false, message: "Email already taken." }, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Invaid email." }
 
   def generate_otp_secret
     self.totp_secret = ROTP::Base32.random_base32
@@ -19,22 +28,26 @@ class User < ApplicationRecord
 
   def self.find_by_jwt(jwt)
     User.find(JsonWebToken.decode(jwt)["user_id"])
-    # User.find(decoded[:user_id])
   end
 
-  def codemonkey
-    Codemonkey.find_by(username: username)
+  def reports
+    Report.where("from_id = ? OR to_id = ?", self.id, self.id)
   end
 
-  def admin
-    Admin.find_by(username: username)
+  #actions
+
+  def report_user(to:, description:)
+    report = Report.new(reciever: to, sender: self, description: description, time: Time.now)
+    report.save
   end
 
-  def company
-    Company.find_by(username: username)
+  def change_password(new_password:)
+    self.password = new_password
+    self.save
   end
 
-  has_one :codemonkey, -> { where(kind: "codemonkey") }, foreign_key: "username", primary_key: "username", dependent: :destroy
-  has_one :admin, -> { where(kind: "admin") }, foreign_key: "username", primary_key: "username", dependent: :destroy
-  has_one :company, -> { where(kind: "company") }, foreign_key: "username", primary_key: "username", dependent: :destroy
+  def new_propic(image:)
+    self.propic = image
+    self.save
+  end
 end
