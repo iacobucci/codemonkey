@@ -248,151 +248,17 @@ model
 endpoint
 	public
 		[ ] /api/signup
-			1 frontend fa richiesta
-				parametri
-					tipo=<codemonkey|company>
-					username
-                    [ ] controllo caratteri
-                        abcdefghijklmnopqrstuvwxyz0123456789_
-					email
-					password
-					password_confirmation
-                    [x] se password!=password_confirmation
-                        messaggio di errore
-			2 backend interroga il database se username è gia presente in tabella user
-                [ ] controllo caratteri username
-                    abcdefghijklmnopqrstuvwxyz0123456789_
-                se non valido
-                    error json
-                        3 invia error json
-                            {"error":"username_non_valido"}
-				se presente
-					error json
-						3 invia error json
-                            {"error":"username_gia_presente"}
-				se non presente
-					crea un password_digest
-					fa insert in database
-						se tipo==codemonkey
-							inserisce in user
-								username
-								tipo=codemonkey
-								password_digest
-							inserisce in tabella codemonkey
-								username
-								email
-						se tipo==company
-							inserisce in user
-								username
-								tipo=company
-								password_digest
-							inserisce in tabella company
-								username
-								email
-			3 backend genera un secret TOTP e un JWT e li invia al frontend
-                viene fatto /api/login in automatico
-                    {"otp_provisioning_uri":"
-        otpauth://totp/<username>?secret=<secret>&issuer=Codemonkey&algorithm=sha1&digits=6&period=30", "username":"<username>", "tipo":"<tipo>", "jwt":"<jwt>"}
-				salvataggio azione nei log
-					datetime=Time.now
-					user=<username>
-					nome=registrazione
-					descrizione=""
-					
-			4 frontend analizza la risposta
-				se error json
-					mostra dialog.errore.registrazione.messaggio = username gia usato
-				se payload json
-					mostra dialog.registrazione
-						messaggio = registrato con successo
-						qrdata = payload.totp
-							disegna a schermo qrcode che l'utente può scansionare
-
-				login automatico
-					
-				se codemonkey
-					forward a /codemonkey/<username>/modifica
-				se company
-					forward a /company/<username>/modifica
 		
 		[ ] /api/login
-			1 frontend fa richiesta
-				parametri
-					username
-					password
-					totp
-
-			2 backend interroga database se (username, password_digest) coincidono, poi devo capire cosa cavolo fa la libreria che ho installato
-				se non corretto
-					3 invia error json
-
-			3 backend genera un jwt e payload json e lo invia al frontend
-				{"username":"username","tipo":"codemonkey|company|admin","jwt":"<payload.jwt>"}
-				salvataggio azione nei log
-					datetime=Time.now
-					user=<username>
-					nome=login
-					descrizione=""
-
-			4 frontend salva payload in localStorage 
 
 		[ ] /api/feed
-			1 frontend fa richiesta con parametri
-				tipo=<tutti|codemonkey|company>
-				teconologie=<tecnologia1.id,tecnologia2.id>
-			2 backend interroga il database con una query filtrante
-				se tipo=tutti
-                se tipo=codemonkey
-                se tipo=company
-			3 backend invia i risultati
-				success
-					json payload
-				error
-					json error
-			4 il frontend analizza la risposta
-				se payload
-					crea i componenti e visualizza
-				se error
-					mostra dialog.errore.richiesta.messaggio = "errore nel contattare il server"
                     
         [ ] /api/user
-            1 frontend fa richiesta
-                parametri
-                    username
 
         [ ] /api/lavoro
-            1 frontend fa richiesta
-                parametri
-                    id
 
 	auth
 		[ ] /api/logout
-			1 frontend fa richiesta con http interceptor 
-				parametri
-					username
-
-			2 backend interroga il database se <username> esiste
-				se non corretto
-					3 invia error json
-                        {"error":"username_non_valido"}
-
-			3 backend contolla se azione è permessa
-				salvataggio azione nei log
-					datetime=Time.now
-					user=<username>
-					nome=logout
-					descrizione=""
-                genera payload
-                    {"logout":"ok"}
-
-			4 frontend analizza la risposta
-                se error json
-                    mostra dialog.errore.logout.messaggio = "errore nel contattare il server"
-                se payload json
-                    elimina username da localStorage
-                    elimina jwt da localStorage    
-                    elimina tipo da localStorage
-                    forward a /feed
         
         [ ] /api/report
 

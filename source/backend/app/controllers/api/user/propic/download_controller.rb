@@ -11,7 +11,7 @@ class Api::User::Propic::DownloadController < ApplicationController
         content_type: "image/webp",
       )
     else
-      render json: { error: "Profilo non trovato o immagine del profilo non disponibile" }, status: :not_found
+      render json: { errors: ["Profilo non trovato o immagine del profilo non disponibile"] }, status: :not_found
     end
   end
 
@@ -27,14 +27,21 @@ class Api::User::Propic::DownloadController < ApplicationController
       @errors.push("Unpermitted parameter #{e.params}.")
     end
 
-    except 400 if @errors.any?
-    validate_username
+    catch :error do
+      except 400 if @errors.any?
+      validate_username
+    end
   end
 
   def validate_username
     username = @permitted_params[:username]
     if username.nil?
       @errors.push("Missing parameter username.")
+    else
+      user = User.find_by(username: username)
+      if user.nil?
+        @errors.push("Invalid username.")
+      end
     end
     except 400 if @errors.any?
   end

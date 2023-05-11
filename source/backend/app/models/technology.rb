@@ -7,7 +7,7 @@ class Technology < ApplicationRecord
   #actions
 
   def self.suggest(name:)
-    Technology.new(name: name, suggestion_time: Time.now, approved: false, rejected: false).save
+    Technology.new(name: name, suggestion_time: Time.now, approved: false, rejected: false)
   end
 
   def approve()
@@ -20,7 +20,6 @@ class Technology < ApplicationRecord
     end
 
     self.approved = true
-    self.save
   end
 
   def reject()
@@ -33,7 +32,6 @@ class Technology < ApplicationRecord
     end
 
     self.rejected = true
-    technology.save
   end
 
   def self.approved

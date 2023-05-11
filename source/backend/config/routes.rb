@@ -32,5 +32,11 @@ Rails.application.routes.draw do
       post "approve", to: "approve#approve"
       post "reject", to: "reject#reject"
     end
+
+    namespace :feed do
+      post "feed", to: "feed#feed"
+      post "codemonkey", to: "codemonkey#codemonkey"
+      post "company", to: "company#company"
+    end
   end
 end

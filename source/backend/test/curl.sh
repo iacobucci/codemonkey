@@ -25,10 +25,17 @@ function user/logout {
 	curl -X POST http://localhost:8080/api/user/logout -H "Authorization: Bearer $JWT"
 }
 
-function user/setttings {
+function user/settings {
+	#works for codemonkey
 	JWT=$1
-	FILE=$2
-	curl -X POST http://localhost:8080/api/user/settings -H "Authorization: Bearer $JWT" -H "Content-Type: multipart/form-data" -F "propic=@$FILE"
+	EMAIL=$2
+	PASSWORD=$3
+	TECHNOLOGIES=$4
+	BIO=$5
+	FIRSNAME=$6
+	LASTNAME=$7
+	curl -X POST http://localhost:8080/api/user/settings -H "Authorization: Bearer $JWT" -H "Content-Type: application/json" -d "{\"settings\": {\"first_name\": \"$FIRSNAME\", \"last_name\": \"$LASTNAME\", \"email\": \"$EMAIL\", \"password\": \"$PASSWORD\", \"bio\": \"$BIO\", \"technologies\": \"$TECHNOLOGIES\" }}"
+	# curl -X POST http://localhost:8080/api/user/settings -H "Authorization: Bearer $JWT" -H "Content-Type: application/json" -d "{\"settings\": {\"email\": \"$EMAIL\", \"password\": \"$PASSWORD\", \"technologies\": \"$TECHNOLOGIES\" , \"bio\": \"$BIO\"}}"
 }
 
 function user/propic/download {
@@ -47,15 +54,34 @@ function user/propic/delete {
 	curl -X POST http://localhost:8080/api/user/propic/delete -H "Authorization: Bearer $JWT"
 }
 
+function technology/suggest {
+	JWT=$1
+	NAME=$2
+	curl -X POST http://localhost:8080/api/technology/suggest -H "Authorization: Bearer $JWT" -H "Content-Type: application/json" -d "{\"suggest\": {\"name\": \"$NAME\"}}"
+}
+
+#TODO test
+
+function technology/approve {
+	JWT=$1
+	NAME=$2
+	curl -X POST http://localhost:8080/api/technology/approve -H "Authorization: Bearer $JWT" -H "Content-Type: application/json" -d "{\"approve\": {\"id\": \"$NAME\"}}"
+}
+
+#TODO test
+
+function technology/reject {
+	JWT=$1
+	NAME=$2
+	curl -X POST http://localhost:8080/api/technology/reject -H "Authorization: Bearer $JWT" -H "Content-Type: application/json" -d "{\"reject\": {\"id\": \"$NAME\"}}"
+}
 
 function project/new {
 	JWT=$1
 	TITLE=$2
 	CODEMONKEY=$3
 	curl -X POST http://localhost:8080/api/project/new -H "Authorization: Bearer $JWT" -H "Content-Type: application/json" -d "{\"new\": {\"title\": \"$TITLE\", \"codemonkey\": \"$CODEMONKEY\"}}"
-} 
-
-
+}
 
 f="$1"
 shift

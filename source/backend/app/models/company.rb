@@ -1,6 +1,6 @@
 class Company < User
-  has_many :projects, dependent: :delete_all
-  has_and_belongs_to_many :technologies, join_table: "technologies_users", foreign_key: "user_id", association_foreign_key: "technology_id"
+  has_many :projects, dependent: :destroy
+  has_and_belongs_to_many :technologies, join_table: "technologies_users", foreign_key: "user_id", association_foreign_key: "technology_id", dependent: :destroy
 
   def new_project(title:, codemonkey:, technologies: [], description: "")
     suggestion_time = Time.now
@@ -9,7 +9,7 @@ class Company < User
     rating = nil
     comment = nil
     project = Project.new(title: title, codemonkey: codemonkey, company: self, technologies: technologies, description: description, suggestion_time: suggestion_time, start_time: start_time, end_time: end_time, rating: rating, comment: comment)
-    project.save
+    project
   end
 
   def edit_project(project:, new_codemonkey:, new_technologies: [], new_description: "")
@@ -28,7 +28,7 @@ class Company < User
     project.codemonkey = new_codemonkey if new_codemonkey
     project.technologies = new_technologies if new_technologies
     project.description = new_description if new_description
-    project.save
+    project
   end
 
   def terminate_project(project:, rating:, comment:)
@@ -47,14 +47,10 @@ class Company < User
     project.end_time = Time.now
     project.rating = rating
     project.comment = comment
-    project.save
+    project
   end
 
-  def settings(new_name:, new_bio:, new_email:, new_technologies:)
-    self.name = new_name if new_name
-    self.bio = new_bio if new_bio
-    self.email = new_email if new_email
-    self.technologies = new_technologies if new_technologies
-    self.save
+  def change_name(new_name:)
+    self.name = new_name
   end
 end

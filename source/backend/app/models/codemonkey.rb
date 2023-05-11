@@ -1,6 +1,6 @@
 class Codemonkey < User
   has_many :projects, dependent: :delete_all
-  has_and_belongs_to_many :technologies, join_table: "technologies_users", foreign_key: "user_id", association_foreign_key: "technology_id"
+  has_and_belongs_to_many :technologies, join_table: "technologies_users", foreign_key: "user_id", association_foreign_key: "technology_id", dependent: :destroy
 
   #actions
 
@@ -18,7 +18,7 @@ class Codemonkey < User
     end
 
     project.start_time = Time.now
-    project.save
+    project
   end
 
   def reject_project(project:)
@@ -34,15 +34,21 @@ class Codemonkey < User
       raise "Project has already ended"
     end
 
-    project.destroy
+    project.status = "rejected"
+    project
   end
 
-  def settings(new_first_name:, new_last_name:, new_bio:, new_email:, new_technologies:)
-    self.first_name = new_first_name if new_first_name
-    self.last_name = new_last_name if new_last_name
-    self.bio = new_bio if new_bio
-    self.email = new_email if new_email
-    self.technologies = new_technologies if new_technologies
-    self.save
+  def change_first_name(new_first_name:)
+    self.first_name = new_first_name
+  end
+
+  def change_last_name(new_last_name:)
+    self.last_name = new_last_name
+  end
+
+  def update_rating
+    ratings = self.projects.map { |project| project.rating }.compact
+    return nil if ratings.length == 0
+    self.rating = ratings.reduce(:+) / ratings.length
   end
 end

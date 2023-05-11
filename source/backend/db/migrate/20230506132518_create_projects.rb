@@ -6,6 +6,7 @@ class CreateProjects < ActiveRecord::Migration[7.0]
 
       t.datetime :suggestion_time
       t.datetime :start_time
+      t.boolean :rejected
       t.datetime :end_time
 
       t.float :rating

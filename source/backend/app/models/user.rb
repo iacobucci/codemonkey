@@ -4,12 +4,11 @@ class User < ApplicationRecord
   before_create :generate_otp_secret
   # serialize :propic, :binary
 
-  has_many :sent_reports, class_name: "Report", foreign_key: "from_id", dependent: :delete_all
-  has_many :recieved_reports, class_name: "Report", foreign_key: "from_id", dependent: :delete_all
-  has_many :actions, dependent: :delete_all
+  has_many :sent_reports, class_name: "Report", foreign_key: "from_id", dependent: :destroy
+  has_many :recieved_reports, class_name: "Report", foreign_key: "from_id", dependent: :destroy
+  has_many :actions, dependent: :destroy
 
   validates :username, presence: { message: "Username not given." }, uniqueness: { case_sensitive: false, message: "Username already taken." }, format: { with: /\A[a-z0-9_]+\z/, message: "Invalid username." }
-  validates :password, presence: { message: "Password not given." }, length: { minimum: 8, message: "Password must be at least 8 characters long." }
   validates :email, presence: { message: "Email not given." }, uniqueness: { case_sensitive: false, message: "Email already taken." }, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Invaid email." }
 
   def generate_otp_secret
@@ -38,16 +37,30 @@ class User < ApplicationRecord
 
   def report_user(to:, description:)
     report = Report.new(reciever: to, sender: self, description: description, time: Time.now)
-    report.save
   end
 
   def change_password(new_password:)
     self.password = new_password
-    self.save
   end
 
-  def new_propic(image:)
-    self.propic = image
-    self.save
+  def change_email(new_email:)
+    self.email = new_email
+  end
+
+  def change_bio(new_bio:)
+    self.bio = new_bio
+  end
+
+  def change_technologies(new_technologies:)
+    for technology in new_technologies
+      if not technology.approved
+        raise "Technology not approved"
+      end
+      if technology.rejected
+        raise "Technology rejected"
+      end
+    end
+
+    self.technologies = new_technologies
   end
 end
