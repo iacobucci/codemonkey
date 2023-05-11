@@ -36,8 +36,8 @@ class Api::User::SignupController < ApplicationController
   private
 
   def validate_params
-    extract_params_and_validate(:signup, [:username, :password, :email, :type])
     catch :error do
+      extract_params_and_validate(:signup, [:username, :password, :email, :type])
       validate_type
       validate_password
     end

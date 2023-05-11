@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../../authentication.service';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginPopupComponent } from '../login-popup/login-popup.component';
+import { LoginPopupComponent } from '../../components/popup/login-popup/login-popup.component';
 import { OnInit } from '@angular/core';
 
 

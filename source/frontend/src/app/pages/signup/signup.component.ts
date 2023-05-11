@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../../authentication.service';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { map } from 'rxjs/operators';
-import { RegistrazionePopupComponent } from '../registrazione-popup/registrazione-popup.component';
+import { RegistrazionePopupComponent } from '../../components/popup/registrazione-popup/registrazione-popup.component';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 interface responseData {
@@ -12,34 +12,29 @@ interface responseData {
 }
 
 @Component({
-  selector: 'app-registrazione',
-  templateUrl: './registrazione.component.html',
-  styleUrls: ['./registrazione.component.scss']
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.scss']
 })
 
 
-export class RegistrazioneComponent implements OnInit {
+export class SignupComponent implements OnInit {
   authenticationService: AuthenticationService;
 
-  username: string = "";
-  email: string = "";
-  password: string = "";
-  password_confirmation: string = "";
-  tipo: string = "";
-  registerForm: FormGroup;
+  signupForm: FormGroup;
 
   constructor(private http: HttpClient, public dialog: MatDialog, private formBuilder: FormBuilder) {
     this.authenticationService = new AuthenticationService(http);
-    this.registerForm = new FormGroup({});
+    this.signupForm = new FormGroup({});
   }
 
   ngOnInit(): void {
-    this.registerForm = this.formBuilder.group({
+    this.signupForm = this.formBuilder.group({
       username: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
       password_confirmation: ['', [Validators.required]],
-      tipo: ['', [Validators.required]],
+      type: ['', [Validators.required]],
     }, { validator: this.passwordMatchValidator });
   }
 
@@ -57,15 +52,19 @@ export class RegistrazioneComponent implements OnInit {
 
   onSubmit() {
 
-    const requestData = { user: { username: this.username, email: this.email, password: this.password, password_confirmation: this.password, } };
-    console.log("Registrazione request", requestData);
+    const requestData = {
+      signup: {
+        username: this.signupForm.get('username')?.value,
+        email: this.signupForm.get('email')?.value,
+        password: this.signupForm.get('password')?.value,
+        type: this.signupForm.get('type')?.value,
+      }
+    };
 
-    this.http.post<responseData>('api/registrations', requestData)
+    this.http.post<responseData>('api/user/signup', requestData)
       .pipe(map(response => response as responseData))
       .subscribe(
         (response) => {
-          console.log(response);
-
           this.dialog.open(RegistrazionePopupComponent, {
             data: { value: response.otp_provisioning_uri },
           },);
@@ -77,5 +76,5 @@ export class RegistrazioneComponent implements OnInit {
       );
 
   }
-  
+
 }

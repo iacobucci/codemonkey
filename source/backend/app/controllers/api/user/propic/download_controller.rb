@@ -7,8 +7,8 @@ class Api::User::Propic::DownloadController < ApplicationController
     if user&.propic
       send_data(
         user.propic,
-        filename: "#{user.username}.webp",
-        content_type: "image/webp",
+        filename: "#{user.username}.jpg",
+        content_type: "image/jpeg",
       )
     else
       render json: { errors: ["Profilo non trovato o immagine del profilo non disponibile"] }, status: :not_found

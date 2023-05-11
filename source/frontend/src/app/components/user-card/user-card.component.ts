@@ -19,10 +19,12 @@ export class UserCardComponent {
   bio: string = '';
   technologies: object[] = [];
 
-  // fetch from /api/card/:username
-
   ngOnInit(): void {
     this.fetchData(this.username);
+  }
+  
+  mail(): void {
+    window.open(`mailto:${this.email}`);
   }
 
   fetchData(username: string): void {

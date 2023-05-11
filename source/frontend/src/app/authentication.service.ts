@@ -27,11 +27,12 @@ export class AuthenticationService {
 
   login(username: string, password: string, totp: string) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<any>('/api/auth', { username, password, totp }, { headers })
+    return this.http.post<any>('/api/user/login', { username, password, totp }, { headers })
       .pipe(map(user => {
         if (user) {
           localStorage.setItem('jwt', user.jwt);
           localStorage.setItem('username', user.username);
+          localStorage.setItem('type', user.type);
           this.currentUserSubject.next(user);
         }
         return user;

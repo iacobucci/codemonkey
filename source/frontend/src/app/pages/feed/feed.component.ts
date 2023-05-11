@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../../authentication.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
@@ -19,19 +19,15 @@ export class FeedComponent {
   hello(): void {
     const url = '/api/rails';
     const jwtToken = localStorage.getItem('currentUser');
-    // const headers = new HttpHeaders().set('Authorization', `Bearer ${jwtToken}`);
     console.log(jwtToken, url);
 
-    // this.http.get(url, { headers, responseType: "text" }).pipe(
     this.http.get(url, { responseType: "text" }).pipe(
       catchError(error => {
         console.error('Error:', error);
         return throwError(error);
       })
     ).subscribe(data => {
-      // console.log(data);
       alert(data);
-      // this.dialog.open(MatButton, { data: {}});
     });
   }
 }

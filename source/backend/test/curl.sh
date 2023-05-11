@@ -40,7 +40,7 @@ function user/settings {
 
 function user/propic/download {
 	NAME=$1
-	curl -X POST http://localhost:8080/api/user/propic/download -H "Content-Type: application/json" -d "{\"propic_download\": {\"username\": \"$NAME\"}}" --output "$NAME.webp"
+	curl -X POST http://localhost:8080/api/user/propic/download -H "Content-Type: application/json" -d "{\"propic_download\": {\"username\": \"$NAME\"}}" --output "$NAME.jpg"
 }
 
 function user/propic/upload {
