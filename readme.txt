@@ -30,22 +30,15 @@ docs
 
 res
 	[ ] capire come ottenere parametri da componente genitore
-	[ ] modellare tabelle con rails db:migration
-	[ ] capire dove far vedere i lavori e se è possibile farlo in maniera fashion
+	[x] modellare tabelle con rails db:migration
+    [x] activerecord
+    [x] sti
+    [x] project references codemonkey/company
+    [ ] model azione
+    [ ] capire se progetto rifiutato da codemonkey cosa fare
+        notifica a company
     
-source
-    [x] development environment
-        [x] rails
-            [x] live reload
-        [x] angular
-            [x] nginx reverse proxy
-            [x] live reload
-        [x] postgres
-            [x] docker image
-
-    [x] release environment
-        [ ] problema nginx frontend
-
+misc
     frontend
         [x] toolbar
             [x] bug scrolling viewport
@@ -69,20 +62,26 @@ source
         [x] 2FA totp
         [x] JWT
             [ ] architettura sistema di permessi
-                jwt -> user -> codemonkey | azienda | admin -> azione
+                jwt -> user -> codemonkey | company | admin -> azione
 
     database
         [ ] rails migration
         
-modello
+db
+    [x] timestamps di creazione
+    [x] timestamps di update
     entity
         [ ] user 1:1
             [ ] username
                 primary key varchar(255)
             [ ] password_digest
                 varchar(255)
+            [ ] totp_secret
+                varchar(255)
+            [ ] email
+                varchar(255)
             [ ] tipo
-                enum (codemonkey, azienda, admin)
+                enum (codemonkey, company, admin)
 
         [ ] codemonkey 1:1
             [ ] username
@@ -91,24 +90,31 @@ modello
                 varchar(255)
             [ ] nome
                 varchar(255)
-            [ ] cognome
-                varchar(255)
             [ ] bio
                 varchar(4095)
             [ ] propic
                 blob
+            [ ] stato
+                enum (attivo, bannato)
+
+            [ ] cognome
+                varchar(255)
             [ ] valutazione_media
                 int null
                     
-        [ ] azienda 1:1
+        [ ] company 1:1
             [ ] username
                 primary key varchar(255) foreign key to user
+            [ ] email
+                varchar(255)
             [ ] nome
                 varchar(255)
             [ ] bio
                 varchar(4095)
             [ ] propic
                 blob
+            [ ] stato
+                enum (attivo, bannato)
 
         [ ] admin 1:1
             [ ] username
@@ -119,6 +125,14 @@ modello
                 primary key int autoincrement
             [ ] nome
                 varchar(255)
+            [ ] data_suggerimento
+                datetime
+            [ ] username
+                foreign key a user
+            [ ] approvata
+                boolean
+            [ ] rifiutata
+                boolean
 
     relation
         [ ] lavoro 1:N
@@ -144,11 +158,17 @@ modello
                 
             [ ] codemonkey
                 foreign key a codemonkey
-            [ ] azienda
-                foreign key a azienda
+            [ ] company
+                foreign key a company
             [ ] tecnologie
                 foreign key a tecnologie
-                
+        
+        [ ] lavori_tecnologie N:N
+            [ ] lavoro
+                foreign key a lavoro
+            [ ] tecnologia
+                foreign key a tecnologia
+        
         [ ] codemonkey_tecnologie N:N
             [ ] username
                 foreign key a codemonkey
@@ -157,9 +177,19 @@ modello
 
         [ ] aziende_tecnologie N:N
             [ ] username
-                foreign key a azienda
+                foreign key a company
             [ ] tecnologia
                 foreign key a tecnologia
+        
+        [ ] report_user N:N
+            [ ] username_from
+                foreign key a user
+            [ ] username_to
+                foreign key a user
+            [ ] data
+                datetime
+            [ ] descrizione
+                varchar(1024)
 
         [ ] azioni 1:N
             [ ] id
@@ -171,184 +201,75 @@ modello
             [ ] descrizione
                 varchar(8191)
                     codemonkey
-                        registrazione
+                        signup
                         login
                         logout
-                        accetta?lavoro=<lavoro>
-                        rifiuta?lavoro=<lavoro>
-                        impostazioni?nome=password&<nome>&cognome=<cognome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
-                    azienda
-                        registrazione
+                        delete
+                        accept?project=<project.id>
+                        reject?project=<project.id>
+                        settings?nome=password&<nome>&cognome=<cognome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
+                        suggest?tecnologia=<tecnologia>
+                        report?[codemonkey=<codemonkey.username>||company=<codemonkey.username>]
+                    company
+                        signup
                         login
                         logout
-                        proponi?lavoro=<lavoro>
-                        termina?lavoro=<lavoro>
-                        impostazioni?nome=password&<nome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
+                        new?title=<project.id>&codemonkey=<codemonkey.username>&descrizione=<descrizione>&tecnologie=<tecnologia1,tecnologia2,...>
+                        terminate?project=<project.id>
+                        settings?nome=password&<nome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
+                        suggest?tecnologia=<tecnologia>
+                        report?[codemonkey=<codemonkey.username>||company=<codemonkey.username>]
                     admin
                         login
-                        ban?codemonkey=<codemonkey.username>&azienda=<codemonkey.username>
+                        logout
+                        set?[codemonkey=<codemonkey.username>||company=<codemonkey.username>]&stato=<attivo|bannato|sospeso>
+                        add?tecnologia=<tecnologia>
+                        approve?tecnologia=<tecnologia>
+                        rifiuta?tecnologia=<tecnologia>
                         
             [ ] username
                 foreign key a user
                     user che invoca l'azione
                         codemonkey
-                        azienda
+                        company
                         admin
 
-static
-	trova_tipo_da_username(username:string) -> string | null
-		interroga il database per username nella tabella user
-			se presente
-				ritorna tipo
-			se non presente
-				ritorna null
+model
+    user
+        codemonkey
+        company
+        admin
+    
+    project
+    action 
+    technology
+    report
 
-controller
+endpoint
 	public
-		[ ] /api/registrazione
-			1 frontend fa richiesta
-				parametri
-					tipo=<codemonkey|azienda>
-					username
-                    [ ] controllo caratteri
-                        abcdefghijklmnopqrstuvwxyz0123456789_
-					email
-					password
-					password_confirmation
-                    [x] se password!=password_confirmation
-                        messaggio di errore
-			2 backend interroga il database se username è gia presente in tabella user
-                [ ] controllo caratteri username
-                    abcdefghijklmnopqrstuvwxyz0123456789_
-                se non valido
-                    error json
-                        3 invia error json
-                            {"error":"username_non_valido"}
-				se presente
-					error json
-						3 invia error json
-                            {"error":"username_gia_presente"}
-				se non presente
-					crea un password_digest
-					fa insert in database
-						se tipo==codemonkey
-							inserisce in user
-								username
-								tipo=codemonkey
-								password_digest
-							inserisce in tabella codemonkey
-								username
-								email
-						se tipo==azienda
-							inserisce in user
-								username
-								tipo=azienda
-								password_digest
-							inserisce in tabella azienda
-								username
-								email
-			3 backend genera un secret TOTP e un JWT e li invia al frontend
-                viene fatto /api/login in automatico
-                    {"otp_provisioning_uri":"
-        otpauth://totp/<username>?secret=<secret>&issuer=Codemonkey&algorithm=sha1&digits=6&period=30", "username":"<username>", "tipo":"<tipo>", "jwt":"<jwt>"}
-				salvataggio azione nei log
-					datetime=Time.now
-					user=<username>
-					nome=registrazione
-					descrizione=""
-					
-			4 frontend analizza la risposta
-				se error json
-					mostra dialog.errore.registrazione.messaggio = username gia usato
-				se payload json
-					mostra dialog.registrazione
-						messaggio = registrato con successo
-						qrdata = payload.totp
-							disegna a schermo qrcode che l'utente può scansionare
-
-				login automatico
-					
-				se codemonkey
-					forward a /codemonkey/<username>/modifica
-				se azienda
-					forward a /azienda/<username>/modifica
+		[ ] /api/signup
 		
 		[ ] /api/login
-			1 frontend fa richiesta
-				parametri
-					username
-					password
-					totp
-
-			2 backend interroga database se (username, password_digest) coincidono, poi devo capire cosa cavolo fa la libreria che ho installato
-				se non corretto
-					3 invia error json
-
-			3 backend genera un jwt e payload json e lo invia al frontend
-				{"username":"username","tipo":"codemonkey|azienda|admin","jwt":"<payload.jwt>"}
-				salvataggio azione nei log
-					datetime=Time.now
-					user=<username>
-					nome=login
-					descrizione=""
-
-			4 frontend salva payload in localStorage 
 
 		[ ] /api/feed
-			1 frontend fa richiesta con parametri
-				tipo=<tutti|codemonkey|azienda>
-				teconologie=<tecnologia1.id,tecnologia2.id>
-			2 backend interroga il database con una query filtrante
-				se tipo=tutti
-			3 backend invia i risultati
-				success
-					json payload
-				error
-					json error
-			4 il frontend analizza la risposta
-				se payload
-					crea i componenti e visualizza
-				se error
-					mostra dialog.errore.richiesta.messaggio = "errore nel contattare il server"
+                    
+        [ ] /api/user
 
-		[ ] /api/codemonkey/<username>
-
-		[ ] /api/azienda/<username>
+        [ ] /api/lavoro
 
 	auth
 		[ ] /api/logout
-			1 frontend fa richiesta con http interceptor 
-				parametri
-					username
-
-			2 backend interroga il database se <username> esiste
-				se non corretto
-					3 invia error json
-                        {"error":"username_non_valido"}
-
-			3 backend contolla se azione è permessa
-				salvataggio azione nei log
-					datetime=Time.now
-					user=<username>
-					nome=logout
-					descrizione=""
-                genera payload
-                    {"logout":"ok"}
-
-			4 frontend analizza la risposta
-                se error json
-                    mostra dialog.errore.logout.messaggio = "errore nel contattare il server"
-                se payload json
-                    elimina username da localStorage
-                    elimina jwt da localStorage    
-                    elimina tipo da localStorage
-                    forward a /feed
+        
+        [ ] /api/report
 
 		[ ] /api/dashboard
-
-		[ ] /api/modifica
         
-		[ ] /api/codemonkey/<codemonkey.username>/proponi
+        [ ] /api/azione
+
+		[ ] /api/user/modifica
+        
+        [ ] /api/lavoro/modifica
+
 
 
 componenti
@@ -366,9 +287,9 @@ componenti
             [ ] tecnologie
                 [ ] list.tecnologie
 
-        [ ] azienda
+        [ ] company
             [ ] username
-				link a /azienda/<username>
+				link a /company/<username>
 			[ ] nome
             [ ] propic
             [ ] mailto
@@ -377,9 +298,9 @@ componenti
                 [ ] list.tecnologie
 
         [ ] lavoro
-            [ ] azienda
+            [ ] company
 				[ ] username
-					link a /azienda/<username>
+					link a /company/<username>
                 [ ] nome
                 [ ] propic
             [ ] codemonkey
@@ -391,9 +312,10 @@ componenti
             [ ] titolo
             [ ] descrizione
             [ ] tecnologie
+                [ ] list.tecnologie
 
             se data_inizio != null
-                se loggato come azienda e <username>==<azienda.username>
+                se loggato come company e <username>==<company.username>
                     [ ] termina
                         [ ] dialog lavoro.valutazione
                 [ ] data_inizio
@@ -419,8 +341,8 @@ componenti
             [ ] username
                 se codemonkey
                     link a /codemonkey/<codemonkey.username>
-                se azienda
-                    link a /azienda/<azienda.username>
+                se company
+                    link a /company/<company.username>
             [ ] descrizione
     
     [ ] dialog
@@ -458,8 +380,17 @@ componenti
 	
 	[ ] select
 		[ ] tecnologie
+            [ ] lista di checkbox scrollabile verticalmente
         
     [ ] list
+        [ ] tecnologie
+            [ ] lista scrollabile orizzontalmente
+            se in card codemonkey
+                [ ] link a /codemonkey/<codemonkey.username>?tecnologia=<tecnologia.id>
+            se in card company
+                [ ] link a /codemonkey/<codemonkey.username>?tecnologia=<tecnologia.id>
+
+    [ ] chips
         [ ] tecnologie
 
 	[ ] datepicker
@@ -479,9 +410,9 @@ viste
             [ ] password
             [ ] password_confirmation
                 [ ] controllo password == password_confirmation
-            [ ] azienda/codemonkey
+            [ ] company/codemonkey
 
-        [ ] popup registrazione
+        [ ] dialog.regisrazione
         [ ] forward a /impostazioni
                     
     [ ] /login
@@ -490,27 +421,30 @@ viste
             [ ] password
             [ ] totp
         se codemonkey  
-            vai a /feed?tipo=azienda
-        se azienda
-            vai a /feed?tipo=codemonkey
+            [ ] vai a /feed?tipo=company
+        se company
+            [ ] vai a /feed?tipo=codemonkey
         se admin
-            vai a /dashboard
+            [ ] vai a /dashboard
 
     [ ] /feed || /
 		parametri
 			[ ] radio button
-				?tipo=azienda
+				?tipo=company
 				?tipo=codemonkey
 				?tipo=tutto
 			[ ] select.tecnologie
 				?tecnologie=<tecnologia1,tecnologia2,...>
+        [ ] lista card.codemonkey
+        [ ] lista card.company
+
 
     [ ] /impostazioni
         form.impostazioni
             se codemonkey
                 [ ] nome
                 [ ] cognome
-            se azienda
+            se company
                 [ ] nome
             [ ] email
                 [ ] controllo email valida
@@ -531,38 +465,26 @@ viste
                 [ ] username
                     se codemonkey
                         [ ] link a /codemonkey/<username>
-                    se azienda
-                        [ ] link a /azienda/<username>
+                    se company
+                        [ ] link a /company/<username>
                 [ ] titolo
                 [ ] descrizione
             
 	[ ] /codemonkey/<username>
 		se loggato come <username>
-            [ ] tasto impostazioni
-				parametri
-					[ ] email
-					[ ] password
-						[ ] vecchia password
-						[ ] nuova password
-						[ ] conferma nuova password
-					[ ] nome
-					[ ] cognome
-					[ ] bio
-					[ ] propic
-						[ ] caricamento immagine
-					[ ] tecnologie
-                        [ ] selezione da select.tecnologie
-			[ ] tasto logout
-			[ ] /logout
+            [ ] lista card.l
+                [ ] card.lavoro
+            [ ] lista lavori.in_corso
+                [ ] card.lavoro
 		
-		se loggato come azienda
+		se loggato come company
 			[ ] /proponi
 				parametri
 					[ ] titolo
 					[ ] descrizione
 					[ ] tecnologie
 						[ ] selezione da select.tecnologia
-					[ ] azienda = <azienda.username>
+					[ ] company = <company.username>
 					[ ] codemonkey = <codemonkey.username>
 					[ ] data_inizio = null
 					[ ] data_fine = null
@@ -573,7 +495,7 @@ viste
 		se loggato come admin
 			[ ] tasto ban
 
-		[ ] lista di card.lavoro
+		[ ] lista card.lavoro
 		
 		[ ] /lavori
 			se loggato come <username>
@@ -585,7 +507,7 @@ viste
 
 			[ ] lavori effettuati
 			
-	[ ] /azienda/<username>
+	[ ] /company/<username>
 		se loggato come <username>
 			[ ] tasto modifica
 			[ ] /modifica
@@ -610,16 +532,35 @@ viste
 
 
 test
-	[ ] utente non loggato
-	[ ] codemonkey
-	[ ] azienda
-	[ ] admin
+    [ ] controller
+        [ ] utente non loggato
+        [ ] codemonkey
+        [ ] company
+        [ ] admin
                 
 deploy
-	[ ] azure
-        [ ] acr
-    [ ] vps
+    [x] development environment
+        [x] rails
+            [x] live reload
+        [x] angular
+            [x] nginx reverse proxy
+            [x] live reload
+        [x] postgres
+            [x] docker image
 
+    [ ] release environment
+        [ ] rails
+            [ ] build
+            [ ] run
+        [ ] angular
+            [x] build
+                [ ] ssr
+            [x] run
+        [x] postgres
+            [x] build
+            [x] run
 
-localStorage.currentUser
-    eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODM3MDk3NTMsInVzZXJfaWQiOjIxfQ.CAkwihEoqJWraWH5-568Cofmk5V8Xrse7g9UKeqoJdU
+    [ ] hosting
+        [ ] azure
+            [ ] acr
+        [ ] vps

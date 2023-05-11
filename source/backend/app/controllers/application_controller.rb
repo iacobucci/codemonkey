@@ -1,16 +1,23 @@
 class ApplicationController < ActionController::API
-  # protect_from_forgery with: :exception
-  # before_action :authenticate_user!
+  def errors
+    @errors ||= []
+  end
 
-  # private
+  def extract_params_and_validate(required_param, permitted_params)
+    @errors = errors
+    begin
+      @permitted_params = params.require(required_param).permit(*permitted_params)
+    rescue ActionController::ParameterMissing => e
+      @errors.push("Missing parameter #{e.param}.")
+    rescue ActionController::UnpermittedParameters => e
+      @errors.push("Unpermitted parameter #{e.params}.")
+    end
 
-  # def authenticate_user!
-  #   header = request.headers['Authorization']
-  #   jwt = header.split(' ').last if header
-  #   @current_user ||= JsonWebToken.decode(jwt) if jwt
-  #   raise 'Access denied.' unless @current_user
-  # rescue => exception
-  #   raise 'Access denied.' if exception.message == 'Expired'
-  #   render json: { error: 'Access denied.' }, status: :unauthorized
-  # end
+    except 400 if @errors.any?
+  end
+
+  def except(status, errors = @errors)
+    render json: { status: status, errors: errors }, status: :unprocessable_entity
+    throw :error
+  end
 end

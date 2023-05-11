@@ -30,9 +30,10 @@ default: &default
 development:
   <<: *default
   database: codemonkeydb
+  encoding: unicode
+
   host: localhost
   port: 5432
-
   username: <%= ENV['BACKEND_DATABASE_USER'] %>
   password: <%= ENV['BACKEND_DATABASE_PASSWORD'] %>
   # The specified database role being used to connect to postgres.
