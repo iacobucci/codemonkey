@@ -77,4 +77,5 @@ export class RegistrazioneComponent implements OnInit {
       );
 
   }
+  
 }
