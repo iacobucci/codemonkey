@@ -6,6 +6,12 @@ class Technology < ApplicationRecord
 
   #actions
 
+  def card
+    {
+      name: self.name,
+    }
+  end
+
   def self.suggest(name:)
     Technology.new(name: name, suggestion_time: Time.now, approved: false, rejected: false)
   end
@@ -20,6 +26,7 @@ class Technology < ApplicationRecord
     end
 
     self.approved = true
+    self
   end
 
   def reject()
@@ -32,6 +39,7 @@ class Technology < ApplicationRecord
     end
 
     self.rejected = true
+    self
   end
 
   def self.approved

@@ -21,14 +21,15 @@ class AuthenticationController < ApplicationController
   end
 
   def validate_username
-    @current_username ||= JsonWebToken.decode(@jwt)
+    @current_username ||= JsonWebToken.decode(@jwt).dig("user_id")
     if !@current_username
       except 401, ["Invalid token"]
     end
   end
 
   def validate_user
-    @current_user = User.find_by(username: @current_username.dig("user_id"))
+    @current_user = User.find_by(username: @current_username)
+    puts "trying to find user #{@current_username}"
     if !@current_user
       except 401, ["Invalid user"]
     end

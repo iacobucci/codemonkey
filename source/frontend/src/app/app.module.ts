@@ -34,7 +34,8 @@ import { RegistrazionePopupComponent } from './registrazione-popup/registrazione
 import { LoginPopupComponent } from './login-popup/login-popup.component';
 import { LogoutComponent } from './logout/logout.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
-import { ImageUploaderComponent } from './image-uploader/image-uploader.component'
+import { ImageUploaderComponent } from './image-uploader/image-uploader.component';
+import { UserCardComponent } from './user-card/user-card.component'
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { ImageUploaderComponent } from './image-uploader/image-uploader.componen
     FeedComponent,
     LoginPopupComponent,
     LogoutComponent,
-    ImageUploaderComponent
+    ImageUploaderComponent,
+    UserCardComponent
   ],
   imports: [
     BrowserModule,

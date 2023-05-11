@@ -35,6 +35,14 @@ class User < ApplicationRecord
 
   #actions
 
+  def card
+    {
+      username: self.username,
+      type: self.type,
+      email: self.email,
+    }
+  end
+
   def report_user(to:, description:)
     report = Report.new(reciever: to, sender: self, description: description, time: Time.now)
   end

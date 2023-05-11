@@ -21,7 +21,6 @@ class Api::Technology::ApproveController < AuthenticationController
   end
 
   def validate_user
-    @current_user = current_user
     if @current_user.type != "Admin"
       except 401, ["Invalid user"]
     end

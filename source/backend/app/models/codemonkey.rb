@@ -4,6 +4,19 @@ class Codemonkey < User
 
   #actions
 
+  def card
+    {
+      username: self.username,
+      type: self.type,
+      email: self.email,
+      first_name: self.first_name,
+      last_name: self.last_name,
+      bio: self.bio,
+      technologies: self.technologies.map { |technology| technology.card },
+      rating: self.rating,
+    }
+  end
+
   def accept_project(project:)
     if project.codemonkey != self
       raise "Codemonkey does not own project"

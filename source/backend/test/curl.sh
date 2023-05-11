@@ -83,6 +83,11 @@ function project/new {
 	curl -X POST http://localhost:8080/api/project/new -H "Authorization: Bearer $JWT" -H "Content-Type: application/json" -d "{\"new\": {\"title\": \"$TITLE\", \"codemonkey\": \"$CODEMONKEY\"}}"
 }
 
+function card/user {
+	NAME=$1
+	curl -X POST http://localhost:8080/api/card/user -H "Content-Type: application/json" -d "{\"user\": {\"username\": \"$NAME\"}}"
+}
+
 f="$1"
 shift
 $f "$@"

@@ -1,5 +1,5 @@
-class Api::LogoutController < AuthenticationController
+class Api::User::LogoutController < AuthenticationController
   def logout
-    Action.create(user: @current_user.username, name: "/logout", time: DateTime.now)
+    Action.create(user: @current_user, name: "/logout", time: DateTime.now)
   end
 end

@@ -38,5 +38,9 @@ Rails.application.routes.draw do
       post "codemonkey", to: "codemonkey#codemonkey"
       post "company", to: "company#company"
     end
+
+    namespace :card do
+      post "user", to: "user#index"
+    end
   end
 end
