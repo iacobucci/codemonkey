@@ -1,4 +1,4 @@
-class Api::Card::UserController < ApplicationController
+class Api::User::IndexController < ApplicationController
   before_action :validate_params
 
   def index
@@ -7,7 +7,7 @@ class Api::Card::UserController < ApplicationController
 
   def validate_params
     catch :error do
-      extract_params_and_validate(:user, [:username])
+      extract_params_and_validate(:index, [:username])
       validate_username
     end
   end

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
       post "logout", to: "logout#logout"
       post "settings", to: "settings#settings"
 
+      post "index", to: "index#index"
+
       namespace :propic do
         post "upload", to: "upload#upload"
         post "download", to: "download#download"
@@ -34,13 +36,10 @@ Rails.application.routes.draw do
     end
 
     namespace :feed do
-      post "feed", to: "feed#feed"
+      post "home", to: "home#home"
+      post "technologies", to: "technologies#technologies"
       post "codemonkey", to: "codemonkey#codemonkey"
       post "company", to: "company#company"
-    end
-
-    namespace :card do
-      post "user", to: "user#index"
     end
   end
 end

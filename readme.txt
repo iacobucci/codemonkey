@@ -11,10 +11,10 @@ docs
         [ ] architettura logica
             [ ] struttura
             [ ] interazione
-        [ ] piano di lavoro
+        [x] piano di lavoro
     progettazione
         [x] scelte tecnologiche
-        [ ] progettazione architetturale
+        [x] progettazione architetturale
             [x] client (frontend)
             [x] server (backend)
             [x] persistenza (database)
@@ -23,16 +23,6 @@ docs
             [x] containerizzazione
             [ ] deploy
 
-    roba da limare
-        [ ] req funz e non funz post analisi sicurezza aggiornati
-        [ ] casi d'uso aggiornati(aggiungiamo il log?)
-        [ ] se punto sopra c'é da fare anche lo scenario del log
-
-    [x] project references codemonkey/company
-    [ ] model azione
-    [ ] capire se progetto rifiutato da codemonkey cosa fare
-        notifica a company
-    
 misc
     frontend
         [x] toolbar
@@ -54,8 +44,6 @@ misc
             premendo sul componente technologies dalla card user si viene reindirizzati a /<username>?technologies=<tecnologies>
         [ ] ssr
             caricamento pagina più veloce
-        [ ] pwa
-            salvataggio in cache delle immagini
 
     backend
         [x] database connection
@@ -132,16 +120,16 @@ db
         [x] description
             varchar(4095)
 
+        [x] status
+            string
+
         [x] suggest_time
             datetime
-
         [x] start_time
             date
-        [x] rejected
-            boolean
-
         [x] end_time
             date
+
         [x] rating
             int null
         [x] comment
@@ -381,8 +369,20 @@ components
 			[ ] conferma
     
     [ ] form
-        [ ] signup
-        [ ] login
+        [x] signup
+            [x] username
+            [x] email
+                [x] controllo email valida
+            [x] password
+            [x] password_confirmation
+                [x] controllo password == password_confirmation
+            [x] company/codemonkey
+
+        [x] login
+            [x] username
+            [x] password
+            [x] totp
+
         [ ] settings
             [ ] upload
         [ ] suggest
@@ -404,9 +404,6 @@ components
     [ ] chips
         [ ] tecnologie
 
-	[ ] datepicker
-		[ ] data inizio-data fine
-			[ ] data inizio < data fine < Date.now()
 	
 	[ ] valutazione
 		[ ] n/5
@@ -415,22 +412,10 @@ components
 pages
     [ ] /signup
         form.signup
-            [ ] username
-            [ ] email
-                [ ] controllo email valida
-            [ ] password
-            [ ] password_confirmation
-                [ ] controllo password == password_confirmation
-            [ ] company/codemonkey
-
-        [ ] dialog.regisrazione
         [ ] forward a /impostazioni
                     
     [ ] /login
         form.login
-            [ ] username
-            [ ] password
-            [ ] totp
         se codemonkey  
             [ ] vai a /feed?tipo=company
         se company
@@ -438,7 +423,7 @@ pages
         se admin
             [ ] vai a /dashboard
 
-    [ ] /feed || /
+    [ ] /
 		parametri
 			[ ] radio button
 				?tipo=company

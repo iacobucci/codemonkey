@@ -29,7 +29,6 @@ class AuthenticationController < ApplicationController
 
   def validate_user
     @current_user = User.find_by(username: @current_username)
-    puts "trying to find user #{@current_username}"
     if !@current_user
       except 401, ["Invalid user"]
     end

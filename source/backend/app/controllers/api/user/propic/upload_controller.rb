@@ -2,14 +2,16 @@ require "mini_magick"
 require "tempfile"
 
 class Api::User::Propic::UploadController < AuthenticationController
+  SIZE = 400
+
   def upload
     catch :error do
       image = MiniMagick::Image.read(params[:propic].read)
 
       image.combine_options do |b|
         b.gravity "center"
-        b.resize "256x256^"
-        b.crop "256x256+0+0"
+        b.resize "#{SIZE}x#{SIZE}^"
+        b.crop "#{SIZE}x#{SIZE}+0+0"
         b.define "webp:lossless=False"
       end
 

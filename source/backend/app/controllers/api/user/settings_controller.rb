@@ -27,21 +27,17 @@ class Api::User::SettingsController < AuthenticationController
 
       if @permitted_params[:technologies]
         technologies = []
-        # @permitted_params[:technologies] looks like 1,2,3
-        for technology_id in @permitted_params[:technologies].split(",")
-          if Technology.exists?(technology_id)
-            t = Technology.find(technology_id)
-            if t.approved
-              technologies.push(t)
-            else
-              @errors.push("Technology not approved")
-            end
+        # @permitted_params[:technologies] looks like["name1", "name2"]
+        for technology_name in @permitted_params[:technologies]
+          technology = Technology.find_by(name: technology_name)
+          if technology.nil?
+            @errors.push("Invalid technology #{technology_name}.")
           else
-            @errors.push("Technology does not exist")
+            technologies.push(technology)
           end
         end
 
-        changed.push({ technologies: technologies.map(&:id).join(", ") })
+        changed.push({ technologies: technologies.map(&:name).join(", ") })
         @current_user.change_technologies(new_technologies: technologies)
       end
     end
@@ -74,9 +70,9 @@ class Api::User::SettingsController < AuthenticationController
   def validate_params
     case @current_user.type
     when "Company"
-      extract_params_and_validate(:settings, [:name, :password, :email, :bio, :technologies])
+      extract_params_and_validate(:settings, [:name, :password, :email, :bio, technologies: []])
     when "Codemonkey"
-      extract_params_and_validate(:settings, [:first_name, :last_name, :password, :email, :bio, :technologies])
+      extract_params_and_validate(:settings, [:first_name, :last_name, :password, :email, :bio, technologies: []])
     else
       extract_params_and_validate(:settings, [:password, :email])
     end

@@ -1,14 +1,22 @@
 <div style="display: flex; justify-content: center;">
     <div style="display: flex; flex-direction: column; align-items: center;">
 
-        <h1>Homepage per utenti loggati</h1>
-
-        <button mat-raised-button color="primary" (click)="hello()">Fai fetch con JWT</button>
-        
         <app-image-uploader [endpoint]="'/api/uploads'"></app-image-uploader>
 
         <div style="height: 48px"> </div>
-        
-        <app-user-card username="mario"></app-user-card>
+
+        <div *ngFor="let item of this.cards" class="scroll-item">
+            <app-user-card [username]="item.username"></app-user-card>
+            <div style="height: 48px"> </div>
+        </div>
+
+        <div *ngIf="this.moreToLoad">
+            <button mat-raised-button color="primary" (click)="feed()">Carica ancora</button>
+        </div>
+
+        <div *ngIf="!this.moreToLoad">
+            <p>Hai visto tutto!</p>
+        </div>
+
     </div>
 </div>

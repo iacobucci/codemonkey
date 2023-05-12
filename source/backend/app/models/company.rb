@@ -10,7 +10,6 @@ class Company < User
       name: self.name,
       bio: self.bio,
       technologies: self.technologies.map { |technology| technology.card },
-      rating: self.rating,
     }
   end
 
