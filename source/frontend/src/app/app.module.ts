@@ -44,7 +44,11 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { ImageUploaderComponent } from './components/image-uploader/image-uploader.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { CodemonkeyCardComponent } from './components/user-card/codemonkey-card/codemonkey-card.component';
-import { CompanyCardComponent } from './components/user-card/company-card/company-card.component'
+import { CompanyCardComponent } from './components/user-card/company-card/company-card.component';
+
+import { UserComponent } from './pages/user/user.component';
+import { CompanyComponent } from './pages/user/company/company.component'
+import { CodemonkeyComponent } from './pages/user/codemonkey/codemonkey.component';
 
 
 @NgModule({
@@ -66,7 +70,10 @@ import { CompanyCardComponent } from './components/user-card/company-card/compan
 
     RangePipe,
      CodemonkeyCardComponent,
-     CompanyCardComponent
+     CompanyCardComponent,
+     CodemonkeyComponent,
+     UserComponent,
+     CompanyComponent
   ],
   imports: [
     BrowserModule,

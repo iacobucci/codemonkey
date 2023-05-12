@@ -1,13 +1,21 @@
 <div style="display: flex; justify-content: center;">
     <div style="display: flex; flex-direction: column; align-items: center;">
 
-        <app-image-uploader [endpoint]="'/api/uploads'"></app-image-uploader>
+        <!-- <app-image-uploader [endpoint]="'/api/uploads'"></app-image-uploader> -->
 
         <div style="height: 48px"> </div>
 
+
         <div *ngFor="let item of this.cards" class="scroll-item">
-            <app-user-card [username]="item.username"></app-user-card>
-            <div style="height: 48px"> </div>
+          <ng-container *ngIf="item.type === 'Codemonkey'; else companyItem">
+            <app-codemonkey-card [username]="item.username" [email]="item.email" [firstName]="asCodemonkey(item).first_name" [lastName]="asCodemonkey(item).last_name" [bio]="asCodemonkey(item).bio" [rating]="asCodemonkey(item).rating" [technologies]="asCodemonkey(item).technologies"></app-codemonkey-card>
+          </ng-container>
+
+          <ng-template #companyItem>
+            <app-company-card [username]="item.username" [email]="item.email" [name]="asCompany(item).name" [bio]="asCompany(item).bio" [technologies]="asCompany(item).technologies"></app-company-card>
+          </ng-template>
+
+          <div style="height: 48px"> </div>
         </div>
 
         <div *ngIf="this.moreToLoad">
