@@ -166,10 +166,10 @@ CREATE TABLE public.projects (
     description text,
     suggestion_time timestamp(6) without time zone,
     start_time timestamp(6) without time zone,
-    rejected boolean,
     end_time timestamp(6) without time zone,
     rating double precision,
     comment text,
+    status character varying,
     codemonkey_id character varying NOT NULL,
     company_id character varying NOT NULL
 );

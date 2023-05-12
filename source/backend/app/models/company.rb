@@ -2,6 +2,17 @@ class Company < User
   has_many :projects, dependent: :destroy
   has_and_belongs_to_many :technologies, join_table: "technologies_users", foreign_key: "user_id", association_foreign_key: "technology_id", dependent: :destroy
 
+  def card
+    {
+      username: self.username,
+      type: self.type,
+      email: self.email,
+      name: self.name,
+      bio: self.bio,
+      technologies: self.technologies.map { |technology| technology.card },
+    }
+  end
+
   def new_project(title:, codemonkey:, technologies: [], description: "")
     suggestion_time = Time.now
     start_time = nil

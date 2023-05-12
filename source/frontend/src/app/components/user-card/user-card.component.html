@@ -1,0 +1,49 @@
+<style>
+    .scroll-container {
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+    }
+
+    .example-spacer {
+        flex: 1 1 auto;
+    }
+
+    .scroll-item {
+        margin-right: 8px;
+    }
+</style>
+
+<mat-card class="example-card">
+    <mat-card-header>
+        <img #profilePicSmallRef mat-card-avatar src="" alt="Immagine di profilo">
+        <mat-card-title>{{firstName}} {{lastName}}</mat-card-title>
+        <mat-card-subtitle>@{{this.username}}</mat-card-subtitle>
+        <span class="example-spacer"></span>
+        <app-valutazione [rating]="rating"></app-valutazione>
+    </mat-card-header>
+    <img #profilePicLargeRef mat-card-image src="" alt="Immagine di profilo" style="width: 100%;">
+    <mat-divider></mat-divider>
+    <button mat-raised-button color="primary" (click)="mail()">Contatta</button>
+    <mat-divider></mat-divider>
+
+    <span style="height:8px"></span>
+
+    <p style="margin-left: 4px; margin-right: 4px;">
+        {{this.bio}}
+    </p>
+
+    <span style="height:6px"></span>
+
+    <mat-divider></mat-divider>
+
+    <div class="scroll-container">
+        <div *ngFor="let item of this.technologies" class="scroll-item">
+            <button mat-raised-button>{{ item }}</button>
+        </div>
+    </div>
+
+</mat-card>
+
+

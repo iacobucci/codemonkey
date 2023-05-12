@@ -2,7 +2,9 @@ class Api::Technology::SuggestController < AuthenticationController
   before_action :validate_params
 
   def suggest
-    @technology = Technology.suggest(name: @permitted_params[:name])
+    catch :error do
+      @technology = Technology.suggest(name: @permitted_params[:name])
+    end
 
     if !@technology.valid?
       @errors.push("Invalid name")

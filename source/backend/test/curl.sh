@@ -34,13 +34,19 @@ function user/settings {
 	BIO=$5
 	FIRSNAME=$6
 	LASTNAME=$7
-	curl -X POST http://localhost:8080/api/user/settings -H "Authorization: Bearer $JWT" -H "Content-Type: application/json" -d "{\"settings\": {\"first_name\": \"$FIRSNAME\", \"last_name\": \"$LASTNAME\", \"email\": \"$EMAIL\", \"password\": \"$PASSWORD\", \"bio\": \"$BIO\", \"technologies\": \"$TECHNOLOGIES\" }}"
-	# curl -X POST http://localhost:8080/api/user/settings -H "Authorization: Bearer $JWT" -H "Content-Type: application/json" -d "{\"settings\": {\"email\": \"$EMAIL\", \"password\": \"$PASSWORD\", \"technologies\": \"$TECHNOLOGIES\" , \"bio\": \"$BIO\"}}"
+	curl -X POST http://localhost:8080/api/user/settings -H "Authorization: Bearer $JWT" -H "Content-Type: application/json" -d "{\"settings\": {\"first_name\": \"$FIRSNAME\", \"last_name\": \"$LASTNAME\", \"email\": \"$EMAIL\", \"password\": \"$PASSWORD\", \"bio\": \"$BIO\", \"technologies\": $TECHNOLOGIES }}"
 }
+
+function user/index {
+	NAME=$1
+	curl -X POST http://localhost:8080/api/card/user -H "Content-Type: application/json" -d "{\"index\": {\"username\": \"$NAME\"}}"
+}
+
+
 
 function user/propic/download {
 	NAME=$1
-	curl -X POST http://localhost:8080/api/user/propic/download -H "Content-Type: application/json" -d "{\"propic_download\": {\"username\": \"$NAME\"}}" --output "$NAME.webp"
+	curl -X POST http://localhost:8080/api/user/propic/download -H "Content-Type: application/json" -d "{\"propic_download\": {\"username\": \"$NAME\"}}" --output "$NAME.jpg"
 }
 
 function user/propic/upload {
@@ -54,27 +60,27 @@ function user/propic/delete {
 	curl -X POST http://localhost:8080/api/user/propic/delete -H "Authorization: Bearer $JWT"
 }
 
+
+
 function technology/suggest {
 	JWT=$1
 	NAME=$2
 	curl -X POST http://localhost:8080/api/technology/suggest -H "Authorization: Bearer $JWT" -H "Content-Type: application/json" -d "{\"suggest\": {\"name\": \"$NAME\"}}"
 }
 
-#TODO test
-
 function technology/approve {
 	JWT=$1
 	NAME=$2
-	curl -X POST http://localhost:8080/api/technology/approve -H "Authorization: Bearer $JWT" -H "Content-Type: application/json" -d "{\"approve\": {\"id\": \"$NAME\"}}"
+	curl -X POST http://localhost:8080/api/technology/approve -H "Authorization: Bearer $JWT" -H "Content-Type: application/json" -d "{\"approve\": {\"name\": \"$NAME\"}}"
 }
-
-#TODO test
 
 function technology/reject {
 	JWT=$1
 	NAME=$2
-	curl -X POST http://localhost:8080/api/technology/reject -H "Authorization: Bearer $JWT" -H "Content-Type: application/json" -d "{\"reject\": {\"id\": \"$NAME\"}}"
+	curl -X POST http://localhost:8080/api/technology/reject -H "Authorization: Bearer $JWT" -H "Content-Type: application/json" -d "{\"reject\": {\"name\": \"$NAME\"}}"
 }
+
+
 
 function project/new {
 	JWT=$1
@@ -82,6 +88,16 @@ function project/new {
 	CODEMONKEY=$3
 	curl -X POST http://localhost:8080/api/project/new -H "Authorization: Bearer $JWT" -H "Content-Type: application/json" -d "{\"new\": {\"title\": \"$TITLE\", \"codemonkey\": \"$CODEMONKEY\"}}"
 }
+
+
+
+function feed/home { 
+	TYPE=$1
+	TECHNOLOGIES=$2
+	SEEN=$3
+	curl -X POST http://localhost:8080/api/feed/home -H "Content-Type: application/json" -d "{\"home\": {\"type\": \"$TYPE\", \"technologies\": $TECHNOLOGIES, \"seen\": $SEEN}}"
+}
+
 
 f="$1"
 shift

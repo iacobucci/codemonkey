@@ -1,0 +1,22 @@
+<div style="display: flex; justify-content: center;">
+    <div style="display: flex; flex-direction: column; align-items: center;">
+
+        <app-image-uploader [endpoint]="'/api/uploads'"></app-image-uploader>
+
+        <div style="height: 48px"> </div>
+
+        <div *ngFor="let item of this.cards" class="scroll-item">
+            <app-user-card [username]="item.username"></app-user-card>
+            <div style="height: 48px"> </div>
+        </div>
+
+        <div *ngIf="this.moreToLoad">
+            <button mat-raised-button color="primary" (click)="feed()">Carica ancora</button>
+        </div>
+
+        <div *ngIf="!this.moreToLoad">
+            <p>Hai visto tutto!</p>
+        </div>
+
+    </div>
+</div>

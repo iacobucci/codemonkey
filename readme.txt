@@ -11,10 +11,10 @@ docs
         [ ] architettura logica
             [ ] struttura
             [ ] interazione
-        [ ] piano di lavoro
+        [x] piano di lavoro
     progettazione
         [x] scelte tecnologiche
-        [ ] progettazione architetturale
+        [x] progettazione architetturale
             [x] client (frontend)
             [x] server (backend)
             [x] persistenza (database)
@@ -23,21 +23,6 @@ docs
             [x] containerizzazione
             [ ] deploy
 
-    roba da limare
-        [ ] req funz e non funz post analisi sicurezza aggiornati
-        [ ] casi d'uso aggiornati(aggiungiamo il log?)
-        [ ] se punto sopra c'é da fare anche lo scenario del log
-
-res
-	[ ] capire come ottenere parametri da componente genitore
-	[x] modellare tabelle con rails db:migration
-    [x] activerecord
-    [x] sti
-    [x] project references codemonkey/company
-    [ ] model azione
-    [ ] capire se progetto rifiutato da codemonkey cosa fare
-        notifica a company
-    
 misc
     frontend
         [x] toolbar
@@ -51,261 +36,275 @@ misc
         [x] login
             [x] salvataggio stato con JWT
             [ ] bug forward a /feed
-        [x] registrazione
+        [x] signup
             [x] matching passwords
             [x] qr code
                 [x] bug libreria
+	    [ ] capire come ottenere parametri da componente genitore
+            premendo sul componente technologies dalla card user si viene reindirizzati a /<username>?technologies=<tecnologies>
+        [ ] ssr
+            caricamento pagina più veloce
 
     backend
         [x] database connection
         [x] ActiveRecord
         [x] 2FA totp
         [x] JWT
-            [ ] architettura sistema di permessi
-                jwt -> user -> codemonkey | company | admin -> azione
+        [x] activerecord
+            model.property = new_property
+            model.save
 
     database
-        [ ] rails migration
+        [x] modellare tabelle con rails db:migration
+        [x] sti
+            grande tablela user con type
+        [x] salvataggio propic come jpeg
+            
         
 db
-    [x] timestamps di creazione
-    [x] timestamps di update
-    entity
-        [ ] user 1:1
-            [ ] username
-                primary key varchar(255)
-            [ ] password_digest
-                varchar(255)
-            [ ] totp_secret
-                varchar(255)
-            [ ] email
-                varchar(255)
-            [ ] tipo
-                enum (codemonkey, company, admin)
+    [x] users
+        [x] username
+            primary key varchar(255)
+        [x] password_digest
+            varchar(255)
+        [x] totp_secret
+            varchar(255)
+        [x] email
+            varchar(255)
+        [x] tipo
+            enum (codemonkey, company, admin)
 
-        [ ] codemonkey 1:1
-            [ ] username
-                primary key varchar(255) foreign key to user
-            [ ] email
-                varchar(255)
-            [ ] nome
-                varchar(255)
-            [ ] bio
-                varchar(4095)
-            [ ] propic
-                blob
-            [ ] stato
-                enum (attivo, bannato)
-
-            [ ] cognome
-                varchar(255)
-            [ ] valutazione_media
-                int null
-                    
-        [ ] company 1:1
-            [ ] username
-                primary key varchar(255) foreign key to user
-            [ ] email
-                varchar(255)
-            [ ] nome
-                varchar(255)
-            [ ] bio
-                varchar(4095)
-            [ ] propic
-                blob
-            [ ] stato
-                enum (attivo, bannato)
-
-        [ ] admin 1:1
-            [ ] username
-                primary key varchar(255) foreign key to user
-
-        [ ] tecnologia
-            [ ] id
-                primary key int autoincrement
-            [ ] nome
-                varchar(255)
-            [ ] data_suggerimento
-                datetime
-            [ ] username
-                foreign key a user
-            [ ] approvata
-                boolean
-            [ ] rifiutata
-                boolean
-
-    relation
-        [ ] lavoro 1:N
-            [ ] id
-                primary key int autoincrement
-            [ ] titolo
-                varchar(255)
-            [ ] descrizione
-                varchar(4095)
-
-            [ ] data_proposta
-                datetime
-
-            [ ] data_inizio
-                date
-
-            [ ] data_fine
-                date
-            [ ] valutazione
-                int null
-            [ ] commento
-                varchar(1024)
+    [x] codemonkeys extends user
+        [x] first_name
+            varchar(255)
+        [x] bio
+            varchar(4095)
+        [x] propic
+            blob
+        [x] status
+            enum (active, banned)
+        [x] last_name
+            varchar(255)
+        [x] rating
+            int null
                 
-            [ ] codemonkey
-                foreign key a codemonkey
-            [ ] company
-                foreign key a company
-            [ ] tecnologie
-                foreign key a tecnologie
-        
-        [ ] lavori_tecnologie N:N
-            [ ] lavoro
-                foreign key a lavoro
-            [ ] tecnologia
-                foreign key a tecnologia
-        
-        [ ] codemonkey_tecnologie N:N
-            [ ] username
-                foreign key a codemonkey
-            [ ] tecnologia
-                foreign key a tecnologia
+    [x] companies extends user
+        [x] name
+            varchar(255)
+        [x] bio
+            varchar(4095)
+        [x] propic
+            blob
+        [x] status
+            enum (active, banned)
 
-        [ ] aziende_tecnologie N:N
-            [ ] username
-                foreign key a company
-            [ ] tecnologia
-                foreign key a tecnologia
-        
-        [ ] report_user N:N
-            [ ] username_from
-                foreign key a user
-            [ ] username_to
-                foreign key a user
-            [ ] data
-                datetime
-            [ ] descrizione
-                varchar(1024)
+    [x] admin extends user
 
-        [ ] azioni 1:N
-            [ ] id
-                primary key int autoincrement
-            [ ] nome
-                varchar(255)
-            [ ] data
-                datetime
-            [ ] descrizione
-                varchar(8191)
-                    codemonkey
-                        signup
-                        login
-                        logout
-                        delete
-                        accept?project=<project.id>
-                        reject?project=<project.id>
-                        settings?nome=password&<nome>&cognome=<cognome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
-                        suggest?tecnologia=<tecnologia>
-                        report?[codemonkey=<codemonkey.username>||company=<codemonkey.username>]
-                    company
-                        signup
-                        login
-                        logout
-                        new?title=<project.id>&codemonkey=<codemonkey.username>&descrizione=<descrizione>&tecnologie=<tecnologia1,tecnologia2,...>
-                        terminate?project=<project.id>
-                        settings?nome=password&<nome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
-                        suggest?tecnologia=<tecnologia>
-                        report?[codemonkey=<codemonkey.username>||company=<codemonkey.username>]
-                    admin
-                        login
-                        logout
-                        set?[codemonkey=<codemonkey.username>||company=<codemonkey.username>]&stato=<attivo|bannato|sospeso>
-                        add?tecnologia=<tecnologia>
-                        approve?tecnologia=<tecnologia>
-                        rifiuta?tecnologia=<tecnologia>
-                        
-            [ ] username
-                foreign key a user
-                    user che invoca l'azione
-                        codemonkey
-                        company
-                        admin
+    [x] technologies
+        [x] id
+            primary key int autoincrement
+        [x] name
+            varchar(255)
+        [x] suggest_time
+            datetime
+        [x] approved
+            boolean
+        [x] rejected
+            boolean
+
+    [x] projects
+        [x] id
+            primary key int autoincrement
+        [x] title
+            varchar(255)
+        [x] description
+            varchar(4095)
+
+        [x] status
+            string
+
+        [x] suggest_time
+            datetime
+        [x] start_time
+            date
+        [x] end_time
+            date
+
+        [x] rating
+            int null
+        [x] comment
+            varchar(1024)
+            
+        [x] codemonkey
+            foreign key a codemonkey
+        [x] company
+            foreign key a company
+        [x] tecnologies
+            foreign key a tecnologie
+    
+    [x] technologies_projects
+        [x] project
+            foreign key a project
+        [x] technology
+            foreign key a technology
+    
+    [x] projects_users
+        [x] user
+            foreign key a user
+        [x] technology
+            foreign key a technology
+    
+    [x] technologies_users
+        [x] user
+            foreign key a user
+        [x] technology
+            foreign key a technology
+
+    [x] reports
+        [x] id 
+            primary key int autoincrement
+        [x] from
+            foreign key a user
+        [x] to
+            foreign key a user
+        [x] data
+            datetime
+        [x] descrizione
+            varchar(1024)
+
+    [x] actions 1:N
+        [x] id
+            primary key int autoincrement
+        [x] name
+            varchar(255)
+        [x] user
+            foreign key a user
+        [x] time
+            datetime
+        [x] description
+            varchar(8191)
+
+actions
+    codemonkey
+        signup
+        login
+        logout
+        delete
+        accept?project=<project.id>
+        reject?project=<project.id>
+        settings?nome=password&<nome>&cognome=<cognome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
+        suggest?tecnologia=<tecnologia>
+        report?[codemonkey=<codemonkey.username>||company=<codemonkey.username>]
+    company
+        signup
+        login
+        logout
+        new?title=<project.id>&codemonkey=<codemonkey.username>&descrizione=<descrizione>&tecnologie=<tecnologia1,tecnologia2,...>
+        terminate?project=<project.id>
+        settings?nome=password&<nome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
+        suggest?tecnologia=<tecnologia>
+        report?[codemonkey=<codemonkey.username>||company=<codemonkey.username>]
+    admin
+        login
+        logout
+        set?[codemonkey=<codemonkey.username>||company=<codemonkey.username>]&stato=<attivo|bannato|sospeso>
+        add?tecnologia=<tecnologia>
+        approve?tecnologia=<tecnologia>
+        rifiuta?tecnologia=<tecnologia>
 
 model
     user
         codemonkey
         company
         admin
-    
     project
     action 
     technology
     report
 
 endpoint
-	public
-		[ ] /api/signup
-		
-		[ ] /api/login
+    /api
+        endpoint di popolamento dell'interfaccia
+            /feed
+                [ ] /dashboard
+                    lista di tutte le actions
+                    l'ordine è actions.time.desc
+                    vengono inviate 20 card alla volta
+                    /dashboard?page=<num>
+                    ovviamente si possono perdere di vista le actions per via della paginazione
+                [ ] /home
+                    si filtra per codemonkey||company||tutti
+                    si filtra per tecnologia
+                    l'ordine è casuale
+                    vengono inviate 5 card alla volta
 
-		[ ] /api/feed
-                    
-        [ ] /api/user
+                    bisogna controllare quale card sono state gia visualizzate
+                    /home?seen=<username1,username2,...>&technologies=<tecnologia1,tecnologia2,...>&type=<codemonkey|company|all>
+                [ ] /user
+                    si filtra per tecnologia
+                    l'ordine è project.suggest_time.asc
+                    vengono inviate 5 card alla volta
+                    /user?page=<num>&technologies=<tecnologia1,tecnologia2,...>
+        endpoint di controllo
+            /project
+                [ ] /accept
+                [ ] /reject
+                [ ] /new
+                [ ] /terminate
+                [ ] /edit
+            /report
+                [ ] /send
+                [ ] /ban
+            /technology
+                [ ] /suggest
+                [ ] /approve
+                [ ] /reject
+            /user
+                [x] /signup
+                [x] /login
+                [x] /delete
+                [x] /logout
+                [x] /settings
+                    /propic
+                    [x] /upload
+                    [x] /delete
+                    [x] /download
 
-        [ ] /api/lavoro
-
-	auth
-		[ ] /api/logout
-        
-        [ ] /api/report
-
-		[ ] /api/dashboard
-        
-        [ ] /api/azione
-
-		[ ] /api/user/modifica
-        
-        [ ] /api/lavoro/modifica
-
-
-
-componenti
+components
     [ ] card
-        [ ] codemonkey
-            [ ] username
-				link a /codemonkey/<username>
-			[ ] nome
-			[ ] cognome
-            [ ] propic
-            [ ] valutazione media
-                [ ] component valutazione
-            [ ] mailto
-            [ ] bio
-            [ ] tecnologie
-                [ ] list.tecnologie
+        [ ] user
+            [ ] codemonkey
+                [ ] username
+                    link a /codemonkey/<username>
+                [ ] nome
+                [ ] cognome
+                [ ] propic
+                [ ] valutazione media
+                    [ ] component valutazione
+                [ ] mailto
+                [ ] bio
+                [ ] tecnologie
+                    [ ] list.tecnologie
 
-        [ ] company
-            [ ] username
-				link a /company/<username>
-			[ ] nome
-            [ ] propic
-            [ ] mailto
-            [ ] bio
-            [ ] tecnologie
-                [ ] list.tecnologie
-
-        [ ] lavoro
             [ ] company
+                [ ] username
+                    link a /company/<username>
+                [ ] nome
+                [ ] propic
+                [ ] mailto
+                [ ] bio
+                [ ] tecnologie
+                    [ ] list.tecnologie
+
+        [ ] project
+            [ ] company
+				[ ] link a /company/<username>
 				[ ] username
-					link a /company/<username>
                 [ ] nome
                 [ ] propic
             [ ] codemonkey
+                [ ] link a /codemonkey/<username>
 				[ ] username
-					link a /codemonkey/<username>
                 [ ] nome
                 [ ] cognome
                 [ ] propic
@@ -346,11 +345,11 @@ componenti
             [ ] descrizione
     
     [ ] dialog
-        [ ] registrazione
+        [ ] signup
             [x] qrdata
 
         [ ] errore
-			[ ] registrazione
+			[ ] signup
 				[ ] messaggio
 			[ ] risposta
 				[ ] messaggio
@@ -370,12 +369,24 @@ componenti
 			[ ] conferma
     
     [ ] form
-        [ ] registrazione
-        [ ] login
-        [ ] modifica
-            [ ] caricamento_immagine
-        [ ] proponi
-        [ ] valutazione
+        [x] signup
+            [x] username
+            [x] email
+                [x] controllo email valida
+            [x] password
+            [x] password_confirmation
+                [x] controllo password == password_confirmation
+            [x] company/codemonkey
+
+        [x] login
+            [x] username
+            [x] password
+            [x] totp
+
+        [ ] settings
+            [ ] upload
+        [ ] suggest
+        [ ] rate
         [ ] ban
 	
 	[ ] select
@@ -393,33 +404,18 @@ componenti
     [ ] chips
         [ ] tecnologie
 
-	[ ] datepicker
-		[ ] data inizio-data fine
-			[ ] data inizio < data fine < Date.now()
 	
 	[ ] valutazione
 		[ ] n/5
 		[ ] 0..5 stelline
 
-viste
-    [ ] /regisrazione
-        form.registrazione
-            [ ] username
-            [ ] email
-                [ ] controllo email valida
-            [ ] password
-            [ ] password_confirmation
-                [ ] controllo password == password_confirmation
-            [ ] company/codemonkey
-
-        [ ] dialog.regisrazione
+pages
+    [ ] /signup
+        form.signup
         [ ] forward a /impostazioni
                     
     [ ] /login
         form.login
-            [ ] username
-            [ ] password
-            [ ] totp
         se codemonkey  
             [ ] vai a /feed?tipo=company
         se company
@@ -427,7 +423,7 @@ viste
         se admin
             [ ] vai a /dashboard
 
-    [ ] /feed || /
+    [ ] /
 		parametri
 			[ ] radio button
 				?tipo=company
@@ -439,7 +435,7 @@ viste
         [ ] lista card.company
 
 
-    [ ] /impostazioni
+    [ ] /settings
         form.impostazioni
             se codemonkey
                 [ ] nome

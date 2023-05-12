@@ -1,10 +1,17 @@
+//base
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
+//misc
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { RangePipe } from './range.pipe';
+import { AuthGuard } from './auth.guard';
+import { TokenInterceptor } from './token.interceptor';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+
+//angular material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -19,38 +26,47 @@ import { MatRadioModule } from '@angular/material/radio';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
+//packages
 import { QRCodeModule } from "angularx-qrcode"
 
-import { ThemeSwitcherComponent } from './theme-switcher/theme-switcher.component';
-import { FeedComponent } from './feed/feed.component';
-import { HomeComponent } from './home/home.component';
-import { DevcardComponent } from './devcard/devcard.component';
-import { ValutazioneComponent } from './valutazione/valutazione.component';
-import { RangePipe } from './range.pipe';
-import { RegistrazioneComponent } from './registrazione/registrazione.component';
-import { LoginComponent } from './login/login.component'
-import { AuthGuard } from './auth.guard';
-import { RegistrazionePopupComponent } from './registrazione-popup/registrazione-popup.component';
-import { LoginPopupComponent } from './login-popup/login-popup.component';
-import { LogoutComponent } from './logout/logout.component';
-import { TokenInterceptor } from './interceptors/token.interceptor';
-import { ImageUploaderComponent } from './image-uploader/image-uploader.component'
+//pages
+import { FeedComponent } from './pages/feed/feed.component';
+import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/login/login.component'
+import { SignupComponent } from './pages/signup/signup.component';
+
+//components
+import { ThemeSwitcherComponent } from './components/theme-switcher/theme-switcher.component';
+import { ValutazioneComponent } from './components/valutazione/valutazione.component';
+import { RegistrazionePopupComponent } from './components/popup/registrazione-popup/registrazione-popup.component';
+import { LoginPopupComponent } from './components/popup/login-popup/login-popup.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { ImageUploaderComponent } from './components/image-uploader/image-uploader.component';
+import { UserCardComponent } from './components/user-card/user-card.component';
+import { CodemonkeyCardComponent } from './components/user-card/codemonkey-card/codemonkey-card.component';
+import { CompanyCardComponent } from './components/user-card/company-card/company-card.component'
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ThemeSwitcherComponent,
-    HomeComponent,
-    DevcardComponent,
-    ValutazioneComponent,
-    RangePipe,
-    RegistrazioneComponent,
-    LoginComponent,
-    RegistrazionePopupComponent,
+
     FeedComponent,
+    HomeComponent,
+    LoginComponent,
+    SignupComponent,
+
+    ThemeSwitcherComponent,
+    ValutazioneComponent,
+    RegistrazionePopupComponent,
     LoginPopupComponent,
     LogoutComponent,
-    ImageUploaderComponent
+    ImageUploaderComponent,
+    UserCardComponent,
+
+    RangePipe,
+     CodemonkeyCardComponent,
+     CompanyCardComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +90,7 @@ import { ImageUploaderComponent } from './image-uploader/image-uploader.componen
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'registrazione', component: RegistrazioneComponent },
+      { path: 'registrazione', component: SignupComponent },
       { path: 'feed', component: FeedComponent, canActivate: [AuthGuard] },
     ])
   ],
