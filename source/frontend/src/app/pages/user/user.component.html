@@ -1,1 +1,41 @@
+<style>
+    .scroll-container {
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+    }
+
+    .example-spacer {
+        flex: 1 1 auto;
+    }
+
+    .scroll-item {
+        margin-right: 8px;
+    }
+
+    .custom-link {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .custom-link:hover {
+        text-decoration: underline;
+    }
+
+    .profile-fab {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        margin-right: 16px;
+        margin-bottom: 16px;
+        z-index: 100;
+    }
+</style>
+
+
+<img #profilePicLargeRef mat-card-image src="" alt="Immagine di profilo" style="height: 192px; border-radius: 50%;">
+
 <p>user works!</p>
+{{this.username}}
+{{this.type}}

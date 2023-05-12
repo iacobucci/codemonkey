@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
-import { Technology } from "../../interfaces/technology.interface"
+import { Technology } from "../../../interfaces/technology.interface"
 
 import { ElementRef, ViewChild } from '@angular/core';
 

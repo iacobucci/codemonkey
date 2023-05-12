@@ -5,7 +5,6 @@
 
         <div style="height: 48px"> </div>
 
-
         <div *ngFor="let item of this.cards" class="scroll-item">
           <ng-container *ngIf="item.type === 'Codemonkey'; else companyItem">
             <app-codemonkey-card [username]="item.username" [email]="item.email" [firstName]="asCodemonkey(item).first_name" [lastName]="asCodemonkey(item).last_name" [bio]="asCodemonkey(item).bio" [rating]="asCodemonkey(item).rating" [technologies]="asCodemonkey(item).technologies"></app-codemonkey-card>
