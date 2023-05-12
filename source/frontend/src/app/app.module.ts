@@ -101,6 +101,7 @@ import { CodemonkeyComponent } from './pages/user/codemonkey/codemonkey.componen
       { path: 'feed', component: FeedComponent, canActivate: [AuthGuard] },
       
       {path: "codemonkey/:username", component: CodemonkeyComponent},
+      {path: "company/:username", component: CompanyComponent},
     ])
   ],
   providers: [

@@ -39,7 +39,7 @@ function user/settings {
 
 function user/index {
 	NAME=$1
-	curl -X POST http://localhost:8080/api/card/user -H "Content-Type: application/json" -d "{\"index\": {\"username\": \"$NAME\"}}"
+	curl -X POST http://localhost:8080/api/user/index -H "Content-Type: application/json" -d "{\"index\": {\"username\": \"$NAME\"}}"
 }
 
 
