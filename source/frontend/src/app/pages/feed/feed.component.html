@@ -5,17 +5,30 @@
 
         <div style="height: 48px"> </div>
 
-        <div *ngFor="let item of this.cards" class="scroll-item">
+        <!-- <div *ngFor="let item of this.cards" class="scroll-item">
           <ng-container *ngIf="item.type === 'Codemonkey'; else companyItem">
-            <app-codemonkey-card [username]="item.username" [email]="item.email" [firstName]="asCodemonkey(item).first_name" [lastName]="asCodemonkey(item).last_name" [bio]="asCodemonkey(item).bio" [rating]="asCodemonkey(item).rating" [technologies]="asCodemonkey(item).technologies"></app-codemonkey-card>
+            <app-codemonkey-card [codemonkey]="item"></app-codemonkey-card>
           </ng-container>
 
           <ng-template #companyItem>
-            <app-company-card [username]="item.username" [email]="item.email" [name]="asCompany(item).name" [bio]="asCompany(item).bio" [technologies]="asCompany(item).technologies"></app-company-card>
+            <app-company-card [company]="item"></app-company-card>
           </ng-template>
 
           <div style="height: 48px"> </div>
+</div> -->
+
+        <div *ngFor="let item of this.cards" class="scroll-item">
+          <ng-container *ngIf="isCodemonkey(item)">
+            <app-codemonkey-card [codemonkey]="item"></app-codemonkey-card>
+          </ng-container>
+
+          <ng-container *ngIf="isCompany(item)">
+            <app-company-card [company]="item"></app-company-card>
+          </ng-container>
+
+          <div style="height: 48px"> </div>
         </div>
+        
 
         <div *ngIf="this.moreToLoad">
             <button mat-raised-button color="primary" (click)="feed()">Carica ancora</button>

@@ -1,46 +1,50 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { Component} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 import { Technology } from "../../../interfaces/technology.interface"
+import { User } from "../../../interfaces/user.interface"
 
+import { SimpleChanges } from '@angular/core';
 import { ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-user-card',
   templateUrl: './user-card.component.html',
-  styleUrls: ['./user-card.component.scss']
+  styleUrls: ['../card.component.scss'],
 })
 
 export class UserCardComponent {
-  constructor(private http: HttpClient) { }
-
-  @Input() username: string = '';
 
   @ViewChild('profilePicSmallRef') profilePicSmallRef!: ElementRef;
   @ViewChild('profilePicLargeRef') profilePicLargeRef!: ElementRef;
 
-  @Input() email: string = '';
-  @Input() rating: number = 0;
-  @Input() bio: string = '';
-  @Input() technologies: Technology[] = [];
-  
+  user: User | null = null;
+
+  name: string | null = null;
+  rating: number | null = null;
+  bio: string | null = null;
+  technologies: Technology[] | null = null;
+
   hasRating: boolean = false;
-  type = "User";
-  
-  getName(): string{
-    return "";
-  }
+
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.fetchData(this.username);
+    if (this.user)
+      this.fetchData(this?.user.username);
   }
 
-  mail(): void {
-    window.location.href = `mailto:${this.email}`;
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes["user"] && changes["user"].currentValue) {
+      const username = changes["user"].currentValue.username;
+      this.fetchData(username);
+    }
   }
-  
-  
-  fetchData(username: string): void {
+
+  fetchData(username: string | undefined): void {
+    // Se l'username è indefinito, termina l'esecuzione del metodo
+    if (!username) return;
+
     this.http.post("/api/user/propic/download", { propic_download: { username: username } }, { responseType: 'blob' }).subscribe((data: any) => {
       const blob = new Blob([data], { type: 'image/webp' });
       const url = window.URL.createObjectURL(blob);
@@ -49,13 +53,19 @@ export class UserCardComponent {
       this.profilePicLargeRef.nativeElement.setAttribute("src", url);
     });
   }
-  
-  visitUrl(): string{
-    return "/" + this.type.toLowerCase() + "/" + this.username;
+
+
+  mail(): void {
+    window.location.href = `mailto:${this.user?.email}`;
   }
 
-  technology(name: string){
-    return "/" + this.type.toLowerCase() + "/" + this.username + "?technology=" + name;
+
+  visitUrl(): string {
+    return "/" + this.user?.type.toLowerCase() + "/" + this.user?.username;
+  }
+
+  technology(name: string) {
+    return "/" + this.user?.type.toLowerCase() + "/" + this.user?.username + "?technology=" + name;
   }
 
 

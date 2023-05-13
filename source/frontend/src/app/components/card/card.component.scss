@@ -1,0 +1,41 @@
+.example-card {
+  max-width: 400px;
+  width: 400px;
+}
+
+.example-header-image {
+  background-size: cover;
+}
+
+.scroll-container {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.scroll-item {
+  margin-right: 8px;
+}
+
+.custom-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.custom-link:hover {
+  text-decoration: underline;
+}
+
+.profile-fab {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin-right: 16px;
+  margin-bottom: 16px;
+  z-index: 100;
+}

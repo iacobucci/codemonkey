@@ -9,14 +9,18 @@ export class ValutazioneComponent {
   constructor(){
     this.rating = 0;
   }
-  @Input() rating: number;
+  @Input() rating: number | null = null;
   maxRating = 5;
 
   get filledStars(): number {
+    if (this.rating == null)
+      return 0;
     return Math.floor(this.rating);
   }
 
   get hasHalfStar(): boolean {
+    if (this.rating == null)
+      return false;
     return this.rating % 1 >= 0.5;
   }
 

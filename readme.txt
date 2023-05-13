@@ -40,10 +40,9 @@ misc
             [x] matching passwords
             [x] qr code
                 [x] bug libreria
-	    [ ] capire come ottenere parametri da componente genitore
+	    [x] capire come ottenere parametri da componente genitore
             premendo sul componente technologies dalla card user si viene reindirizzati a /<username>?technologies=<tecnologies>
         [ ] ssr
-            caricamento pagina più veloce
 
     backend
         [x] database connection
@@ -232,7 +231,7 @@ endpoint
                     vengono inviate 20 card alla volta
                     /dashboard?page=<num>
                     ovviamente si possono perdere di vista le actions per via della paginazione
-                [ ] /home
+                [x] /home
                     si filtra per codemonkey||company||tutti
                     si filtra per tecnologia
                     l'ordine è casuale
@@ -240,11 +239,14 @@ endpoint
 
                     bisogna controllare quale card sono state gia visualizzate
                     /home?seen=<username1,username2,...>&technologies=<tecnologia1,tecnologia2,...>&type=<codemonkey|company|all>
-                [ ] /user
+                [x] /user
                     si filtra per tecnologia
                     l'ordine è project.suggest_time.asc
                     vengono inviate 5 card alla volta
                     /user?page=<num>&technologies=<tecnologia1,tecnologia2,...>
+            /dashboard
+                [ ] actions
+                [ ] technologies
         endpoint di controllo
             /project
                 [ ] /accept
@@ -272,29 +274,29 @@ endpoint
 
 components
     [ ] card
-        [ ] user
+        [x] user
             [ ] codemonkey
-                [ ] username
+                [x] username
                     link a /codemonkey/<username>
-                [ ] nome
-                [ ] cognome
-                [ ] propic
-                [ ] valutazione media
-                    [ ] component valutazione
-                [ ] mailto
-                [ ] bio
-                [ ] tecnologie
-                    [ ] list.tecnologie
+                [x] nome
+                [x] cognome
+                [x] propic
+                [x] valutazione media
+                    [x] component valutazione
+                [x] mailto
+                [x] bio
+                [x] tecnologie
+                    [x] list.tecnologie
 
-            [ ] company
-                [ ] username
+            [x] company
+                [x] username
                     link a /company/<username>
-                [ ] nome
-                [ ] propic
-                [ ] mailto
-                [ ] bio
-                [ ] tecnologie
-                    [ ] list.tecnologie
+                [x] nome
+                [x] propic
+                [x] mailto
+                [x] bio
+                [x] tecnologie
+                    [x] list.tecnologie
 
         [ ] project
             [ ] company

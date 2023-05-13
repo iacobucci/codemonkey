@@ -33,9 +33,7 @@ class User < ApplicationRecord
     Report.where("from_id = ? OR to_id = ?", self.id, self.id)
   end
 
-  #actions
-
-  def card
+  def index
     {
       username: self.username,
       type: self.type,
@@ -53,22 +51,5 @@ class User < ApplicationRecord
 
   def change_email(new_email:)
     self.email = new_email
-  end
-
-  def change_bio(new_bio:)
-    self.bio = new_bio
-  end
-
-  def change_technologies(new_technologies:)
-    for technology in new_technologies
-      if not technology.approved
-        raise "Technology not approved"
-      end
-      if technology.rejected
-        raise "Technology rejected"
-      end
-    end
-
-    self.technologies = new_technologies
   end
 end

@@ -38,8 +38,7 @@ Rails.application.routes.draw do
     namespace :feed do
       post "home", to: "home#home"
       post "technologies", to: "technologies#technologies"
-      post "codemonkey", to: "codemonkey#codemonkey"
-      post "company", to: "company#company"
+      post "user", to: "user#user"
     end
   end
 end

@@ -20,7 +20,7 @@ class Api::Feed::HomeController < ApplicationController
       @users = @users.reject { |user| @permitted_params[:seen].include?(user.username) }
     end
 
-    data = @users.map(&:card).shuffle!.take(4)
+    data = @users.map(&:index).shuffle!.take(4)
 
     render json: data, status: :ok
   end

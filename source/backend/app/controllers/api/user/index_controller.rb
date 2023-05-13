@@ -2,7 +2,7 @@ class Api::User::IndexController < ApplicationController
   before_action :validate_params
 
   def index
-    render json: @user.card, status: :ok
+    render json: @user.index, status: :ok
   end
 
   def validate_params

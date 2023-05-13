@@ -42,9 +42,11 @@ import { RegistrazionePopupComponent } from './components/popup/registrazione-po
 import { LoginPopupComponent } from './components/popup/login-popup/login-popup.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { ImageUploaderComponent } from './components/image-uploader/image-uploader.component';
+
 import { UserCardComponent } from './components/card/user/user-card.component';
 import { CodemonkeyCardComponent } from './components/card/user/codemonkey/codemonkey-card.component';
 import { CompanyCardComponent } from './components/card/user/company/company-card.component';
+import { ProjectCardComponent } from './components/card/project-card/project-card.component';
 
 import { UserComponent } from './pages/user/user.component';
 import { CompanyComponent } from './pages/user/company/company.component'
@@ -69,11 +71,12 @@ import { CodemonkeyComponent } from './pages/user/codemonkey/codemonkey.componen
     UserCardComponent,
 
     RangePipe,
-     CodemonkeyCardComponent,
-     CompanyCardComponent,
-     CodemonkeyComponent,
-     UserComponent,
-     CompanyComponent
+    CodemonkeyCardComponent,
+    CompanyCardComponent,
+    CodemonkeyComponent,
+    UserComponent,
+    CompanyComponent,
+    ProjectCardComponent
   ],
   imports: [
     BrowserModule,
@@ -99,9 +102,9 @@ import { CodemonkeyComponent } from './pages/user/codemonkey/codemonkey.componen
       { path: 'login', component: LoginComponent },
       { path: 'registrazione', component: SignupComponent },
       { path: 'feed', component: FeedComponent, canActivate: [AuthGuard] },
-      
-      {path: "codemonkey/:username", component: CodemonkeyComponent},
-      {path: "company/:username", component: CompanyComponent},
+
+      { path: "codemonkey/:username", component: CodemonkeyComponent },
+      { path: "company/:username", component: CompanyComponent },
     ])
   ],
   providers: [

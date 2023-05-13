@@ -1,0 +1,6 @@
+@import "../../variables";
+
+.my-div {
+  background-color: map-get($mat-primary-scheme, 500);
+  color: white;
+}

@@ -1,38 +1,3 @@
-<style>
-    .scroll-container {
-        display: flex;
-        overflow-x: auto;
-        overflow-y: hidden;
-        white-space: nowrap;
-    }
-
-    .example-spacer {
-        flex: 1 1 auto;
-    }
-
-    .scroll-item {
-        margin-right: 8px;
-    }
-
-    .custom-link {
-        text-decoration: none;
-        color: inherit;
-    }
-
-    .custom-link:hover {
-        text-decoration: underline;
-    }
-
-    .profile-fab {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        margin-right: 16px;
-        margin-bottom: 16px;
-        z-index: 100;
-    }
-</style>
-
 <mat-card class="example-card">
 
     <button mat-fab color="primary" (click)="mail()" class="profile-fab">
@@ -40,27 +5,22 @@
     </button>
     <mat-card-header>
         <img #profilePicSmallRef mat-card-avatar src="" alt="Immagine di profilo">
-        <mat-card-title><a [routerLink]="[visitUrl()]"
-                class="custom-link">{{getName()}}</a></mat-card-title>
+        <mat-card-title><a [routerLink]="[visitUrl()]" class="custom-link">{{name}}</a></mat-card-title>
         <mat-card-subtitle><a [routerLink]="[visitUrl()]"
-                class="custom-link">@{{this.username}}</a></mat-card-subtitle>
+                class="custom-link">@{{this.user?.username}}</a></mat-card-subtitle>
         <span class="example-spacer"></span>
 
         <div *ngIf="this.hasRating == true">
             <div style="align-items: center;">
-                <app-valutazione [rating]="rating"></app-valutazione>
+                <app-valutazione [rating]="this.rating"></app-valutazione>
             </div>
         </div>
 
         <div *ngIf="this.hasRating == false">
-            <a mat-stroked-button disabled>{{this.type.toLocaleUpperCase()}}</a>
+            <a mat-stroked-button disabled>{{this.user?.type?.toLocaleUpperCase()}}</a>
         </div>
     </mat-card-header>
     <img #profilePicLargeRef mat-card-image src="" alt="Immagine di profilo" style="width: 100%;">
-    <mat-divider></mat-divider>
-
-
-
     <mat-divider></mat-divider>
 
     <span style="height:8px"></span>

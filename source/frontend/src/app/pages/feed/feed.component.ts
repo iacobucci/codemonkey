@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../authentication.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { HostListener } from '@angular/core';
 
 import {User} from "../../interfaces/user.interface"
-import {Technology} from "../../interfaces/technology.interface"
 import {Codemonkey} from "../../interfaces/codemonkey.interface"
 import {Company} from "../../interfaces/company.interface"
 
@@ -30,27 +28,12 @@ export class FeedComponent implements OnInit {
     this.feed();
   }
   
-  asCodemonkey(user :User): Codemonkey{
-    return user as Codemonkey;
-  }
-  
-  asCompany(user :User): Company{
-    return user as Company;
+  isCodemonkey(user: User): user is Codemonkey {
+    return user.type === 'Codemonkey';
   }
 
-  hello(): void {
-    const url = '/api/rails';
-    const jwtToken = localStorage.getItem('currentUser');
-    console.log(jwtToken, url);
-
-    this.http.get(url, { responseType: "text" }).pipe(
-      catchError(error => {
-        console.error('Error:', error);
-        return throwError(error);
-      })
-    ).subscribe(data => {
-      alert(data);
-    });
+  isCompany(user: User): user is Company {
+    return user.type === 'Company';
   }
 
   feed(): void {

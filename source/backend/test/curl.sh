@@ -86,7 +86,38 @@ function project/new {
 	JWT=$1
 	TITLE=$2
 	CODEMONKEY=$3
+	TECHNOLOGIES=$4
+	DESCRIPTION=$5
 	curl -X POST http://localhost:8080/api/project/new -H "Authorization: Bearer $JWT" -H "Content-Type: application/json" -d "{\"new\": {\"title\": \"$TITLE\", \"codemonkey\": \"$CODEMONKEY\"}}"
+}
+
+function project/accept {
+	JWT=$1
+	ID=$2
+	curl -X POST http://localhost:8080/api/project/accept -H "Authorization: Bearer $JWT" -H "Content-Type: application/json" -d "{\"accept\": {\"id\": \"$ID\"}}"
+}
+
+function project/reject {
+	JWT=$1
+	ID=$2
+	curl -X POST http://localhost:8080/api/project/reject -H "Authorization: Bearer $JWT" -H "Content-Type: application/json" -d "{\"reject\": {\"id\": \"$ID\"}}"
+}
+
+function project/edit {
+	
+}
+
+function project/terminate { 
+
+}
+
+function project/interrupt {
+
+}
+
+function project/index {
+	ID=$1
+	curl -X POST http://localhost:8080/api/project/index -H "Content-Type: application/json" -d "{\"index\": {\"id\": \"$ID\"}}"
 }
 
 
@@ -98,6 +129,36 @@ function feed/home {
 	curl -X POST http://localhost:8080/api/feed/home -H "Content-Type: application/json" -d "{\"home\": {\"type\": \"$TYPE\", \"technologies\": $TECHNOLOGIES, \"seen\": $SEEN}}"
 }
 
+function feed/user {
+	USER=$1
+	TECHNOLOGIES=$2
+	SEEN=$3
+	curl -X POST http://localhost:8080/api/feed/user -H "Content-Type: application/json" -d "{\"user\": {\"username\": \"$USER\", \"technologies\": $TECHNOLOGIES, \"seen\": $SEEN}}"
+}
+
+function feed/technologies {
+	curl -X POST http://localhost:8080/api/feed/technologies
+}
+
+
+
+function report/send {
+	
+}
+
+function report/ban {
+	
+}
+
+
+
+function dashboard/actions {
+	
+}
+
+function dashboard/technologies {
+	
+}
 
 f="$1"
 shift
