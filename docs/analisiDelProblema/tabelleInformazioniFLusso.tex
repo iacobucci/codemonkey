@@ -28,8 +28,8 @@
         \rowcolor{tableGreen!70}
         \multicolumn{5}{|c|}{\Large\textbf{Registrazione}}
         \headerFlusso
-        \n  Username & Complesso & Medio      & Input & Lunghezza di massimo 42 caratteri\newline Non saranno accettati caratteri speciali
-        \n  Password & Semplice  & Molto Alto & Input & Almeno 8 caratteri massimo 42
+        \n  Username & Complesso & Medio      & Input & Lunghezza di Massimo 32 caratteri\newline Non saranno accettati caratteri speciali
+        \n  Password & Semplice  & Molto Alto & Input & Almeno 8 caratteri Massimo 32
         \n
     \end{tabularx}
     \label{tab:monkeytable:problema:tabFlusso:registrazione}
@@ -46,8 +46,8 @@
         \rowcolor{tableGreen!70}
         \multicolumn{5}{|c|}{\Large\textbf{Autenticazione}}
         \headerFlusso
-        \n  Username & Semplice & Medio      & Input & Lunghezza di massimo 42 caratteri\newline Non saranno accettati caratteri speciali
-        \n  Password & Semplice & Molto Alto & Input & Almeno 8 caratteri, massimo 42
+        \n  Username & Semplice & Medio      & Input & Lunghezza di Massimo 32 caratteri\newline Non saranno accettati caratteri speciali
+        \n  Password & Semplice & Molto Alto & Input & Almeno 8 caratteri, Massimo 32
         \n
     \end{tabularx}
     \label{tab:monkeytable:problema:tabFlusso:autenticazione}
@@ -66,11 +66,11 @@
         \n               Profilo pubblico Codmonkey & Complesso & Pubblico & Output &
         \tabularnewline \textbf{Composto da:}       &           &          &        &
         \tabularnewline Nome Codmonkey              & Semplice  & Pubblico & Output & Massimo 32 caratteri
-        \tabularnewline Filtri di ricerca           & Semplice  & Pubblico & Output & Filtri di massimo 32 caratteri, massimo 32 filtri per Codmonkey
-        \tabularnewline Descrizione                 & Semplice  & Pubblico & Output & Descrizione della Codmonkey e di ció che sa fare di massimo 1024 caratteri
-        \tabularnewline Valutazioni Codmonkey       & Semplice  & Pubblico & Output & Le Valutazioni generali e filtrate delle codmonkey andranno da un minimo di 1 a un massimo di 10
+        \tabularnewline Filtri di ricerca           & Semplice  & Pubblico & Output & Filtri di Massimo 32 caratteri, Massimo 32 filtri per Codmonkey
+        \tabularnewline Descrizione                 & Semplice  & Pubblico & Output & Descrizione della Codmonkey e di ció che sa fare di Massimo 1024 caratteri
+        \tabularnewline Valutazioni Codmonkey       & Semplice  & Pubblico & Output & Le Valutazioni generali e filtrate delle codmonkey andranno da un minimo di 1 a un Massimo di 10
         \tabularnewline Immagine Profilo Codmonkey  & Semplice  & Pubblico & Output & Immagine di dimensioni limitate a 512x512 pixel
-        \n              Casella di ricerca          & Semplice  & Pubblico & Input  & Sezione nella quale immettere la chiave di ricerca per trovare delle Codmonkey adatte alle proprie esigenze
+        \n              Ricerca Codmonkey           & Semplice  & Pubblico & Input  &
         \n
     \end{tabularx}
     \label{tab:monkeytable:problema:tabFlusso:homepage}
@@ -85,8 +85,8 @@
         \rowcolor{tableGreen!70}
         \multicolumn{5}{|c|}{\Large\textbf{Proponi Lavoro}}
         \headerFlusso
-        \n              Descrizione della proposta di Lavoro & Semplice & Basso & Input & Casella testuale nella quale sará descritto il lavoro richiesto dal Cliente\newline Almeno 255 carattri, massimo 2047 caratteri
-        \n              Invia Proposta di Lavoro             & Sempice  & Basso & Input &
+        \n              Descrizione della proposta di Lavoro & Semplice & Medio & Input & Almeno 255 carattri, Massimo 2047 caratteri
+        \n              Invia Proposta di Lavoro             & Sempice  & Medio & Input &
         \n
     \end{tabularx}
     \label{tab:monkeytable:problema:tabFlusso:proponiLavoro}
@@ -99,10 +99,241 @@
         {|>{\centering}m{2.7cm}|>{\centering}m{1.65cm}|>{\centering}m{2.6cm}|>{\centering}m{2.2cm}|>\raggedright X|}
         \hline
         \rowcolor{tableGreen!70}
+        \multicolumn{5}{|c|}{\Large\textbf{Modifica Contatti}}
+        \headerFlusso
+        \n              Lista contatti inseriti   & Complesso & Pubblico & Output &
+        \tabularnewline     \textbf{Composto da:} &           &          &        &
+        \tabularnewline Contatto                  & Semplice  & Basso    & Output & Massimo 32 caratteri
+        \n              Aggiungi nuovo contatto   & Complesso & Basso    &        &
+        \tabularnewline     \textbf{Composto da:} &           &          &        &
+        \tabularnewline Contatto                  & Semplice  & Basso    & Input  & Massimo 32 caratteri
+        \tabularnewline Salva                     & Semplice  & Basso    & Input  &
+        \n              Rimuovi contatto          & Semplice  & Basso    & Input  &
+        \n
+    \end{tabularx}
+    \label{tab:monkeytable:problema:tabFlusso:}
+
+
+    \phantom{M} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    \begin{tabularx}{\textwidth}
+        {|>{\centering}m{2.7cm}|>{\centering}m{1.65cm}|>{\centering}m{2.6cm}|>{\centering}m{2.2cm}|>\raggedright X|}
+        \hline
+        \rowcolor{tableGreen!70}
+        \multicolumn{5}{|c|}{\Large\textbf{Modifica Dati Personali}}
+        \headerFlusso
+        \n              Descrizione Personale & Semplice & Pubblico & Input-Output & Massio 5000 caratteri
+        \n              Salva Modifiche       & Semplice & Basso    & Input        &
+        \n
+    \end{tabularx}
+    \label{tab:monkeytable:problema:tabFlusso:}
+
+
+    \phantom{M} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    \begin{tabularx}{\textwidth}
+        {|>{\centering}m{2.7cm}|>{\centering}m{1.65cm}|>{\centering}m{2.6cm}|>{\centering}m{2.2cm}|>\raggedright X|}
+        \hline
+        \rowcolor{tableGreen!70}
+        \multicolumn{5}{|c|}{\Large\textbf{Modifica Password}}
+        \headerFlusso
+        \n              Vecchia Password  & Semplice & Molto Alto & Input & Almeno 8 caratteri, Massimo 32
+        \n              Nuova Password    & Semplice & Molto Alto & Input & Almeno 8 caratteri, Massimo 32
+        \n              Conferma Password & Semplice & Molto Alto & Input & Almeno 8 caratteri, Massimo 32
+        \n              Salva             & Semplice & Medio      & Input &
+        \n
+    \end{tabularx}
+    \label{tab:monkeytable:problema:tabFlusso:}
+
+
+    \phantom{M} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    \begin{tabularx}{\textwidth}
+        {|>{\centering}m{2.7cm}|>{\centering}m{1.65cm}|>{\centering}m{2.6cm}|>{\centering}m{2.2cm}|>\raggedright X|}
+        \hline
+        \rowcolor{tableGreen!70}
+        \multicolumn{5}{|c|}{\Large\textbf{Imposta Autenticazione a 2 fattori}}
+        \headerFlusso
+        \n &  &  &  &
+        \n
+    \end{tabularx}
+    \label{tab:monkeytable:problema:tabFlusso:}
+
+
+    \phantom{M} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    \begin{tabularx}{\textwidth}
+        {|>{\centering}m{2.7cm}|>{\centering}m{1.65cm}|>{\centering}m{2.6cm}|>{\centering}m{2.2cm}|>\raggedright X|}
+        \hline
+        \rowcolor{tableGreen!70}
+        \multicolumn{5}{|c|}{\Large\textbf{Elimina Account}}
+        \headerFlusso
+        \n              Password & Semplice & Molto Alto & Input & Almeno 8 caratteri, Massimo 32
+        \n
+    \end{tabularx}
+    \label{tab:monkeytable:problema:tabFlusso:}
+
+
+    \phantom{M} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    \begin{tabularx}{\textwidth}
+        {|>{\centering}m{2.7cm}|>{\centering}m{1.65cm}|>{\centering}m{2.6cm}|>{\centering}m{2.2cm}|>\raggedright X|}
+        \hline
+        \rowcolor{tableGreen!70}
+        \multicolumn{5}{|c|}{\Large\textbf{Lista Collaborazioni}}
+        \headerFlusso
+        \n              Collaborazioni        & Semplice & Medio-Basso & Output & Massimo 25 caricate
+        \n              Filtra Collaborazioni & Semplice & Basso       & Input  &
+        \n              Ordina Collaborazioni & Semplice & Basso       & Input  &
+        \n              Visualizza di piú     & Semplice & Basso       & Input  &
+        \n
+    \end{tabularx}
+    \label{tab:monkeytable:problema:tabFlusso:}
+
+
+    \phantom{M} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    \begin{tabularx}{\textwidth}
+        {|>{\centering}m{2.7cm}|>{\centering}m{1.65cm}|>{\centering}m{2.6cm}|>{\centering}m{2.2cm}|>\raggedright X|}
+        \hline
+        \rowcolor{tableGreen!70}
+        \multicolumn{5}{|c|}{\Large\textbf{Accetta/Rifiuta Proposta di Lavoro}}
+        \headerFlusso
+        \n                  Proposta di Lavoro             & Complesso & Medio & Output &
+        \tabularnewline         \textbf{Composto da:}      &           &       &        &
+        \tabularnewline     Nome Cliente                   & Semplice  & Basso & Output & Nome del Cliente di Massimo 32 caratteri
+        \tabularnewline     Descrizione proposta di Lavoro & Semplice  & Medio & Output & Massimo 2048 caratteri
+        \n                  Accetta Lavoro                 & Semplice  & Basso & Input  &
+        \n                  Rifiuta Lavoro                 & Semplice  & Basso & Input  &
+        \n
+    \end{tabularx}
+    \label{tab:monkeytable:problema:tabFlusso:Accetta/Rifiuta}
+
+
+    \phantom{M} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    \begin{tabularx}{\textwidth}
+        {|>{\centering}m{2.7cm}|>{\centering}m{1.65cm}|>{\centering}m{2.6cm}|>{\centering}m{2.2cm}|>\raggedright X|}
+        \hline
+        \rowcolor{tableGreen!70}
+        \multicolumn{5}{|c|}{\Large\textbf{Termina Lavoro}}
+        \headerFlusso
+        \n                  Termina Lavoro & Semplice & Medio & Input &
+        \n                  Motivazione    & Semplice & Medio & Input & Massimo 2048 caratteri
+        \n
+    \end{tabularx}
+    \label{tab:monkeytable:problema:tabFlusso:}
+
+
+    \phantom{M} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    \begin{tabularx}{\textwidth}
+        {|>{\centering}m{2.7cm}|>{\centering}m{1.65cm}|>{\centering}m{2.6cm}|>{\centering}m{2.2cm}|>\raggedright X|}
+        \hline
+        \rowcolor{tableGreen!70}
+        \multicolumn{5}{|c|}{\Large\textbf{Termina Collaborazione e valuta Codmonkey}}
+        \headerFlusso
+        \n                  Termina Collaborazione        & Semplice & Medio & Input &
+        \n                  Recensione Codmonkey          & Compleso &       &       &
+        \tabularnewline         \textbf{Composto da:}     &          &       &       &
+        \tabularnewline     Valutazione Codmonkey         & Semplice & Basso & Input &
+        \tabularnewline     Descrizione breve (opzionale) & Semplice & Basso & Input & Massimo 500 caratteri
+        \n
+    \end{tabularx}
+    \label{tab:monkeytable:problema:tabFlusso:}
+
+
+    \phantom{M} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    \begin{tabularx}{\textwidth}
+        {|>{\centering}m{2.7cm}|>{\centering}m{1.65cm}|>{\centering}m{2.6cm}|>{\centering}m{2.2cm}|>\raggedright X|}
+        \hline
+        \rowcolor{tableGreen!70}
+        \multicolumn{5}{|c|}{\Large\textbf{Segnala ad Amministratore}}
+        \headerFlusso
+        \n              Descrizione del Problema & Semplice & Medio & Input & Almeno 256 caratteri, Massimo 2000
+        \n
+    \end{tabularx}
+    \label{tab:monkeytable:problema:tabFlusso:}
+
+
+    \phantom{M} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    \begin{tabularx}{\textwidth}
+        {|>{\centering}m{2.7cm}|>{\centering}m{1.65cm}|>{\centering}m{2.6cm}|>{\centering}m{2.2cm}|>\raggedright X|}
+        \hline
+        \rowcolor{tableGreen!70}
+        \multicolumn{5}{|c|}{\Large\textbf{Gestisci Utenti Registrati}}
+        \headerFlusso
+        \n              Limita Utente Registrato   & Semplice & Alto  & Input &
+        \n              Sospendi Utente Registrato & Semplice & Alto  & Input &
+        \n              Blocca Utente Registrato   & Semplice & Alto  & Input &
+        \n              Elimina Utente Registrato  & Semplice & Alto  & Input &
+        \n              Motivazione                & Semplice & Alto  & Input & Massimo 500 caratteri
+        \n              Ricerca Utente             & Semplice & Basso & Input &
+        \n
+    \end{tabularx}
+    \label{tab:monkeytable:problema:tabFlusso:}
+
+
+    \phantom{M} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    \begin{tabularx}{\textwidth}
+        {|>{\centering}m{2.7cm}|>{\centering}m{1.65cm}|>{\centering}m{2.6cm}|>{\centering}m{2.2cm}|>\raggedright X|}
+        \hline
+        \rowcolor{tableGreen!70}
+        \multicolumn{5}{|c|}{\Large\textbf{Gestione Filtri di Ricerca}}
+        \headerFlusso
+        \n              Lista Filtri              & Complesso & Basso    &        &
+        \tabularnewline     \textbf{Composto da:} &           &          &        &
+        \tabularnewline Filtri Attivi             & Semplice  & Pubblico & Output &
+        \tabularnewline Filtri da Approvare       & Semplice  & Basso    & Output &
+        \n              Accetta Filtro            & Semplice  & Basso    & Input  &
+        \n              Rifiuta Filtro            & Semplice  & Basso    & Input  &
+        \n
+    \end{tabularx}
+    \label{tab:monkeytable:problema:tabFlusso:}
+
+
+    \phantom{M} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    \begin{tabularx}{\textwidth}
+        {|>{\centering}m{2.7cm}|>{\centering}m{1.65cm}|>{\centering}m{2.6cm}|>{\centering}m{2.2cm}|>\raggedright X|}
+        \hline
+        \rowcolor{tableGreen!70}
+        \multicolumn{5}{|c|}{\Large\textbf{Visualizza Segnalazioni}}
+        \headerFlusso
+        \n              Segnalazione              & Complesso & Medio &        &
+        \tabularnewline     \textbf{Composto da:} &           &       &        &
+        \tabularnewline Nome Utente               & Semplice  & Medio & Output & Il nome legato all'Account che ha generato la Segnalazione
+        \tabularnewline Descrizione del Problema  & Semplice  & Medio & Input  & Almeno 256 caratteri, Massimo 2000
+        \n
+    \end{tabularx}
+    \label{tab:monkeytable:problema:tabFlusso:}
+
+
+    \phantom{M} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    \begin{tabularx}{\textwidth}
+        {|>{\centering}m{2.7cm}|>{\centering}m{1.65cm}|>{\centering}m{2.6cm}|>{\centering}m{2.2cm}|>\raggedright X|}
+        \hline
+        \rowcolor{tableGreen!70}
         \multicolumn{5}{|c|}{\Large\textbf{}}
         \headerFlusso
-        \n              &  &  &  &
-        \tabularnewline &  &  &  &
+        \n            File di Log & Semplice & Alto & Output &
         \n
     \end{tabularx}
     \label{tab:monkeytable:problema:tabFlusso:}
@@ -114,10 +345,6 @@
 
 
 \end{center}
-
-
-
-
 
 
 
@@ -140,7 +367,7 @@
     \headerFlusso
     \n Proposta di lavoro                              & Complesso & Medio & Output & Massimo 5 proposte di lavoro per Codmonkey
     \tabularnewline     \textbf{Composto da:}          &           &       &        &
-    \tabularnewline     Nome Cliente                   & Semplice  & Basso & Output & Nome del Cliente di massimo 32 caratteri
+    \tabularnewline     Nome Cliente                   & Semplice  & Basso & Output & Nome del Cliente di Massimo 32 caratteri
     \tabularnewline     Descrizione proposta di lavoro & Semplice  & Medio & Input  & Massimo 255 caratteri
     \n                  Lavoro                         & Complesso & Medio & Output &
     \tabularnewline     \textbf{Composto da:}          &           &       &        &
@@ -172,6 +399,7 @@ TEMPLATE
     \n
 \end{tabularx}
 \label{tab:monkeytable:problema:tabFlusso:}
+
 
 \phantom{M} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
