@@ -28,6 +28,7 @@ export class UserComponent implements OnInit {
   type: string = "User";
   user: Company | Codemonkey | null = null;
   name: string | null = null;
+  hasRating = false;
 
   cards: Project[] = [];
   seen: number[] = [];

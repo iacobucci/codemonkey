@@ -41,12 +41,17 @@
     <div style="width: 640px; display: flex">
         <img #profilePicLargeRef mat-card-image src="" alt="Immagine di profilo"
             style="height: 192px; border-radius: 50%;">
-        
+
         <span style="width: 80px;"></span>
 
         <div *ngIf="this.user">
             <div>
-                <p style="font-size: 40pt; font-weight: bold;">{{this.name}}</p>
+                <p style="font-size: 40pt; font-weight: bold; margin: auto;">{{this.name}}</p>
+                <p style="margin:auto;">@{{this.user.username}}</p>
+                <span style="margin:24px;"></span>
+                <div *ngIf="this.hasRating">
+                    <app-valutazione [rating]="0"></app-valutazione>
+                </div>
             </div>
 
         </div>

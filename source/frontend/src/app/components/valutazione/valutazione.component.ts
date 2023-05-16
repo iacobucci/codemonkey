@@ -6,8 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./valutazione.component.scss'],
 })
 export class ValutazioneComponent {
-  constructor(){
-    this.rating = 0;
+  constructor() {
   }
   @Input() rating: number | null = null;
   maxRating = 5;

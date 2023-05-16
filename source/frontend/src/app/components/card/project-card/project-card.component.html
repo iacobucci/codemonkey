@@ -11,15 +11,9 @@
         <mat-card-subtitle><a [routerLink]="[visitUrl('company', this.project?.company)]" class="custom-link"> @{{this.project?.company}}</a> <a [routerLink]="[visitUrl('codemonkey', this.project?.codemonkey)]"class="custom-link">@{{this.project?.codemonkey}}</a></mat-card-subtitle>
         <span class="example-spacer"></span> 
 
-        <!-- <div *ngIf="this.hasRating == true">
-            <div style="align-items: center;">
-                <app-valutazione [rating]="this.rating"></app-valutazione>
-            </div>
-        </div> -->
-
-        <!-- <div *ngIf="this.hasRating == false">
-            <a mat-stroked-button disabled>{{this.user?.type?.toLocaleUpperCase()}}</a>
-        </div> -->
+        <div style="align-items: center;">
+            <app-valutazione [rating]="(this.project) ? this.project.rating : null"></app-valutazione>
+        </div>
     </mat-card-header>
     <mat-divider></mat-divider>
 

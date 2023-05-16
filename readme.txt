@@ -275,7 +275,7 @@ endpoint
 components
     [ ] card
         [x] user
-            [ ] codemonkey
+            [x] codemonkey
                 [x] username
                     link a /codemonkey/<username>
                 [x] nome
@@ -298,22 +298,22 @@ components
                 [x] tecnologie
                     [x] list.tecnologie
 
-        [ ] project
-            [ ] company
-				[ ] link a /company/<username>
-				[ ] username
-                [ ] nome
-                [ ] propic
+        [x] project
+            [x] company
+				[x] link a /company/<username>
+				[x] username
+                [x] nome
+                [x] propic
             [ ] codemonkey
-                [ ] link a /codemonkey/<username>
-				[ ] username
-                [ ] nome
-                [ ] cognome
-                [ ] propic
-            [ ] titolo
-            [ ] descrizione
-            [ ] tecnologie
-                [ ] list.tecnologie
+                [x] link a /codemonkey/<username>
+				[x] username
+                [x] nome
+                [x] cognome
+                [x] propic
+            [x] titolo
+            [x] descrizione
+            [x] tecnologie
+                [x] list.tecnologie
 
             se data_inizio != null
                 se loggato come company e <username>==<company.username>

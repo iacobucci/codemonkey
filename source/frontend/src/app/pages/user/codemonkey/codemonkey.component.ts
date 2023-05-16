@@ -13,5 +13,6 @@ export class CodemonkeyComponent extends UserComponent {
   constructor(route: ActivatedRoute, http: HttpClient) {
     super(route,http);
     this.type = "Codemonkey";
+    this.hasRating = true;
   }
 }
