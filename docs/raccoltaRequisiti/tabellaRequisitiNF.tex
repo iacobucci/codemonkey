@@ -1,4 +1,4 @@
-\newcounter{reqNFCounter}%counter
+\newcounter{reqNFCounter} %counter
 
 \newcommand{\nReqNF}{
     \n
@@ -7,17 +7,19 @@
 }
 
 \begin{center}
-    \rowcolors{2}{tableYellow!5}{tableYellow!10}%colori alternati
+    \rowcolors{2}{tableYellow!5}{tableYellow!10} %colori alternati
     \begin{tabularx}{\textwidth}
         {|c|X|}
         \hline\rowcolor{tableYellow!60}
         \multicolumn{2}{|c|}{\Large\textbf{Requisiti Non Funzionali}}
-        \n \rowcolor{tableYellow!35} \large\textbf{ID} & \large\textbf{Requisito}
+        \n \rowcolor{tableYellow!35} \large\textbf{ID}
+                & \large\textbf{Requisito}
         \nReqNF & Il sito deve essere facile da navigare
-        \nReqNF & Deve essere tracciata l'attivitá dei vari amministratori
-        \nReqNF & Viene fornita la Valutazione Generale di ogni Codmonkey
-        \nReqNF & Viene fornita una Valutazione Filtrata del programmatore in base ai filtri impostati nella ricerca del Cliente
-        \nReqNF & Deve essere possibile vedere a qunti progetti la Codmonkey sta lavorando
+        \nReqNF & Si potrá vedere quanti lavori la Codmonkey sta attualmente svolgendo
+        \nReqNF & Sará possibile vedere a quanti lavori la Codmonkey ha preso parte
+        \nReqNF & Codmonkey che hanno ricevuto una richista di lavoro avranno meno visibilitá rispetto a Codmonkey che non stanno lavorando da molto tempo
+        \nReqNF & Le codmonkey che hanno una bassa valutazione in certi ambiti avranno meno visibilitá rispetto alle altre
+        \nReqNF & Un Utente potrá vedere 2 valutazioni della Codmonkey: una valutazione generale di tutti i lavori svolti e una che rispecchi solo ció che é stato fatto nell'ambito dei filtri selezionati dal Cliente
         \n
     \end{tabularx}
 \end{center}
