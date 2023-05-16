@@ -50,10 +50,11 @@
                 Descrizione & L'Utente effettua il login nel sistema
 \ntableCyan     Attori & Utente, Admin
 \tableCyan      Relazioni & Gestione Profilo, Proponi Lavoro, Fornisci recensione, Area personale, Gestione Utenti
-\ntableCyan     Precondizioni & L'Utente o l'amministratore deve essere giá stato registrato nel sistema
+\ntableCyan     Precondizioni & L'Utente o l'amministratore deve essere giá stato registrato all'interno del sistema
 \tableCyan      Postcondizioni &
-\ntableCyan     Scenario Principale &L'Utente fornisce le credenziali e dopo essere state validate verrá reindirizzato alla pagina precedente con la possibilitá di effettuare operazioni che pria erano protette 
-\tableCyan      Scenari Alternativi &Nel caso i dati forniti per l'autenticazione siano incorretti verrá visualizzato un messaggio di errore
+\ntableCyan     Scenario Principale & L'Utente fornisce le credenziali di accesso al sistema.\newline
+                Dopo aver controllato che le credenziali siano valide il sistema presenterá agli utenti l'area personale per la gestione dell'account, all'admin la pagina di gestione utenti
+\tableCyan      Scenari Alternativi & Nel caso i dati forniti per l'autenticazione siano incorretti verrá visualizzato un messaggio di errore
                 \newline Nel caso l'utente sia stato Bloccato da un admin verrá fornito un messaggio di errore con la spiegazione del perché sia stato sospeso
 \ntableCyan     Requisiti NF &Sará sempre presente un bottone per il recupero della password
 \tableCyan      Punti Aperti &Come fare nel caso un Utente o un Admin debbano usare l'autenticazione a 2 fattori?
@@ -63,45 +64,86 @@
 {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
 
 \hline \rowcolor{tableCyan!37} \centering\textbf{Titolo} & 
-\centering\textbf{Gestione profilo}\endline
+\centering\textbf{Gestione Account}\endline
 \hline 
 \rowcolor{tableCyan!10}
 \cellcolor{tableCyan!22}
 
-                Descrizione &Gestione del profilo Utente 
+                Descrizione &Sezione dedicata alla gestione di un Account 
 \ntableCyan     Attori & Cliente, Codemonkey
 \tableCyan      Relazioni &Autenticazione
-\ntableCyan     Precondizioni &L'Utente deve essere autenticato
+\ntableCyan     Precondizioni &L'Utente deve aver effettuato l'autenticazione
 \tableCyan      Postcondizioni &
 \ntableCyan     Scenario Principale &
-                Un Utente autenticato accede alla pagina di Gestione account\newline
-                Il sistema potrá permettere all'utente di cambiare immagine di profilo, descrizione, contatti, username, e-mail e password dell'account autenticato\newline
-                Una Codemonkey potrá inoltre inserire ció che é in grado di fare per farsi trovare dai clienti
+                Un Utente autenticato accede alla funzionalitá di Gestione Account\newline
+                Il sistema permetterá quindi all'utente di cambiare i dati collegati all'account come nomeUtente, e-mail e password
 \tableCyan      Scenari Alternativi &
 \ntableCyan     Requisiti NF &Deve essere presente un'anteprima del profilo accanto alle opzioni di modifica
 \tableCyan      Punti Aperti &Cosa succede se il cliente cambia l'e-mail collegata all'account o i prorpi contatti mentre ha una collaborazioen aperta con una Codemonkey?\newline
-                Cosa succede se la Codemonkey cambia i propri contatti mentre sta collaborando con un Cliente\newline
-                Sará possibile cambiare la valutazione fornita sulla Codemonkey una volta che é stata resa pubblica o a seguito di collaborazioni successive? Oppure sará piú giusto bloccare la possibilitá di bloccare la modifica delle valutazoni passate?
+}
+
+\monkeytable{3} {
+{|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
+
+\hline \rowcolor{tableCyan!37} \centering\textbf{Titolo} & 
+\centering\textbf{Gestione Profilo Perosnale}\endline
+\hline 
+\rowcolor{tableCyan!10}
+\cellcolor{tableCyan!22}
+
+                Descrizione &Sezione dedicata alla gestione del profilo personale 
+\ntableCyan     Attori & Cliente, Codemonkey
+\tableCyan      Relazioni &Autenticazione
+\ntableCyan     Precondizioni &L'Utente deve aver effettuato l'autenticazione
+\tableCyan      Postcondizioni &
+\ntableCyan     Scenario Principale &
+                Un Cliente o una Codmonkey dalla sezione di Gestione Account posso passare alla sezione dedicata alla gestione del profilo personale\newline
+                Il sistema permetterá quindi di cambiare Nome, e dati di una Codmonkey e Cliente, e inoltre le codmonkey potranno modificare i loro filtri di ricerca
+\tableCyan      Scenari Alternativi &
+\ntableCyan     Requisiti NF &Deve essere presente un'anteprima del profilo accanto alle opzioni di modifica
+\tableCyan      Punti Aperti & Cosa succede se la Codemonkey cambia i propri contatti mentre sta collaborando con un Cliente
 }
 
 \monkeytable{3} {
 {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
 
 \hline \rowcolor{tableCyan!37} \centering\textbf{Titolo} &
-\centering\textbf{Accetta/Rifiuta proposta di lavoro}\endline
+\centering\textbf{Lista Collaborazioni}\endline
 \hline 
 \rowcolor{tableCyan!10}
 \cellcolor{tableCyan!22}
 
-                Descrizione & Sezione all'interno della gestione del profilo di una Codemonkey per visualizzare e accettare o rifiutare le proposte di lavoro
-\ntableCyan     Attori & Codemonkey
-\tableCyan      Relazioni & Gestione Profilo
-\ntableCyan     Precondizioni & Sará consentito l'accesso solo ad un Utente autenticato come Codemonkey
+                Descrizione & Sezione all'interno della gestione account dedicata alla visualizzazione delle Collaborazioni attive e passate
+\ntableCyan     Attori & Codemonkey, Cliente
+\tableCyan      Relazioni & Gestione Account, Gestisci Collaborazioni
+\ntableCyan     Precondizioni & Sará consentito l'accesso solo ad un Cliente o una Codemonkey
 \tableCyan      Postcondizioni &
-\ntableCyan     Scenario Principale &La Codemonkey all'interno della gestione del profilo potrá accedere alla lista di proposte di lavoro dei vari clienti e potrá accettare o rifiutare ogni proposta di lavoro
+\ntableCyan     Scenario Principale &La Codemonkey o il Cliente dalla Gestione dell'Account potranno accedere alla lista delle collaborazioni dove visualizzare le collaborazioni attive, le collaborazioni passate e nel caso di Codmonkey saranno presenti anche le proposte di collaborazione
 \tableCyan      Scenari Alternativi &La Codemonkey oltre le proposte di lavoro troverá anche lavori giá accettati e anch'essi potranno essere rifiutati
 \ntableCyan     Requisiti NF &La lista di lavori da accettare deve essere separata da quella dei lavori giá accettati\newline
                 Ogni volta che si accetta o rifiuta un lavoro si deve presentare un modulo dove bisogna dare una conferma di voler procedere
+\tableCyan      Punti Aperti &Nel caso si voglia rifiutare o accettare un lavoro bisognerá fornire un periodo per far discutere l'azienda e la Codemonkey dove il lavoro rimane in una sorta di limbo?\newline
+                Cosa succede se una Codemonkey rifiuta un lavoro giá iniziato? Potrá essere valutata dal cliente?
+}
+
+\monkeytable{3} {
+{|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
+
+\hline \rowcolor{tableCyan!37} \centering\textbf{Titolo} &
+\centering\textbf{Gestisci Collaborazioni}\endline
+\hline 
+\rowcolor{tableCyan!10}
+\cellcolor{tableCyan!22}
+
+                Descrizione & Un Cliente o una Codmonkey possono gestire le Collaborazioni
+\ntableCyan     Attori & Codemonkey, Cliente
+\tableCyan      Relazioni & Lista Collaborazioni
+\ntableCyan     Precondizioni & Cliente o Codemonkey autenticati
+\tableCyan      Postcondizioni & 
+\ntableCyan     Scenario Principale & La Codmonkey o il Cliente quando consultano la Lista Collaborazioni possono gestire le collaborazioni, la Codmonkey puó accettare o rifiutare richieste richieste di lavoro e annullare i lavori giá attivati.\newline
+                Un Cliente puó terminare una collaborazione e fornire una valutazione alla codmonkey.\newline Sia codmonkey che cliente possono aprire un ticket per segnalare un lavoro
+\tableCyan      Scenari Alternativi &Il Cliente dalla lista delle collaborazioni passate puó riproporre il lavoro ad una Codmonkey
+\ntableCyan     Requisiti NF & Ogni volta che si accetta o rifiuta un lavoro si deve presentare un modulo dove bisogna dare una conferma di voler procedere
 \tableCyan      Punti Aperti &Nel caso si voglia rifiutare o accettare un lavoro bisognerá fornire un periodo per far discutere l'azienda e la Codemonkey dove il lavoro rimane in una sorta di limbo?\newline
                 Cosa succede se una Codemonkey rifiuta un lavoro giá iniziato? Potrá essere valutata dal cliente?
 }
