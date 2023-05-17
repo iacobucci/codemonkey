@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
+    post "current", to: "current#index"
+
     namespace :user do
       post "login", to: "login#login"
       post "signup", to: "signup#signup"
@@ -19,13 +21,14 @@ Rails.application.routes.draw do
     namespace :project do
       post "new", to: "new#new"
       post "edit", to: "edit#edit"
-      post "terminate", to: "terminate#terminate"
       post "accept", to: "accept#accept"
       post "reject", to: "reject#reject"
+      post "terminate", to: "terminate#terminate"
+      post "interrupt", to: "interrupt#interrupt"
     end
 
     namespace :report do
-      post "send", to: "send#send"
+      post "send", to: "send#send_report"
       post "ban", to: "ban#ban"
     end
 
@@ -39,6 +42,11 @@ Rails.application.routes.draw do
       post "home", to: "home#home"
       post "technologies", to: "technologies#technologies"
       post "user", to: "user#user"
+    end
+
+    namespace :dashboard do
+      post "actions", to: "actions#actions"
+      post "technologies", to: "technologies#technologies"
     end
   end
 end

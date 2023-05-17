@@ -225,18 +225,11 @@ endpoint
     /api
         endpoint di popolamento dell'interfaccia
             /feed
-                [ ] /dashboard
-                    lista di tutte le actions
-                    l'ordine è actions.time.desc
-                    vengono inviate 20 card alla volta
-                    /dashboard?page=<num>
-                    ovviamente si possono perdere di vista le actions per via della paginazione
                 [x] /home
                     si filtra per codemonkey||company||tutti
                     si filtra per tecnologia
                     l'ordine è casuale
                     vengono inviate 5 card alla volta
-
                     bisogna controllare quale card sono state gia visualizzate
                     /home?seen=<username1,username2,...>&technologies=<tecnologia1,tecnologia2,...>&type=<codemonkey|company|all>
                 [x] /user
@@ -245,8 +238,13 @@ endpoint
                     vengono inviate 5 card alla volta
                     /user?page=<num>&technologies=<tecnologia1,tecnologia2,...>
             /dashboard
-                [ ] actions
-                [ ] technologies
+                [x] actions
+                    lista di tutte le actions
+                    l'ordine è actions.time.desc
+                    vengono inviate 20 card alla volta
+                    /dashboard?page=<num>
+                    ovviamente si possono perdere di vista le actions per via della paginazione
+                [x] technologies
         endpoint di controllo
             /project
                 [ ] /accept
@@ -255,12 +253,12 @@ endpoint
                 [ ] /terminate
                 [ ] /edit
             /report
-                [ ] /send
-                [ ] /ban
+                [x] /send
+                [x] /ban
             /technology
-                [ ] /suggest
-                [ ] /approve
-                [ ] /reject
+                [x] /suggest
+                [x] /approve
+                [x] /reject
             /user
                 [x] /signup
                 [x] /login

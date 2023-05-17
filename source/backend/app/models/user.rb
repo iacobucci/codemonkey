@@ -24,7 +24,7 @@ class User < ApplicationRecord
     totp = ROTP::TOTP.new(self.totp_secret)
     totp.provisioning_uri(username)
   end
-
+  
   def self.find_by_jwt(jwt)
     User.find(JsonWebToken.decode(jwt)["user_id"])
   end
