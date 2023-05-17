@@ -1,0 +1,86 @@
+<style>
+    .scroll-container {
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+    }
+
+    .example-spacer {
+        flex: 1 1 auto;
+    }
+
+    .scroll-item {
+        margin-right: 8px;
+    }
+
+    .custom-link {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .custom-link:hover {
+        text-decoration: underline;
+    }
+
+    .profile-fab {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        margin-right: 16px;
+        margin-bottom: 16px;
+        z-index: 100;
+    }
+</style>
+
+<div class="my-div" style="width:100%; height: 400px; display: flex;
+  justify-content: center;
+  align-items: center;">
+
+
+    <div style="width: 640px; display: flex">
+        <img #profilePicLargeRef mat-card-image src="" alt="Immagine di profilo"
+            style="height: 192px; border-radius: 50%;">
+
+        <span style="width: 80px;"></span>
+
+        <div *ngIf="this.user">
+            <div>
+                <p style="font-size: 40pt; font-weight: bold; margin: auto;">{{this.name}}</p>
+                <p style="margin:auto;">@{{this.user.username}}</p>
+                <span style="margin:24px;"></span>
+                <div *ngIf="this.hasRating">
+                    <app-valutazione [rating]="0"></app-valutazione>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<div style="display: flex; justify-content: center;">
+    <div style="display: flex; flex-direction: column; align-items: center;">
+
+        <!-- <app-image-uploader [endpoint]="'/api/uploads'"></app-image-uploader> -->
+
+        <div style="height: 48px"> </div>
+
+        <div *ngFor="let item of this.cards" class="scroll-item">
+
+            <app-project-card [project]="item"></app-project-card>
+
+            <div style="height: 48px"> </div>
+        </div>
+
+        <div *ngIf="this.moreToLoad">
+            <button mat-raised-button color="primary" (click)="feed()">Carica ancora</button>
+        </div>
+
+        <div *ngIf="!this.moreToLoad">
+            <p>Hai visto tutto!</p>
+        </div>
+
+    </div>
+</div>

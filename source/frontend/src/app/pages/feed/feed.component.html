@@ -1,14 +1,34 @@
 <div style="display: flex; justify-content: center;">
     <div style="display: flex; flex-direction: column; align-items: center;">
 
-        <app-image-uploader [endpoint]="'/api/uploads'"></app-image-uploader>
+        <!-- <app-image-uploader [endpoint]="'/api/uploads'"></app-image-uploader> -->
 
         <div style="height: 48px"> </div>
 
+        <!-- <div *ngFor="let item of this.cards" class="scroll-item">
+          <ng-container *ngIf="item.type === 'Codemonkey'; else companyItem">
+            <app-codemonkey-card [codemonkey]="item"></app-codemonkey-card>
+          </ng-container>
+
+          <ng-template #companyItem>
+            <app-company-card [company]="item"></app-company-card>
+          </ng-template>
+
+          <div style="height: 48px"> </div>
+</div> -->
+
         <div *ngFor="let item of this.cards" class="scroll-item">
-            <app-user-card [username]="item.username"></app-user-card>
-            <div style="height: 48px"> </div>
+          <ng-container *ngIf="isCodemonkey(item)">
+            <app-codemonkey-card [codemonkey]="item"></app-codemonkey-card>
+          </ng-container>
+
+          <ng-container *ngIf="isCompany(item)">
+            <app-company-card [company]="item"></app-company-card>
+          </ng-container>
+
+          <div style="height: 48px"> </div>
         </div>
+        
 
         <div *ngIf="this.moreToLoad">
             <button mat-raised-button color="primary" (click)="feed()">Carica ancora</button>

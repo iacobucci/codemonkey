@@ -42,9 +42,15 @@ import { RegistrazionePopupComponent } from './components/popup/registrazione-po
 import { LoginPopupComponent } from './components/popup/login-popup/login-popup.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { ImageUploaderComponent } from './components/image-uploader/image-uploader.component';
-import { UserCardComponent } from './components/user-card/user-card.component';
-import { CodemonkeyCardComponent } from './components/user-card/codemonkey-card/codemonkey-card.component';
-import { CompanyCardComponent } from './components/user-card/company-card/company-card.component'
+
+import { UserCardComponent } from './components/card/user/user-card.component';
+import { CodemonkeyCardComponent } from './components/card/user/codemonkey/codemonkey-card.component';
+import { CompanyCardComponent } from './components/card/user/company/company-card.component';
+import { ProjectCardComponent } from './components/card/project-card/project-card.component';
+
+import { UserComponent } from './pages/user/user.component';
+import { CompanyComponent } from './pages/user/company/company.component'
+import { CodemonkeyComponent } from './pages/user/codemonkey/codemonkey.component';
 
 
 @NgModule({
@@ -65,8 +71,12 @@ import { CompanyCardComponent } from './components/user-card/company-card/compan
     UserCardComponent,
 
     RangePipe,
-     CodemonkeyCardComponent,
-     CompanyCardComponent
+    CodemonkeyCardComponent,
+    CompanyCardComponent,
+    CodemonkeyComponent,
+    UserComponent,
+    CompanyComponent,
+    ProjectCardComponent
   ],
   imports: [
     BrowserModule,
@@ -92,6 +102,9 @@ import { CompanyCardComponent } from './components/user-card/company-card/compan
       { path: 'login', component: LoginComponent },
       { path: 'registrazione', component: SignupComponent },
       { path: 'feed', component: FeedComponent, canActivate: [AuthGuard] },
+
+      { path: "codemonkey/:username", component: CodemonkeyComponent },
+      { path: "company/:username", component: CompanyComponent },
     ])
   ],
   providers: [

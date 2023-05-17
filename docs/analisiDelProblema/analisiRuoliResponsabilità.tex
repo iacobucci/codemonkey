@@ -1,101 +1,114 @@
 \section{Analisi Ruoli e Responsabilitá}
 
+\phantom{M}%%%%%%%%%%%%%%%%%
+
 \begin{center}
 
-    \rowcolors{2}{tableGreen!6}{tableGreen!12}%colori alternati
+    \rowcolors{2}{purple!6}{purple!12}%colori alternati
+
+
+    %%%%%%%%%%%%%%%%%%%%%
+    %%% Tabella Ruoli %%%
+    %%%%%%%%%%%%%%%%%%%%%
+
+    \begin{adjustwidth}{-1.9cm}{0cm}
+        \resizebox{1.25\textwidth}{!}{%tabella piú larga
+            \begin{tabular}
+                {|c|>{\raggedright}m{4cm}|>{\raggedright}m{5.75cm}|>{\raggedright}m{3.25cm}|>{\raggedright}m{3.5cm}|}
+                \hline
+                \rowcolor{purple!70}
+                \multicolumn{5}{|c|}{\Large\textbf{Tabella Ruoli}}
+                \n      \rowcolor{purple!50}
+                \large \textbf{Ruolo} & \centering\large\textbf{Responsabilitá}                                                                & \centering\large\textbf{Maschere}                                                                                                                                                                                                                                                                               & \centering\large\textbf{Riservatezza}       & \centering\large\textbf{Numerositá}
+                \n  Utente            & Visitare la HomePage                                                                                   & View Registrazione, View Autenticazione, Home Lista CodMonkey, Home Profilo CodMonkey,  View Informazioni CodMonkey, View Informazioni Cliente                                                                                                                                                                           & Richiesto grado di riservatezza medio/basso & Potenzialmente infinito
+                \n  CodMonkey         & Garantire la  privacy della propria password\newline Accettare o rifiutare lavoro proposto dal cliente & View Registrazione, View Autenticazione,Home Profilo CodMonkey, Home Lista CodMonkey, View Informazioni CodMonkey, View Manda Segnalazione, View Modifica Dati Personali CodMonkey, View Accetta Lavoro, Home Profilo Cliente, View Informazioni Cliente                                                                 & Richiesto grado di riservatezza alto        & Potenzialmente infinito, Numero gestito \newline dall amministartore di sistema
+                \n  Cliente           & Garantire la privacy della propria password\newline Proporre un lavoro ad una CodMonkey                & View Registrazione, View Autenticazione,Home Profilo Cliente, View Modifica Dati Personali Cliente, Home Lista CodMonkey, Home Profilo CodMonkey, View Informazioni CodMonkey, View Proponi Lavoro, View Manda Segnalazione                                                                                              & Richiesto grado di riservatezza alto        & Potenzialmente infinito, Numero gestito \newline dall amministratore di sistema
+                \n  Amministratore    & Gestione delle informazioni relative agli utenti e lettura dei log di sistema                          & View Autenticazione, Home Lista CodMonkey, View Informazioni CodMonkey, Home Profilo Cliente, View Informazioni Cliente, Home GestioneUtenti, View AggiungiUtenti, View RimuoviUtenti, View SospendiUtente, Home GestioneAmministratore, View Aggiungi Tecnologia, View Visualizzazione Log, View Controllo Segnalazioni & Richiesto grado di riservatezza molto alto  & Unica persona
+                \n
+            \end{tabular}}
+    \end{adjustwidth}\label{tab:monkeytable:problema:tabellaRuoli}
+
+
+    \phantom{M}%%%%%%%%%%%%%%%%%
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%% Tabelle Ruolo-Informazioni %%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
     \begin{tabularx}
-       {\textwidth} {|X|X|X|X|X|}
-        \hline  \rowcolor{tableGreen!70}
-        \multicolumn{5}{|c|}{\Large\textbf{Tabella Ruoli}}
-        \n      \rowcolor{tableGreen!50}
-        \large \textbf{Ruolo} & \centering\large\textbf{Responsabilitá} & \large\textbf{Maschere} & \centering\large\textbf{Riservatezza} & \centering\large\textbf{Numerositá}
-        \n        Utente            &           Visitare la HomePage                 &           View Registrazione, View Login, Home Lista CodMonkey, Home Profilo CodMonkey,  View Informazioni CodMonkey, View Informazioni Cliente      &           Richiesto grado di riservatezza medio/basso                            &   Potenzialmente infinito
-        \n       CodMonkey            &                Garantire la  privacy della propria password, \newline Accettare o rifiutare lavoro proposto dal cliente                       &           View Registrazione, View Login,Home Profilo CodMonkey, Home Lista CodMonkey ,View Informazioni CodMonkey ,View Manda Segnalazione ,View Modifica Dati Personali CodMonkey    ,View Accetta Lavoro  ,Home Profilo Cliente ,View Informazioni Cliente      &     Richiesto grado di riservatezza alto                      & Potenzialmente infinito, Numero gestito \newline dall amministartore di sistema
-        \n
-    \end{tabularx}
-    \label{tab:monkeytable:problema:tabellaRuoli}
-
-    \begin{tabularx}
-        {\textwidth} {|X|X|X|X|X|}
-         \hline  \rowcolor{tableGreen!70}
-         \multicolumn{5}{|c|}{\Large\textbf{Tabella Ruoli}}
-         \n      \rowcolor{tableGreen!50}
-         \large \textbf{Ruolo} & \centering\large\textbf{Responsabilitá} & \large\textbf{Maschere} & \centering\large\textbf{Riservatezza} & \centering\large\textbf{Numerositá}
-         \n        Cliente                      &          Garantire la privacy della propria password,\newline     Proporre un lavoro ad una CodMonkey                     &                 View Registrazione, View Login,Home Profilo Cliente, View Modifica Dati Personali Cliente, Home Lista CodMonkey , Home Profilo CodMonkey, View Informazioni CodMonkey    ,View Proponi Lavoro ,View Manda Segnalazione      &            Richiesto grado di riservatezza alto                   & Potenzialmente infinito, Numero gestito \newline dall amministratore di sistema
-         \n         Amministratore                &          Gestione delle informazioni relative agli utenti e lettura dei log di sistema                         &              View Login, Home Lista CodMonkey ,View Informazioni CodMonkey ,Home Profilo Cliente ,View Informazioni Cliente ,Home GestioneUtenti, View AggiungiUtenti, View RimuoviUtenti, View SospendiUtente, Home GestioneAmministratore ,View Aggiungi Tecnologia, View Visualizzazione Log, View Controllo Segnalazioni      &        Richiesto grado di riservatezza molto alto           &    Unica persona    
-          \n
-     \end{tabularx}
-     \label{tab:monkeytable:problema:tabellaRuoli}
-
-    \begin{tabularx}
-       {\textwidth} {|X|X|}
-        \hline  \rowcolor{tableGreen!70}
+        {\textwidth} {|X|X|}
+        \hline  \rowcolor{purple!70}
         \multicolumn{2}{|c|}{\Large\textbf{Utente: Tabella Ruolo-Informazioni}}
-        \n      \rowcolor{tableGreen!50}
-        \large \textbf{Informazione} & \centering\large\textbf{Tipo Accesso}
-        \n         Lista CodMonkey                  &  Lettura
-        \n         Informazioni CodMonkey                  & Lettura
-        \n Informazioni Cliente & Lettura
+        \n      \rowcolor{purple!50}
+        \large \textbf{Informazione}   & \centering\large\textbf{Tipo Accesso}
+        \n      Lista CodMonkey        & Lettura
+        \n      Informazioni CodMonkey & Lettura
+        \n      Informazioni Cliente   & Lettura
         \n
-    \end{tabularx}
-    \label{tab:monkeytable:problema:tabellafmeiageahjnaijgnaij}
+    \end{tabularx}\label{tab:monkeytable:problema:tabellaRuoloInformazioni:Utente}
+
+    \phantom{M}%%%%%%%%%%%%%%%%%
 
     \begin{tabularx}
         {\textwidth} {|X|X|}
-         \hline  \rowcolor{tableGreen!70}
-         \multicolumn{2}{|c|}{\Large\textbf{CodMonkey: Tabella Ruolo-Informazioni}}
-         \n      \rowcolor{tableGreen!50}
-         \large \textbf{Informazione} & \centering\large\textbf{Tipo Accesso}
-         \n           Username                &    Lettura/Scrittura
-        \n               Password            &    Scrittura
-        \n     Lista Collaborazioni   & Lettura
-        \n     Valutazione   & Lettura
-        \n     Dati Personali CodMonkey& Lettura/Scrittura
-        \n    Lista Tecnologie     & Lettura/Scrittura
-        \n    Informazioni Cliente & Lettura
-        \n Messaggio Segnalazione & Scrittura
-        
-         \n
-     \end{tabularx}
-     \label{tab:monkeytable:problema:tabellafmeiageahjnaijgnaij}
+        \hline  \rowcolor{purple!70}
+        \multicolumn{2}{|c|}{\Large\textbf{CodMonkey: Tabella Ruolo-Informazioni}}
+        \n      \rowcolor{purple!50}
+        \large \textbf{Informazione}     & \centering\large\textbf{Tipo Accesso}
+        \n      Username                 & Lettura/Scrittura
+        \n      Password                 & Scrittura
+        \n      Lista Collaborazioni     & Lettura
+        \n      Valutazione              & Lettura
+        \n      Dati Personali CodMonkey & Lettura/Scrittura
+        \n      Lista Tecnologie         & Lettura/Scrittura
+        \n      Informazioni Cliente     & Lettura
+        \n      Messaggio Segnalazione   & Scrittura
 
-     \begin{tabularx}
-        {\textwidth} {|X|X|}
-         \hline  \rowcolor{tableGreen!70}
-         \multicolumn{2}{|c|}{\Large\textbf{Cliente: Tabella Ruolo-Informazioni}}
-         \n      \rowcolor{tableGreen!50}
-         \large \textbf{Informazione} & \centering\large\textbf{Tipo Accesso}
-         \n                   Username        & Lettura/Scrittura
-         \n            Password               & Scrittura
-         \n     Lista Collaborazioni     &   Lettura
-         \n     Dati Personali Cliente    &   Lettura/Scrittura
-         \n     Lista CodMonkey  & Lettura
-         \n     Informazioni CodMonkey  & Lettura
-         \n    Valutazione Lavoro & Scrittura
-         \n Proponi Lavoro a CodMonkey & Scrittura
-         \n   Messaggio Segnalazione & Scrittura
-         \n
-     \end{tabularx}
-     \label{tab:monkeytable:problema:tabellafmeiageahjnaijgnaij}
+        \n
+    \end{tabularx}\label{tab:monkeytable:problema:tabellaRuoloInformazioni:Codmonkey}
 
-     \begin{tabularx}
+
+    \phantom{M}%%%%%%%%%%%%%%%%%
+
+
+    \begin{tabularx}
         {\textwidth} {|X|X|}
-         \hline  \rowcolor{tableGreen!70}
-         \multicolumn{2}{|c|}{\Large\textbf{Amministratore: Tabella Ruolo-Informazioni}}
-         \n      \rowcolor{tableGreen!50}
-         \large \textbf{Informazione} & \centering\large\textbf{Tipo Accesso}
-         \n            Username               &  Lettura/Scrittura
-         \n            Password               &   Scrittura
-         \n Lista CodeMonkey & Lettura
-         \n Lista Utenti & Lettura
-         \n    Segnalazioni   & Lettura
-         
-         \n           Configurazione Utenti    &  Lettura/Scrittura
-         \n     Log & Lettura
-         \n
-     \end{tabularx}
-     \label{tab:monkeytable:problema:tabellafmeiageahjnaijgnaij}
+        \hline  \rowcolor{purple!70}
+        \multicolumn{2}{|c|}{\Large\textbf{Cliente: Tabella Ruolo-Informazioni}}
+        \n      \rowcolor{purple!50}
+        \large \textbf{Informazione}       & \centering\large\textbf{Tipo Accesso}
+        \n      Username                   & Lettura/Scrittura
+        \n      Password                   & Scrittura
+        \n      Lista Collaborazioni       & Lettura
+        \n      Dati Personali Cliente     & Lettura/Scrittura
+        \n      Lista CodMonkey            & Lettura
+        \n      Informazioni CodMonkey     & Lettura
+        \n      Valutazione Lavoro         & Scrittura
+        \n      Proponi Lavoro a CodMonkey & Scrittura
+        \n      Messaggio Segnalazione     & Scrittura
+        \n
+    \end{tabularx}\label{tab:monkeytable:problema:tabellaRuoloInformazioni:Cliente}
+
+
+    \phantom{M}%%%%%%%%%%%%%%%%%
+
+
+    \begin{tabularx}
+        {\textwidth} {|X|X|}
+        \hline  \rowcolor{purple!70}
+        \multicolumn{2}{|c|}{\Large\textbf{Amministratore: Tabella Ruolo-Informazioni}}
+        \n      \rowcolor{purple!50}
+        \large \textbf{Informazione}  & \centering\large\textbf{Tipo Accesso}
+        \n      Username              & Lettura/Scrittura
+        \n      Password              & Scrittura
+        \n      Lista CodeMonkey      & Lettura
+        \n      Lista Utenti          & Lettura
+        \n      Segnalazioni          & Lettura
+        \n      Configurazione Utenti & Lettura/Scrittura
+        \n      Log                   & Lettura
+        \n
+    \end{tabularx}\label{tab:monkeytable:problema:tabellaRuoloInformazioni:Amministratore}
 
 
 

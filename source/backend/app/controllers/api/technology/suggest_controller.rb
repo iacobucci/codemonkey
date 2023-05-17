@@ -19,6 +19,7 @@ class Api::Technology::SuggestController < AuthenticationController
       end
     else
       Action.create(user: @current_user, name: "/technology/suggest", time: DateTime.now, description: @technology.name)
+      @technology.save
       render json: { status: "ok" }, status: :ok
     end
   end

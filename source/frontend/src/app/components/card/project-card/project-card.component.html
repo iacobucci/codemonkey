@@ -1,0 +1,37 @@
+<mat-card class="example-card">
+
+    <!-- <button mat-fab color="primary" (click)="mail()" class="profile-fab">
+        <mat-icon>email</mat-icon>
+    </button> -->
+    <mat-card-header>
+        <img #profilePicCompany mat-card-avatar src="" alt="Immagine di profilo">
+        <span style="width: 8px;"></span>
+        <img #profilePicCodemonkey mat-card-avatar src="" alt="Immagine di profilo">
+        <mat-card-title>{{this.project?.title}}</mat-card-title>
+        <mat-card-subtitle><a [routerLink]="[visitUrl('company', this.project?.company)]" class="custom-link"> @{{this.project?.company}}</a> <a [routerLink]="[visitUrl('codemonkey', this.project?.codemonkey)]"class="custom-link">@{{this.project?.codemonkey}}</a></mat-card-subtitle>
+        <span class="example-spacer"></span> 
+
+        <div style="align-items: center;">
+            <app-valutazione [rating]="(this.project) ? this.project.rating : null"></app-valutazione>
+        </div>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+
+
+    <span style="height:8px"></span>
+
+    <p style="margin-left: 4px; margin-right: 4px;">
+        {{this.project?.description}}
+    </p>
+
+    <span style="height:6px"></span>
+
+    <mat-divider></mat-divider>
+
+    <div class="scroll-container">
+        <div *ngFor="let item of this.project?.technologies" class="scroll-item">
+            <button mat-raised-button >{{ item.name }}</button>
+        </div>
+    </div>
+
+</mat-card>
