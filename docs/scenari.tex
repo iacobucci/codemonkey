@@ -16,11 +16,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{tabularx}{\textwidth}
-    {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
+    {|m{3cm}|X|}
 
-    \hline \rowcolor{tableCyan!37}
-    \centering\textbf{Titolo}           & \centering\textbf{Registrazione}
-
+    \hline \rowcolor{tableCyan!40}
+    \large\centering\textbf{Titolo}     & \large \centering\textbf{Registrazione}
     \tableCyan      Descrizione         & Sezione che consente la registrazione di un Utente
     \ntableCyan     Attori              & Utente
     \tableCyan      Relazioni           &
@@ -45,8 +44,7 @@
     {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
 
     \hline \rowcolor{tableCyan!37}
-    \centering\textbf{Titolo}           & \centering\textbf{Autenticazione}
-
+    \large\centering\textbf{Titolo}     & \large\centering\textbf{Autenticazione}
     \tableCyan      Descrizione         & Sezione dedicata all'autenticazione di un Utente
     \ntableCyan     Attori              & Utente, Admin
     \tableCyan      Relazioni           & Gestione Profilo, Proponi Lavoro, Fornisci recensione, Area personale, Gestione Utenti                  %da cambiareeeeeeee
@@ -71,8 +69,7 @@
     {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
 
     \hline \rowcolor{tableCyan!37}
-    \centering\textbf{Titolo}           & \centering\textbf{Gestione Profilo}
-
+    \large\centering\textbf{Titolo}     & \large\centering\textbf{Gestione Profilo}
     \tableCyan      Descrizione         & Sezione dedicata alla gestione dei dati di un Account
     \ntableCyan     Attori              & Cliente, Codemonkey
     \tableCyan      Relazioni           & Autenticazione
@@ -95,21 +92,21 @@
 \begin{tabularx}{\textwidth}
     {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
 
-    \hline \rowcolor{tableCyan!37} \centering\textbf{Titolo} & \centering\textbf{Lista Collaborazioni}
-
-    \tableCyan      Descrizione                              & Lista di tutte le collaborazioni
-    \ntableCyan     Attori                                   & Codemonkey, Cliente
-    \tableCyan      Relazioni                                & Gestione Profilo, Segnala ad Amministratore
-    \ntableCyan     Precondizioni                            & Codmonkey e Cliente devono essere autenticati
-    \tableCyan      Postcondizioni                           &
-    \ntableCyan     Scenario Principale                      &
+    \hline \rowcolor{tableCyan!37}
+    \large\centering\textbf{Titolo}     & \large\centering\textbf{Lista Collaborazioni}
+    \tableCyan      Descrizione         & Lista di tutte le collaborazioni
+    \ntableCyan     Attori              & Codemonkey, Cliente
+    \tableCyan      Relazioni           & Gestione Profilo, Segnala ad Amministratore
+    \ntableCyan     Precondizioni       & Codmonkey e Cliente devono essere autenticati
+    \tableCyan      Postcondizioni      &
+    \ntableCyan     Scenario Principale &
     \begin{enumerate}
         \item La Codemonkey o il Cliente dalla Gestione dell'Account potranno accedere alla Lista collaborazioni
         \item Possono visualizzare le collaborazioni attive e passate
     \end{enumerate}
-    \tableCyan      Scenari Alternativi                      &
-    \ntableCyan     Requisiti NF                             & Divisione delle collaborazioni per tipo (esempio: Attive, Terminate)
-    \tableCyan      Punti Aperti                             & Nel caso si voglia rifiutare o accettare un lavoro bisognerá fornire un periodo per far discutere l'azienda e la Codemonkey dove il lavoro rimane in una sorta di limbo?\newline
+    \tableCyan      Scenari Alternativi &
+    \ntableCyan     Requisiti NF        & Divisione delle collaborazioni per tipo (esempio: Attive, Terminate)
+    \tableCyan      Punti Aperti        & Nel caso si voglia rifiutare o accettare un lavoro bisognerá fornire un periodo per far discutere l'azienda e la Codemonkey dove il lavoro rimane in una sorta di limbo?\newline
     Cosa succede se una Codemonkey rifiuta un lavoro giá iniziato? Potrá essere valutata dal Cliente?
     \n
 \end{tabularx}
@@ -119,22 +116,22 @@
 \begin{tabularx}{\textwidth}
     {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
 
-    \hline \rowcolor{tableCyan!37} \centering\textbf{Titolo} & \centering\textbf{Segnala ad Amministratore}
-
-    \tableCyan      Descrizione                              & Funzionalitá per effettuare una segnalazione ad un amministratore
-    \ntableCyan     Attori                                   & Codemonkey, Cliente
-    \tableCyan      Relazioni                                & Lista Collaborazioni
-    \ntableCyan     Precondizioni                            & Codmonkey e Cliente devono essere autenticati
-    \tableCyan      Postcondizioni                           & La richiesta sará inoltrata ad un Amministratore
-    \ntableCyan     Scenario Principale                      &
+    \hline \rowcolor{tableCyan!37}
+    \large\centering\textbf{Titolo}     & \large\centering\textbf{Segnala ad Amministratore}
+    \tableCyan      Descrizione         & Funzionalitá per effettuare una segnalazione ad un amministratore
+    \ntableCyan     Attori              & Codemonkey, Cliente
+    \tableCyan      Relazioni           & Lista Collaborazioni
+    \ntableCyan     Precondizioni       & Codmonkey e Cliente devono essere autenticati
+    \tableCyan      Postcondizioni      & La richiesta sará inoltrata ad un Amministratore
+    \ntableCyan     Scenario Principale &
     \begin{enumerate}
         \item La Codemonkey o il Cliente potranno avviare una segnalazione su un qualsiasi lavoro in qualsiasi momento, anche una volta che é stato terminato
         \item La Codmonkey o il Cliente compilano un form per descrivere il problema
         \item Viene confermata la volontá di voler inviare la segnalazione
     \end{enumerate}
-    \tableCyan      Scenari Alternativi                      &
-    \ntableCyan     Requisiti NF                             &
-    \tableCyan      Punti Aperti                             &
+    \tableCyan      Scenari Alternativi &
+    \ntableCyan     Requisiti NF        &
+    \tableCyan      Punti Aperti        &
     \n
 \end{tabularx}
 
@@ -143,22 +140,22 @@
 \begin{tabularx}{\textwidth}
     {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
 
-    \hline \rowcolor{tableCyan!37} \centering\textbf{Titolo} & \centering\textbf{Imposta Filtri di Ricerca}
-
-    \tableCyan      Descrizione                              & Gestione dei Filtri di Ricerca della Codmonkey
-    \ntableCyan     Attori                                   & Codemonkey
-    \tableCyan      Relazioni                                &
-    \ntableCyan     Precondizioni                            &
-    \tableCyan      Postcondizioni                           & I filtri di ricerca vengono aggiornati
-    \ntableCyan     Scenario Principale                      &
+    \hline \rowcolor{tableCyan!37}
+    \large\centering\textbf{Titolo}     & \large\centering\textbf{Imposta Filtri di Ricerca}
+    \tableCyan      Descrizione         & Gestione dei Filtri di Ricerca della Codmonkey
+    \ntableCyan     Attori              & Codemonkey
+    \tableCyan      Relazioni           &
+    \ntableCyan     Precondizioni       &
+    \tableCyan      Postcondizioni      & I filtri di ricerca vengono aggiornati
+    \ntableCyan     Scenario Principale &
     \begin{enumerate}
         \item La Codmonkey apre la pagina dedicata alla gestione dei Filtri di Ricerca
         \item La Codmonkey aggiunge o toglie filtri di ricerca
         \item La codmonkey conferma i cambiamenti
     \end{enumerate}
-    \tableCyan      Scenari Alternativi                      &
-    \ntableCyan     Requisiti NF                             & I filtri di ricerca vengono aggiunti digitando in una casella di testo e mano a mano che si digita il testo appaiono filtri di ricerca utiizzati da altri utenti messi in ordine dal piú al meno usato
-    \tableCyan      Punti Aperti                             &
+    \tableCyan      Scenari Alternativi &
+    \ntableCyan     Requisiti NF        & I filtri di ricerca vengono aggiunti digitando in una casella di testo e mano a mano che si digita il testo appaiono filtri di ricerca utiizzati da altri utenti messi in ordine dal piú al meno usato
+    \tableCyan      Punti Aperti        &
     \n
 \end{tabularx}
 
@@ -167,22 +164,22 @@
 \begin{tabularx}{\textwidth}
     {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
 
-    \hline  \rowcolor{tableCyan!37} \centering\textbf{Titolo} & \centering\textbf{Accetta/Rifiuta/Annulla Lavoro}
-
-    \tableCyan      Descrizione                               & Sezione per la gestione delle collaborazioni della Codmonkey
-    \ntableCyan     Attori                                    & Codemonkey
-    \tableCyan      Relazioni                                 &                                                                                                                                                                                                                                                                    %domanda da fare al prof: si mette la relazione con la lista collab? a logica per semplificare il tutto la toglierei
-    \ntableCyan     Precondizioni                             &
-    \tableCyan      Postcondizioni                            &
-    \ntableCyan     Scenario Principale                       &
+    \hline  \rowcolor{tableCyan!37}
+    \large\centering\textbf{Titolo}     & \large\centering\textbf{Accetta/Rifiuta/Annulla Lavoro}
+    \tableCyan      Descrizione         & Sezione per la gestione delle collaborazioni della Codmonkey
+    \ntableCyan     Attori              & Codemonkey
+    \tableCyan      Relazioni           &                                                                                                                                                                                                                                                                    %domanda da fare al prof: si mette la relazione con la lista collab? a logica per semplificare il tutto la toglierei
+    \ntableCyan     Precondizioni       &
+    \tableCyan      Postcondizioni      &
+    \ntableCyan     Scenario Principale &
     \begin{enumerate}
         \item Allacodmonkey viene effettuata una proposta di lavoro da parte di un clinete
         \item La Codmonkey accetta la richiesta di lavoro
         \item La Codmonkey poi potrá annullare la richiesta di lavoro in qualsiasi momento fino a quando non viene terminata da un cliente
     \end{enumerate}
-    \tableCyan      Scenari Alternativi                       & 2. La codmonkey Rifiuta la richiesta di lavoro
-    \ntableCyan     Requisiti NF                              & Nel caso la Codmonkey rifiuti una proposta di lavoro potrá lasciare un feedback al Cliente sul perché la sua richiesta non sia stata accettata
-    \tableCyan      Punti Aperti                              & Nel caso la Codmonkey annulli una proposta di lavoro dovrá fornire una motivazione, in modo che il Cliente capisca rapidamente cosa é andato storto, inoltre ció migliorerá i tempi di risposta dell'Amministratore nel caso di contestazione da parte del Cliente
+    \tableCyan      Scenari Alternativi & 2. La codmonkey Rifiuta la richiesta di lavoro
+    \ntableCyan     Requisiti NF        & Nel caso la Codmonkey rifiuti una proposta di lavoro potrá lasciare un feedback al Cliente sul perché la sua richiesta non sia stata accettata
+    \tableCyan      Punti Aperti        & Nel caso la Codmonkey annulli una proposta di lavoro dovrá fornire una motivazione, in modo che il Cliente capisca rapidamente cosa é andato storto, inoltre ció migliorerá i tempi di risposta dell'Amministratore nel caso di contestazione da parte del Cliente
     \n
 \end{tabularx}
 
@@ -191,14 +188,15 @@
 \begin{tabularx}{\textwidth}
     {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
 
-    \hline  \rowcolor{tableCyan!37} \centering\textbf{Titolo} & \centering\textbf{Termina Collaborazione e Valuta Codmonkey}
+    \hline  \rowcolor{tableCyan!37}
+    \large\centering\textbf{Titolo}     & \large\centering\textbf{Termina Collaborazione e Valuta Codmonkey}
 
-    \tableCyan Descrizione                                    & Sezione per Terminare un Lavoro e fornire una Valutazione ad una Codmonkey
-    \ntableCyan     Attori                                    & Cliente
-    \tableCyan      Relazioni                                 & Autenticazione
-    \ntableCyan     Precondizioni                             &
-    \tableCyan      Postcondizioni                            &
-    \ntableCyan     Scenario Principale                       &
+    \tableCyan Descrizione              & Sezione per Terminare un Lavoro e fornire una Valutazione ad una Codmonkey
+    \ntableCyan     Attori              & Cliente
+    \tableCyan      Relazioni           & Autenticazione
+    \ntableCyan     Precondizioni       &
+    \tableCyan      Postcondizioni      &
+    \ntableCyan     Scenario Principale &
     \begin{enumerate}
         \item Un Cliente consulta le Collaborazioni attive
         \item Il Cliente avvia la procedura per terminare la collaborazione
@@ -207,9 +205,9 @@
         \item Il Cliente da conferma di voler terminare il lavoro
 
     \end{enumerate}
-    \tableCyan      Scenari Alternativi                       & Nel caso il Cliente sia stato Limitato o Sospeso non potrá fornire una valutazione scritta alla Codmonkey
-    \ntableCyan     Requisiti NF                              &
-    \tableCyan      Punti Aperti                              & Per evitare che vengano messe in mostra recensioni prive di contenuti sará meglio impostare una quantitá minima di parole o lettere che dovranno essere inserite per poter mandare una recensione scritta?
+    \tableCyan      Scenari Alternativi & Nel caso il Cliente sia stato Limitato o Sospeso non potrá fornire una valutazione scritta alla Codmonkey
+    \ntableCyan     Requisiti NF        &
+    \tableCyan      Punti Aperti        & Per evitare che vengano messe in mostra recensioni prive di contenuti sará meglio impostare una quantitá minima di parole o lettere che dovranno essere inserite per poter mandare una recensione scritta?
     \n
 \end{tabularx}
 
@@ -218,23 +216,23 @@
 \begin{tabularx}{\textwidth}
     {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
 
-    \hline  \rowcolor{tableCyan!37} \centering\textbf{Titolo} & \centering\textbf{Proponi Lavoro}
-
-    \tableCyan      Descrizione                               & Sezione dedicata a madare una richiesta di Lavoro ad una Codemonkey
-    \ntableCyan     Attori                                    & Cliente, Utente
-    \tableCyan      Relazioni                                 & Autenticazione
-    \ntableCyan     Precondizioni                             &
-    \tableCyan      Postcondizioni                            & La richiesta di Lavoro viene inoltrata alla Codmonkey
-    \ntableCyan     Scenario Principale                       &
+    \hline  \rowcolor{tableCyan!37}
+    \large\centering\textbf{Titolo}     & \large\centering\textbf{Proponi Lavoro}
+    \tableCyan      Descrizione         & Sezione dedicata a madare una richiesta di Lavoro ad una Codemonkey
+    \ntableCyan     Attori              & Cliente, Utente
+    \tableCyan      Relazioni           & Autenticazione
+    \ntableCyan     Precondizioni       &
+    \tableCyan      Postcondizioni      & La richiesta di Lavoro viene inoltrata alla Codmonkey
+    \ntableCyan     Scenario Principale &
     \begin{enumerate}
         \item Un Utente o un Cliente una volta che ha trovato la Codmonkey ideale per sviluppare il suo progetto puó proporre un lavoro
         \item Un Utente viene reindirizzato alla sezione di Autenticazione prima di poter iniziare l'innoltro della richiesta
         \item Per mandare la richiesta di lavoro il Cliente compila un modulo ne quale descrive brevemente ció che gli serve
         \item Il Cliente conferma di voler contattare la Codmonkey
     \end{enumerate}
-    \tableCyan      Scenari Alternativi                       & Un Cliente sospeso non puó fare alcuna richiesta di lavoro, pertanto invece che aprire una sezione dedicata alla proposta di lavoro verrá visualizzata una pagina di errore con la motivazione della sospensione
-    \ntableCyan     Requisiti NF                              &
-    \tableCyan      Punti Aperti                              & Per evitare che vengano madate richieste di lavoro non sufficentemente dettagliate bisognerá mettere dei capi da compilare obbligatori
+    \tableCyan      Scenari Alternativi & Un Cliente sospeso non puó fare alcuna richiesta di lavoro, pertanto invece che aprire una sezione dedicata alla proposta di lavoro verrá visualizzata una pagina di errore con la motivazione della sospensione
+    \ntableCyan     Requisiti NF        &
+    \tableCyan      Punti Aperti        & Per evitare che vengano madate richieste di lavoro non sufficentemente dettagliate bisognerá mettere dei capi da compilare obbligatori
     \n
 \end{tabularx}
 
@@ -243,17 +241,17 @@
 \begin{tabularx}{\textwidth}
     {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
 
-    \hline  \rowcolor{tableCyan!37} \centering\textbf{Titolo} & \centering\textbf{Homepage}
-
-    \tableCyan      Descrizione                               & Sezione principale nella quale si possono eseguire ricerche di Codemonkey
-    \ntableCyan     Attori                                    & Utente
-    \tableCyan      Relazioni                                 &
-    \ntableCyan     Precondizioni                             &
-    \tableCyan      Postcondizioni                            &
-    \ntableCyan     Scenario Principale                       & Un Utente attraverso l'utilizzo di Filtri di Ricerca puó trovare la Codmonkey ideale per sviluppare il suo progetto
-    \tableCyan      Scenari Alternativi                       &
-    \ntableCyan     Requisiti NF                              & Interfaccia grafica intuitiva e dall'estetica pulita
-    \tableCyan      Punti Aperti                              & Per risparmiare le risorse biogna evitare di caricare tutti i profili aderenti ai filtri di ricerca, come si potrebbe implementare? Divisione della lista in sezioni da massimo n codmonkey? Caricamento di nuovi profili un avolta raggiunte le ultime righe?
+    \hline  \rowcolor{tableCyan!37}
+    \large\centering\textbf{Titolo}     & \large\centering\textbf{Homepage}
+    \tableCyan      Descrizione         & Sezione principale nella quale si possono eseguire ricerche di Codemonkey
+    \ntableCyan     Attori              & Utente
+    \tableCyan      Relazioni           &
+    \ntableCyan     Precondizioni       &
+    \tableCyan      Postcondizioni      &
+    \ntableCyan     Scenario Principale & Un Utente attraverso l'utilizzo di Filtri di Ricerca puó trovare la Codmonkey ideale per sviluppare il suo progetto
+    \tableCyan      Scenari Alternativi &
+    \ntableCyan     Requisiti NF        & Interfaccia grafica intuitiva e dall'estetica pulita
+    \tableCyan      Punti Aperti        & Per risparmiare le risorse biogna evitare di caricare tutti i profili aderenti ai filtri di ricerca, come si potrebbe implementare? Divisione della lista in sezioni da massimo n codmonkey? Caricamento di nuovi profili un avolta raggiunte le ultime righe?
     \n
 \end{tabularx}
 
@@ -262,29 +260,26 @@
 \begin{tabularx}{\textwidth}
     {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
 
-    \hline  \rowcolor{tableCyan!37} \centering\textbf{Titolo} & \centering\textbf{Gestione Utenti}
-
-    \tableCyan      Descrizione                               & Sezione dedicata agli admin per la gestione degli Utenti
-    \ntableCyan     Attori                                    & Admin
-    \tableCyan      Relazioni                                 &
-    \ntableCyan     Precondizioni                             & L'Amministratore deve essere stato autenticato
-    \tableCyan      Postcondizioni                            &
-    \ntableCyan     Scenario Principale                       &
+    \hline  \rowcolor{tableCyan!37}
+    \large\centering\textbf{Titolo}     & \large\centering\textbf{Gestione Sisema}
+    \tableCyan      Descrizione         & Sezione dedicata agli admin per la gestione del sistema
+    \ntableCyan     Attori              & Admin
+    \tableCyan      Relazioni           &
+    \ntableCyan     Precondizioni       & L'Amministratore deve essere stato autenticato
+    \tableCyan      Postcondizioni      &
+    \ntableCyan     Scenario Principale &
     \begin{enumerate}
         \item L'amministratore si autentica
-        \item L'Amministratore accede alla sezionea dedicata alla gestione degli Utenti
+        \item L'Amministratore accede alla sezione dedicata alla gestione degli Utenti
         \item L'Amministratore quindi potrá Limitare, Sospendere e Bloccare o Eliminare un Utente Registrato e visualizzare tutti i file di report generati da Codmonkey e Amministratori
+        \item L'Amministratore accede alla sezione dedicata alla gestione dei filtri
+        \item L'Amministratore quindi puó aggiungere un filtro proposto o eliminare un filtro esistente
+        \item L'Amministratore accede alla sezione dedicata alla gestione delle segnalazione dove potrá vedere tutte le segnalazioni generate dagli Utenti Registrai
     \end{enumerate}
-    \tableCyan      Scenari Alternativi                       &
-    \ntableCyan     Requisiti NF                              &
-    \tableCyan      Punti Aperti                              &
+    \tableCyan      Scenari Alternativi &
+    \ntableCyan     Requisiti NF        &
+    \tableCyan      Punti Aperti        &
     \n
 \end{tabularx}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%dove li inseriamo?
-
-%Il Cliente dalla lista delle collaborazioni passate puó riproporre il lavoro ad una Codmonkey 
-
-%I

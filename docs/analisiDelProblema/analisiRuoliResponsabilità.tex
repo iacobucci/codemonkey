@@ -4,7 +4,7 @@
 
 \begin{center}
 
-    \rowcolors{2}{purple!6}{purple!12}%colori alternati
+    \rowcolors{2}{blue!6}{blue!12}%colori alternati
 
 
     %%%%%%%%%%%%%%%%%%%%%
@@ -16,9 +16,9 @@
             \begin{tabular}
                 {|c|>{\raggedright}m{4cm}|>{\raggedright}m{5.75cm}|>{\raggedright}m{3.25cm}|>{\raggedright}m{3.5cm}|}
                 \hline
-                \rowcolor{purple!70}
+                \rowcolor{tableBlue!55}
                 \multicolumn{5}{|c|}{\Large\textbf{Tabella Ruoli}}
-                \n      \rowcolor{purple!50}
+                \n      \rowcolor{tableBlue!40}
                 \large \textbf{Ruolo} & \centering\large\textbf{Responsabilitá}                                                                & \centering\large\textbf{Maschere}                                                                                                                                                                                                                                                                               & \centering\large\textbf{Riservatezza}       & \centering\large\textbf{Numerositá}
                 \n  Utente            & Visitare la HomePage                                                                                   & View Registrazione, View Autenticazione, Home Lista CodMonkey, Home Profilo CodMonkey,  View Informazioni CodMonkey, View Informazioni Cliente                                                                                                                                                                           & Richiesto grado di riservatezza medio/basso & Potenzialmente infinito
                 \n  CodMonkey         & Garantire la  privacy della propria password\newline Accettare o rifiutare lavoro proposto dal cliente & View Registrazione, View Autenticazione,Home Profilo CodMonkey, Home Lista CodMonkey, View Informazioni CodMonkey, View Manda Segnalazione, View Modifica Dati Personali CodMonkey, View Accetta Lavoro, Home Profilo Cliente, View Informazioni Cliente                                                                 & Richiesto grado di riservatezza alto        & Potenzialmente infinito, Numero gestito \newline dall amministartore di sistema
@@ -35,12 +35,14 @@
     %%% Tabelle Ruolo-Informazioni %%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+    \rowcolors{2}{tableCyan!6}{tableCyan!12}%colori alternati
+
 
     \begin{tabularx}
         {\textwidth} {|X|X|}
-        \hline  \rowcolor{purple!70}
+        \hline  \rowcolor{tableCyan!60}
         \multicolumn{2}{|c|}{\Large\textbf{Utente: Tabella Ruolo-Informazioni}}
-        \n      \rowcolor{purple!50}
+        \n      \rowcolor{tableCyan!40}
         \large \textbf{Informazione}   & \centering\large\textbf{Tipo Accesso}
         \n      Lista CodMonkey        & Lettura
         \n      Informazioni CodMonkey & Lettura
@@ -52,9 +54,9 @@
 
     \begin{tabularx}
         {\textwidth} {|X|X|}
-        \hline  \rowcolor{purple!70}
+        \hline  \rowcolor{tableCyan!60}
         \multicolumn{2}{|c|}{\Large\textbf{CodMonkey: Tabella Ruolo-Informazioni}}
-        \n      \rowcolor{purple!50}
+        \n      \rowcolor{tableCyan!40}
         \large \textbf{Informazione}     & \centering\large\textbf{Tipo Accesso}
         \n      Username                 & Lettura/Scrittura
         \n      Password                 & Scrittura
@@ -74,9 +76,9 @@
 
     \begin{tabularx}
         {\textwidth} {|X|X|}
-        \hline  \rowcolor{purple!70}
+        \hline  \rowcolor{tableCyan!60}
         \multicolumn{2}{|c|}{\Large\textbf{Cliente: Tabella Ruolo-Informazioni}}
-        \n      \rowcolor{purple!50}
+        \n      \rowcolor{tableCyan!40}
         \large \textbf{Informazione}       & \centering\large\textbf{Tipo Accesso}
         \n      Username                   & Lettura/Scrittura
         \n      Password                   & Scrittura
@@ -96,9 +98,9 @@
 
     \begin{tabularx}
         {\textwidth} {|X|X|}
-        \hline  \rowcolor{purple!70}
+        \hline  \rowcolor{tableCyan!60}
         \multicolumn{2}{|c|}{\Large\textbf{Amministratore: Tabella Ruolo-Informazioni}}
-        \n      \rowcolor{purple!50}
+        \n      \rowcolor{tableCyan!40}
         \large \textbf{Informazione}  & \centering\large\textbf{Tipo Accesso}
         \n      Username              & Lettura/Scrittura
         \n      Password              & Scrittura
@@ -109,8 +111,6 @@
         \n      Log                   & Lettura
         \n
     \end{tabularx}\label{tab:monkeytable:problema:tabellaRuoloInformazioni:Amministratore}
-
-
 
 
 \end{center}
