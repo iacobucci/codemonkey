@@ -123,8 +123,11 @@
         \rowcolor{tableGreen!70}
         \multicolumn{5}{|c|}{\Large\textbf{Modifica Dati Personali}}
         \headerFlusso
-        \n              Descrizione Personale & Semplice & Pubblico & Input-Output & Massio 5000 caratteri
-        \n              Salva Modifiche       & Semplice & Basso    & Input        &
+        \n              Nome Utente           & Semplice & Basso      & Input-Output & Massio 50 caratteri
+        \n              Descrizione Personale & Semplice & Basso      & Input-Output & Massio 5000 caratteri
+        \n              Immagine del profilo  & Semplice & Basso      & Input-Output & ???
+        \n              Password              & Semplice & Molto-Alto & Input        & Massimo 50 caratteri
+        \n              Salva Modifiche       & Semplice & Basso      & Input        &
         \n
     \end{tabularx}
     \label{tab:monkeytable:problema:tabFlusso:modificaDatiPersonali}
@@ -276,12 +279,13 @@
         \rowcolor{tableGreen!70}
         \multicolumn{5}{|c|}{\Large\textbf{Gestisci Utenti Registrati}}
         \headerFlusso
-        \n              Limita Utente Registrato   & Semplice & Alto  & Input &
-        \n              Sospendi Utente Registrato & Semplice & Alto  & Input &
-        \n              Blocca Utente Registrato   & Semplice & Alto  & Input &
-        \n              Elimina Utente Registrato  & Semplice & Alto  & Input &
-        \n              Motivazione                & Semplice & Alto  & Input & Massimo 500 caratteri
-        \n              Ricerca Utente             & Semplice & Basso & Input &
+        \n              Limita Utente Registrato     & Semplice & Alto  & Input  &
+        \n              Sospendi Utente Registrato   & Semplice & Alto  & Input  &
+        \n              Blocca Utente Registrato     & Semplice & Alto  & Input  &
+        \n              Elimina Utente Registrato    & Semplice & Alto  & Input  &
+        \n              Motivazione                  & Semplice & Alto  & Input  & Massimo 500 caratteri
+        \n              Ricerca Utente               & Semplice & Medio & Input  &
+        \n              Lista Utenti con restrizioni & Semplice & Alto  & Output &
         \n
     \end{tabularx}
     \label{tab:monkeytable:problema:tabFlusso:gestisciUtentiRegistrati}
@@ -352,7 +356,9 @@
         \rowcolor{tableGreen!70}
         \multicolumn{5}{|c|}{\Large\textbf{Visualizza Log}}
         \headerFlusso
-        \n            File di Log & Semplice & Alto & Output &
+        \n            File di Log         & Semplice & Alto & Output &
+        \n            Scarica File di Log & Semplice & Alto & Output &
+        \n            Ricerca             & Semplice & Alto & Input  &
         \n
     \end{tabularx}
     \label{tab:monkeytable:problema:tabFlusso:visualizzaLog}
