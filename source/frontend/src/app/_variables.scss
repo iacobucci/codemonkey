@@ -1,0 +1,21 @@
+
+$mat-primary-scheme: (
+  100: #c5cae9,
+  500: #61699a,
+  700: #303f9f,
+  contrast: (
+    100: rgba(0, 0, 0, 0.87),
+    500: #ffffff,
+    700: #ffffff,
+  ),
+);
+$mat-accent-scheme: (
+  100: #DCEDC8,
+  500: #4CAF50,
+  700: #689F38,
+  contrast: (
+    100: rgba(0, 0, 0, 0.87),
+    500: rgba(0, 0, 0, 0.87),
+    700: #ffffff,
+  ),
+);

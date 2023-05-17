@@ -40,10 +40,9 @@ misc
             [x] matching passwords
             [x] qr code
                 [x] bug libreria
-	    [ ] capire come ottenere parametri da componente genitore
+	    [x] capire come ottenere parametri da componente genitore
             premendo sul componente technologies dalla card user si viene reindirizzati a /<username>?technologies=<tecnologies>
         [ ] ssr
-            caricamento pagina più veloce
 
     backend
         [x] database connection
@@ -226,25 +225,26 @@ endpoint
     /api
         endpoint di popolamento dell'interfaccia
             /feed
-                [ ] /dashboard
+                [x] /home
+                    si filtra per codemonkey||company||tutti
+                    si filtra per tecnologia
+                    l'ordine è casuale
+                    vengono inviate 5 card alla volta
+                    bisogna controllare quale card sono state gia visualizzate
+                    /home?seen=<username1,username2,...>&technologies=<tecnologia1,tecnologia2,...>&type=<codemonkey|company|all>
+                [x] /user
+                    si filtra per tecnologia
+                    l'ordine è project.suggest_time.asc
+                    vengono inviate 5 card alla volta
+                    /user?page=<num>&technologies=<tecnologia1,tecnologia2,...>
+            /dashboard
+                [x] actions
                     lista di tutte le actions
                     l'ordine è actions.time.desc
                     vengono inviate 20 card alla volta
                     /dashboard?page=<num>
                     ovviamente si possono perdere di vista le actions per via della paginazione
-                [ ] /home
-                    si filtra per codemonkey||company||tutti
-                    si filtra per tecnologia
-                    l'ordine è casuale
-                    vengono inviate 5 card alla volta
-
-                    bisogna controllare quale card sono state gia visualizzate
-                    /home?seen=<username1,username2,...>&technologies=<tecnologia1,tecnologia2,...>&type=<codemonkey|company|all>
-                [ ] /user
-                    si filtra per tecnologia
-                    l'ordine è project.suggest_time.asc
-                    vengono inviate 5 card alla volta
-                    /user?page=<num>&technologies=<tecnologia1,tecnologia2,...>
+                [x] technologies
         endpoint di controllo
             /project
                 [ ] /accept
@@ -253,12 +253,12 @@ endpoint
                 [ ] /terminate
                 [ ] /edit
             /report
-                [ ] /send
-                [ ] /ban
+                [x] /send
+                [x] /ban
             /technology
-                [ ] /suggest
-                [ ] /approve
-                [ ] /reject
+                [x] /suggest
+                [x] /approve
+                [x] /reject
             /user
                 [x] /signup
                 [x] /login
@@ -272,46 +272,46 @@ endpoint
 
 components
     [ ] card
-        [ ] user
-            [ ] codemonkey
-                [ ] username
+        [x] user
+            [x] codemonkey
+                [x] username
                     link a /codemonkey/<username>
-                [ ] nome
-                [ ] cognome
-                [ ] propic
-                [ ] valutazione media
-                    [ ] component valutazione
-                [ ] mailto
-                [ ] bio
-                [ ] tecnologie
-                    [ ] list.tecnologie
+                [x] nome
+                [x] cognome
+                [x] propic
+                [x] valutazione media
+                    [x] component valutazione
+                [x] mailto
+                [x] bio
+                [x] tecnologie
+                    [x] list.tecnologie
 
-            [ ] company
-                [ ] username
+            [x] company
+                [x] username
                     link a /company/<username>
-                [ ] nome
-                [ ] propic
-                [ ] mailto
-                [ ] bio
-                [ ] tecnologie
-                    [ ] list.tecnologie
+                [x] nome
+                [x] propic
+                [x] mailto
+                [x] bio
+                [x] tecnologie
+                    [x] list.tecnologie
 
-        [ ] project
-            [ ] company
-				[ ] link a /company/<username>
-				[ ] username
-                [ ] nome
-                [ ] propic
+        [x] project
+            [x] company
+				[x] link a /company/<username>
+				[x] username
+                [x] nome
+                [x] propic
             [ ] codemonkey
-                [ ] link a /codemonkey/<username>
-				[ ] username
-                [ ] nome
-                [ ] cognome
-                [ ] propic
-            [ ] titolo
-            [ ] descrizione
-            [ ] tecnologie
-                [ ] list.tecnologie
+                [x] link a /codemonkey/<username>
+				[x] username
+                [x] nome
+                [x] cognome
+                [x] propic
+            [x] titolo
+            [x] descrizione
+            [x] tecnologie
+                [x] list.tecnologie
 
             se data_inizio != null
                 se loggato come company e <username>==<company.username>

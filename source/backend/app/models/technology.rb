@@ -6,7 +6,7 @@ class Technology < ApplicationRecord
 
   #actions
 
-  def card
+  def index
     {
       name: self.name,
     }

@@ -3,26 +3,24 @@ class Api::Technology::RejectController < AuthenticationController
 
   def reject
     catch :error do
+      if @current_user.type != "Admin"
+        except 401, ["Invalid user"]
+      end
+
       @technology.reject
     end
 
     Action.create(user: @current_user, name: "/technology/reject", time: DateTime.now, description: @technology.name)
+    @technology.save
     render json: {
              status: "ok",
            }, status: :ok
   end
 
   def validate_params
-    extract_params_and_validate(:approve, [:name])
     catch :error do
-      validate_user
+      extract_params_and_validate(:reject, [:name])
       validate_name
-    end
-  end
-
-  def validate_user
-    if @current_user.type != "Admin"
-      except 401, ["Invalid user"]
     end
   end
 

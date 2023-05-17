@@ -1,0 +1,42 @@
+<mat-card class="example-card">
+
+    <button mat-fab color="primary" (click)="mail()" class="profile-fab">
+        <mat-icon>email</mat-icon>
+    </button>
+    <mat-card-header>
+        <img #profilePicSmallRef mat-card-avatar src="" alt="Immagine di profilo">
+        <mat-card-title><a [routerLink]="[visitUrl()]" class="custom-link">{{name}}</a></mat-card-title>
+        <mat-card-subtitle><a [routerLink]="[visitUrl()]"
+                class="custom-link">@{{this.user?.username}}</a></mat-card-subtitle>
+        <span class="example-spacer"></span>
+
+        <div *ngIf="this.hasRating == true">
+            <div style="align-items: center;">
+                <app-valutazione [rating]="this.rating"></app-valutazione>
+            </div>
+        </div>
+
+        <div *ngIf="this.hasRating == false">
+            <a mat-stroked-button disabled>{{this.user?.type?.toLocaleUpperCase()}}</a>
+        </div>
+    </mat-card-header>
+    <img #profilePicLargeRef mat-card-image src="" alt="Immagine di profilo" style="width: 100%;">
+    <mat-divider></mat-divider>
+
+    <span style="height:8px"></span>
+
+    <p style="margin-left: 4px; margin-right: 4px;">
+        {{this.bio}}
+    </p>
+
+    <span style="height:6px"></span>
+
+    <mat-divider></mat-divider>
+
+    <div class="scroll-container">
+        <div *ngFor="let item of this.technologies" class="scroll-item">
+            <button mat-raised-button [routerLink]="technology(item.name)">{{ item.name }}</button>
+        </div>
+    </div>
+
+</mat-card>

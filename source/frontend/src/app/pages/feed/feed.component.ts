@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../authentication.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { HostListener } from '@angular/core';
 
-interface User {
-  type: string;
-  username: string;
-}
+import {User} from "../../interfaces/user.interface"
+import {Codemonkey} from "../../interfaces/codemonkey.interface"
+import {Company} from "../../interfaces/company.interface"
 
 
 @Component({
@@ -29,26 +27,19 @@ export class FeedComponent implements OnInit {
   ngOnInit(): void {
     this.feed();
   }
+  
+  isCodemonkey(user: User): user is Codemonkey {
+    return user.type === 'Codemonkey';
+  }
 
-  hello(): void {
-    const url = '/api/rails';
-    const jwtToken = localStorage.getItem('currentUser');
-    console.log(jwtToken, url);
-
-    this.http.get(url, { responseType: "text" }).pipe(
-      catchError(error => {
-        console.error('Error:', error);
-        return throwError(error);
-      })
-    ).subscribe(data => {
-      alert(data);
-    });
+  isCompany(user: User): user is Company {
+    return user.type === 'Company';
   }
 
   feed(): void {
     const url = '/api/feed/home';
 
-    this.http.post<any>(url, { home: { type: "Codemonkey", technologies: [], seen: this.seen } }).pipe(
+    this.http.post<any>(url, { home: { type: "All", technologies: [], seen: this.seen } }).pipe(
       catchError(error => {
         console.error('Error:', error);
         return throwError(error);
@@ -57,7 +48,7 @@ export class FeedComponent implements OnInit {
     ).subscribe(data => {
       if (data.length < 4)
         this.moreToLoad = false;
-
+      
       this.cards.push(...data);
       this.seen.push(...this.cards.map((user: User) => { return user.username }));
     }
