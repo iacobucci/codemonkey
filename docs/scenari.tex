@@ -47,19 +47,18 @@
     \large\centering\textbf{Titolo}     & \large\centering\textbf{Autenticazione}
     \tableCyan      Descrizione         & Sezione dedicata all'autenticazione di un Utente
     \ntableCyan     Attori              & Utente, Admin
-    \tableCyan      Relazioni           & Gestione Profilo, Proponi Lavoro, Fornisci recensione, Area personale, Gestione Utenti                  %da cambiareeeeeeee
+    \tableCyan      Relazioni           & Gestione Profilo, Proponi Lavoro, Fornisci recensione, Area personale, Gestione Utenti                                                                                                                                                                                    %da cambiareeeeeeee
     \ntableCyan     Precondizioni       & L'Utente o l'amministratore deve essere giá stato registrato all'interno del sistema
     \tableCyan      Postcondizioni      &
     \ntableCyan     Scenario Principale &
     \begin{enumerate}
         \item L'Utente fornisce le credenziali di accesso al sistema
         \item L'Utente conferma di voler entrare con le credenziali immesse
-        \item Nel caso in cui le credenziali siano corrette il sistema, nel caso l'Utente sia una Codmonkey o un Cliente, presenterá la gestione account, nel caso invece si sia autenticato un Amministratore verrá fornito l'accesso alla gestione utenti
+        \item Nel caso in cui le credenziali siano corrette, Codmonkey o Cliente saranno reindirizzati alla Gestione del Profilo, invece l'Amministratore sará reindirizzato verso la Gestione del Sistema
     \end{enumerate}
-    \tableCyan      Scenari Alternativi & Nel caso i dati forniti per l'autenticazione siano incorretti verrá visualizzato un messaggio di errore
-    \newline Nel caso l'utente sia stato bloccato da un Amministratore verrá fornito un messaggio di errore con la spiegazione del perché sia stato sospeso
-    \ntableCyan     Requisiti NF        & Sará sempre presente un bottone per inoltrare una richiesta di recupero password
-    \tableCyan      Punti Aperti        & Come fare nel caso un Utente o un Admin debbano usare l'autenticazione a 2 fattori?
+    \tableCyan      Scenari Alternativi & Nel caso che i dati forniti per l'autenticazione siano incorretti verrá visualizzato un messaggio di errore\newline Nel caso l'utente sia stato bloccato da un Amministratore verrá fornito un messaggio di errore con la spiegazione del perché sia stato sospeso
+    \ntableCyan     Requisiti NF        & Sará sempre presente un bottone per inoltrare una richiesta di recupero Password all'Amministratore
+    \tableCyan      Punti Aperti        & 
     \n
 \end{tabularx}
 
@@ -105,9 +104,9 @@
         \item Possono visualizzare le collaborazioni attive e passate
     \end{enumerate}
     \tableCyan      Scenari Alternativi &
-    \ntableCyan     Requisiti NF        & Divisione delle collaborazioni per tipo (esempio: Attive, Terminate)
-    \tableCyan      Punti Aperti        & Nel caso si voglia rifiutare o accettare un lavoro bisognerá fornire un periodo per far discutere l'azienda e la Codemonkey dove il lavoro rimane in una sorta di limbo?\newline
-    Cosa succede se una Codemonkey rifiuta un lavoro giá iniziato? Potrá essere valutata dal Cliente?
+    \ntableCyan     Requisiti NF        & 
+    \tableCyan      Punti Aperti        & Nel caso si voglia rifiutare o accettare un Lavoro bisognerá fornire un periodo per far discutere l'azienda e la Codemonkey dove il Lavoro rimane in una sorta di limbo?\newline
+    Cosa succede se una Codemonkey Interrompe un Lavoro giá iniziato? Potrá essere valutata dal Cliente?
     \n
 \end{tabularx}
 
@@ -118,14 +117,14 @@
 
     \hline \rowcolor{tableCyan!37}
     \large\centering\textbf{Titolo}     & \large\centering\textbf{Segnala ad Amministratore}
-    \tableCyan      Descrizione         & Funzionalitá per effettuare una segnalazione ad un amministratore
+    \tableCyan      Descrizione         & Funzionalitá per effettuare una segnalazione ad un Amministratore
     \ntableCyan     Attori              & Codemonkey, Cliente
     \tableCyan      Relazioni           & Lista Collaborazioni
     \ntableCyan     Precondizioni       & Codmonkey e Cliente devono essere autenticati
     \tableCyan      Postcondizioni      & La richiesta sará inoltrata ad un Amministratore
     \ntableCyan     Scenario Principale &
     \begin{enumerate}
-        \item La Codemonkey o il Cliente potranno avviare una segnalazione su un qualsiasi lavoro in qualsiasi momento, anche una volta che é stato terminato
+        \item La Codemonkey o il Cliente potranno avviare una segnalazione su un qualsiasi Lavoro o Utente
         \item La Codmonkey o il Cliente compilano un form per descrivere il problema
         \item Viene confermata la volontá di voler inviare la segnalazione
     \end{enumerate}
@@ -141,21 +140,21 @@
     {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
 
     \hline \rowcolor{tableCyan!37}
-    \large\centering\textbf{Titolo}     & \large\centering\textbf{Imposta Filtri di Ricerca}
-    \tableCyan      Descrizione         & Gestione dei Filtri di Ricerca della Codmonkey
+    \large\centering\textbf{Titolo}     & \large\centering\textbf{Imposta Tag}
+    \tableCyan      Descrizione         & Gestione dei Tag della Codmonkey
     \ntableCyan     Attori              & Codemonkey
     \tableCyan      Relazioni           &
     \ntableCyan     Precondizioni       &
-    \tableCyan      Postcondizioni      & I filtri di ricerca vengono aggiornati
+    \tableCyan      Postcondizioni      & I Tag vengono aggiornati
     \ntableCyan     Scenario Principale &
     \begin{enumerate}
-        \item La Codmonkey apre la pagina dedicata alla gestione dei Filtri di Ricerca
-        \item La Codmonkey aggiunge o toglie filtri di ricerca
-        \item La codmonkey conferma i cambiamenti
+        \item La Codmonkey apre la pagina dedicata alla gestione dei Tag
+        \item La Codmonkey aggiunge o rimuove un Tag
+        \item La Codmonkey conferma i cambiamenti
     \end{enumerate}
     \tableCyan      Scenari Alternativi &
-    \ntableCyan     Requisiti NF        & I filtri di ricerca vengono aggiunti digitando in una casella di testo e mano a mano che si digita il testo appaiono filtri di ricerca utiizzati da altri utenti messi in ordine dal piú al meno usato
-    \tableCyan      Punti Aperti        &
+    \ntableCyan     Requisiti NF        & I Tag vengono aggiunti digitando in una casella di testo e mano a mano che si digita il testo appaiono Tag utiizzati da altri Utenti messi in ordine dal piú al meno usato
+    \tableCyan      Punti Aperti        & Cosa succede se si tenta di aggiunere un nuovo Tag? Bisognerá che un Amministratore controlli che non ci sia nulla di strano?
     \n
 \end{tabularx}
 
@@ -169,17 +168,17 @@
     \tableCyan      Descrizione         & Sezione per la gestione delle collaborazioni della Codmonkey
     \ntableCyan     Attori              & Codemonkey
     \tableCyan      Relazioni           &                                                                                                                                                                                                                                                                    %domanda da fare al prof: si mette la relazione con la lista collab? a logica per semplificare il tutto la toglierei
-    \ntableCyan     Precondizioni       &
-    \tableCyan      Postcondizioni      &
+    \ntableCyan     Precondizioni       & Il Lavoro é stato proposto alla Codmonkey
+    \tableCyan      Postcondizioni      & Il Lavoro diventa ``in Corso''
     \ntableCyan     Scenario Principale &
     \begin{enumerate}
-        \item Allacodmonkey viene effettuata una proposta di lavoro da parte di un clinete
-        \item La Codmonkey accetta la richiesta di lavoro
-        \item La Codmonkey poi potrá annullare la richiesta di lavoro in qualsiasi momento fino a quando non viene terminata da un cliente
+        \item Alla Codmonkey viene effettuata una proposta di Lavoro da parte di un clinete
+        \item La Codmonkey accetta la richiesta di Lavoro
+        \item La Codmonkey poi potrá annullare la richiesta di Lavoro in qualsiasi momento fino a quando non viene terminata da un cliente
     \end{enumerate}
-    \tableCyan      Scenari Alternativi & 2. La codmonkey Rifiuta la richiesta di lavoro
-    \ntableCyan     Requisiti NF        & Nel caso la Codmonkey rifiuti una proposta di lavoro potrá lasciare un feedback al Cliente sul perché la sua richiesta non sia stata accettata
-    \tableCyan      Punti Aperti        & Nel caso la Codmonkey annulli una proposta di lavoro dovrá fornire una motivazione, in modo che il Cliente capisca rapidamente cosa é andato storto, inoltre ció migliorerá i tempi di risposta dell'Amministratore nel caso di contestazione da parte del Cliente
+    \tableCyan      Scenari Alternativi & 2. La codmonkey Rifiuta la richiesta di Lavoro
+    \ntableCyan     Requisiti NF        & Nel caso la Codmonkey rifiuti una proposta di Lavoro potrá lasciare un feedback al Cliente sul perché la sua richiesta non sia stata accettata
+    \tableCyan      Punti Aperti        & Nel caso la Codmonkey annulli una proposta di Lavoro dovrá fornire una motivazione, in modo che il Cliente capisca rapidamente cosa é andato storto, inoltre ció migliorerá i tempi di risposta dell'Amministratore nel caso di segnalazione da parte del Cliente
     \n
 \end{tabularx}
 
@@ -195,14 +194,14 @@
     \ntableCyan     Attori              & Cliente
     \tableCyan      Relazioni           & Autenticazione
     \ntableCyan     Precondizioni       &
-    \tableCyan      Postcondizioni      &
+    \tableCyan      Postcondizioni      & Viene terminato il Lavoro
     \ntableCyan     Scenario Principale &
     \begin{enumerate}
         \item Un Cliente consulta le Collaborazioni attive
         \item Il Cliente avvia la procedura per terminare la collaborazione
         \item Il Cliente Fornisce una valutazione da 1 a 5 alla Codmonkey
         \item Il Cliente puó scrivere quindi una recensione alla Codmonkey (opzionale)
-        \item Il Cliente da conferma di voler terminare il lavoro
+        \item Il Cliente da conferma di voler terminare il Lavoro
 
     \end{enumerate}
     \tableCyan      Scenari Alternativi & Nel caso il Cliente sia stato Limitato o Sospeso non potrá fornire una valutazione scritta alla Codmonkey
@@ -225,14 +224,14 @@
     \tableCyan      Postcondizioni      & La richiesta di Lavoro viene inoltrata alla Codmonkey
     \ntableCyan     Scenario Principale &
     \begin{enumerate}
-        \item Un Utente o un Cliente una volta che ha trovato la Codmonkey ideale per sviluppare il suo progetto puó proporre un lavoro
+        \item Un Utente o un Cliente una volta che ha trovato la Codmonkey ideale per sviluppare il suo progetto puó proporre un Lavoro
         \item Un Utente viene reindirizzato alla sezione di Autenticazione prima di poter iniziare l'innoltro della richiesta
-        \item Per mandare la richiesta di lavoro il Cliente compila un modulo ne quale descrive brevemente ció che gli serve
+        \item Per mandare la richiesta di Lavoro il Cliente compila un modulo ne quale descrive brevemente ció che gli serve
         \item Il Cliente conferma di voler contattare la Codmonkey
     \end{enumerate}
-    \tableCyan      Scenari Alternativi & Un Cliente sospeso non puó fare alcuna richiesta di lavoro, pertanto invece che aprire una sezione dedicata alla proposta di lavoro verrá visualizzata una pagina di errore con la motivazione della sospensione
+    \tableCyan      Scenari Alternativi & Un Cliente sospeso non puó fare alcuna richiesta di Lavoro, pertanto invece che aprire una sezione dedicata alla proposta di Lavoro verrá visualizzata una pagina di errore con la motivazione della sospensione
     \ntableCyan     Requisiti NF        &
-    \tableCyan      Punti Aperti        & Per evitare che vengano madate richieste di lavoro non sufficentemente dettagliate bisognerá mettere dei capi da compilare obbligatori
+    \tableCyan      Punti Aperti        & Per evitare che vengano madate richieste di Lavoro non sufficentemente dettagliate bisognerá mettere dei capi da compilare obbligatori
     \n
 \end{tabularx}
 

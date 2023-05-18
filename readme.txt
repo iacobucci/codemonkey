@@ -2,7 +2,18 @@ docs
     [x] abstract
     analisi dei requisiti   
         [x] vocabolario
-        [x] scenari
+            [ ] utente registrato
+            progetto
+                [ ] proposta
+                [ ] accettazione
+                [ ] rifiuto
+                [ ] interruzione
+                [ ] terminazione
+                [ ] modifica
+            [ ] ricerca sinonimo: feed
+            [ ] valutazioni
+        [\] scenari
+            [ ] da modificare 2fa
         [x] analisi del rischio
     analisi del probelma
         [\] analisi delle funzionalità
