@@ -12,7 +12,8 @@ docs
                 [ ] modifica
             [ ] ricerca sinonimo: feed
             [ ] valutazioni
-        [\] scenari
+        [x] scenari
+            [ ] controllare tutte le relazioni
             [ ] da modificare 2fa
         [x] analisi del rischio
     analisi del probelma
