@@ -20,7 +20,7 @@
 
     \hline \rowcolor{tableCyan!40}
     \large\centering\textbf{Titolo}     & \large \centering\textbf{Registrazione}
-    \tableCyan      Descrizione         & Sezione che consente la registrazione di un Utente
+    \tableCyan      Descrizione         & Sezione che consente la Registrazione di un Utente
     \ntableCyan     Attori              & Utente
     \tableCyan      Relazioni           &
     \ntableCyan     Precondizioni       &
@@ -31,10 +31,10 @@
         \item L'Utente specifica se vuole essere registrato come Cliente o Codemonkey
         \item L'Utente conferma di volersi registrare
     \end{enumerate}
-    \tableCyan      Scenari Alternativi & Se il nome Utente é giá stato scelto da qualcun'altro o l'e-mail immessa é collegata a un account giá registrato non sará possibile procedere alla registrazione dell'Utente
-    \ntableCyan     Requisiti NF        & Sia nel caso in cui venga inserito un nome Utente giá esistente, sia nel caso venga inserita una e-mail associata ad un account esistente, dovrá essere segnalato all'Utente che non é stato possibile effettuare la registrazione spiegandone la motivazione
-    \tableCyan      Punti Aperti        & Verrá fornita la possibilitá di attivare l'autenticazione a 2 fattori giá in fase di registrazione?\newline
-    Bisognerá assicurarsi che l'Utente non sbagli ad inserire la Password facendogliela confermare?
+    \tableCyan      Scenari Alternativi & Se il nome Utente é giá stato scelto da qualcun'altro o l'e-mail immessa é collegata a un account giá registrato non sará possibile procedere alla Registrazione dell'Utente
+    \ntableCyan     Requisiti NF        & Sia nel caso in cui venga inserito un nome Utente giá esistente, sia nel caso venga inserita una e-mail associata ad un account esistente, dovrá essere segnalato all'Utente che non é stato possibile effettuare la Registrazione spiegandone la motivazione
+    \tableCyan      Punti Aperti        & Verrá fornita la possibilitá di attivare l'autenticazione a 2 fattori giá in fase di Registrazione?\newline
+    Bisognerá assicurarsi che l'Utente non si sbagli a digitare la Password, il sistema migliore sará fargliela riscrivere per confermarla?
     \n
 \end{tabularx}
 
@@ -48,7 +48,7 @@
     \tableCyan      Descrizione         & Sezione dedicata all'autenticazione di un Utente
     \ntableCyan     Attori              & Utente, Admin
     \tableCyan      Relazioni           & Gestione Profilo, Proponi Lavoro, Fornisci recensione, Area personale, Gestione Utenti                                                                                                                                                                                    %da cambiareeeeeeee
-    \ntableCyan     Precondizioni       & L'Utente o l'amministratore deve essere giá stato registrato all'interno del sistema
+    \ntableCyan     Precondizioni       & L'Utente o l'Amministratore deve essere giá stato registrato all'interno del sistema
     \tableCyan      Postcondizioni      &
     \ntableCyan     Scenario Principale &
     \begin{enumerate}
@@ -72,7 +72,7 @@
     \tableCyan      Descrizione         & Sezione dedicata alla gestione dei dati di un Account
     \ntableCyan     Attori              & Cliente, Codemonkey
     \tableCyan      Relazioni           & Autenticazione
-    \ntableCyan     Precondizioni       & La codmonkey o il cliente devono aver effettuato l'autenticazione
+    \ntableCyan     Precondizioni       & La Codmonkey o il Cliente devono aver effettuato l'autenticazione
     \tableCyan      Postcondizioni      &
     \ntableCyan     Scenario Principale &
     \begin{enumerate}
@@ -140,7 +140,7 @@
     {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
 
     \hline \rowcolor{tableCyan!37}
-    \large\centering\textbf{Titolo}     & \large\centering\textbf{Imposta Tag}
+    \large\centering\textbf{Titolo}     & \large\centering\textbf{Imposta Tag di Ricerca}
     \tableCyan      Descrizione         & Gestione dei Tag della Codmonkey
     \ntableCyan     Attori              & Codemonkey
     \tableCyan      Relazioni           & Autenticazione
@@ -164,7 +164,7 @@
     {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
 
     \hline  \rowcolor{tableCyan!37}
-    \large\centering\textbf{Titolo}     & \large\centering\textbf{Accetta/Rifiuta Lavoro}
+    \large\centering\textbf{Titolo}     & \large\centering\textbf{Accetta/Rifiuta proposta di Lavoro}
     \tableCyan      Descrizione         & Sezione per la gestione delle collaborazioni della Codmonkey
     \ntableCyan     Attori              & Codemonkey
     \tableCyan      Relazioni           & Autenticazione
@@ -174,9 +174,9 @@
     \begin{enumerate}
         \item Alla Codmonkey viene effettuata una proposta di Lavoro da parte di un clinete
         \item La Codmonkey accetta la richiesta di Lavoro
-        \item La Codmonkey poi potrá interrompere la richiesta di Lavoro in qualsiasi momento fino a quando non viene terminata da un cliente
+        \item La Codmonkey poi potrá interrompere la richiesta di Lavoro in qualsiasi momento fino a quando non viene terminata da un Cliente
     \end{enumerate}
-    \tableCyan      Scenari Alternativi & 2. La codmonkey Rifiuta la richiesta di Lavoro
+    \tableCyan      Scenari Alternativi & 2. La Codmonkey Rifiuta la richiesta di Lavoro
     \ntableCyan     Requisiti NF        &
     \tableCyan      Punti Aperti        &
     \n
@@ -189,14 +189,14 @@
 
     \hline  \rowcolor{tableCyan!37}
     \large\centering\textbf{Titolo}     & \large\centering\textbf{Interrompi Lavoro}
-    \tableCyan      Descrizione         & Funzionalità per l'interruzione di una collaborazione in corso da parte della Codmonkey
+    \tableCyan      Descrizione         & Funzionalità per l'interruzione di una Collaborazione in corso da parte della Codmonkey
     \ntableCyan     Attori              & Codemonkey
     \tableCyan      Relazioni           & Autenticazione
     \ntableCyan     Precondizioni       & Il Lavoro é stato già accetato dalla Codmonkey
     \tableCyan      Postcondizioni      & Il Lavoro diventa ``Interrotto''
     \ntableCyan     Scenario Principale &
     \begin{enumerate}
-        \item La Codmonkey sceglie un lavoro che ha in corso per interromperlo
+        \item La Codmonkey sceglie un Lavoro che ha in corso per interromperlo
         \item La Codmonkey interrompe il Lavoro e aggiunge un commento sull'interruzione
     \end{enumerate}
     \tableCyan      Scenari Alternativi &
@@ -212,7 +212,6 @@
 
     \hline  \rowcolor{tableCyan!37}
     \large\centering\textbf{Titolo}     & \large\centering\textbf{Termina Collaborazione e Valuta Codmonkey}
-
     \tableCyan Descrizione              & Sezione per Terminare un Lavoro e fornire una Valutazione ad una Codmonkey
     \ntableCyan     Attori              & Cliente
     \tableCyan      Relazioni           & Autenticazione
@@ -221,7 +220,7 @@
     \ntableCyan     Scenario Principale &
     \begin{enumerate}
         \item Un Cliente consulta le Collaborazioni attive
-        \item Il Cliente avvia la procedura per terminare la collaborazione
+        \item Il Cliente avvia la procedura per terminare la Collaborazione
         \item Il Cliente Fornisce una valutazione da 1 a 5 alla Codmonkey
         \item Il Cliente puó scrivere quindi una recensione alla Codmonkey (opzionale)
         \item Il Cliente da conferma di voler terminare il Lavoro
@@ -291,7 +290,7 @@
     \tableCyan      Postcondizioni      &
     \ntableCyan     Scenario Principale &
     \begin{enumerate}
-        \item L'amministratore si autentica
+        \item L'Amministratore si autentica
         \item L'Amministratore accede alla sezione dedicata alla gestione degli Utenti
         \item L'Amministratore quindi potrá Limitare, Sospendere e Bloccare o Eliminare un Utente Registrato e visualizzare tutti i file di report generati da Codmonkey e Amministratori
         \item L'Amministratore accede alla sezione dedicata alla gestione dei Tag
