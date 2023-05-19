@@ -15,12 +15,13 @@
     \hline
     \rowcolor{orange!50}%settare il colore della riga 
     \textbf{Titolo} &\multicolumn{2}{|c|}{\textbf{Disponibilitá}} %voci della prima colonna
-    \n  Descrizione&\multicolumn{2}{|l|}{tette}
-    \n  Misuse Case&\multicolumn{2}{|l|}{}
-    \n  Precondizioni&\multicolumn{2}{|l|}{}
-    \n  Postcondizioni&\multicolumn{2}{|l|}{}
-    \n  Scenario Principale&&
-    \n  Scenario di attacco avvenuto con successo&&
+    \n  Descrizione&\multicolumn{2}{|l|}{Il sistema deve sempre fornire servizio}
+    \n  Misuse Case&\multicolumn{2}{|l|}{DoS}
+    \n  Precondizioni&\multicolumn{2}{|l|}{L'attaccante dispone di un ambiente per effettuare un attacco efficace}
+    \n  Postcondizioni&\multicolumn{2}{|l|}{Il sistema monitora il flusso di dati ed eventualmente attua
+    politiche di protezione o ripristino}
+    \n  Scenario Principale &  Sistema \newline  Registra l'attacco nei log ed eventualmente esegue un ripristino & Attaccante \newline Avvia l'attacco
+    \n  Scenario di attacco avvenuto con successo  &  Sistema \newline  Non riesce a contenere l'attacco \newline Non è possibile il ripristino immediato del sistema  &    Attaccante \newline Riesce a creare un grande flusso di dati \newline Riesce a creare un disservizio
     \n
     \end{tabular}
     }
@@ -40,12 +41,14 @@
     \hline
     \rowcolor{orange!50}%settare il colore della riga 
     \textbf{Titolo} &\multicolumn{2}{|c|}{\textbf{Gatantire protezione}} %voci della prima colonna
-    \n  Descrizione&\multicolumn{2}{|l|}{culo}
-    \n  Misuse Case&\multicolumn{2}{|l|}{}
-    \n  Precondizioni&\multicolumn{2}{|l|}{}
-    \n  Postcondizioni&\multicolumn{2}{|l|}{}
-    \n  Scenario Principale&&
-    \n  Scenario di attacco avvenuto con successo&&
+    \n  Descrizione&\multicolumn{2}{|l|}{Le comunicazioni e i file devono essere protetti}
+    \n  Misuse Case&\multicolumn{2}{|l|}{ManInTheMiddle, Sniffing, OperazioneVietata}
+    \n  Precondizioni&\multicolumn{2}{|l|}{L’attaccante o il truffatore ha i mezzi per attuare uno sniffing
+    delle comunicazioni, manomettere le operazioni tra il client
+    e il server o intaccare la cifratura dei file.}
+    \n  Postcondizioni&\multicolumn{2}{|l|}{Il sistema registra un tentativo di manomissione nei log}
+    \n  Scenario Principale  &  Sistema \newline Cerca di garantire che i dati inviati all'Utente siano protetti,cifrati e non possano essere modificati    &  Attaccanti \newline - Cerca di intercettare e manomettere le comunicazioni \newline - Cerca di estrarre dati o penetrare nel sistema in modo non autorizzato 
+    \n  Scenario di attacco avvenuto con successo  &    Sistema \newline - Garantisce che i dati sensibili ed i file salvati siano cifrati in maniera robusta \newline - Cerca di garantire la sicurezza da vulnerabilità    &  Attaccante \newline - Cerca di aggirare la cifratura per ottenere le informazioni sensibili o i file \newline - Cerca e trova delle vulnerabilità per superare le difese  del sistema
     \n
     \end{tabular}
     }
@@ -65,12 +68,12 @@
     \hline
     \rowcolor{orange!50}%settare il colore della riga 
     \textbf{Titolo} &\multicolumn{2}{|c|}{\textbf{Controllo accesso}} %voci della prima colonna
-    \n  Descrizione&\multicolumn{2}{|l|}{bocca}
-    \n  Misuse Case&\multicolumn{2}{|l|}{}
-    \n  Precondizioni&\multicolumn{2}{|l|}{}
-    \n  Postcondizioni&\multicolumn{2}{|l|}{}
-    \n  Scenario Principale&&
-    \n  Scenario di attacco avvenuto con successo&&
+    \n  Descrizione&\multicolumn{2}{|l|}{L'accesso al servizio deve essere granulare e monitorato }
+    \n  Misuse Case&\multicolumn{2}{|l|}{FurtoCredenziali,Sniffing}
+    \n  Precondizioni&\multicolumn{2}{|l|}{L'attaccante dispone di un sistema per attuare un attacco a dizionario}
+    \n  Postcondizioni&\multicolumn{2}{|l|}{Il sistema registra i tentativi ed avverte l'Amministratore}
+    \n  Scenario Principale  &  Sistema \newline L'accesso viene negato perchè le credenziali sono errate. Il tentativo di accesso viene registrati in un file di log. \newline Dopo 5 tentativi di accesso errati consecutivi viene bloccato l'accesso   &   Attaccante \newline Cerca di individuare ed inserire piu volte le Credenziali di un altro Utente/Amministratore
+    \n  Scenario di attacco avvenuto con successo    &   Sistema   \newline Concede l'accesso all'account e ai gruppi a cui l'account è collegato \newline Registra l'accesso nei log    &   Attaccante \newline Accede al Sistema \newline Cerca di scaricare tutte le informazioni e di enumerare gli utenti   
     \n
     \end{tabular}
     }
