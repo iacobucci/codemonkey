@@ -183,6 +183,12 @@ function dashboard/technologies {
 	curl -X POST http://localhost:8080/api/dashboard/technologies -H "Authorization: Bearer $JWT"
 }
 
+function dashboard/download {
+	JWT=$1
+	curl -X POST http://localhost:8080/api/dashboard/download -H "Authorization: Bearer $JWT"
+}
+
+
 f="$1"
 shift
 $f "$@"

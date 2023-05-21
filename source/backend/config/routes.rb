@@ -47,6 +47,7 @@ Rails.application.routes.draw do
     namespace :dashboard do
       post "actions", to: "actions#actions"
       post "technologies", to: "technologies#technologies"
+      post "download", to: "download#download"
     end
   end
 end

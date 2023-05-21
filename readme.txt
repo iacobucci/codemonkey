@@ -572,3 +572,14 @@ deploy
         [ ] azure
             [ ] acr
         [ ] vps
+
+debug
+    JWT
+        admin1
+            eyJhbGciOiJIUzI2NiJ9.eyJleHAiOjE2ODQ4NTcxNzEsInVzZXJfaWQiOiJhZG1pbjEifQ.OPttxCJHCuXykeSaCPQLMLYCtFC89LrczmjtfNiXHhY
+
+        google
+            eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODQ4ODc4NzgsInVzZXJfaWQiOiJnb29nbGUifQ.G6bI3AEuJa2j4fnINaxkdYUgX9jf85Oj9u4xI8ALh9M
+
+        mario
+            eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODQ4NTc2NDcsInVzZXJfaWQiOiJtYXJpbyJ9.mPayYPyy45Sz26vkvjus2gupb9ZrG0KdJrsSaYdctJk
