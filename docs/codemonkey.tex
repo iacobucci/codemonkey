@@ -11,7 +11,7 @@
 \usepackage{wrapfig}
 \usepackage{verbatim}
 \usepackage{xltabular}
-\usepackage[table]{xcolor}
+\usepackage[usenames,dvipsnames,table]{xcolor}
 
 \usepackage{pgf-umlcd}
 \usepackage{tikz}
@@ -59,6 +59,7 @@
 \title{Codemonkey}
 \begin{document}
 
+\begin{comment}
 \begin{figure}[!ht]
    \centering
    \includegraphics[width=0.5\linewidth]{images/icon}
@@ -67,6 +68,7 @@
    \end{titlepage}
    \label{fig:nome-etichetta}
 \end{figure}
+\end{comment}
 
 
 \pagebreak
@@ -82,10 +84,13 @@
 \input{raccoltaRequisiti/tabellaRequisitiNF}
 \input{raccoltaRequisiti/tabellaRequisitiD}
 \pagebreak
+%\includegraphics[width=\textwidth]{images/Codmonkey Casi D'uso.png}\label{fig:CasiUso}
+\pagebreak
 \input{scenari}
 \pagebreak
 \input{monkerisk/analisiDelRischio}
 \pagebreak
+%\includegraphics[width=\textwidth]{images/Codmonkey Security Use Case e Misuse Case.png}\label{fig:SecuretyUseCaseAndMissuseCase}
 \input{monkerisk/securityUseCaseEMisuseCase_scenari.tex}
 \pagebreak
 \input{monkerisk/casiUsoAggiornati}
@@ -99,6 +104,8 @@
 \input{analisiDelProblema/analisiDelleInterazioni.tex}
 \pagebreak
 \input{analisiDelProblema/analisiRuoliResponsabilità.tex}
+\pagebreak
+\input{analisiDelProblema/scomposizioneDelProblema.tex}
 \pagebreak
 
 
