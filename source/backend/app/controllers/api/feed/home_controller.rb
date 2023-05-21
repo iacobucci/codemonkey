@@ -20,6 +20,8 @@ class Api::Feed::HomeController < ApplicationController
       @users = @users.reject { |user| @permitted_params[:seen].include?(user.username) }
     end
 
+    #TODO
+    # 1. Filter by user.status == "active"
     data = @users.map(&:index).shuffle!.take(4)
 
     render json: data, status: :ok

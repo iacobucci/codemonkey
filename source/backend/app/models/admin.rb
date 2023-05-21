@@ -4,7 +4,7 @@ class Admin < User
       raise "Invalid user"
     end
 
-    if ["active", "suspended", "banned"].exclude? status
+    if ["active", "suspended", "limited", "banned"].exclude? status
       raise "Status not valid"
     end
 

@@ -13,6 +13,17 @@
 \usepackage{xltabular}
 \usepackage[table]{xcolor}
 
+\usepackage{pgf-umlcd}
+\usepackage{tikz}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+
 %creazione dei colori custom
 \definecolor{tableGreen}{RGB}{25, 175, 45}
 \definecolor{tableYellow}{RGB}{255, 220, 0}
@@ -89,4 +100,55 @@
 \pagebreak
 \input{analisiDelProblema/analisiRuoliResponsabilità.tex}
 \pagebreak
+
+
+\subsection*{Tables}
+
+\begin{tikzpicture}
+   
+\end{tikzpicture}
+
+\subsection*{Model}
+\begin{tikzpicture}
+
+  \begin{class}[text width=5cm, fill=green!20, draw=black]{User}{0,0}
+    \attribute{username : String}
+    \attribute{type : String}
+    \attribute{password\_digest : String}
+    \attribute{totp\_secret : String}
+    \attribute{email : String}
+  \end{class}
+
+  \begin{class}[text width=5cm, fill=green!20, draw=black]{Admin}{-5.5,-5}
+    \inherit{User}
+    \operation{ban(User) : void}
+  \end{class}
+
+  \begin{class}[text width=5cm, fill=green!20, draw=black]{Codemonkey}{0,-5}
+    \inherit{User}
+    \attribute{first\_name : String}
+      \attribute{last\_name : String}
+      \attribute{bio : String}
+      \attribute{propic : Binary}
+      \attribute{rating : Float}
+      \attribute{status : String}
+      \operation{accept\_project(Project) : Project}
+      \operation{reject\_project(Project) : Project}
+      \operation{interrupt\_project(Project) : Project}
+  \end{class}
+
+  \begin{class}[text width=5cm, fill=green!20, draw=black]{Company}{5.5,-5}
+    \inherit{User}
+      \attribute{name : String}
+      \attribute{bio : String}
+      \attribute{propic : Binary}
+      \attribute{rating : Float}
+      \attribute{status : String}
+      \operation{new\_project(Project) : Project}
+      \operation{edit\_project(Project) : Project}
+      \operation{terminate\_project(Project) : Project}
+  \end{class}
+
+\end{tikzpicture}
+
 \end{document}
