@@ -11,19 +11,35 @@
 \usepackage{wrapfig}
 \usepackage{verbatim}
 \usepackage{xltabular}
+\usepackage{listings}
 \usepackage[usenames,dvipsnames,table]{xcolor}
-
 \usepackage{pgf-umlcd}
 \usepackage{pgf-umlsd}
 \usepackage{tikz}
 
 \usepackage{hyperref}
+
 \hypersetup{
     colorlinks=true,
     linkcolor=black,
     filecolor=magenta,
     urlcolor=cyan,
 }
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    keywordstyle=\color{blue},
+    stringstyle=\color{red},
+    commentstyle=\color{green!70!black},
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=8pt,
+    stepnumber=1,
+    tabsize=4,
+   }
 
 %creazione dei colori custom
 \definecolor{tableGreen}{RGB}{25, 175, 45}
@@ -60,53 +76,81 @@
 \title{Codemonkey}
 \begin{document}
 
-\begin{comment}
 \begin{figure}[!ht]
    \centering
-   \includegraphics[width=0.5\linewidth]{images/icon}
+   \includegraphics[width=0.5\linewidth]{assets/img/icon}
    \begin{titlepage}
       \huge Codemonkey
    \end{titlepage}
    \label{fig:nome-etichetta}
 \end{figure}
-\end{comment}
 
 \renewcommand{\contentsname}{Sommario}
 
 
-\pagebreak
+
+
+
 \tableofcontents
 \pagebreak
-\input{abstract}
+
+%%%%%%%%%%%%%%%%%%%%
+\input{0-abstract/1-abstract.tex}
 \pagebreak
-\input{raccoltaRequisiti/raccolta_requisiti}
+
+\section{Analisi dei requisiti}
+\input{1-analisi_dei_requisiti/1-raccolta_requisiti.tex/1-raccolta_requisiti.tex}
+\input{1-analisi_dei_requisiti/2-vocabolario/1-vocabolario.tex}
+
+\subsection {Tabelle requisiti}
+\subsubsection{Requisiti funzionali}
+\input{1-analisi_dei_requisiti/3-requisiti/1-requisiti_funzionali.tex}
+\subsubsection{Requisiti non funzionali}
+\input{1-analisi_dei_requisiti/3-requisiti/2-requisiti_non_funzionali.tex}
+\subsubsection{Requisiti di dominio}
+\input{1-analisi_dei_requisiti/3-requisiti/3-requisiti_di_dominio.tex}
+
+\subsection{Scenari}
+\input{1-analisi_dei_requisiti/4-scenari/1-scenari.tex}
+
+\subsection {Analisi del rischio}
+\subsubsection {Valutazione dei beni}
+\input{1-analisi_dei_requisiti/5-analisi_del_rischio/1-valutazione_dei_beni.tex}
+\subsubsection {Minacce e controlli}
+\input{1-analisi_dei_requisiti/5-analisi_del_rischio/2-minacce_e_controlli.tex}
+\subsubsection{Tecnologia e vulnerabilità}
+\input{1-analisi_dei_requisiti/5-analisi_del_rischio/3-tecnologia_e_vulnerabilita.tex}
+\subsubsection{Security Use Case e Misuse Case}
+\input{1-analisi_dei_requisiti/5-analisi_del_rischio/4-security_use_case_and_misuse_case_scenari.tex}
+
+\subsection{Aggiornamento requisiti}
+\subsubsection{Requisiti funzionali aggiornati}
+\input{1-analisi_dei_requisiti/6-aggiornamento_requisiti/1-requisiti_funzionali_aggiornati.tex}
+\subsubsection{Requisiti non funzionali aggiornati}
+\input{1-analisi_dei_requisiti/6-aggiornamento_requisiti/2-requisiti_non_funzionali_aggiornati.tex}
+\subsubsection{Vocabolario aggiornato}
+\input{1-analisi_dei_requisiti/6-aggiornamento_requisiti/3-vocabolario_aggiornato.tex}
+\subsubsection{Casi d'uso aggiornati}
+\input{1-analisi_dei_requisiti/6-aggiornamento_requisiti/4-casi_uso_aggiornati.tex}
+
+%%%%%%%%%%%%%%%%%%%%
+
 \pagebreak
-\input{raccoltaRequisiti/vocabolario}
-\pagebreak
-\input{raccoltaRequisiti/tabellaRequisitiF}
-\input{raccoltaRequisiti/tabellaRequisitiNF}
-\input{raccoltaRequisiti/tabellaRequisitiD}
-\pagebreak
-%\includegraphics[width=\textwidth]{images/Codmonkey Casi D'uso.png}\label{fig:CasiUso}
-\pagebreak
-\input{scenari}
-\pagebreak
-\input{monkerisk/analisiDelRischio}
-\pagebreak
-%\includegraphics[width=\textwidth]{images/Codmonkey Security Use Case e Misuse Case.png}\label{fig:SecuretyUseCaseAndMissuseCase}
-\input{monkerisk/securityUseCaseEMisuseCase_scenari.tex}
-\pagebreak
-\input{monkerisk/casiUsoAggiornati}
-\pagebreak
-\input{analisiDelProblema/funzionalita.tex}
-\pagebreak
-\input{analisiDelProblema/tabelleInformazioniFLusso.tex}
-\pagebreak
-\input{analisiDelProblema/analisiDeiVincoli.tex}
-\pagebreak
-\input{analisiDelProblema/analisiDelleInterazioni.tex}
-\pagebreak
-\input{analisiDelProblema/analisiRuoliResponsabilità.tex}
-\pagebreak
-\input{diagrammi/diagrammi.tex}
+\section{Analisi del problema}
+\subsection{Analisi delle funzionalità}
+\subsubsection{Tabelle delle funzionalità}
+\input{2-analisi_del_problema/1-analisi_funzionalita/1-tabelle_funzionalita.tex}
+\subsubsection{Tabelle di informazione e flusso}
+\input{2-analisi_del_problema/1-analisi_funzionalita/2-tabelle_informazione_flusso.tex}
+\subsubsection{Analisi dei vincoli}
+\input{2-analisi_del_problema/1-analisi_funzionalita/3-analisi_vincoli.tex}
+\subsubsection{Analisi delle interazioni}
+\input{2-analisi_del_problema/1-analisi_funzionalita/4-analisi_interazioni.tex}
+
+\subsection{Analisi dei ruoli e delle responsabilità}
+\subsubsection{Tabella dei ruoli e delle responsabilità}
+\input{2-analisi_del_problema/2-analisi_ruoli/1-analisi_ruoli_e_responsabilita.tex}
+\subsubsection{Tabelle dei ruoli e delle informazioni}
+\input{2-analisi_del_problema/2-analisi_ruoli/2-tabelle_ruolo_e_informazioni.tex}
+
 \end{document}

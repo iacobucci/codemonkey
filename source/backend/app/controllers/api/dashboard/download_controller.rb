@@ -10,10 +10,10 @@ class Api::Dashboard::DownloadController < AuthenticationController
 
     @actions = Action.all
     csv_data = CSV.generate(headers: true) do |csv|
-      csv << ["Name", "User Username", "Time", "Description"]
+      csv << ["Username", "Name", "Description", "Time"]
 
       @actions.each do |action|
-        csv << [action.name, action.user.username, action.time, action.description]
+        csv << [action.user.username, action.name, action.description, action.time]
       end
     end
 
