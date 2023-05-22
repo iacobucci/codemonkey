@@ -2,16 +2,12 @@ docs
     [x] abstract
     analisi dei requisiti   
         [x] vocabolario
-            [ ] utente registrato
             progetto
-                [ ] proposta
-                [ ] accettazione
-                [ ] rifiuto
-                [ ] interruzione
-                [ ] terminazione
-                [ ] modifica
-            [ ] ricerca sinonimo: feed
-            [ ] valutazioni
+                [x] proposta
+                [x] accettazione
+                [x] rifiuto
+                [x] interruzione
+                [x] terminazione
         [x] scenari
             [ ] controllare tutte le relazioni
             [ ] da modificare 2fa
