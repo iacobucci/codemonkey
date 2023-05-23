@@ -34,57 +34,71 @@
 </style>
 
 <div style="overflow-y: hidden;">
-    
-  <mat-toolbar color="primary" style="position: fixed; top: 64px; left: 0; right: 0; z-index:90; height: 360px; display: flex; justify-content: center; align-items: center;">
-    
 
-    <div style="width: 640px; display: flex">
-        <img #profilePicLargeRef mat-card-image src="" alt="Immagine di profilo"
-            style="height: 192px; border-radius: 50%;">
+    <mat-toolbar color="primary"
+        style="position: fixed; top: 64px; left: 0; right: 0; z-index:90; height: 360px; display: flex; justify-content: center; align-items: center;">
 
-        <span style="width: 80px;"></span>
 
-        <div *ngIf="this.user">
-            <div>
-                <p style="font-size: 40pt; font-weight: bold; margin: auto;">{{this.name}}</p>
-                <p style="margin:auto;">@{{this.user.username}}</p>
-                <span style="margin:24px;"></span>
-                <div *ngIf="this.hasRating">
-                    <app-valutazione [rating]="0"></app-valutazione>
+        <div style="display: flex; flex-direction: column; align-items:center">
+
+            <div style="width: 640px; display: flex">
+                <img #profilePicLargeRef mat-card-image src="" alt="Immagine di profilo"
+                    style="height: 192px; border-radius: 50%;">
+
+                <span style="width: 80px;"></span>
+
+                <div *ngIf="this.user">
+                    <div>
+                        <p style="font-size: 40pt; font-weight: bold; margin: auto;">{{this.name}}</p>
+                        <p style="margin:auto;">@{{this.user.username}}</p>
+                        <span style="margin:24px;"></span>
+                        <div *ngIf="this.hasRating">
+                            <app-valutazione [rating]="0"></app-valutazione>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
+            <div style="display: flex ; align-items: center; height:24px" ></div>
+
+            <div style="display: flex ; align-items: center">
+                <mat-form-field style="margin-bottom: -1.25em; display: flex; align-items: center ; width: 400px;">
+                    <mat-label>Technologies</mat-label>
+                    <mat-select [(value)]="selectedTechnologies" (closed)="onTechnologyUpdate()" multiple>
+                        <mat-option *ngFor="let technology of technologies"
+                            [value]="technology">{{technology.name.toUpperCase()}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
         </div>
+    </mat-toolbar>
 
 
+    <div id="scroll-container" style="margin-top: 360px; max-height: calc(100vh - 360px - 64px); overflow-y: auto;">
+        <div style="display: flex; justify-content: center;">
+            <div style="display: flex; flex-direction: column; align-items: center;">
+
+                <!-- <app-image-uploader [endpoint]="'/api/uploads'"></app-image-uploader> -->
+
+                <div style="height: 48px"> </div>
+
+                <div *ngFor="let item of this.cards" class="scroll-item">
+
+                    <app-project-card [project]="item"></app-project-card>
+
+                    <div style="height: 48px"> </div>
+                </div>
+
+                <div *ngIf="this.moreToLoad">
+                    <button mat-raised-button color="primary" (click)="feed()">Carica ancora</button>
+                </div>
+
+                <div *ngIf="!this.moreToLoad">
+                    <p>Hai visto tutto!</p>
+                </div>
+
+            </div>
+        </div>
     </div>
-  </mat-toolbar>
-
-
-  <div id="scroll-container" style="margin-top: 360px; max-height: calc(100vh - 360px - 64px); overflow-y: auto;">
-<div style="display: flex; justify-content: center;">
-    <div style="display: flex; flex-direction: column; align-items: center;">
-
-        <!-- <app-image-uploader [endpoint]="'/api/uploads'"></app-image-uploader> -->
-
-        <div style="height: 48px"> </div>
-
-        <div *ngFor="let item of this.cards" class="scroll-item">
-
-            <app-project-card [project]="item"></app-project-card>
-
-            <div style="height: 48px"> </div>
-        </div>
-
-        <div *ngIf="this.moreToLoad">
-            <button mat-raised-button color="primary" (click)="feed()">Carica ancora</button>
-        </div>
-
-        <div *ngIf="!this.moreToLoad">
-            <p>Hai visto tutto!</p>
-        </div>
-
-    </div>
-</div>
-</div>
 </div>

@@ -52,7 +52,7 @@ import { ProjectCardComponent } from './components/card/project-card/project-car
 import { UserComponent } from './pages/user/user.component';
 import { CompanyComponent } from './pages/user/company/company.component'
 import { CodemonkeyComponent } from './pages/user/codemonkey/codemonkey.component';
-import { SettingsComponent } from './pages/user/settings/settings.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 
 @NgModule({

@@ -2,7 +2,7 @@ class Api::User::RatingByTechnologiesController < ApplicationController
   before_action :validate_params
 
   def rating_by_technologies
-    render json: @user.rating_by_technologies(@technologies), status: :ok
+    render json: @user.rating_by_technologies(technologies: @technologies), status: :ok
   end
 
   def validate_params

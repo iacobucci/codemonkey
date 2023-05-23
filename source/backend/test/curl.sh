@@ -148,10 +148,11 @@ function feed/home {
 }
 
 function feed/user {
-	USER=$1
-	TECHNOLOGIES=$2
-	SEEN=$3
-	curl -X POST http://localhost:8080/api/feed/user -H "Content-Type: application/json" -d "{\"user\": {\"username\": \"$USER\", \"technologies\": $TECHNOLOGIES, \"seen\": $SEEN}}"
+	JWT=$1
+	USER=$2
+	TECHNOLOGIES=$3
+	SEEN=$4
+	curl -X POST http://localhost:8080/api/feed/user -H "Content-Type: application/json" -H "Authorization: Bearer $JWT" -d "{\"user\": {\"username\": \"$USER\", \"technologies\": $TECHNOLOGIES, \"seen\": $SEEN}}"
 }
 
 function feed/technologies {

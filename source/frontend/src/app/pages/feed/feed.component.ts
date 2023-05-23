@@ -5,10 +5,12 @@ import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 
-import { User } from "../../interfaces/user.interface"
-import { Codemonkey } from "../../interfaces/codemonkey.interface"
-import { Company } from "../../interfaces/company.interface"
-import { Technology } from 'src/app/interfaces/technology.interface';
+import {Tagged} from '../../model/tagged.abstract'
+
+import { User } from "../../model/user.interface"
+import { Codemonkey } from "../../model/codemonkey.interface"
+import { Company } from "../../model/company.interface"
+import { Technology } from 'src/app/model/technology.interface';
 
 
 @Component({
@@ -17,15 +19,16 @@ import { Technology } from 'src/app/interfaces/technology.interface';
   styleUrls: ['./feed.component.scss']
 })
 
-export class FeedComponent implements OnInit {
+export class FeedComponent extends Tagged implements OnInit  {
 
-  constructor(private http: HttpClient, private authenticationService: AuthenticationService, private dialog: MatDialog) { }
+  constructor(http: HttpClient, private authenticationService: AuthenticationService, private dialog: MatDialog) {
+    super(http);
+   }
 
   cards: User[] = [];
   seen: string[] = [];
   moreToLoad: boolean = true;
 
-  technologies: Technology[] = [];
   selectedTechnologies: Technology[] = [];
 
   ngOnInit(): void {
@@ -42,27 +45,11 @@ export class FeedComponent implements OnInit {
   }
   
   onTechnologyUpdate() {
-    console.log("update",this.selectedTechnologies)
     this.cards = [];
     this.seen = [];
     this.feed();
   }
     
-
-  feedTechnologies(): void {
-    const url = '/api/feed/technologies';
-
-    this.http.post<any>(url,{}).pipe(
-      catchError(error => {
-        console.error('Error:', error);
-        return throwError(error);
-      }
-      )
-    ).subscribe(data => {
-      this.technologies = data;
-    }
-    );
-  }
 
   feed(): void {
     const url = '/api/feed/home';

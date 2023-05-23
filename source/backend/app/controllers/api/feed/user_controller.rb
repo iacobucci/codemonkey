@@ -14,8 +14,12 @@ class Api::Feed::UserController < AuthenticationController
     projects = @user.projects
 
     unless @permitted_params[:technologies].nil? || @permitted_params[:technologies].empty?
+      # projects = projects.select do |project|
+      #   (@technologies - project.technologies.map(&:name)).empty?
+      # end
+
       projects = projects.select do |project|
-        (@permitted_params[:technologies] - project.technologies.map(&:name)).empty?
+        (@technologies & project.technologies) == @technologies
       end
     end
 
@@ -30,7 +34,7 @@ class Api::Feed::UserController < AuthenticationController
 
   def validate_params
     catch :error do
-      extract_params_and_validate(:user, [:username, technologies: [], seen: []])
+      extract_params_and_validate(:user, [:username, technologies: [:name], seen: []])
       validate_username
       validate_technologies
       validate_seen
@@ -44,20 +48,38 @@ class Api::Feed::UserController < AuthenticationController
     end
   end
 
+  # def validate_technologies
+  #   # @permitted_params[:technologies] is like ["name1", "name2"]
+  #   if @permitted_params[:technologies].nil?
+  #     @technologies = nil
+  #   elsif !@permitted_params[:technologies].is_a?(Array)
+  #     except(400, ["Invalid technologies"])
+  #   else
+  #     @technologies = []
+  #     @permitted_params[:technologies].each do |technology_name|
+  #       technology = Technology.find_by(name: technology_name)
+  #       if technology.nil?
+  #         except(400, ["Invalid technology #{technology_name}."])
+  #       end
+  #       @technologies << technology
+  #     end
+  #   end
+  # end
+
   def validate_technologies
-    # @permitted_params[:technologies] is like ["name1", "name2"]
     if @permitted_params[:technologies].nil?
       @technologies = nil
     elsif !@permitted_params[:technologies].is_a?(Array)
       except(400, ["Invalid technologies"])
     else
       @technologies = []
-      @permitted_params[:technologies].each do |technology_name|
-        technology = Technology.find_by(name: technology_name)
+
+      @permitted_params[:technologies].each do |tech|
+        technology = Technology.find_by(name: tech[:name])
         if technology.nil?
-          except(400, ["Invalid technology #{technology_name}."])
+          except(400, ["Invalid technology #{tech.name}."])
         end
-        @technologies << technology
+        @technologies.push(technology)
       end
     end
   end

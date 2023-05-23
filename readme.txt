@@ -52,49 +52,6 @@ docs
         [ ] deployment
         [ ] hosting
             
-            
-TODO
-    frontend
-        [x] toolbar
-            [x] bug scrolling viewport
-        [x] theme
-            [x] dark mode
-            [x] light mode
-            [x] colors
-                [x] accent
-                [x] primary
-        [x] login
-            [x] salvataggio stato con JWT
-            [ ] bug forward a /feed
-        [x] signup
-            [x] matching passwords
-            [x] qr code
-                [x] bug libreria
-	    [x] capire come ottenere parametri da componente genitore
-            premendo sul componente technologies dalla card user si viene reindirizzati a /<username>?technologies=<tecnologies>
-        [ ] ssr
-        [x] caricamento propic
-        [ ] default propic per cliente
-
-    backend
-        [x] database connection
-        [x] ActiveRecord
-        [x] 2FA totp
-        [x] JWT
-        [x] activerecord
-            model.property = new_property
-            model.save
-
-    database
-        [x] modellare tabelle con rails db:migration
-        [x] sti
-            grande tablela user con type
-        [x] salvataggio propic come jpeg
-        
-    test
-        [ ] rinominare utenti come informatici famosi
-            
-        
 db
     [x] users
         [x] username
@@ -300,11 +257,17 @@ endpoint
                 [x] /delete
                 [x] /logout
                 [x] /settings
-                [ ] /rating_by_technologies
+                [x] /rating_by_technologies
                     /propic
                     [x] /upload
                     [x] /delete
                     [x] /download
+
+frontend 
+    [x] top bar
+    [x] dark mode
+        [ ] window.matchMedia("(prefers-color-scheme: dark)");
+    [x] jwt authentication token
 
 components
     [ ] card
@@ -609,14 +572,14 @@ debug
             eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODQ4NTc2NDcsInVzZXJfaWQiOiJtYXJpbyJ9.mPayYPyy45Sz26vkvjus2gupb9ZrG0KdJrsSaYdctJk
 
 users
-    Charles Babbage
-    Alan Turing
-    Marvin Minsky
-    Ray Solomonoff
-    John McCarthy
-    Dennis Ritchie
-    Claude Shannon
-    Geoge Boole
-    John Von Neumann
-    Ada Lovelace
-    Edsger Dijkstra
+    [ ] Charles Babbage
+    [ ] Alan Turing
+    [ ] Marvin Minsky
+    [ ] Ray Solomonoff
+    [ ] John McCarthy
+    [ ] Dennis Ritchie
+    [ ] Claude Shannon
+    [ ] Geoge Boole
+    [ ] John Von Neumann
+    [ ] Ada Lovelace
+    [ ] Edsger Dijkstra
