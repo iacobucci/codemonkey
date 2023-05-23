@@ -23,6 +23,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRippleModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
+import {MatSelectModule} from '@angular/material/select';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
@@ -51,6 +52,7 @@ import { ProjectCardComponent } from './components/card/project-card/project-car
 import { UserComponent } from './pages/user/user.component';
 import { CompanyComponent } from './pages/user/company/company.component'
 import { CodemonkeyComponent } from './pages/user/codemonkey/codemonkey.component';
+import { SettingsComponent } from './pages/user/settings/settings.component';
 
 
 @NgModule({
@@ -76,7 +78,8 @@ import { CodemonkeyComponent } from './pages/user/codemonkey/codemonkey.componen
     CodemonkeyComponent,
     UserComponent,
     CompanyComponent,
-    ProjectCardComponent
+    ProjectCardComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -94,6 +97,7 @@ import { CodemonkeyComponent } from './pages/user/codemonkey/codemonkey.componen
     MatRadioModule,
     MatRippleModule,
     MatProgressBarModule,
+    MatSelectModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
@@ -102,6 +106,8 @@ import { CodemonkeyComponent } from './pages/user/codemonkey/codemonkey.componen
       { path: 'login', component: LoginComponent },
       { path: 'registrazione', component: SignupComponent },
       { path: 'feed', component: FeedComponent, canActivate: [AuthGuard] },
+
+      { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
 
       { path: "codemonkey/:username", component: CodemonkeyComponent },
       { path: "company/:username", component: CompanyComponent },

@@ -1,37 +1,59 @@
 docs
     [x] abstract
-    analisi dei requisiti   
+    [ ] analisi dei requisiti   
         [x] vocabolario
-            progetto
-                [x] proposta
-                [x] accettazione
-                [x] rifiuto
-                [x] interruzione
-                [x] terminazione
-        [x] scenari
-            [ ] controllare tutte le relazioni
-            [ ] da modificare 2fa
-        [x] analisi del rischio
-    analisi del probelma
-        [\] analisi delle funzionalità
-        [ ] analisi ruoli e responsabilità
-        [ ] analisi de dominio
+        [ ] requisiti
+            [ ] funzionali
+            [ ] non funzionali
+            [ ] dominio
+        [ ] scenari
+        [ ] analisi del rischio
+            [ ] valutazione dei beni
+            [ ] minacce e controlli
+            [ ] tecnologia e vulnerabilità
+            [ ] security use case e misuse case
+        [ ] aggiornamento requisiti
+            [ ] funzionali
+            [ ] non funzionali
+            [ ] vocabolario
+            [ ] casi d'uso
+    [ ] analisi del problema
+        [ ] analisi funzionalità
+            [ ] tabelle funzionalità
+            [ ] tabelle informazioni di flusso
+            [ ] analisi vincoli
+            [ ] analisi interazioni
+        [ ] analisi ruoli
+            [ ] analisi ruoli e responsabilità
+            [ ] tabelle ruolo e informazioni
+        [ ] analisi del dominio
+            [ ] modello del dominio
         [ ] architettura logica
-            [ ] struttura
-            [ ] interazione
-        [x] piano di lavoro
-    progettazione
-        [x] scelte tecnologiche
-        [x] progettazione architetturale
-            [x] client (frontend)
-            [x] server (backend)
-            [x] persistenza (database)
-        [ ] collaudo (test)
-        deployment
-            [x] containerizzazione
-            [ ] deploy
-
-misc
+            [ ] diagramma delle classi
+        [ ] interazione
+            [ ] diagramma di sequenza
+        [ ] piano di lavoro
+    [ ] progettazione
+        [ ] progettazione architetturale
+            [ ] requisiti non funzionali
+            [ ] scelte tecnologiche
+            [ ] scelta dell'architettura
+                [ ] client
+                [ ] server
+                [ ] database
+        [ ] progettazione di dettaglio
+            [ ] dominio
+            [ ] interfacce
+        [ ] viste applicazione
+        [ ] altri diagrammi di sequenza?
+        [ ] progettazione persistenza
+        [ ] formato log
+        [ ] progettazione collaudo
+        [ ] deployment
+        [ ] hosting
+            
+            
+TODO
     frontend
         [x] toolbar
             [x] bug scrolling viewport
@@ -51,6 +73,8 @@ misc
 	    [x] capire come ottenere parametri da componente genitore
             premendo sul componente technologies dalla card user si viene reindirizzati a /<username>?technologies=<tecnologies>
         [ ] ssr
+        [x] caricamento propic
+        [ ] default propic per cliente
 
     backend
         [x] database connection
@@ -66,6 +90,9 @@ misc
         [x] sti
             grande tablela user con type
         [x] salvataggio propic come jpeg
+        
+    test
+        [ ] rinominare utenti come informatici famosi
             
         
 db
@@ -98,8 +125,6 @@ db
     [x] companies extends user
         [x] name
             varchar(255)
-        [x] bio
-            varchar(4095)
         [x] propic
             blob
         [x] status
@@ -245,6 +270,7 @@ endpoint
                     l'ordine è project.suggest_time.asc
                     vengono inviate 5 card alla volta
                     /user?page=<num>&technologies=<tecnologia1,tecnologia2,...>
+                [x] technologies
             /dashboard
                 [x] actions
                     lista di tutte le actions
@@ -253,13 +279,14 @@ endpoint
                     /dashboard?page=<num>
                     ovviamente si possono perdere di vista le actions per via della paginazione
                 [x] technologies
+                [x] download
         endpoint di controllo
             /project
-                [ ] /accept
-                [ ] /reject
-                [ ] /new
-                [ ] /terminate
-                [ ] /edit
+                [x] /accept
+                [x] /reject
+                [x] /new
+                [x] /terminate
+                [x] /edit
             /report
                 [x] /send
                 [x] /ban
@@ -273,6 +300,7 @@ endpoint
                 [x] /delete
                 [x] /logout
                 [x] /settings
+                [ ] /rating_by_technologies
                     /propic
                     [x] /upload
                     [x] /delete
@@ -579,3 +607,16 @@ debug
 
         mario
             eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODQ4NTc2NDcsInVzZXJfaWQiOiJtYXJpbyJ9.mPayYPyy45Sz26vkvjus2gupb9ZrG0KdJrsSaYdctJk
+
+users
+    Charles Babbage
+    Alan Turing
+    Marvin Minsky
+    Ray Solomonoff
+    John McCarthy
+    Dennis Ritchie
+    Claude Shannon
+    Geoge Boole
+    John Von Neumann
+    Ada Lovelace
+    Edsger Dijkstra

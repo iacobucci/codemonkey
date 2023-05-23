@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :api do
-    post "current", to: "current#index"
+    post "whoami", to: "whoami#whoami"
 
     namespace :user do
       post "login", to: "login#login"
@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       post "logout", to: "logout#logout"
       post "settings", to: "settings#settings"
 
+      post "rating_by_technologies", to: "rating_by_technologies#rating_by_technologies"
       post "index", to: "index#index"
 
       namespace :propic do

@@ -1,7 +1,16 @@
-class Api::Feed::UserController < ApplicationController
+class Api::Feed::UserController < AuthenticationController
   before_action :validate_params
 
   def user
+    if @user.type == "Company"
+      if @current_user != @user
+        catch :error do
+          except 403, ["You are not authorized to view this user's profile."]
+        end
+        return
+      end
+    end
+
     projects = @user.projects
 
     unless @permitted_params[:technologies].nil? || @permitted_params[:technologies].empty?
@@ -15,6 +24,7 @@ class Api::Feed::UserController < ApplicationController
     end
 
     data = projects.sort_by { |obj| obj.suggestion_time }.reverse.take(4).map(&:index)
+
     render json: data, status: :ok
   end
 

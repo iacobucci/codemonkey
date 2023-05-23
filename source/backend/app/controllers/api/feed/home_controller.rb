@@ -10,18 +10,14 @@ class Api::Feed::HomeController < ApplicationController
       @users = User.where(type: ["Codemonkey", "Company"])
     end
 
-    unless @permitted_params[:technologies].nil? || @permitted_params[:technologies].empty?
-      @users = @users.select do |user|
-        (@permitted_params[:technologies] - user.technologies.map(&:name)).empty?
-      end
+    @users = @users.select do |user|
+      (@technologies & user.technologies) == @technologies
     end
 
     unless @permitted_params[:seen].nil? || @permitted_params[:seen].empty?
       @users = @users.reject { |user| @permitted_params[:seen].include?(user.username) }
     end
 
-    #TODO
-    # 1. Filter by user.status == "active"
     data = @users.map(&:index).shuffle!.take(4)
 
     render json: data, status: :ok
@@ -29,36 +25,35 @@ class Api::Feed::HomeController < ApplicationController
 
   def validate_params
     catch :error do
-      extract_params_and_validate(:home, [:type, technologies: [], seen: []])
-      validate_type
+      extract_params_and_validate(:home, [:type, technologies: [:name], seen: []])
       validate_technologies
       validate_seen
+      validate_type
     end
   end
 
   def validate_type
-    # @permitted_params[:type].nil must be either "Codemonkey" or "Company" or "all"
     if @permitted_params[:type].nil?
       except(400, ["Missing parameter type"])
-    elsif !["Codemonkey", "Company", "All"].include?(@permitted_params[:type])
+    elsif !["Codemonkey"].include?(@permitted_params[:type])
       except(400, ["Invalid type"])
     end
   end
 
   def validate_technologies
-    # @permitted_params[:technologies] is like ["name1", "name2"]
     if @permitted_params[:technologies].nil?
       @technologies = nil
     elsif !@permitted_params[:technologies].is_a?(Array)
       except(400, ["Invalid technologies"])
     else
       @technologies = []
-      @permitted_params[:technologies].each do |technology_name|
-        technology = Technology.find_by(name: technology_name)
+
+      @permitted_params[:technologies].each do |tech|
+        technology = Technology.find_by(name: tech[:name])
         if technology.nil?
-          except(400, ["Invalid technology #{technology_name}."])
+          except(400, ["Invalid technology #{tech.name}."])
         end
-        @technologies << technology
+        @technologies.push(technology)
       end
     end
   end

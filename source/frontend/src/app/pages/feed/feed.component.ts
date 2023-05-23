@@ -5,9 +5,10 @@ import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 
-import {User} from "../../interfaces/user.interface"
-import {Codemonkey} from "../../interfaces/codemonkey.interface"
-import {Company} from "../../interfaces/company.interface"
+import { User } from "../../interfaces/user.interface"
+import { Codemonkey } from "../../interfaces/codemonkey.interface"
+import { Company } from "../../interfaces/company.interface"
+import { Technology } from 'src/app/interfaces/technology.interface';
 
 
 @Component({
@@ -24,10 +25,14 @@ export class FeedComponent implements OnInit {
   seen: string[] = [];
   moreToLoad: boolean = true;
 
+  technologies: Technology[] = [];
+  selectedTechnologies: Technology[] = [];
+
   ngOnInit(): void {
     this.feed();
+    this.feedTechnologies();
   }
-  
+
   isCodemonkey(user: User): user is Codemonkey {
     return user.type === 'Codemonkey';
   }
@@ -35,11 +40,34 @@ export class FeedComponent implements OnInit {
   isCompany(user: User): user is Company {
     return user.type === 'Company';
   }
+  
+  onTechnologyUpdate() {
+    console.log("update",this.selectedTechnologies)
+    this.cards = [];
+    this.seen = [];
+    this.feed();
+  }
+    
+
+  feedTechnologies(): void {
+    const url = '/api/feed/technologies';
+
+    this.http.post<any>(url,{}).pipe(
+      catchError(error => {
+        console.error('Error:', error);
+        return throwError(error);
+      }
+      )
+    ).subscribe(data => {
+      this.technologies = data;
+    }
+    );
+  }
 
   feed(): void {
     const url = '/api/feed/home';
 
-    this.http.post<any>(url, { home: { type: "All", technologies: [], seen: this.seen } }).pipe(
+    this.http.post<any>(url, { home: { type: "Codemonkey", technologies: this.selectedTechnologies, seen: this.seen } }).pipe(
       catchError(error => {
         console.error('Error:', error);
         return throwError(error);
@@ -48,7 +76,7 @@ export class FeedComponent implements OnInit {
     ).subscribe(data => {
       if (data.length < 4)
         this.moreToLoad = false;
-      
+
       this.cards.push(...data);
       this.seen.push(...this.cards.map((user: User) => { return user.username }));
     }
