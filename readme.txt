@@ -573,13 +573,38 @@ debug
 
 users
     [ ] Charles Babbage
+    [ ] Geoge Boole
     [ ] Alan Turing
+    [ ] Claude Shannon
+    [ ] Norbert Weiner
+    [ ] John Von Neumann
     [ ] Marvin Minsky
     [ ] Ray Solomonoff
     [ ] John McCarthy
     [ ] Dennis Ritchie
-    [ ] Claude Shannon
-    [ ] Geoge Boole
-    [ ] John Von Neumann
-    [ ] Ada Lovelace
     [ ] Edsger Dijkstra
+    [ ] Richard Hamming
+    [ ] Warren McCullock
+    [ ] Walter Pitts
+    [ ] Herbert Simon
+    [ ] Allen Newell
+    [ ] Joseph Weizenbaum
+    [ ] Seymour Papert
+    [ ] Vannevar Bush
+    [ ] Corrado Bohm
+    [ ] Valentino Braitenberg
+    [ ] Donald Knuth
+    [ ] Brian Kernighan
+    [ ] Dennis Ritchie
+    [ ] Richard Stallman
+    [ ] Bill Gates
+    [ ] Steve Jobs
+    [ ] Steve Wozniak
+    [ ] George Hotz
+    
+    [ ] Ada Lovelace
+    [ ] Rózsa Péter
+    [ ] Grace hopper
+    [ ] Barbara Liskov
+    [ ] Margaret Hamilton
+    [ ] Katherine Johnson

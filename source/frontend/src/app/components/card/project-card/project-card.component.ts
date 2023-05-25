@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
-import { Project } from "../../../model/project.interface"
+import { Project } from "../../../model/interfaces/project.interface"
 
 import { ElementRef, ViewChild } from '@angular/core';
 

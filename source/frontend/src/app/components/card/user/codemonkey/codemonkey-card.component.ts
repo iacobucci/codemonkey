@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { UserCardComponent } from "../user-card.component"
 import { HttpClient } from '@angular/common/http';
 
-import { Codemonkey } from 'src/app/model/codemonkey.interface';
-import { Technology } from 'src/app/model/technology.interface';
+import { Codemonkey } from 'src/app/model/interfaces/codemonkey.interface';
+import { Technology } from 'src/app/model/interfaces/technology.interface';
 
 @Component({
   selector: 'app-codemonkey-card',

@@ -9,11 +9,11 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Tagged } from "../../model/tagged.abstract";
 
-import { Project } from "../../model/project.interface"
-import { User } from "../../model/user.interface"
-import { Codemonkey } from 'src/app/model/codemonkey.interface';
-import { Company } from 'src/app/model/company.interface';
-import { Technology } from 'src/app/model/technology.interface';
+import { Project } from "src/app/model/interfaces/project.interface"
+import { User } from "src/app/model/interfaces/user.interface"
+import { Codemonkey } from 'src/app/model/interfaces/codemonkey.interface';
+import { Company } from 'src/app/model/interfaces/company.interface';
+import { Technology } from 'src/app/model/interfaces/technology.interface';
 
 @Component({
   selector: 'app-user',

@@ -36,41 +36,56 @@
 <div style="overflow-y: hidden;">
 
     <mat-toolbar color="primary"
-        style="position: fixed; top: 64px; left: 0; right: 0; z-index:90; height: 360px; display: flex; justify-content: center; align-items: center;">
+        style="position: fixed; top: 64px; left: 0; right: 0; z-index:90; height: 360px; display: flex; justify-content: center; align-items: center; flex-direction: column">
 
+        <div style="display: flex; height: calc(360px - 56px - 64px - 64px - 8px); padding:64px">
+            <img #profilePicLargeRef mat-card-image src="" alt="Immagine di profilo"
+                style="height: 192px; border-radius: 50%; display:flex">
 
-        <div style="display: flex; flex-direction: column; align-items:center">
+            <span style="width: 80px; display:flex"></span>
 
-            <div style="width: 640px; display: flex">
-                <img #profilePicLargeRef mat-card-image src="" alt="Immagine di profilo"
-                    style="height: 192px; border-radius: 50%;">
-
-                <span style="width: 80px;"></span>
-
-                <div *ngIf="this.user">
-                    <div>
-                        <p style="font-size: 40pt; font-weight: bold; margin: auto;">{{this.name}}</p>
-                        <p style="margin:auto;">@{{this.user.username}}</p>
-                        <span style="margin:24px;"></span>
-                        <div *ngIf="this.hasRating">
-                            <app-valutazione [rating]="0"></app-valutazione>
-                        </div>
+            <div *ngIf="this.user">
+                <div style="width: 40%">
+                    <p style="font-size: 40pt; font-weight: bold; margin: auto;">{{this.name}}</p>
+                    <p style="margin:auto;">@{{this.user.username}}</p>
+                    <span style="margin:24px;"></span>
+                    <div *ngIf="this.hasRating">
+                        <app-valutazione [rating]="0"></app-valutazione>
                     </div>
-
                 </div>
+
             </div>
 
-            <div style="display: flex ; align-items: center; height:24px" ></div>
+            <span style="width: 64px; display:flex"> </span>
 
-            <div style="display: flex ; align-items: center">
-                <mat-form-field style="margin-bottom: -1.25em; display: flex; align-items: center ; width: 400px;">
-                    <mat-label>Technologies</mat-label>
-                    <mat-select [(value)]="selectedTechnologies" (closed)="onTechnologyUpdate()" multiple>
-                        <mat-option *ngFor="let technology of technologies"
-                            [value]="technology">{{technology.name.toUpperCase()}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
+            <div style="display:flex;flex-direction:column; align-items:center; justify-content: space-between">
+
+                <button mat-raised-button>
+                    <mat-icon>email</mat-icon>
+                    Contatta
+                </button>
+
+                <button mat-raised-button>
+                    <mat-icon>supervised_user_circle</mat-icon>
+                    Proponi
+                </button>
+
+                <button mat-raised-button color="warn">
+                    <mat-icon>error</mat-icon>
+                    Segnala
+                </button>
+
             </div>
+        </div>
+
+        <div style="display: flex ; align-items: center">
+            <mat-form-field style="margin-bottom: -1.25em; display: flex; align-items: center ; width: 400px;">
+                <mat-label>Technologies</mat-label>
+                <mat-select [(value)]="selectedTechnologies" (closed)="onTechnologyUpdate()" multiple>
+                    <mat-option *ngFor="let technology of technologies"
+                        [value]="technology">{{technology.name.toUpperCase()}}</mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
     </mat-toolbar>
 

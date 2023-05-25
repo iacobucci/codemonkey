@@ -1,4 +1,4 @@
-import { Technology } from './technology.interface';
+import { Technology } from './interfaces/technology.interface';
 import { HttpClient } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';

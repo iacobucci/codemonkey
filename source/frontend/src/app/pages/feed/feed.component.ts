@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../../authentication.service';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 
-import {Tagged} from '../../model/tagged.abstract'
+import { AuthenticationService } from 'src/app/authentication.service';
 
-import { User } from "../../model/user.interface"
-import { Codemonkey } from "../../model/codemonkey.interface"
-import { Company } from "../../model/company.interface"
-import { Technology } from 'src/app/model/technology.interface';
+import {Tagged} from 'src/app/model/tagged.abstract'
+
+import { User } from "src/app//model/interfaces/user.interface"
+import { Codemonkey } from "src/app/model/interfaces/codemonkey.interface"
+import { Company } from "src/app/model/interfaces/company.interface"
+import { Technology } from 'src/app/model/interfaces/technology.interface';
 
 
 @Component({

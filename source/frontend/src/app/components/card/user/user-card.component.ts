@@ -1,8 +1,8 @@
 import { Component} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Technology } from "../../../model/technology.interface"
-import { User } from "../../../model/user.interface"
+import { Technology } from "../../../model/interfaces/technology.interface"
+import { User } from "../../../model/interfaces/user.interface"
 
 import { SimpleChanges } from '@angular/core';
 import { ElementRef, ViewChild } from '@angular/core';
