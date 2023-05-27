@@ -9,17 +9,20 @@ docs
                 [x] interruzione
                 [x] terminazione
         [x] scenari
-            [ ] controllare tutte le relazioni
-            [ ] da modificare 2fa
+            [x] controllare tutte le relazioni
         [x] analisi del rischio
     analisi del probelma
-        [\] analisi delle funzionalità
+        [x] analisi delle funzionalità
         [ ] analisi ruoli e responsabilità
         [ ] analisi de dominio
         [ ] architettura logica
             [ ] struttura
             [ ] interazione
-        [x] piano di lavoro
+        piano di lavoro
+            [ ] divisione dei lavori
+            [ ] prototipo
+            [ ] sviluppi fututri
+            [ ] piano del collaudo
     progettazione
         [x] scelte tecnologiche
         [x] progettazione architetturale
