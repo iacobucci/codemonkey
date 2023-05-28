@@ -51,7 +51,6 @@ export class UserComponent extends Tagged implements OnInit {
     this.fetchPropic();
     this.feed();
     this.feedTechnologies();
-
   }
 
   onTechnologyUpdate() {

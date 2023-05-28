@@ -202,14 +202,16 @@ actions
         rifiuta?tecnologia=<tecnologia>
 
 model
-    user
-        codemonkey
-        company
-        admin
-    project
-    action 
-    technology
-    report
+    [x] user
+        [x] codemonkey
+        [x] company
+        [x] admin
+    [x] project
+    [x] action 
+    [x] technology
+    [x] report
+    
+
 
 endpoint
     /api
