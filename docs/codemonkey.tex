@@ -1,5 +1,5 @@
 \documentclass{article}
-\usepackage[a4paper, margin=1.5cm]{geometry}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
 \usepackage{changepage}
 \usepackage{multirow}
 \usepackage{tocloft}
@@ -46,15 +46,12 @@
 \definecolor{tableYellow}{RGB}{255, 220, 0}
 \definecolor{tableBlue}{RGB}{0 ,20, 210}
 \definecolor{tableCyan}{RGB}{0 ,160, 156}
-\definecolor{tableRed}{RGB}{220 ,15, 5}
+\definecolor{tableRed}{RGB}{235 ,15, 0}
 
 %macro per andare a capo nelle tabelle
 \newcommand{\n}{
    \tabularnewline\hline
 }
-
-\tolerance=1
-\hyphenpenalty=10000
 
 %robe per tabelle
 \renewcommand{\arraystretch}{2.4}%padding sopra sotto
@@ -81,13 +78,10 @@
    % \includegraphics[width=0.5\linewidth]{assets/img/icon}
    \begin{titlepage}
       \huge Codemonkey
-   \end{titlepage}
-   \label{fig:nome-etichetta}
+   \end{titlepage}\label{fig:nome-etichetta}
 \end{figure}
 
 \renewcommand{\contentsname}{Sommario}
-
-
 
 
 
@@ -96,64 +90,94 @@
 
 %%%%%%%%%%%%%%%%%%%%
 
+\subsection{\Large Abstract}
 \input{0-abstract/1-abstract.tex}
-% \pagebreak
+\pagebreak
 
 %%%%%%%%%%%%%%%%%%%%
 
-\section{Analisi dei requisiti}
+\section{\Large Analisi dei requisiti}
+\subsection{\Large Raccolta dei requisiti}
 \input{1-analisi_dei_requisiti/1-raccolta_requisiti.tex/1-raccolta_requisiti.tex}
+\subsection{\Large Vocabolario}
 \input{1-analisi_dei_requisiti/2-vocabolario/1-vocabolario.tex}
-
-\subsection {Tabelle requisiti}
-\subsubsection{Requisiti funzionali}
+\subsection{\Large Tabelle requisiti}
+\subsubsection{\Large Requisiti funzionali}
 \input{1-analisi_dei_requisiti/3-requisiti/1-requisiti_funzionali.tex}
-\subsubsection{Requisiti non funzionali}
+\subsubsection{\Large Requisiti non funzionali}
 \input{1-analisi_dei_requisiti/3-requisiti/2-requisiti_non_funzionali.tex}
-\subsubsection{Requisiti di dominio}
+\subsubsection{\Large Requisiti di dominio}
 \input{1-analisi_dei_requisiti/3-requisiti/3-requisiti_di_dominio.tex}
 
-\subsection{Scenari}
+\subsection{\Large Scenari}
 \input{1-analisi_dei_requisiti/4-scenari/1-scenari.tex}
 
-\subsection {Analisi del rischio}
-\subsubsection {Valutazione dei beni}
+\subsection{\Large Analisi del rischio}
+\subsubsection{\Large Valutazione dei beni}
 \input{1-analisi_dei_requisiti/5-analisi_del_rischio/1-valutazione_dei_beni.tex}
-\subsubsection {Minacce e controlli}
+\subsubsection{\Large Minacce e controlli}
 \input{1-analisi_dei_requisiti/5-analisi_del_rischio/2-minacce_e_controlli.tex}
-\subsubsection{Tecnologia e vulnerabilità}
+\subsubsection{\Large Tecnologia e vulnerabilità}
 \input{1-analisi_dei_requisiti/5-analisi_del_rischio/3-tecnologia_e_vulnerabilita.tex}
-\subsubsection{Security use case e misuse case}
+\subsubsection{\Large Security use case e misuse case}
 \input{1-analisi_dei_requisiti/5-analisi_del_rischio/4-security_use_case_and_misuse_case_scenari.tex}
 
-\subsection{Aggiornamento requisiti}
-\subsubsection{Requisiti funzionali aggiornati}
+\subsection{\Large Aggiornamento requisiti}
+\subsubsection{\Large Requisiti funzionali aggiornati}
 \input{1-analisi_dei_requisiti/6-aggiornamento_requisiti/1-requisiti_funzionali_aggiornati.tex}
-\subsubsection{Requisiti non funzionali aggiornati}
+\subsubsection{\Large Requisiti non funzionali aggiornati}
 \input{1-analisi_dei_requisiti/6-aggiornamento_requisiti/2-requisiti_non_funzionali_aggiornati.tex}
-\subsubsection{Vocabolario aggiornato}
+\subsubsection{\Large Vocabolario aggiornato}
 \input{1-analisi_dei_requisiti/6-aggiornamento_requisiti/3-vocabolario_aggiornato.tex}
-\subsubsection{Casi d'uso aggiornati}
+\subsubsection{\Large Casi d'uso aggiornati}
 \input{1-analisi_dei_requisiti/6-aggiornamento_requisiti/4-casi_uso_aggiornati.tex}
 
 %%%%%%%%%%%%%%%%%%%%
 
 \pagebreak
-\section{Analisi del problema}
-\subsection{Analisi delle funzionalità}
-\subsubsection{Tabelle delle funzionalità}
+\section{\Large Analisi del problema}
+\subsection{\Large Analisi delle funzionalità}
+\subsubsection{\Large Tabelle delle funzionalità}
 \input{2-analisi_del_problema/1-analisi_funzionalita/1-tabelle_funzionalita.tex}
-\subsubsection{Tabelle di informazione e flusso}
+\subsubsection{\Large Tabelle di informazione e flusso}
 \input{2-analisi_del_problema/1-analisi_funzionalita/2-tabelle_informazione_flusso.tex}
-\subsubsection{Analisi dei vincoli}
+\subsubsection{\Large Analisi dei vincoli}
 \input{2-analisi_del_problema/1-analisi_funzionalita/3-analisi_vincoli.tex}
-\subsubsection{Analisi delle interazioni}
+\pagebreak
+\subsubsection{\Large Analisi delle interazioni}
 \input{2-analisi_del_problema/1-analisi_funzionalita/4-analisi_interazioni.tex}
 
-\subsection{Analisi dei ruoli e delle responsabilità}
-\subsubsection{Tabella dei ruoli e delle responsabilità}
+\subsection{\Large Analisi dei ruoli e delle responsabilità}
+\subsubsection{\Large Tabella dei ruoli e delle responsabilità}
 \input{2-analisi_del_problema/2-analisi_ruoli/1-analisi_ruoli_e_responsabilita.tex}
-\subsubsection{Tabelle dei ruoli e delle informazioni}
+\subsubsection{\Large Tabelle dei ruoli e delle informazioni}
 \input{2-analisi_del_problema/2-analisi_ruoli/2-tabelle_ruolo_e_informazioni.tex}
+\pagebreak
+\subsection{\Large Scomposizione del Problema}
+\input{2-analisi_del_problema/2-analisi_ruoli/3-scomposizione_del_problema.tex}
+
+
+
+
+%%%%%%%%%%%%%%%%
+\pagebreak
+\input{2-analisi_del_problema/4-piano_di_lavoro/1-divisione_dei_lavori.tex}
+\input{2-analisi_del_problema/4-piano_di_lavoro/2-sviluppi_futuri.tex}
+
+
+
+
+%%%%%%%%%%%%%%%%
+\pagebreak
+\input{2-analisi_del_problema/4-piano_di_lavoro/1-divisione_dei_lavori.tex}
+\input{2-analisi_del_problema/4-piano_di_lavoro/2-sviluppi_futuri.tex}
+
+
+
+
+%%%%%%%%%%%%%%%%
+\pagebreak
+\input{2-analisi_del_problema/4-piano_di_lavoro/1-divisione_dei_lavori.tex}
+\input{2-analisi_del_problema/4-piano_di_lavoro/2-sviluppi_futuri.tex}
 
 \end{document}

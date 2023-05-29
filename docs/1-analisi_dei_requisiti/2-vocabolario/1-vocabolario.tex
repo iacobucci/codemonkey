@@ -1,39 +1,43 @@
-\subsection {Vocabolario}
-
 \begin{center}
 
-\rowcolors{2}{orange!20}{orange!5}%colori alternati
+    \rowcolors{2}{orange!20}{orange!5}%colori alternati
 
+    \resizebox{1\textwidth}{!}{
+        \begin{tabular}
+            {|>{\raggedright}m{3cm}|>{\raggedright}m{9cm}|m{3cm}|}%Opzioni per formato tabella
+            \hline %riga in cima alla colonna    
+            \rowcolor{orange!50}%settare il colore della colonna principale 
+            \Large\textbf{Voce}    & \Large\centering\textbf{Definizione}                                                                              & \Large\textbf{Sinonimo} %voci della prima colonna
+            \n  Utente             & Persona non autenticata che usufruisce della piattaforma                                                          &
+            \n  Nome Utente        & Stringa alfanumerica che identifica il nome di un Utente                                                          & Username
+            \n  Chiave di accesso  & Stringa alfanumerica scelta da un utente, da tenere segreta                                                       & Password
+            \n  TOTP               & Time-based One-Time Password, codice numerico generato dal sistema, utilizzato per l'autenticazione a due fattori &
+            \n  Registrazione      & Funzione di iscrizione alla piattaforma                                                                           &
+            \n  Autenticazione     & Metodo di accesso al servizio, basato su Username, Password e TOTP                                                & Log in
+            \n  Utente autenticato & Utente che ha effettuato l'autenticazione                                                                         &
+            \n  Amministratore     & Addetto alla manutenzione della piattaforma                                                                       & Admin
+            \n  Codemonkey         & Utente registrato o autenticato come programmatore                                                                &
+            \n  Cliente            & Azienda o un semplice privato interessato a utilizzare servizi offerti dalle Codemonkey                           &
+            \n  Profilo Completo   & Il profilo di una Codemonkey è completo se sono presenti tutte le informazioni richieste dalla piattaforma        &
+            \n
+        \end{tabular}\label{tab:monkeytable:vocabolario1}}
 
-\begin{longtable}
-{|m{3.5cm}|>{\raggedright}m{8cm}|l|}%Opzioni per formato tabella
-\hline %riga in cima alla colonna    
-\rowcolor{orange!50}%settare il colore della colonna principale 
-
-\Large\textbf{Voce} &\Large\centering\textbf\raggedright{Definizione} &\Large\textbf{Sinonimo} \n%voci della prima colonna
-\endhead
-    Utente& Persona non autenticata che usufruisce della piattaforma &
-\n  Nome Utente & Stringa alfanumerica che identifica il nome di un Utente&Username
-\n  Chiave di accesso & Stringa alfanumerica scelta da un utente, da tenere segreta&Password
-\n  TOTP & Time-based One-Time Password, codice numerico generato dal sistema, utilizzato per l'autenticazione a due fattori&
-\n  Registrazione& Funzione di iscrizione alla piattaforma&
-\n  Autenticazione& Metodo di accesso al servizio, basato su Username, Password e TOTP& Log in
-\n  Utente autenticato& Utente che ha effettuato l'autenticazione&
-\n  Amministratore & Addetto alla manutenzione della piattaforma & Admin
-\n  Codemonkey& Utente registrato o autenticato come programmatore &
-\n  Cliente& Azienda o un semplice privato interessato a utilizzare servizi offerti dalle Codemonkey &
-\n  Profilo Completo & Il profilo di una Codemonkey è completo se sono presenti tutte le informazioni richieste dalla piattaforma &
-\n  Lavoro & Contratto tra una Codemonkey e un Cliente per lo sviluppo di un progetto software. Può essere \textit{proposto} da un Cliente ed \textit{accettato} o \textit{rifiutato} da una Codemonkey. Se viene accettato, può essere \textit{interrotto} dalla Codemonkey o \textit{terminato} dal Cliente & Progetto, Collaborazione
-\n  Tag & Parole chiave che permettono di trovare le Codemonkey, saranno quindi i linguaggi di programmazione e le applicazioni che sono in grado di utilizzare&
-\n  Ricerca & Il modo in cui si possono trovare le Codemonkey, si basa sui Tag & Feed
-\n  Valutazione& Valore espresso in stelle da 1 a 5 per quantificare le prestazioni di una Codemonkey &
-\n  Valutazione Filtrata & Valutazione media di una Codemonkey in base ai Tag impostati &
-\n  Recensione & Commento scritto da un Cliente per valutare le prestazioni di una Codemonkey &
-\n  (Cliente) Limitato & Cliente che non ha diritto di lasciare Recensioni &
-\n  (Cliente o Codemonkey) Sospeso & Utente che non ha diritto di avviare o accettare Lavori &
-\n  (Cliente o Codemonkey) Bloccato & Utente che non ha diritto di accedere alla piattaforma & Ban
-\n 
-\end{longtable}
-\label{tab:monkeytable:vocabolario2}
+    \resizebox{1\textwidth}{!}{
+        \begin{tabular}
+            {|>{\raggedright}m{3cm}|>{\raggedright}m{9cm}|m{3cm}|}%Opzioni per formato tabella
+            \hline %riga in cima alla colonna    
+            \rowcolor{orange!50}%settare il colore della colonna principale 
+            \Large\textbf{Voce}                 & \Large\centering\textbf{Definizione}                                                                                                                                                                                                                                                             & \Large\textbf{Sinonimo}          %voci della prima colonna
+            \n  Lavoro                          & Contratto tra una Codemonkey e un Cliente per lo sviluppo di un progetto software. Può essere \textit{proposto} da un Cliente ed \textit{accettato} o \textit{rifiutato} da una Codemonkey. Se viene accettato, può essere \textit{interrotto} dalla Codemonkey o \textit{terminato} dal Cliente & Progetto,\newline Collaborazione
+            \n  Tag                             & Parole chiave che permettono di trovare le Codemonkey, saranno quindi i linguaggi di programmazione e le applicazioni che sono in grado di utilizzare                                                                                                                                            &
+            \n  Ricerca                         & Il modo in cui si possono trovare le Codemonkey, si basa sui Tag                                                                                                                                                                                                                                 & Feed
+            \n  Valutazione                     & Valore espresso in stelle da 1 a 5 per quantificare le prestazioni di una Codemonkey                                                                                                                                                                                                             &
+            \n  Valutazione Filtrata            & Valutazione media di una Codemonkey in base ai Tag impostati                                                                                                                                                                                                                                     &
+            \n  Recensione                      & Commento scritto da un Cliente per valutare le prestazioni di una Codemonkey                                                                                                                                                                                                                     &
+            \n  (Cliente) Limitato              & Cliente che non ha diritto di lasciare Recensioni                                                                                                                                                                                                                                                &
+            \n  (Cliente o Codemonkey) Sospeso  & Utente che non ha diritto di avviare o accettare Lavori                                                                                                                                                                                                                                          &
+            \n  (Cliente o Codemonkey) Bloccato & Utente che non ha diritto di accedere alla piattaforma                                                                                                                                                                                                                                           & Ban
+            \n
+        \end{tabular}\label{tab:monkeytable:vocabolario2}}
 \end{center}
 

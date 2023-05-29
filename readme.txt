@@ -1,3 +1,12 @@
+model
+    Accesso
+    Account
+    Progetto
+    Tecnologie
+    Report
+    Log
+
+
 docs
     [x] abstract
     [ ] analisi dei requisiti   
