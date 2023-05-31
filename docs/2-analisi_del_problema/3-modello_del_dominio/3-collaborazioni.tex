@@ -6,7 +6,7 @@
             \attribute{id : Integer}
             \attribute{titolo : Titolo}
             \attribute{stato: StatoCollaborazione}
-            \attribute{descrizione: Descrizione}
+            \attribute{descrizioneCollaborazione: DescrizioneCollaborazione}
             \attribute{tags: Tag[]}
             \attribute{valutazione: Valutazione}
             \attribute{codemonkey: Codemonkey}
@@ -66,20 +66,20 @@
 
         %%%%%%%%%% 
 
-        \begin{class}[text width=5cm, fill=green!20, draw=black, right=4cm of Collaborazione, yshift=-3cm]{Descrizione}{0,0}
-            \attribute{descrizione : String}
-            \operation {setDescrizione(String) : void}
-            \operation {getDescrizione() : String}
+        \begin{class}[text width=5cm, fill=green!20, draw=black, right=4cm of Collaborazione, yshift=-3cm]{DescrizioneCollaborazione}{0,0}
+            \attribute{descrizioneCollaborazione : String}
+            \operation {setDescrizioneCollaborazione(String) : void}
+            \operation {getDescrizioneCollaborazione() : String}
         \end{class}
 
-        \draw [{Diamond}-] (Collaborazione) -- (Descrizione) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
+        \draw [{Diamond}-] (Collaborazione) -- (DescrizioneCollaborazione) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
 
         %%%%%%%%%% 
 
 
         \begin{class}[text width=8cm, fill=green!20, draw=black, below=7cm of Collaborazione, xshift=-5cm]{Client}{0,0}
-            \operation{proponiCollaborazione(Codemonkey, Titolo, Descrizione, Tag[]) : void}
-            \operation{modificaCollaborazione(Collaborazione,Codemonkey, Titolo, Descrizione, Tag[]) : void}
+            \operation{proponiCollaborazione(Codemonkey, Titolo, DescrizioneCollaborazione, Tag[]) : void}
+            \operation{modificaCollaborazione(Collaborazione,Codemonkey, Titolo, DescrizioneCollaborazione, Tag[]) : void}
             \operation{terminaCollaborazione(Collaborazione, Valutazione) : void}
         \end{class}
 

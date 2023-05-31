@@ -6,19 +6,19 @@
         \begin{class}[text width=5cm, fill=green!20, draw=black]{Action}{0,0}
             \attribute{user: RegistredUser}
             \attribute{tipo: TipoAction}
-            \attribute{descrizione: Descrizione}
+            \attribute{descrizione: DescrizioneAction}
             \attribute{data: DateTime}
         \end{class}
 
         %%%%%%%%%% 
         
-        \begin{class}[text width=5cm, fill=green!20, draw=black, left=4cm of Report, yshift=-9cm]{Descrizione}{0,0}
-            \attribute{descrizione : String}
-            \operation{getDescrizione() : String}
-            \operation{setDescrizione(String) : void}
+        \begin{class}[text width=5cm, fill=green!20, draw=black, left=4cm of Report, yshift=-9cm]{DescrizioneAction}{0,0}
+            \attribute{descrizioneAction : String}
+            \operation{getDescrizioneAction() : String}
+            \operation{setDescrizioneAction(String) : void}
         \end{class}
         
-        \draw [{Diamond}-] (Action) -- (Descrizione);
+        \draw [{Diamond}-] (Action) -- (DescrizioneAction);
         
         %%%%%%%%%%%
 
