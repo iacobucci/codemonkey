@@ -1,0 +1,60 @@
+\noindent\resizebox{\textwidth}{!}{
+    \begin{tikzpicture}
+        \fontsize{8}{9.5}\selectfont
+        
+        \begin{class}[text width=5cm, fill=green!20, draw=black]{Report}{0,0}
+            \attribute{mittente: RegistredUser}
+            \attribute{destinatario: RegistredUser}
+            \attribute{motivazione: Motivazione}
+            \attribute{data: DateTime}
+        \end{class}
+        
+       %%%%%%%%%% 
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black, left=4cm of Report, yshift=0cm]{Motivazione}{0,0}
+            \attribute{motivazione : String}
+            \operation{setMotivazione(String) : void}
+            \operation{getMotivazione() : String}
+        \end{class}
+        
+
+       %%%%%%%%%% 
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black, rectangle split parts=2, left=4cm of Report, yshift=-4cm]{StatoUser}{0,0}
+            \attribute{IN\_ATTESA}
+            \attribute{ATTIVO}
+            \attribute{LIMITATO}
+            \attribute{SOSPESO}
+            \attribute{BLOCCATO}
+        \end{class}
+
+        \node [above of=StatoTag, node distance=1.6cm] (enumeration) {$<<$enumeration$>>$};
+        
+        
+       %%%%%%%%%% 
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black, below=6cm of Report, xshift=-2cm]{RegistredUser}{0,0}
+            \attribute{stato: StatoUser}
+            \operation{reportUser(RegistredUser, Motivazione) : void}
+        \end{class}
+        
+        \draw [-{Latex[open]}] (RegistredUser) -- (Report);
+        
+        \draw [{Diamond}-] (Report) -- (Motivazione);
+        
+        \draw [{Diamond}-] (RegistredUser) -- (StatoUser);
+        
+        %%%%%%%%%%
+        
+        \begin{class}[text width=5cm, fill=green!20, draw=black, below=6cm of Report, xshift=4cm]{Admin}{0,0}
+            \operation{setStatoUser(RegistredUser,StatoUser) : void}
+        \end{class}
+        
+        \draw [-{Latex[open]}] (Admin) -- (RegistredUser);
+
+        \draw [-{Latex[open]}] (Admin) -- (StatoUser);
+
+       
+       
+    \end{tikzpicture}
+}

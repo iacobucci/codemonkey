@@ -1,0 +1,55 @@
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    keywordstyle=\color{blue},
+    stringstyle=\color{red},
+    commentstyle=\color{green!70!black},
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=8pt,
+    stepnumber=1,
+    tabsize=4,
+}
+
+%creazione dei colori custom
+\definecolor{tableGreen}{RGB}{25, 175, 45}
+\definecolor{tableYellow}{RGB}{255, 220, 0}
+\definecolor{tableBlue}{RGB}{0 ,20, 210}
+\definecolor{tableCyan}{RGB}{0 ,160, 156}
+\definecolor{tableRed}{RGB}{235 ,15, 0}
+
+%macro per andare a capo nelle tabelle
+\newcommand{\n}{
+    \tabularnewline\hline
+}
+
+%robe per tabelle
+\renewcommand{\arraystretch}{2.4}%padding sopra sotto
+\setlength\tabcolsep{6pt}%padding bordo lat
+
+
+%macro per generare le tabelle
+\newcommand{\monkeytable}[2]{
+    \begin{center}
+        \begin{tabularx}{\textwidth}
+            #2
+            \n %necessaria per chiudere la tabella
+        \end{tabularx}
+    \end{center}
+    \label{tab:monkeytable}
+}
+
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{shapes.multipart}
+\usetikzlibrary{calc}
+\tikzset{inheritance line/.style={->, >=open diamond, thick, black}}

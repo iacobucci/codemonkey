@@ -1,0 +1,69 @@
+
+\noindent\resizebox{\textwidth}{!}{
+    \begin{tikzpicture}
+        \fontsize{8}{9.5}\selectfont
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black]{Action}{0,0}
+            \attribute{user: RegistredUser}
+            \attribute{tipo: TipoAction}
+            \attribute{descrizione: DescrizioneAction}
+            \attribute{data: DateTime}
+        \end{class}
+
+        %%%%%%%%%% 
+        
+        \begin{class}[text width=5cm, fill=green!20, draw=black, left=4cm of Report, yshift=-9cm]{DescrizioneAction}{0,0}
+            \attribute{descrizioneAction : String}
+            \operation{getDescrizioneAction() : String}
+            \operation{setDescrizioneAction(String) : void}
+        \end{class}
+        
+        \draw [{Diamond}-] (Action) -- (DescrizioneAction);
+        
+        %%%%%%%%%%%
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black, rectangle split parts=2, left=4cm of Report, yshift=-4cm]{TipoAction}{0,0}
+
+            \attribute{REGISTRAZIONE}
+            \attribute{LOGIN}
+            \attribute{CANCELLA}
+            \attribute{SETPASSWORD}
+            \attribute{SETBIOGRAFIA}
+            \attribute{SETIMMAGINEPROFILO}
+            \attribute{SETTAGS}
+            \attribute{SETEMAIL}
+            \attribute{PROPONICOLLABORAZIONE}
+            \attribute{MODIFICACOLLABORAZIONE}
+            \attribute{ACCETTACOLLABORAZIONE}
+            \attribute{RIFIUTACOLLABORAZIONE}
+            \attribute{INTERROMPICOLLABORAZIONE}
+            \attribute{TERMINACOLLABORAZIONE}
+            \attribute{PROPONITAG}
+            \attribute{APPROVATAG}
+            \attribute{RIFIUTATAG}
+            \attribute{SETUSERSTATUS}
+            \attribute{REPORTUSER}
+        \end{class}
+
+        \node [above of=TipoAction, node distance=3.7cm] (enumeration) {$<<$enumeration$>>$};
+        
+        \draw [{Diamond}-] (Action) -- (TipoAction);
+        
+        %%%%%%%%%%%
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black,  below=8cm of Report, xshift=-1cm]{RegistredUser}{0,0}
+        \end{class}
+        
+        \draw [{Latex}-] (Action) -- (RegistredUser);
+        
+        %%%%%%%%%%% 
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black,  below=8cm of Report, xshift=5cm]{Admin}{0,0}
+            \operation{downloadLog(): File}
+            \operation{getLog(): List<Action>}
+        \end{class}
+
+        \draw [{Latex}-] (Action) -- (Admin);
+    \end{tikzpicture}
+
+}

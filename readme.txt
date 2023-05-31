@@ -1,77 +1,248 @@
+
+
 docs
     [x] abstract
-    analisi dei requisiti   
+    [ ] analisi dei requisiti   
         [x] vocabolario
-            [ ] utente registrato
-            progetto
-                [ ] proposta
-                [ ] accettazione
-                [ ] rifiuto
-                [ ] interruzione
-                [ ] terminazione
-                [ ] modifica
-            [ ] ricerca sinonimo: feed
-            [ ] valutazioni
-        [x] scenari
-            [ ] controllare tutte le relazioni
-            [ ] da modificare 2fa
-        [x] analisi del rischio
-    analisi del probelma
-        [\] analisi delle funzionalità
-        [ ] analisi ruoli e responsabilità
-        [ ] analisi de dominio
+        [ ] requisiti
+            [ ] funzionali
+            [ ] non funzionali
+            [ ] dominio
+        [ ] scenari
+        [ ] analisi del rischio
+            [ ] valutazione dei beni
+            [ ] minacce e controlli
+            [ ] tecnologia e vulnerabilità
+            [ ] security use case e misuse case
+        [ ] aggiornamento requisiti
+            [ ] funzionali
+            [ ] non funzionali
+            [ ] vocabolario
+            [ ] casi d'uso
+    [ ] analisi del problema
+        [ ] analisi funzionalità
+            [ ] tabelle funzionalità
+            [ ] tabelle informazioni di flusso
+            [ ] analisi vincoli
+            [ ] analisi interazioni
+        [ ] analisi ruoli
+            [ ] analisi ruoli e responsabilità
+            [ ] tabelle ruolo e informazioni
+        [ ] analisi del dominio
+            [x] Accesso
+                User
+                Username
+                    username
+                Email
+                    email
+                Password
+                    passwordDigest
+                RegistredUser
+                    username
+                    email
+                    password
+                progettazione
+                    ActionAccesso
+                        registrazione 
+                        login
+            [x] Account
+                RegistredUser
+                    username
+                    email
+                    password
+                    biografia
+                    immagineProfilo
+                Codemonkey
+                    setTags(Tag[])
+                Cliente
+                Biografia
+                    biografia
+                Tag
+                    nome
+                ImmagineDiProfilo
+                    immagine
+                progettazione
+                    ActionAccount
+                        setPassword
+                        setBiografia
+                        setImmagineProfilo
+                        setTags
+                        setEmail
+            [x] Collaborazione
+                Collaborazione
+                    id
+                    titolo
+                    stato
+                    descrizione
+                    tags
+                    valutazione
+                    codemonkey
+                    client
+                    dataProposta
+                    dataAccettazione
+                    dataTerminazione
+                Titolo
+                    titolo
+                Descrizione
+                    descrizione
+                Tag
+                    nome
+                Valutazione
+                    rating
+                    commento
+                StatoProgetto
+                    PROPOSTA
+                    ACCETTATA
+                    RIFIUTATA
+                    INTERROTTA
+                    TERMINATA
+                Client
+                    proponiCollaborazione(Codemonkey, Titolo, Descrizione, Tags)
+                    modificaCollaborazione(Collaborazione, Titolo, Descrizione, Tags)
+                    accettaCollaborazione(Collaborazione)
+                Codemonkey
+                    accettaCollaborazione(Collaborazione)
+                    rifiutaCollaborazione(Collaborazione)
+                    interrompiCollaborazione(Collaborazione)
+                progettazione
+                    ActionCollaborazione
+                        proponiCollaborazione
+                        modificaCollaborazione
+                        accettaCollaborazione
+                        rifiutaCollaborazione
+                        interrompiCollaborazione
+                        terminaCollaborazione
+            [x] Tag
+                Tag
+                    nome
+                    stato
+                    dataProposta
+                StatoTag
+                    APPROVATO
+                    RIFIUTATO
+                    IN_ATTESA
+                Admin
+                    approvaTag(Tag)
+                    rifiutaTag(Tag)
+                Codemonkey
+                    proponiTag(String)
+                progettazione
+                    ActionTag
+                        proponiTag
+                        approvaTag
+                        rifiutaTag
+            [x] Segnalazioni
+                Admin
+                    setStatoUser(User, StatoUser)
+                StatoUser
+                    IN_ATTESA
+                    ATTIVO
+                    LIMITATO
+                    BLOCCATO
+                RegistredUser
+                    stato
+                    reportUser(User, Motivazione)
+                Report
+                    mittente
+                    destinatario
+                    motivazione
+                    data
+                Motivazione
+                    motivazione
+                progettazione
+                    ActionReport
+                        setUserStatus
+                        reportUser
+            [ ] Log
+                Action
+                    user
+                    time
+                    tipo
+                    description
+                TipoAction
+                    REGISTRAZIONE
+                    LOGIN
+                    CANCELLA
+                    SETPASSWORD
+                    SETBIOGRAFIA
+                    SETIMMAGINEPROFILO
+                    SETTAGS
+                    SETEMAIL
+                    PROPONICOLLABORAZIONE
+                    MODIFICACOLLABORAZIONE
+                    ACCETTACOLLABORAZIONE
+                    RIFIUTACOLLABORAZIONE
+                    INTERROMPICOLLABORAZIONE
+                    TERMINACOLLABORAZIONE
+                    PROPONITAG
+                    APPROVATAG
+                    RIFIUTATAG
+                    SETUSERSTATUS
+                    REPORTUSER
+                ActionDescription
+                    description
+                RegistredUser
+                Admin
+                    downloadLog()
+                    visualizzaLog()
+                progettazione
+                    ActionAccesso extends Action
+                        registrazione
+                        login
+                        cancella
+                    ActionAccount extends Action
+                        setPassword
+                        setBiografia
+                        setImmagineProfilo
+                        setTags
+                        setEmail
+                    ActionCollaborazione extends Action
+                        proponiCollaborazione
+                        modificaCollaborazione
+                        accettaCollaborazione
+                        rifiutaCollaborazione
+                        interrompiCollaborazione
+                        terminaCollaborazione
+                    ActionTag extends Action
+                        proponiTag
+                        approvaTag
+                        rifiutaTag
+                    ActionReport extends Action
+                        setUserStatus
+                        reportUser
         [ ] architettura logica
-            [ ] struttura
-            [ ] interazione
-        [x] piano di lavoro
-    progettazione
-        [x] scelte tecnologiche
-        [x] progettazione architetturale
-            [x] client (frontend)
-            [x] server (backend)
-            [x] persistenza (database)
-        [ ] collaudo (test)
-        deployment
-            [x] containerizzazione
-            [ ] deploy
-
-misc
-    frontend
-        [x] toolbar
-            [x] bug scrolling viewport
-        [x] theme
-            [x] dark mode
-            [x] light mode
-            [x] colors
-                [x] accent
-                [x] primary
-        [x] login
-            [x] salvataggio stato con JWT
-            [ ] bug forward a /feed
-        [x] signup
-            [x] matching passwords
-            [x] qr code
-                [x] bug libreria
-	    [x] capire come ottenere parametri da componente genitore
-            premendo sul componente technologies dalla card user si viene reindirizzati a /<username>?technologies=<tecnologies>
-        [ ] ssr
-
-    backend
-        [x] database connection
-        [x] ActiveRecord
-        [x] 2FA totp
-        [x] JWT
-        [x] activerecord
-            model.property = new_property
-            model.save
-
-    database
-        [x] modellare tabelle con rails db:migration
-        [x] sti
-            grande tablela user con type
-        [x] salvataggio propic come jpeg
+            [ ] diagramma delle classi
+                FeedHome
+                FeedCollaborazioni
+        [ ] interazione
+            [ ] diagramma di sequenza
+                [ ] accesso senza TOTP
+        [ ] piano di lavoro
+            [ ] divisione dei lavori
+            [ ] sviluppi fururi
+    [ ] progettazione
+        [ ] progettazione architetturale
+            [ ] requisiti non funzionali
+            [ ] scelte tecnologiche
+            [ ] scelta dell'architettura
+                [ ] client
+                [ ] server
+                [ ] database
+        [ ] progettazione di dettaglio
+            [ ] dominio
+                [ ] aggiunta di Action
+                [ ] aggiunta di TOTP
+            [ ] interfacce
+        [ ] viste applicazione
+        [ ] altri diagrammi di sequenza
+            [ ] salvataggio log
+            [ ] accesso con TOTP
+        [ ] progettazione persistenza
+        [ ] formato log
+        [ ] progettazione collaudo
+        [ ] deployment
+        [ ] hosting
             
-        
 db
     [x] users
         [x] username
@@ -82,7 +253,7 @@ db
             varchar(255)
         [x] email
             varchar(255)
-        [x] tipo
+        [x] type
             enum (codemonkey, company, admin)
 
     [x] codemonkeys extends user
@@ -102,8 +273,6 @@ db
     [x] companies extends user
         [x] name
             varchar(255)
-        [x] bio
-            varchar(4095)
         [x] propic
             blob
         [x] status
@@ -223,16 +392,6 @@ actions
         approve?tecnologia=<tecnologia>
         rifiuta?tecnologia=<tecnologia>
 
-model
-    user
-        codemonkey
-        company
-        admin
-    project
-    action 
-    technology
-    report
-
 endpoint
     /api
         endpoint di popolamento dell'interfaccia
@@ -249,6 +408,7 @@ endpoint
                     l'ordine è project.suggest_time.asc
                     vengono inviate 5 card alla volta
                     /user?page=<num>&technologies=<tecnologia1,tecnologia2,...>
+                [x] technologies
             /dashboard
                 [x] actions
                     lista di tutte le actions
@@ -257,13 +417,14 @@ endpoint
                     /dashboard?page=<num>
                     ovviamente si possono perdere di vista le actions per via della paginazione
                 [x] technologies
+                [x] download
         endpoint di controllo
             /project
-                [ ] /accept
-                [ ] /reject
-                [ ] /new
-                [ ] /terminate
-                [ ] /edit
+                [x] /accept
+                [x] /reject
+                [x] /new
+                [x] /terminate
+                [x] /edit
             /report
                 [x] /send
                 [x] /ban
@@ -277,10 +438,17 @@ endpoint
                 [x] /delete
                 [x] /logout
                 [x] /settings
+                [x] /rating_by_technologies
                     /propic
                     [x] /upload
                     [x] /delete
                     [x] /download
+
+frontend 
+    [x] top bar
+    [x] dark mode
+        [ ] window.matchMedia("(prefers-color-scheme: dark)");
+    [x] jwt authentication token
 
 components
     [ ] card
@@ -572,3 +740,52 @@ deploy
         [ ] azure
             [ ] acr
         [ ] vps
+
+debug
+    JWT
+        admin1
+            eyJhbGciOiJIUzI2NiJ9.eyJleHAiOjE2ODQ4NTcxNzEsInVzZXJfaWQiOiJhZG1pbjEifQ.OPttxCJHCuXykeSaCPQLMLYCtFC89LrczmjtfNiXHhY
+
+        google
+            eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODQ4ODc4NzgsInVzZXJfaWQiOiJnb29nbGUifQ.G6bI3AEuJa2j4fnINaxkdYUgX9jf85Oj9u4xI8ALh9M
+
+        mario
+            eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODQ4NTc2NDcsInVzZXJfaWQiOiJtYXJpbyJ9.mPayYPyy45Sz26vkvjus2gupb9ZrG0KdJrsSaYdctJk
+
+users
+    [ ] Charles Babbage
+    [ ] Geoge Boole
+    [ ] Alan Turing
+    [ ] Claude Shannon
+    [ ] Norbert Weiner
+    [ ] John Von Neumann
+    [ ] Marvin Minsky
+    [ ] Ray Solomonoff
+    [ ] John McCarthy
+    [ ] Dennis Ritchie
+    [ ] Edsger Dijkstra
+    [ ] Richard Hamming
+    [ ] Warren McCullock
+    [ ] Walter Pitts
+    [ ] Herbert Simon
+    [ ] Allen Newell
+    [ ] Joseph Weizenbaum
+    [ ] Seymour Papert
+    [ ] Vannevar Bush
+    [ ] Corrado Bohm
+    [ ] Valentino Braitenberg
+    [ ] Donald Knuth
+    [ ] Brian Kernighan
+    [ ] Dennis Ritchie
+    [ ] Richard Stallman
+    [ ] Bill Gates
+    [ ] Steve Jobs
+    [ ] Steve Wozniak
+    [ ] George Hotz
+    
+    [ ] Ada Lovelace
+    [ ] Rózsa Péter
+    [ ] Grace hopper
+    [ ] Barbara Liskov
+    [ ] Margaret Hamilton
+    [ ] Katherine Johnson

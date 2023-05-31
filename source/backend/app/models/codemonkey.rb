@@ -31,6 +31,16 @@ class Codemonkey < User
     self.rating = ratings.reduce(:+) / ratings.length
   end
 
+  def rating_by_technologies(technologies:)
+    projects_with_all_technologies = projects.select do |project|
+      project if !(project.technologies & technologies).empty? && project.rating != nil
+    end
+
+    total_rating = projects_with_all_technologies.sum(&:rating)
+    num_projects = projects_with_all_technologies.size
+    num_projects == 0 ? nil : (total_rating.to_f / num_projects)
+  end
+
   def change_bio(new_bio:)
     self.bio = new_bio
   end

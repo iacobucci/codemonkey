@@ -7,10 +7,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Project } from "../../interfaces/project.interface"
-import { User } from "../../interfaces/user.interface"
-import { Codemonkey } from 'src/app/interfaces/codemonkey.interface';
-import { Company } from 'src/app/interfaces/company.interface';
+import { Tagged } from "../../model/tagged.abstract";
+
+import { Project } from "src/app/model/interfaces/project.interface"
+import { User } from "src/app/model/interfaces/user.interface"
+import { Codemonkey } from 'src/app/model/interfaces/codemonkey.interface';
+import { Company } from 'src/app/model/interfaces/company.interface';
+import { Technology } from 'src/app/model/interfaces/technology.interface';
 
 @Component({
   selector: 'app-user',
@@ -18,7 +21,7 @@ import { Company } from 'src/app/interfaces/company.interface';
   styleUrls: ['./user.component.scss']
 })
 
-export class UserComponent implements OnInit {
+export class UserComponent extends Tagged implements OnInit {
 
   @ViewChild('profilePicLargeRef') profilePicLargeRef!: ElementRef;
 
@@ -34,7 +37,11 @@ export class UserComponent implements OnInit {
   seen: number[] = [];
   moreToLoad: boolean = true;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) { }
+  selectedTechnologies: Technology[] = [];
+
+  constructor(private route: ActivatedRoute, http: HttpClient) {
+    super(http);
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -43,13 +50,19 @@ export class UserComponent implements OnInit {
     });
     this.fetchPropic();
     this.feed();
+    this.feedTechnologies();
+  }
 
+  onTechnologyUpdate() {
+    this.cards = [];
+    this.seen = [];
+    this.feed();
   }
 
   feed(): void {
     const url = '/api/feed/user';
 
-    this.http.post<any>(url, { user: { username: this.username, technologies: [], seen: this.seen } }).pipe(
+    this.http.post<any>(url, { user: { username: this.username, technologies: this.selectedTechnologies, seen: this.seen } }).pipe(
       catchError(error => {
         console.error('Error:', error);
         return throwError(error);
@@ -77,7 +90,7 @@ export class UserComponent implements OnInit {
 
   fetchUser(): void {
     this.http.post("/api/user/index", { index: { username: this.username } }).subscribe((data: any) => {
-      
+
       console.log(data);
 
       if (data.type === "Codemonkey") {

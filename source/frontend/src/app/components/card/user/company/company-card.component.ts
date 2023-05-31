@@ -3,7 +3,7 @@ import { UserCardComponent } from "../user-card.component"
 
 import { HttpClient } from '@angular/common/http';
 
-import { Company } from 'src/app/interfaces/company.interface';
+import { Company } from 'src/app/model/interfaces/company.interface';
 
 @Component({
   selector: 'app-company-card',

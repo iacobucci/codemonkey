@@ -19,7 +19,7 @@ export class ImageUploaderComponent {
     if (file) {
       this.fileName = file.name;
       const formData = new FormData();
-      formData.append("thumbnail", file);
+      formData.append("propic", file);
       const upload$ = this.http.post(this.endpoint, formData);
       upload$.subscribe();
     }

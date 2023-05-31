@@ -37,6 +37,12 @@ function user/settings {
 	curl -X POST http://localhost:8080/api/user/settings -H "Authorization: Bearer $JWT" -H "Content-Type: application/json" -d "{\"settings\": {\"first_name\": \"$FIRSNAME\", \"last_name\": \"$LASTNAME\", \"email\": \"$EMAIL\", \"password\": \"$PASSWORD\", \"bio\": \"$BIO\", \"technologies\": $TECHNOLOGIES }}"
 }
 
+function user/rating_by_technologies {
+	NAME=$1
+	TECHNOLOGIES=$2
+	curl -X POST http://localhost:8080/api/user/rating_by_technologies -H "Content-Type: application/json" -d "{\"rating_by_technologies\": {\"username\": \"$NAME\", \"technologies\": $TECHNOLOGIES}}"
+}
+
 function user/index {
 	NAME=$1
 	curl -X POST http://localhost:8080/api/user/index -H "Content-Type: application/json" -d "{\"index\": {\"username\": \"$NAME\"}}"
@@ -136,17 +142,17 @@ function project/index {
 
 
 function feed/home { 
-	TYPE=$1
-	TECHNOLOGIES=$2
-	SEEN=$3
-	curl -X POST http://localhost:8080/api/feed/home -H "Content-Type: application/json" -d "{\"home\": {\"type\": \"$TYPE\", \"technologies\": $TECHNOLOGIES, \"seen\": $SEEN}}"
+	TECHNOLOGIES=$1
+	SEEN=$2
+	curl -X POST http://localhost:8080/api/feed/home -H "Content-Type: application/json" -d "{\"home\": {\"type\": \"Codemonkey\", \"technologies\": $TECHNOLOGIES, \"seen\": $SEEN}}"
 }
 
 function feed/user {
-	USER=$1
-	TECHNOLOGIES=$2
-	SEEN=$3
-	curl -X POST http://localhost:8080/api/feed/user -H "Content-Type: application/json" -d "{\"user\": {\"username\": \"$USER\", \"technologies\": $TECHNOLOGIES, \"seen\": $SEEN}}"
+	JWT=$1
+	USER=$2
+	TECHNOLOGIES=$3
+	SEEN=$4
+	curl -X POST http://localhost:8080/api/feed/user -H "Content-Type: application/json" -H "Authorization: Bearer $JWT" -d "{\"user\": {\"username\": \"$USER\", \"technologies\": $TECHNOLOGIES, \"seen\": $SEEN}}"
 }
 
 function feed/technologies {
@@ -182,6 +188,19 @@ function dashboard/technologies {
 	JWT=$1
 	curl -X POST http://localhost:8080/api/dashboard/technologies -H "Authorization: Bearer $JWT"
 }
+
+function dashboard/download {
+	JWT=$1
+	curl -X POST http://localhost:8080/api/dashboard/download -H "Authorization: Bearer $JWT"
+}
+
+
+
+function whoami {
+	JWT=$1
+	curl -X POST http://localhost:8080/api/whoami -H "Authorization: Bearer $JWT"
+}
+
 
 f="$1"
 shift

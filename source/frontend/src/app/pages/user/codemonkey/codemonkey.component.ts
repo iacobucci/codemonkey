@@ -10,9 +10,11 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./../user.component.scss']
 })
 export class CodemonkeyComponent extends UserComponent {
+
   constructor(route: ActivatedRoute, http: HttpClient) {
-    super(route,http);
+    super(route, http);
     this.type = "Codemonkey";
     this.hasRating = true;
   }
+
 }

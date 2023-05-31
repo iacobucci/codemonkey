@@ -1,25 +1,30 @@
-<div style="display: flex; justify-content: center;">
-    <div style="display: flex; flex-direction: column; align-items: center;">
+<div style="overflow-y: hidden;">
 
-        <!-- <app-image-uploader [endpoint]="'/api/uploads'"></app-image-uploader> -->
+  <mat-toolbar color="primary"
+    style="position: fixed; top: 64px; left: 0; right: 0; z-index:90; height: 64px; display: flex; justify-content: center; align-items: center;">
 
-        <div style="height: 48px"> </div>
+    <mat-form-field style="margin-bottom: -1.25em; display: flex; align-items: center ; width: 400px;">
+      <mat-label>Technologies</mat-label>
+      <mat-select [(value)]="selectedTechnologies" (closed)="onTechnologyUpdate()" multiple>
+        <mat-option *ngFor="let technology of technologies"
+          [value]="technology">{{technology.name.toUpperCase()}}</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-        <!-- <div *ngFor="let item of this.cards" class="scroll-item">
-          <ng-container *ngIf="item.type === 'Codemonkey'; else companyItem">
-            <app-codemonkey-card [codemonkey]="item"></app-codemonkey-card>
-          </ng-container>
+  </mat-toolbar>
 
-          <ng-template #companyItem>
-            <app-company-card [company]="item"></app-company-card>
-          </ng-template>
 
-          <div style="height: 48px"> </div>
-</div> -->
+  <div id="scroll-container" style="margin-top: 64px; max-height: calc(100vh - 64px - 64px); overflow-y: auto;">
+
+    <div style="display: flex; justify-content: center;">
+      <div style="display: flex; flex-direction: column; align-items: center;">
+
+        <div style="height: 24px"> </div>
 
         <div *ngFor="let item of this.cards" class="scroll-item">
           <ng-container *ngIf="isCodemonkey(item)">
-            <app-codemonkey-card [codemonkey]="item"></app-codemonkey-card>
+            <app-codemonkey-card [codemonkey]="item"
+              [selectedTechnologies]="selectedTechnologies"></app-codemonkey-card>
           </ng-container>
 
           <ng-container *ngIf="isCompany(item)">
@@ -28,15 +33,18 @@
 
           <div style="height: 48px"> </div>
         </div>
-        
+
 
         <div *ngIf="this.moreToLoad">
-            <button mat-raised-button color="primary" (click)="feed()">Carica ancora</button>
+          <button mat-raised-button color="primary" (click)="feed()">Carica ancora</button>
         </div>
 
         <div *ngIf="!this.moreToLoad">
-            <p>Hai visto tutto!</p>
+          <p>Hai visto tutto!</p>
         </div>
 
+      </div>
     </div>
+
+  </div>
 </div>

@@ -1,0 +1,299 @@
+\newcommand{\tableCyan}{%righe con colori misti inseriti dentro
+    \n
+    \rowcolor{tableCyan!10}
+    \cellcolor{tableCyan!22}
+}
+
+\newcommand{\ntableCyan}{%righe con colori misti inseriti dentro
+    \n
+    \rowcolor{tableCyan!5}
+    \cellcolor{tableCyan!12}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tabularx}{\textwidth}
+    {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
+
+    \hline  \rowcolor{tableCyan!37}
+    \large\centering\textbf{Titolo}     & \large\centering\textbf{Homepage}
+    \tableCyan      Descrizione         & Sezione principale nella quale si possono eseguire ricerche di Codemonkey
+    \ntableCyan     Attori              & Utente, Cliente
+    \tableCyan      Relazioni           &
+    \ntableCyan     Precondizioni       &
+    \tableCyan      Postcondizioni      &
+    \ntableCyan     Scenario Principale & Un Utente attraverso l'utilizzo di Tag puó trovare la Codemonkey ideale per sviluppare il suo progetto
+    \tableCyan      Scenari Alternativi &
+    \ntableCyan     Requisiti NF        & Interfaccia grafica intuitiva e dall'estetica pulita
+    \tableCyan      Punti Aperti        & Per efficienza non si potranno scaricare tutti i profili aderenti ai Tag, come si potrebbe implementare? Divisione della lista in sezioni da massimo n Codemonkey? Caricamento di nuovi profili un avolta raggiunte le ultime righe?
+    \n
+\end{tabularx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tabularx}{\textwidth}
+    {|m{3cm}|X|}
+    \hline \rowcolor{tableCyan!40}
+    \large\centering\textbf{Titolo}     & \large \centering\textbf{Registrazione}
+    \tableCyan      Descrizione         & Sezione che consente la Registrazione di un Utente
+    \ntableCyan     Attori              & Utente
+    \tableCyan      Relazioni           &
+    \ntableCyan     Precondizioni       &
+    \tableCyan      Postcondizioni      & L'Utente viene registrato nel sistema come Codemonkey o come Cliente
+    \ntableCyan     Scenario Principale &
+    \begin{enumerate}
+        \item L'Utente inserisce le credenziali (nomeUtente, e-mail, chiave di accesso) per la creazione di un account
+        \item L'Utente specifica se vuole essere registrato come Cliente o Codemonkey
+        \item L'Utente conferma di volersi registrare
+    \end{enumerate}
+    \tableCyan      Scenari Alternativi & Se il nome Utente é giá stato scelto da qualcun'altro o l'e-mail immessa é collegata a un account giá registrato non sará possibile procedere alla Registrazione dell'Utente
+    \ntableCyan     Requisiti NF        & Sia nel caso in cui venga inserito un nome Utente giá esistente, sia nel caso venga inserita una e-mail associata ad un account esistente, dovrá essere segnalato all'Utente che non é stato possibile effettuare la Registrazione spiegandone la motivazione
+    \tableCyan      Punti Aperti        & Verrá fornita la possibilitá di attivare l'autenticazione a 2 fattori giá in fase di Registrazione?\newline
+    Bisognerá assicurarsi che l'Utente non si sbagli a digitare la Password, il sistema migliore sará fargliela riscrivere per confermarla?
+    \n
+\end{tabularx}
+\begin{tabularx}{\textwidth}
+    {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
+
+    \hline \rowcolor{tableCyan!37}
+    \large\centering\textbf{Titolo}     & \large\centering\textbf{Autenticazione}
+    \tableCyan      Descrizione         & Sezione dedicata all'autenticazione di un Utente
+    \ntableCyan     Attori              & Utente, Admin
+    \tableCyan      Relazioni           & Gestione Profilo, Proponi Lavoro, Fornisci recensione, Area personale, Gestione Utenti                                                                                                                                                                                    %da cambiareeeeeeee
+    \ntableCyan     Precondizioni       & L'Utente o l'Amministratore deve essere giá stato registrato all'interno del sistema
+    \tableCyan      Postcondizioni      &
+    \ntableCyan     Scenario Principale &
+    \begin{enumerate}
+        \item L'Utente fornisce le credenziali di accesso al sistema
+        \item L'Utente conferma di voler entrare con le credenziali immesse
+        \item Nel caso in cui le credenziali siano corrette, Codemonkey o Cliente saranno reindirizzati alla Gestione del Profilo, invece l'Amministratore sará reindirizzato verso la Gestione del Sistema
+    \end{enumerate}
+    \tableCyan      Scenari Alternativi & Nel caso che i dati forniti per l'autenticazione siano incorretti verrá visualizzato un messaggio di errore\newline Nel caso l'utente sia stato bloccato da un Amministratore verrá fornito un messaggio di errore con la spiegazione del perché sia stato sospeso
+    \ntableCyan     Requisiti NF        & Sará sempre presente un bottone per inoltrare una richiesta di recupero Password all'Amministratore
+    \tableCyan      Punti Aperti        & 
+    \n
+\end{tabularx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tabularx}{\textwidth}
+    {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
+
+    \hline \rowcolor{tableCyan!37}
+    \large\centering\textbf{Titolo}     & \large\centering\textbf{Gestione Profilo}
+    \tableCyan      Descrizione         & Sezione dedicata alla gestione dei dati di un Account
+    \ntableCyan     Attori              & Cliente, Codemonkey
+    \tableCyan      Relazioni           & Autenticazione
+    \ntableCyan     Precondizioni       & La Codemonkey o il Cliente devono aver effettuato l'autenticazione
+    \tableCyan      Postcondizioni      &
+    \ntableCyan     Scenario Principale &
+    \begin{enumerate}
+        \item Un Utente Autenticato accede alla funzionalitá di Gestione Account
+        \item L'Utente Autenticato potrá quindi modificare nome utente, password, e-mail e descrizione personale legate all'Account
+        \item Le modifiche apportate quindi saranno salvate solo se confermate dall'utente
+    \end{enumerate}
+    \tableCyan      Scenari Alternativi &
+    \ntableCyan     Requisiti NF        &
+    \tableCyan      Punti Aperti        & Cosa succede ai lavori che si stanno svolgendo se il Cliente cambia l'e-mail collegata all'account o una Codemonkey i prorpi contatti?
+    \n
+\end{tabularx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tabularx}{\textwidth}
+    {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
+
+    \hline \rowcolor{tableCyan!37}
+    \large\centering\textbf{Titolo}     & \large\centering\textbf{Lista Collaborazioni}
+    \tableCyan      Descrizione         & Lista di tutte le collaborazioni
+    \ntableCyan     Attori              & Codemonkey, Cliente
+    \tableCyan      Relazioni           & Gestione Profilo
+    \ntableCyan     Precondizioni       & Codemonkey e Cliente devono essere autenticati
+    \tableCyan      Postcondizioni      &
+    \ntableCyan     Scenario Principale &
+    \begin{enumerate}
+        \item La Codemonkey o il Cliente dalla Gestione dell'Account potranno accedere alla Lista collaborazioni
+        \item Possono visualizzare le collaborazioni attive e passate
+    \end{enumerate}
+    \tableCyan      Scenari Alternativi &
+    \ntableCyan     Requisiti NF        & 
+    \tableCyan      Punti Aperti        & Nel caso si voglia rifiutare o accettare un Lavoro bisognerá fornire un periodo per far discutere l'azienda e la Codemonkey dove il Lavoro rimane in una sorta di limbo?\newline
+    Cosa succede se una Codemonkey Interrompe un Lavoro giá iniziato? Potrá essere valutata dal Cliente?
+    \n
+\end{tabularx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tabularx}{\textwidth}
+    {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
+
+    \hline \rowcolor{tableCyan!37}
+    \large\centering\textbf{Titolo}     & \large\centering\textbf{Segnala ad Amministratore}
+    \tableCyan      Descrizione         & Funzionalitá per effettuare una segnalazione ad un Amministratore
+    \ntableCyan     Attori              & Codemonkey, Cliente
+    \tableCyan      Relazioni           & Lista Collaborazioni
+    \ntableCyan     Precondizioni       & Codemonkey e Cliente devono essere autenticati
+    \tableCyan      Postcondizioni      & La richiesta sará inoltrata ad un Amministratore
+    \ntableCyan     Scenario Principale &
+    \begin{enumerate}
+        \item La Codemonkey o il Cliente potranno avviare una segnalazione su un qualsiasi Lavoro o Utente
+        \item La Codemonkey o il Cliente compilano un form per descrivere il problema
+        \item Viene confermata la volontá di voler inviare la segnalazione
+    \end{enumerate}
+    \tableCyan      Scenari Alternativi &
+    \ntableCyan     Requisiti NF        &
+    \tableCyan      Punti Aperti        &
+    \n
+\end{tabularx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tabularx}{\textwidth}
+    {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
+
+    \hline \rowcolor{tableCyan!37}
+    \large\centering\textbf{Titolo}     & \large\centering\textbf{Imposta Tag di Ricerca}
+    \tableCyan      Descrizione         & Gestione dei Tag della Codemonkey
+    \ntableCyan     Attori              & Codemonkey
+    \tableCyan      Relazioni           & Autenticazione
+    \ntableCyan     Precondizioni       &
+    \tableCyan      Postcondizioni      & I Tag vengono aggiornati
+    \ntableCyan     Scenario Principale &
+    \begin{enumerate}
+        \item La Codemonkey apre la pagina dedicata alla gestione dei Tag
+        \item La Codemonkey aggiunge o rimuove un Tag
+        \item La Codemonkey conferma i cambiamenti
+    \end{enumerate}
+    \tableCyan      Scenari Alternativi &
+    \ntableCyan     Requisiti NF        & I Tag vengono aggiunti digitando in una casella di testo e mano a mano che si digita il testo appaiono Tag utiizzati da altri Utenti messi in ordine dal piú al meno usato
+    \tableCyan      Punti Aperti        & Cosa succede se si tenta di aggiunere un nuovo Tag? Bisognerá che un Amministratore controlli che non ci sia nulla di strano?
+    \n
+\end{tabularx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tabularx}{\textwidth}
+    {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
+
+    \hline  \rowcolor{tableCyan!37}
+    \large\centering\textbf{Titolo}     & \large\centering\textbf{Accetta/Rifiuta proposta di Lavoro}
+    \tableCyan      Descrizione         & Sezione per la gestione delle collaborazioni della Codemonkey
+    \ntableCyan     Attori              & Codemonkey
+    \tableCyan      Relazioni           & Autenticazione
+    \ntableCyan     Precondizioni       & Il Lavoro é stato proposto alla Codemonkey
+    \tableCyan      Postcondizioni      & Il Lavoro diventa ``in Corso''
+    \ntableCyan     Scenario Principale &
+    \begin{enumerate}
+        \item Alla Codemonkey viene effettuata una proposta di Lavoro da parte di un clinete
+        \item La Codemonkey accetta la richiesta di Lavoro
+        \item La Codemonkey poi potrá interrompere la richiesta di Lavoro in qualsiasi momento fino a quando non viene terminata da un Cliente
+    \end{enumerate}
+    \tableCyan      Scenari Alternativi & 2. La Codemonkey Rifiuta la richiesta di Lavoro
+    \ntableCyan     Requisiti NF        &
+    \tableCyan      Punti Aperti        &
+    \n
+\end{tabularx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tabularx}{\textwidth}
+    {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
+
+    \hline  \rowcolor{tableCyan!37}
+    \large\centering\textbf{Titolo}     & \large\centering\textbf{Interrompi Lavoro}
+    \tableCyan      Descrizione         & Funzionalità per l'interruzione di una Collaborazione in corso da parte della Codemonkey
+    \ntableCyan     Attori              & Codemonkey
+    \tableCyan      Relazioni           & Autenticazione
+    \ntableCyan     Precondizioni       & Il Lavoro é stato già accetato dalla Codemonkey
+    \tableCyan      Postcondizioni      & Il Lavoro diventa ``Interrotto''
+    \ntableCyan     Scenario Principale &
+    \begin{enumerate}
+        \item La Codemonkey sceglie un Lavoro che ha in corso per interromperlo
+        \item La Codemonkey interrompe il Lavoro e aggiunge un commento sull'interruzione
+    \end{enumerate}
+    \tableCyan      Scenari Alternativi &
+    \ntableCyan     Requisiti NF        & 
+    \tableCyan      Punti Aperti        & 
+    \n
+\end{tabularx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tabularx}{\textwidth}
+    {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
+
+    \hline  \rowcolor{tableCyan!37}
+    \large\centering\textbf{Titolo}     & \large\centering\textbf{Termina Collaborazione e Valuta Codemonkey}
+    \tableCyan Descrizione              & Sezione per Terminare un Lavoro e fornire una Valutazione ad una Codemonkey
+    \ntableCyan     Attori              & Cliente
+    \tableCyan      Relazioni           & Autenticazione
+    \ntableCyan     Precondizioni       &
+    \tableCyan      Postcondizioni      & Viene terminato il Lavoro
+    \ntableCyan     Scenario Principale &
+    \begin{enumerate}
+        \item Un Cliente consulta le Collaborazioni attive
+        \item Il Cliente avvia la procedura per terminare la Collaborazione
+        \item Il Cliente Fornisce una valutazione da 1 a 5 alla Codemonkey
+        \item Il Cliente puó scrivere quindi una recensione alla Codemonkey (opzionale)
+        \item Il Cliente da conferma di voler terminare il Lavoro
+
+    \end{enumerate}
+    \tableCyan      Scenari Alternativi & Nel caso il Cliente sia stato Limitato o Sospeso non potrá fornire una valutazione scritta alla Codemonkey
+    \ntableCyan     Requisiti NF        &
+    \tableCyan      Punti Aperti        & 
+    \n
+\end{tabularx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tabularx}{\textwidth}
+    {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
+
+    \hline  \rowcolor{tableCyan!37}
+    \large\centering\textbf{Titolo}     & \large\centering\textbf{Proponi Lavoro}
+    \tableCyan      Descrizione         & Sezione dedicata a madare una richiesta di Lavoro ad una Codemonkey
+    \ntableCyan     Attori              & Cliente, Utente
+    \tableCyan      Relazioni           & Autenticazione
+    \ntableCyan     Precondizioni       &
+    \tableCyan      Postcondizioni      & La richiesta di Lavoro viene inoltrata alla Codemonkey
+    \ntableCyan     Scenario Principale &
+    \begin{enumerate}
+        \item Un Utente o un Cliente una volta che ha trovato la Codemonkey ideale per sviluppare il suo progetto puó proporle un Lavoro
+        \item Un Utente viene reindirizzato alla sezione di Autenticazione prima di poter iniziare l'innoltro della richiesta
+        \item Per mandare la richiesta di Lavoro il Cliente compila un modulo ne quale descrive brevemente ció che gli serve e i Tag che vuole associare al Lavoro
+        \item Il Cliente conferma di voler contattare la Codemonkey
+    \end{enumerate}
+    \tableCyan      Scenari Alternativi & Un Cliente sospeso non puó fare alcuna richiesta di Lavoro
+    \ntableCyan     Requisiti NF        & Se il Cliente è sospeso verrá visualizzata una pagina di errore che lo avvisa di non poter effettuare la richiesta di Lavoro e la ragione per la quale é stato sospeso
+    \tableCyan      Punti Aperti        & Per evitare che vengano inviate richieste di Lavoro non sufficentemente dettagliate ci sarà un numero minimo di caratteri da inserire nel campo di testo
+    \n
+\end{tabularx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tabularx}{\textwidth}
+    {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
+
+    \hline  \rowcolor{tableCyan!37}
+    \large\centering\textbf{Titolo}     & \large\centering\textbf{Gestione Sisema}
+    \tableCyan      Descrizione         & Sezione dedicata agli Amministratori per la gestione del sistema
+    \ntableCyan     Attori              & Amministratore
+    \tableCyan      Relazioni           & Autenticazione
+    \ntableCyan     Precondizioni       & L'Amministratore deve essere stato autenticato
+    \tableCyan      Postcondizioni      &
+    \ntableCyan     Scenario Principale &
+    \begin{enumerate}
+        \item L'Amministratore si autentica
+        \item L'Amministratore accede alla sezione dedicata alla gestione degli Utenti
+        \item L'Amministratore quindi potrá Limitare, Sospendere e Bloccare o Eliminare un Utente Registrato e visualizzare tutti i file di report generati da Codemonkey e Amministratori
+        \item L'Amministratore accede alla sezione dedicata alla gestione dei Tag
+        \item L'Amministratore quindi puó aggiungere un Tag proposto o eliminare un Tag esistente
+        \item L'Amministratore accede alla sezione dedicata alla gestione delle segnalazioni dove potrá vedere tutte le segnalazioni generate dagli Utenti Autenticati
+    \end{enumerate}
+    \tableCyan      Scenari Alternativi &
+    \ntableCyan     Requisiti NF        &
+    \tableCyan      Punti Aperti        &
+    \n
+\end{tabularx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
