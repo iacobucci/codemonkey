@@ -16,40 +16,6 @@
 
         %%%%%%%%%% 
 
-        \begin{class}[text width=5cm, fill=green!20, draw=black, left=12cm of RegistredUser]{Registrazione}{0,0}
-            \operation{createRegistredUser(Username, Password, Email) : RegistredUser}
-        \end{class}
-
-        \draw [-] (Registrazione.west) -- ([xshift=-1cm]Registrazione.west);
-        
-        %%%%%%%%%%
-        
-        \begin{class}[text width=5cm, fill=green!20, draw=black, left=12cm of RegistredUser, yshift=2cm]{Login}{0,0}
-            \operation{login(Username, Password) : RegistredUser}
-        \end{class}
-
-        \draw [-] (Login.west) -- ([xshift=-1cm]Login.west);
-        
-        
-        %%%%%%%%%%
-
-        \draw [-]([xshift=-1cm]Login.west) -- ([xshift=-1cm,yshift=-10cm]Login.west);
-        \draw [-]([xshift=-1cm,yshift=-10cm]Login.west) -- ([yshift=-3cm]RegistredUser.south);
-        \draw [-{Latex}]([yshift=-3cm]RegistredUser.south) -- (RegistredUser.south);
-
-        
-        %%%%%%%%%%
-        
-        \begin{class} [text width=5cm, fill=green!20, draw=black, above=4cm of Login, xshift=-18cm]{User}{0,0}
-        \end{class}
-        
-        \draw [-{Latex}] (User) -- (Login);
-        \draw [-{Latex}] (User) -- (Registrazione);
-
-        
-
-        %%%%%%%%%%
-
         \begin{class}[text width=5cm, fill=green!20, draw=black, left=4cm of RegistredUser, yshift=0cm]{Username}{0,0}
             \attribute{username : String}
             \operation{getUsername() : String}
@@ -57,25 +23,15 @@
 
         \draw [{Diamond}-] (RegistredUser) -- (Username) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
         
-        \draw [{Diamond}-] (Login) -- (Username) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
-        
-        \draw [{Diamond}-] (Registrazione) -- (Username) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
-
-
         %%%%%%%%%%
 
         \begin{class}[text width=5cm, fill=green!20, draw=black, left=4cm of RegistredUser, yshift=2cm]{Password}{0,0}
             \attribute{password : String}
             \operation{setPassword(String) : void}
-            \operation{getPassword() : String}
         \end{class}
 
         \draw [{Diamond}-] (RegistredUser) -- (Password) node[pos=0.25, above] {1} node[pos=0.5, above] {1};
         
-        \draw [{Diamond}-] (Login) -- (Password) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
-
-        \draw [{Diamond}-] (Registrazione) -- (Password) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
-
         %%%%%%%%%%
 
         \begin{class}[text width=5cm, fill=green!20, draw=black, left=4cm of RegistredUser, yshift=-2cm]{Email}{0,0}
@@ -86,8 +42,6 @@
 
         \draw [{Diamond}-] (RegistredUser) -- (Email) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
         
-        \draw [{Diamond}-] (Registrazione) -- (Email) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
-
 
         %%%%%%%%%%
 
@@ -119,7 +73,7 @@
         %%%%%%%%%%
 
         \begin{class}[text width=5cm, fill=green!20, draw=black, below=8cm of RegistredUser, xshift=1cm]{Codemonkey}{0,0}
-            \operation{setTag(String) : void}
+            \operation{setTag(Tag) : void}
             \operation{getTag() : String}
         \end{class}
 

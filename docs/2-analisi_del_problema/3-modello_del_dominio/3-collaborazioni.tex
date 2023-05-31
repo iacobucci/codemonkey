@@ -100,18 +100,18 @@
 
         \draw [-{Stealth[]}, dashed] (Collaborazione) -- (Codemonkey) node[pos=0.25, above] {1} node[pos=0.75, above] {n};
         
-        %%%%%%%%%%
+        % %%%%%%%%%%
 
-        \begin{class}[text width=8cm, fill=green!20, draw=black, below=11cm of Collaborazione, xshift=0cm]{ActionCollaborazione}{0,0}
-            \operation{proponiCollaborazione(Collaborazione) : Action}
-            \operation{accettaCollaborazione(Collaborazione) : Action}
-            \operation{rifiutaCollaborazione(Collaborazione) : Action}
-            \operation{interrompiCollaborazione(Collaborazione) : void}
-            \operation{terminaCollaborazione(Collaborazione) : Action}
-        \end{class}
+        % \begin{class}[text width=8cm, fill=green!20, draw=black, below=11cm of Collaborazione, xshift=0cm]{ActionCollaborazione}{0,0}
+        %     \operation{proponiCollaborazione(Collaborazione) : Action}
+        %     \operation{accettaCollaborazione(Collaborazione) : Action}
+        %     \operation{rifiutaCollaborazione(Collaborazione) : Action}
+        %     \operation{interrompiCollaborazione(Collaborazione) : void}
+        %     \operation{terminaCollaborazione(Collaborazione) : Action}
+        % \end{class}
         
-        \draw [-{Latex[]}] (Client) -- (ActionCollaborazione);
-        \draw [-{Latex[]}] (Codemonkey) -- (ActionCollaborazione);
+        % \draw [-{Latex[]}] (Client) -- (ActionCollaborazione);
+        % \draw [-{Latex[]}] (Codemonkey) -- (ActionCollaborazione);
 
 
 

@@ -29,21 +29,23 @@ docs
             [ ] analisi ruoli e responsabilità
             [ ] tabelle ruolo e informazioni
         [ ] analisi del dominio
-            [ ] Accesso
+            [x] Accesso
                 User
-                Registrazione
-                    createRegistredUser(Username, Email, Password)
-                Login
+                Username
+                    username
+                Email
+                    email
+                Password
+                    passwordDigest
                 RegistredUser
                     username
                     email
                     password
-                Action
-                    user
-                    time
-                    name
-                    description
-            [ ] Account
+                progettazione
+                    ActionAccesso
+                        registrazione 
+                        login
+            [x] Account
                 RegistredUser
                     username
                     email
@@ -53,24 +55,19 @@ docs
                 Codemonkey
                     setTags(Tag[])
                 Cliente
+                Biografia
+                    biografia
                 Tag
                     nome
                 ImmagineDiProfilo
                     immagine
-                Email
-                    email
-                Password
-                    passwordDigest
-                Biografia
-                    biografia
-                Username
-                    username
-                    getUsername()
-                Action
-                    user
-                    time
-                    name
-                    description
+                progettazione
+                    ActionAccount
+                        setPassword
+                        setBiografia
+                        setImmagineProfilo
+                        setTags
+                        setEmail
             [x] Collaborazione
                 Collaborazione
                     id
@@ -107,11 +104,14 @@ docs
                     accettaCollaborazione(Collaborazione)
                     rifiutaCollaborazione(Collaborazione)
                     interrompiCollaborazione(Collaborazione)
-                Action
-                    user
-                    time
-                    name
-                    description
+                progettazione
+                    ActionCollaborazione
+                        proponiCollaborazione
+                        modificaCollaborazione
+                        accettaCollaborazione
+                        rifiutaCollaborazione
+                        interrompiCollaborazione
+                        terminaCollaborazione
             [x] Tag
                 Tag
                     nome
@@ -126,18 +126,100 @@ docs
                     rifiutaTag(Tag)
                 Codemonkey
                     proponiTag(String)
+                progettazione
+                    ActionTag
+                        proponiTag
+                        approvaTag
+                        rifiutaTag
+            [x] Segnalazioni
+                Admin
+                    setStatoUser(User, StatoUser)
+                StatoUser
+                    IN_ATTESA
+                    ATTIVO
+                    LIMITATO
+                    BLOCCATO
+                RegistredUser
+                    stato
+                    reportUser(User, Motivazione)
+                Report
+                    mittente
+                    destinatario
+                    motivazione
+                    data
+                Motivazione
+                    motivazione
+                progettazione
+                    ActionReport
+                        setUserStatus
+                        reportUser
+            [ ] Log
                 Action
                     user
                     time
-                    name
+                    tipo
                     description
-            [ ] Report
-            [ ] Log
+                TipoAction
+                    REGISTRAZIONE
+                    LOGIN
+                    CANCELLA
+                    SETPASSWORD
+                    SETBIOGRAFIA
+                    SETIMMAGINEPROFILO
+                    SETTAGS
+                    SETEMAIL
+                    PROPONICOLLABORAZIONE
+                    MODIFICACOLLABORAZIONE
+                    ACCETTACOLLABORAZIONE
+                    RIFIUTACOLLABORAZIONE
+                    INTERROMPICOLLABORAZIONE
+                    TERMINACOLLABORAZIONE
+                    PROPONITAG
+                    APPROVATAG
+                    RIFIUTATAG
+                    SETUSERSTATUS
+                    REPORTUSER
+                ActionDescription
+                    description
+                RegistredUser
+                Admin
+                    downloadLog()
+                    visualizzaLog()
+                progettazione
+                    ActionAccesso extends Action
+                        registrazione
+                        login
+                        cancella
+                    ActionAccount extends Action
+                        setPassword
+                        setBiografia
+                        setImmagineProfilo
+                        setTags
+                        setEmail
+                    ActionCollaborazione extends Action
+                        proponiCollaborazione
+                        modificaCollaborazione
+                        accettaCollaborazione
+                        rifiutaCollaborazione
+                        interrompiCollaborazione
+                        terminaCollaborazione
+                    ActionTag extends Action
+                        proponiTag
+                        approvaTag
+                        rifiutaTag
+                    ActionReport extends Action
+                        setUserStatus
+                        reportUser
         [ ] architettura logica
             [ ] diagramma delle classi
+                FeedHome
+                FeedCollaborazioni
         [ ] interazione
             [ ] diagramma di sequenza
+                [ ] accesso senza TOTP
         [ ] piano di lavoro
+            [ ] divisione dei lavori
+            [ ] sviluppi fururi
     [ ] progettazione
         [ ] progettazione architetturale
             [ ] requisiti non funzionali
@@ -148,9 +230,13 @@ docs
                 [ ] database
         [ ] progettazione di dettaglio
             [ ] dominio
+                [ ] aggiunta di Action
+                [ ] aggiunta di TOTP
             [ ] interfacce
         [ ] viste applicazione
-        [ ] altri diagrammi di sequenza?
+        [ ] altri diagrammi di sequenza
+            [ ] salvataggio log
+            [ ] accesso con TOTP
         [ ] progettazione persistenza
         [ ] formato log
         [ ] progettazione collaudo
@@ -167,7 +253,7 @@ db
             varchar(255)
         [x] email
             varchar(255)
-        [x] tipo
+        [x] type
             enum (codemonkey, company, admin)
 
     [x] codemonkeys extends user
