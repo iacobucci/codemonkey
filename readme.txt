@@ -1,10 +1,3 @@
-model
-    Accesso
-    Account
-    Progetto
-    Tecnologie
-    Report
-    Log
 
 
 docs
@@ -36,7 +29,110 @@ docs
             [ ] analisi ruoli e responsabilità
             [ ] tabelle ruolo e informazioni
         [ ] analisi del dominio
-            [ ] modello del dominio
+            [ ] Accesso
+                User
+                Registrazione
+                    createRegistredUser(Username, Email, Password)
+                Login
+                RegistredUser
+                    username
+                    email
+                    password
+                Action
+                    user
+                    time
+                    name
+                    description
+            [ ] Account
+                RegistredUser
+                    username
+                    email
+                    password
+                    biografia
+                    immagineProfilo
+                Codemonkey
+                    setTags(Tag[])
+                Cliente
+                Tag
+                    nome
+                ImmagineDiProfilo
+                    immagine
+                Email
+                    email
+                Password
+                    passwordDigest
+                Biografia
+                    biografia
+                Username
+                    username
+                    getUsername()
+                Action
+                    user
+                    time
+                    name
+                    description
+            [x] Collaborazione
+                Collaborazione
+                    id
+                    titolo
+                    stato
+                    descrizione
+                    tags
+                    valutazione
+                    codemonkey
+                    client
+                    dataProposta
+                    dataAccettazione
+                    dataTerminazione
+                Titolo
+                    titolo
+                Descrizione
+                    descrizione
+                Tag
+                    nome
+                Valutazione
+                    rating
+                    commento
+                StatoProgetto
+                    PROPOSTA
+                    ACCETTATA
+                    RIFIUTATA
+                    INTERROTTA
+                    TERMINATA
+                Client
+                    proponiCollaborazione(Codemonkey, Titolo, Descrizione, Tags)
+                    modificaCollaborazione(Collaborazione, Titolo, Descrizione, Tags)
+                    accettaCollaborazione(Collaborazione)
+                Codemonkey
+                    accettaCollaborazione(Collaborazione)
+                    rifiutaCollaborazione(Collaborazione)
+                    interrompiCollaborazione(Collaborazione)
+                Action
+                    user
+                    time
+                    name
+                    description
+            [x] Tag
+                Tag
+                    nome
+                    stato
+                    dataProposta
+                StatoTag
+                    APPROVATO
+                    RIFIUTATO
+                    IN_ATTESA
+                Admin
+                    approvaTag(Tag)
+                    rifiutaTag(Tag)
+                Codemonkey
+                    proponiTag(String)
+                Action
+                    user
+                    time
+                    name
+                    description
+            [ ] Report
+            [ ] Log
         [ ] architettura logica
             [ ] diagramma delle classi
         [ ] interazione
@@ -209,18 +305,6 @@ actions
         add?tecnologia=<tecnologia>
         approve?tecnologia=<tecnologia>
         rifiuta?tecnologia=<tecnologia>
-
-model
-    [x] user
-        [x] codemonkey
-        [x] company
-        [x] admin
-    [x] project
-    [x] action 
-    [x] technology
-    [x] report
-    
-
 
 endpoint
     /api
