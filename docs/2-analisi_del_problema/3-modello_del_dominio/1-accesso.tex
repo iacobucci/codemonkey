@@ -23,7 +23,7 @@
 
         \begin{class}[text width=5cm, fill=green!20, draw=black, rectangle split parts=2, left=12cm of RegistredUser, yshift=-2cm]{Tipo}{0,0}
             \attribute{CODEMONKEY}
-            \attribute{CLIENT}
+            \attribute{CLIENTE}
         \end{class}
 
         \node [above of=Tipo, node distance=0.8cm] (enumeration) {$<<$enumeration$>>$};
@@ -35,7 +35,7 @@
         %%%%%%%%%%
 
         \begin{class}[text width=5cm, fill=green!20, draw=black, left=12cm of RegistredUser, yshift=2cm]{Login}{0,0}
-            \operation{login(Username, Password) : RegistredUser}
+            \operation{login(Username, Password) : User}
         \end{class}
 
         \draw [-] (Login.west) -- ([xshift=-1cm]Login.west);
@@ -51,11 +51,15 @@
         %%%%%%%%%%
 
         \begin{class} [text width=5cm, fill=green!20, draw=black, above=4cm of Login, xshift=-10cm]{User}{0,0}
+            \attribute{username : Username}
+            \attribute{password : Password}
+            \attribute{email: Email}
         \end{class}
 
         \draw [-{Latex}] (User) -- (Login);
         \draw [-{Latex}] (User) -- (Registrazione);
 
+        \draw [{Latex[open]}-] (User) -- (RegistredUser);
 
 
         %%%%%%%%%%
@@ -101,20 +105,44 @@
 
         %%%%%%%%%%
 
-        \begin{class}[text width=5cm, fill=green!20, draw=black, below=8cm of RegistredUser, xshift=-6cm]{Client}{0,0}
+        \begin{class}[text width=5cm, fill=green!20, draw=black, below=8cm of RegistredUser, xshift=-6cm]{Cliente}{0,0}
         \end{class}
 
-        \draw [{Latex[open]}-, dashed] (RegistredUser) -- (Client) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
+        \draw [{Latex[open]}-] (RegistredUser) -- (Cliente);
 
         %%%%%%%%%%
 
         \begin{class}[text width=5cm, fill=green!20, draw=black, below=8cm of RegistredUser, xshift=1cm]{Codemonkey}{0,0}
         \end{class}
 
-        \draw [{Latex[open]}-, dashed] (RegistredUser) -- (Codemonkey) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
+        \draw [{Latex[open]}-] (RegistredUser) -- (Codemonkey);
+        
 
         %%%%%%%%%%
 
+        \begin{class}[text width=5cm, fill=green!20, draw=black]{Action}{-18,4}
+        \end{class}
+        \draw [-{Latex[]}] (Login) -- (Action);
+        \draw [-{Latex[]}] (Registrazione) -- (Action);
+
+        %%%%%%%%%%
+        \begin{class}[text width=5cm, fill=green!20, draw=black, below=8cm of RegistredUser, xshift=-14cm]{Admin}{0,0}
+        \end{class}
+        
+        \draw[-{Latex[open]}] (Admin) -- (User);
+
+        \draw [-] (Login.west) -- ([xshift=-1cm]Login.west);
+        \draw [-] ([xshift=-1cm]Login.west) -- ([xshift=-3cm,yshift=-2cm]Login.west);
+        \draw [-{Latex[]}] ([xshift=-3cm,yshift=-2cm]Login.west) -- (Admin.west);
+
+
+        %%%%%%%%%%
+
+        \node [below of=RegistredUser, node distance=1.8cm] (completedisjointregistredusers) {complete, disjoint};
+        \node [below of=User, node distance=1.2cm] (completedisjointusers) {complete, disjoint};
+        
+        
+        \node[draw, black, fill=white, rotate=45, minimum size=1cm, anchor=center] (my_square) at ([xshift=-1cm]Registrazione.west) {};
 
 
     \end{tikzpicture}

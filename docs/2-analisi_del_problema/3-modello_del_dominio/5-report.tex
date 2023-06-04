@@ -53,6 +53,14 @@
         \draw [-{Latex[open]}] (Admin) -- (RegistredUser);
 
         \draw [-{Latex[open]}] (Admin) -- (StatoUser);
+        
+        %%%%%%%%%%
+
+        
+        \begin{class}[text width=5cm, fill=green!20, draw=black, below=9cm of Report]{Action}{0,0}
+        \end{class}
+        \draw [-{Latex[]}] (RegistredUser) -- (Action);
+        \draw [-{Latex[]}] (Admin) -- (Action);
 
        
        

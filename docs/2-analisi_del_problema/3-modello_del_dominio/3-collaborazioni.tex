@@ -10,7 +10,7 @@
             \attribute{tags: Tag[]}
             \attribute{valutazione: Valutazione}
             \attribute{codemonkey: Codemonkey}
-            \attribute{client: Client}
+            \attribute{client: Cliente}
             \attribute{dataProposta: DateTime}
             \attribute{dataAccettazione: DateTime}
             \attribute{dataTerminazione: DateTime}
@@ -77,17 +77,17 @@
         %%%%%%%%%% 
 
 
-        \begin{class}[text width=8cm, fill=green!20, draw=black, below=7cm of Collaborazione, xshift=-5cm]{Client}{0,0}
+        \begin{class}[text width=8cm, fill=green!20, draw=black, below=7cm of Collaborazione, xshift=-5cm]{Cliente}{0,0}
             \operation{proponiCollaborazione(Codemonkey, Titolo, DescrizioneCollaborazione, Tag[]) : void}
             \operation{modificaCollaborazione(Collaborazione,Codemonkey, Titolo, DescrizioneCollaborazione, Tag[]) : void}
             \operation{terminaCollaborazione(Collaborazione, Valutazione) : void}
         \end{class}
 
-        \draw [-{Stealth[]}, dashed] (Collaborazione) -- (Client) node[pos=0.25, right] {1} node[pos=0.75, left] {n};
+        \draw [-{Stealth[]}, dashed] (Collaborazione) -- (Cliente) node[pos=0.25, right] {1} node[pos=0.75, left] {n};
 
 
-        \draw [{Diamond}-] (Client.west) -- ++(-1,0cm) node[midway, above] {1};
-        \draw [-] ([xshift=-1cm]Client.west) -- ([xshift=-1cm]Valutazione.west);
+        \draw [{Diamond}-] (Cliente.west) -- ++(-1,0cm) node[midway, above] {1};
+        \draw [-] ([xshift=-1cm]Cliente.west) -- ([xshift=-1cm]Valutazione.west);
         \draw [-] ([xshift=-1cm]Valutazione.west) -- (Valutazione.west) node[midway, above] {n};
         
         %%%%%%%%%% 
@@ -100,7 +100,7 @@
 
         \draw [-{Stealth[]}, dashed] (Collaborazione) -- (Codemonkey) node[pos=0.25, above] {1} node[pos=0.75, above] {n};
         
-        % %%%%%%%%%%
+        %%%%%%%%%%%
 
         % \begin{class}[text width=8cm, fill=green!20, draw=black, below=11cm of Collaborazione, xshift=0cm]{ActionCollaborazione}{0,0}
         %     \operation{proponiCollaborazione(Collaborazione) : Action}
@@ -110,9 +110,13 @@
         %     \operation{terminaCollaborazione(Collaborazione) : Action}
         % \end{class}
         
-        % \draw [-{Latex[]}] (Client) -- (ActionCollaborazione);
+        % \draw [-{Latex[]}] (Cliente) -- (ActionCollaborazione);
         % \draw [-{Latex[]}] (Codemonkey) -- (ActionCollaborazione);
-
+        
+        \begin{class}[text width=5cm, fill=green!20, draw=black, below=11cm of Collaborazione]{Action}{0,0}
+        \end{class}
+        \draw [-{Latex[]}] (Cliente) -- (Action);
+        \draw [-{Latex[]}] (Codemonkey) -- (Action);
 
 
 

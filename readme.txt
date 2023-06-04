@@ -1,13 +1,15 @@
-
+TODO
+    aggiungere actions negli uml
+    diagramma dei package
 
 docs
     [x] abstract
-    [ ] analisi dei requisiti   
+    [x] analisi dei requisiti   
         [x] vocabolario
-        [ ] requisiti
-            [ ] funzionali
-            [ ] non funzionali
-            [ ] dominio
+        [x] requisiti
+            [x] funzionali
+            [x] non funzionali
+            [x] dominio
         [ ] scenari
         [ ] analisi del rischio
             [ ] valutazione dei beni
@@ -153,7 +155,7 @@ docs
                     ActionReport
                         setUserStatus
                         reportUser
-            [ ] Log
+            [x] Log
                 Action
                     user
                     time
@@ -211,6 +213,22 @@ docs
                         setUserStatus
                         reportUser
         [ ] architettura logica
+            [ ] diagramma dei package
+                interfacce
+                    InterfacciaTag
+                    InterfacciaAction
+                    InterfacciaReport
+                    InterfacciaLogin
+                    InterfacciaRegistrazione
+                    InterfacciaRegistredUser
+                        InterfacciaCodemonkey
+                        InterfacciaClient
+                    Interfaccia
+                
+                controller
+
+                view
+                
             [ ] diagramma delle classi
                 FeedHome
                 FeedCollaborazioni

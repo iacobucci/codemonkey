@@ -12,6 +12,7 @@
             \operation{setEmail(Email) : void}
             \operation{setBiografia(Biografia) : void}
             \operation{setImmagineProfilo(ImmagineProfilo) : void}
+            \operation{eliminaAccount() : void}
         \end{class}
 
         %%%%%%%%%% 
@@ -65,10 +66,10 @@
         
         %%%%%%%%%%
 
-        \begin{class}[text width=5cm, fill=green!20, draw=black, below=8cm of RegistredUser, xshift=-6cm]{Client}{0,0}
+        \begin{class}[text width=5cm, fill=green!20, draw=black, below=8cm of RegistredUser, xshift=-6cm]{Cliente}{0,0}
         \end{class}
         
-        \draw [{Latex[open]}-, dashed] (RegistredUser) -- (Client) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
+        \draw [{Latex[open]}-, dashed] (RegistredUser) -- (Cliente) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
         
         %%%%%%%%%%
 
@@ -77,7 +78,7 @@
             \operation{getTag() : String}
         \end{class}
 
-        \draw [{Latex[open]}-, dashed] (RegistredUser) -- (Codemonkey) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
+        \draw [{Latex[open]}-] (RegistredUser) -- (Codemonkey);
 
         %%%%%%%%%%
         
@@ -85,10 +86,13 @@
             \attribute{name: String}
         \end{class}
         
-        \draw [{Diamond}-] (Codemonkey) -- (Tag) node[pos=0.25, left] {n} node[pos=0.75, left] {n};
+        \draw [{Diamond}-] (Codemonkey) -- (Tag);
         
         %%%%%%%%%%
         
+        \begin{class}[text width=5cm, fill=green!20, draw=black, right=3cm of RegistredUser]{Action}{0,0}
+        \end{class}
+        \draw [-{Latex[]}] (RegistredUser) -- (Action);
 
 
 
