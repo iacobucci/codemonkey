@@ -742,13 +742,12 @@ deploy
         [x] postgres
             [x] docker image
 
-    [ ] release environment
-        [ ] rails
-            [ ] build
-            [ ] run
-        [ ] angular
+    [x] release environment
+        [x] rails
             [x] build
-                [ ] ssr
+            [x] run
+        [x] angular
+            [x] build
             [x] run
         [x] postgres
             [x] build
