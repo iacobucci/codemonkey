@@ -26,6 +26,9 @@ gem "rotp"
 gem "two_factor_authentication"
 gem "jwt"
 
+# er diagram generation
+gem "railroady"
+
 # Image processing
 gem "image_processing"
 gem "mini_magick"

@@ -1,6 +1,25 @@
-version: '3.8'
+version: '3'
 
 services:
+  codemonkey-nginx:
+    image: codemonkey-nginx
+    container_name: codemonkey-nginx-compose
+    ports:
+      - '8080:80'
+    networks:
+      - codemonkey-network
+
+  codemonkey-database:
+    image: codemonkey-database
+    # image: codemonkey.azurecr.io/codemonkey-database:latest
+    container_name: codemonkey-database-compose
+    depends_on:
+      - codemonkey-nginx
+    ports:
+      - '5432:5432'
+    networks:
+      - codemonkey-network
+
   codemonkey-backend:
     image: codemonkey-backend
     # image: codemonkey.azurecr.io/codemonkey-backend:latest
@@ -21,31 +40,6 @@ services:
     container_name: codemonkey-frontend-compose
     depends_on:
       - codemonkey-backend
-    networks:
-      - codemonkey-network
-
-  codemonkey-database:
-    image: codemonkey-database
-    # image: codemonkey.azurecr.io/codemonkey-database:latest
-    container_name: codemonkey-database-compose
-    ports:
-      - '5432:5432'
-    networks:
-      - codemonkey-network
-
-  nginx:
-    image: nginx:latest
-    container_name: codemonkey-nginx-compose
-    ports:
-      # release
-      # - '80:80'
-      # development
-      - '8080:80'
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-    depends_on:
-      - codemonkey-backend
-      - codemonkey-frontend
     networks:
       - codemonkey-network
 

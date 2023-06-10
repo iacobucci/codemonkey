@@ -13,7 +13,8 @@ class Api::Project::EditController < AuthenticationController
 
         project = current_user.edit_project(project: @project, new_title: new_title, new_codemonkey: new_codemonkey, new_description: new_description, new_technologies: new_technologies)
 
-        Action.new(user: @current_user, action_type: "/project/edit", description: "id=#{project.id}&new_title=#{new_title}&new_codemonkey=#{new_codemonkey.username}&new_description=#{new_description}&new_technologies=#{new_technologies.map(&:name)}", time=Time.now).save
+        # Action.new(user: @current_user, action_type: "/project/edit", description: "id=#{project.id}&new_title=#{new_title}&new_codemonkey=#{new_codemonkey.username}&new_description=#{new_description}&new_technologies=#{new_technologies.map(&:name)}", time=Time.now).save
+        # Action.new(user: @current_user, action_type: "/project/edit", description: "id=#{project.id}&new_title=#{new_title}&new_codemonkey=#{new_codemonkey.username}&new_description=#{new_description}&new_technologies=TODO", time=Time.now).save
 
         project.save
       else

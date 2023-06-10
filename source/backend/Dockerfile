@@ -26,5 +26,7 @@ ENV BACKEND_DATABASE_USER=admin \
     RAILS_MASTER_KEY=4c61fe7c0395dc5e96de25ed0f093a4f \
 	RAILS_ENV=production
 
+CMD ["sh", "-c", "bundle exec rails db:migrate && rails server -b 0.0.0.0"]
+
 # Esegui il comando "rails server" quando si avvia il container
-CMD ["rails", "server", "-b", "0.0.0.0"]
+# CMD ["rails", "server", "-b", "0.0.0.0"]
