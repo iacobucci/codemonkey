@@ -5,24 +5,20 @@ services:
     image: codemonkey-nginx
     container_name: codemonkey-nginx-compose
     ports:
-      - '8080:80'
+      - '8081:80'
     networks:
       - codemonkey-network
 
   codemonkey-database:
     image: codemonkey-database
-    # image: codemonkey.azurecr.io/codemonkey-database:latest
     container_name: codemonkey-database-compose
     depends_on:
       - codemonkey-nginx
-    ports:
-      - '5432:5432'
     networks:
       - codemonkey-network
 
   codemonkey-backend:
     image: codemonkey-backend
-    # image: codemonkey.azurecr.io/codemonkey-backend:latest
     environment:
       - BACKEND_DATABASE_USER=admin
       - BACKEND_DATABASE_PASSWORD=password
@@ -36,7 +32,6 @@ services:
 
   codemonkey-frontend:
     image: codemonkey-frontend
-    # image: codemonkey.azurecr.io/codemonkey-frontend:latest
     container_name: codemonkey-frontend-compose
     depends_on:
       - codemonkey-backend

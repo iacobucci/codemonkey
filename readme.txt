@@ -2,6 +2,8 @@ TODO
     aggiungere actions negli uml
     diagramma dei package
     mock.rb
+    diagrammi di dettaglio
+    collaudo
 
 docs
     [x] abstract
