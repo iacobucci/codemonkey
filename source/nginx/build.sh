@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t codemonkey-nginx .
+docker build -t iacobucci/codemonkey-nginx .

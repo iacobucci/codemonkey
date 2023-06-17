@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t codemonkey-backend .
+docker build -t iacobucci/codemonkey-backend .

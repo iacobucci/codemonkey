@@ -13,7 +13,7 @@ docs
             [x] funzionali
             [x] non funzionali
             [x] dominio
-        [ ] scenari
+        [x] scenari
         [ ] analisi del rischio
             [ ] valutazione dei beni
             [ ] minacce e controlli
