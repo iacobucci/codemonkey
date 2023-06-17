@@ -102,21 +102,21 @@
         
         %%%%%%%%%%%
 
-        % \begin{class}[text width=8cm, fill=green!20, draw=black, below=11cm of Collaborazione, xshift=0cm]{ActionCollaborazione}{0,0}
-        %     \operation{proponiCollaborazione(Collaborazione) : Action}
-        %     \operation{accettaCollaborazione(Collaborazione) : Action}
-        %     \operation{rifiutaCollaborazione(Collaborazione) : Action}
+        % \begin{class}[text width=8cm, fill=green!20, draw=black, below=11cm of Collaborazione, xshift=0cm]{LogCollaborazione}{0,0}
+        %     \operation{proponiCollaborazione(Collaborazione) : Log}
+        %     \operation{accettaCollaborazione(Collaborazione) : Log}
+        %     \operation{rifiutaCollaborazione(Collaborazione) : Log}
         %     \operation{interrompiCollaborazione(Collaborazione) : void}
-        %     \operation{terminaCollaborazione(Collaborazione) : Action}
+        %     \operation{terminaCollaborazione(Collaborazione) : Log}
         % \end{class}
         
-        % \draw [-{Latex[]}] (Cliente) -- (ActionCollaborazione);
-        % \draw [-{Latex[]}] (Codemonkey) -- (ActionCollaborazione);
+        % \draw [-{Latex[]}] (Cliente) -- (LogCollaborazione);
+        % \draw [-{Latex[]}] (Codemonkey) -- (LogCollaborazione);
         
-        \begin{class}[text width=5cm, fill=green!20, draw=black, below=11cm of Collaborazione]{Action}{0,0}
+        \begin{class}[text width=5cm, fill=green!20, draw=black, below=11cm of Collaborazione]{Log}{0,0}
         \end{class}
-        \draw [-{Latex[]}] (Cliente) -- (Action);
-        \draw [-{Latex[]}] (Codemonkey) -- (Action);
+        \draw [-{Latex[]}] (Cliente) -- (Log);
+        \draw [-{Latex[]}] (Codemonkey) -- (Log);
 
 
 

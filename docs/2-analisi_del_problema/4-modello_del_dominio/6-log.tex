@@ -60,7 +60,7 @@
 
         \begin{class}[text width=5cm, fill=green!20, draw=black,  below=8cm of Segnalazione, xshift=5cm]{Admin}{0,0}
             \operation{downloadLog(): File}
-            \operation{getLog(): List<Log>}
+            \operation{getLog(TipoLog): List \textless Log \textgreater}
         \end{class}
 
         \draw [{Latex}-] (Log) -- (Admin);
