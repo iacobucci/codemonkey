@@ -16,13 +16,10 @@
 \renewcommand{\contentsname}{Sommario}
 \tableofcontents
 
-\pagebreak
-
 %%%%%%%%%%%%%%%%%%%%
 
 \subsection{Abstract}
 \input{0-abstract/1-abstract.tex}
-\pagebreak
 
 %%%%%%%%%%%%%%%%%%%%
 
@@ -105,10 +102,130 @@
 \subsubsection{Gestione dei Log}
 \input{2-analisi_del_problema/3-modello_del_dominio/6-log.tex}
 
+\subsection{Analisi logica}
+\subsubsection{Diagramma dei package}
+\input{2-analisi_del_problema/4-analisi_logica/1-diagramma_dei_package/1-diagramma_dei_package.tex}
+\subsubsection{Diagrammi delle classi}
+\subsubsubsection{Accesso}
+\input{2-analisi_del_problema/4-analisi_logica/2-diagrammi_delle_classi/1-accesso.tex}
+\subsubsubsection{Amministrazione}
+\input{2-analisi_del_problema/4-analisi_logica/2-diagrammi_delle_classi/2-amministrazione.tex}
+\input{2-analisi_del_problema/4-analisi_logica/2-diagrammi_delle_classi/3-utenti.tex}
+\subsubsubsection{Utenti}
+\subsubsection{Diagrammi di sequenza}
+\subsubsubsection{Accesso}
+\input{2-analisi_del_problema/4-analisi_logica/3-diagrammi_di_sequenza/1-accesso.tex}
+\subsubsubsection{Utente}
+\input{2-analisi_del_problema/4-analisi_logica/3-diagrammi_di_sequenza/2-utente.tex}
+\subsubsubsection{Admin}
+\input{2-analisi_del_problema/4-analisi_logica/3-diagrammi_di_sequenza/3-admin.tex}
+\subsubsubsection{Codemonkey}
+\input{2-analisi_del_problema/4-analisi_logica/3-diagrammi_di_sequenza/4-codemonkey.tex}
+\subsubsubsection{Cliente}
+\input{2-analisi_del_problema/4-analisi_logica/3-diagrammi_di_sequenza/5-cliente.tex}
+
+\subsection{Piano del collaudo}
+\input{2-analisi_del_problema/5-piano_del_collaudo/1-piano_del_collaudo.tex}
+
+\subsection{Piano di lavoro}
+\input{2-analisi_del_problema/6-piano_di_lavoro/1-divisione_dei_lavori.tex}
+\input{2-analisi_del_problema/6-piano_di_lavoro/2-sviluppi_futuri.tex}
+
+%%%%%%%%%%%%%%%%%%%%
 
 \pagebreak
-\input{2-analisi_del_problema/5-piano_di_lavoro/1-divisione_dei_lavori.tex}
-\input{2-analisi_del_problema/5-piano_di_lavoro/2-sviluppi_futuri.tex}
+\section{Progettazione}
 
+\subsection{Progettazione architetturale}
+\subsubsection{Requisiti non funzionali}
+\input{3-progettazione/1-progettazione_architetturale/1-requisiti_non_funzionali.tex}
+\subsubsection{Scelta dell'architettura}
+\input{3-progettazione/1-progettazione_architetturale/2-scelta_dell_architettura.tex}
+\subsubsection{Diagramma dei package}
+\input{3-progettazione/1-progettazione_architetturale/3-diagramma_dei_package.tex}
+\subsubsection{Diagramma dei componenti}
+\input{3-progettazione/1-progettazione_architetturale/4-diagramma_dei_componenti.tex}
+
+\subsection{Progettazione di dettaglio}
+\subsubsection{Diagramma di dettglio del dominio}
+\input{3-progettazione/2-progettazione_di_dettaglio/1-diagramma_di_dettaglio_del_dominio.tex}
+\subsubsection{Diagramma delle interfacce}
+\input{3-progettazione/2-progettazione_di_dettaglio/2-diagramma_delle_interfacce.tex}
+
+\subsection{Progettazione di dettaglio controllers}
+\subsubsection{Utente}
+\input{3-progettazione/3-progettazione_di_dettaglio_controller/1-utente.tex}
+\subsubsection{Codemonkey}
+\input{3-progettazione/3-progettazione_di_dettaglio_controller/2-codemonkey.tex}
+\subsubsection{Cliente}
+\input{3-progettazione/3-progettazione_di_dettaglio_controller/3-cliente.tex}
+\subsubsection{Amministratore}
+\input{3-progettazione/3-progettazione_di_dettaglio_controller/4-amministratore.tex}
+\subsubsection{Registrazione e autenticazione}
+\input{3-progettazione/3-progettazione_di_dettaglio_controller/5-registrazione_e_autenticazione.tex}
+
+\subsection{Progettazione di dettaglio views}
+\subsubsection{View homepage}
+\input{3-progettazione/4-progettazione_di_dettaglio_views/1-view_homepage.tex}
+\subsubsection{View registrazione}
+\input{3-progettazione/4-progettazione_di_dettaglio_views/2-view_registrazione.tex}
+\subsubsection{View autenticazione}
+\input{3-progettazione/4-progettazione_di_dettaglio_views/3-view_autenticazione.tex}
+\subsubsection{Home amministratore}
+\input{3-progettazione/4-progettazione_di_dettaglio_views/4-home_amministratore.tex}
+\subsubsection{View visualizza logs}
+\input{3-progettazione/4-progettazione_di_dettaglio_views/5-view_visualizza_log.tex}
+\subsubsection{View gestisci utenti registrati}
+\input{3-progettazione/4-progettazione_di_dettaglio_views/6-view_gestisci_utenti_registrati.tex}
+\subsubsection{View gestione tag}
+\input{3-progettazione/4-progettazione_di_dettaglio_views/7-view_gestione_tag.tex}
+\subsubsection{View profilo codemonkey}
+\input{3-progettazione/4-progettazione_di_dettaglio_views/8-view_profilo_codemonkey.tex}
+\subsubsection{Home profilo codemonkey}
+\input{3-progettazione/4-progettazione_di_dettaglio_views/9-home_profilo_codemonkey.tex}
+\subsubsection{View gestione account codemonkey}
+\input{3-progettazione/4-progettazione_di_dettaglio_views/10-view_gestione_account_codemonkey.tex}
+\subsubsection{View gestione collaborazioni codemonkey}
+\input{3-progettazione/4-progettazione_di_dettaglio_views/11-view_gestione_collaborazioni_codemonkey.tex}
+\subsubsection{View profilo cliente}
+\input{3-progettazione/4-progettazione_di_dettaglio_views/12-view_profilo_cliente.tex}
+\subsubsection{Home profilo cliente}
+\input{3-progettazione/4-progettazione_di_dettaglio_views/13-home_profilo_cliente.tex}
+\subsubsection{View gestione account cliente}
+\input{3-progettazione/4-progettazione_di_dettaglio_views/14-view_gestione_account_cliente.tex}
+\subsubsection{View gestione collaborazioni cliente}
+\input{3-progettazione/4-progettazione_di_dettaglio_views/15-view_gestione_collaborazioni_cliente.tex}
+\subsubsection{View proponi lavoro}
+\input{3-progettazione/4-progettazione_di_dettaglio_views/16-view_proponi_lavoro.tex}
+
+\subsection{Progettazione delle interazioni}
+\subsubsubsection{Accesso}
+\input{3-progettazione/5-progettazione_delle_interazioni/1-accesso.tex}
+\subsubsubsection{Utente}
+\input{3-progettazione/5-progettazione_delle_interazioni/2-utente.tex}
+\subsubsubsection{Admin}
+\input{3-progettazione/5-progettazione_delle_interazioni/3-admin.tex}
+\subsubsubsection{Codemonkey}
+\input{3-progettazione/5-progettazione_delle_interazioni/4-codemonkey.tex}
+\subsubsubsection{Cliente}
+\input{3-progettazione/5-progettazione_delle_interazioni/5-cliente.tex}
+
+\subsection{Progettazione della persistenza}
+\subsubsection{Diagramma E-R}
+\input{3-progettazione/6-progettazione_della_persistenza/1-diagramma_er.tex}
+\subsubsection{Formato files di log}
+\input{3-progettazione/6-progettazione_della_persistenza/2-formato_files_log.tex}
+
+\subsection{Progettazione del collaudo}
+\subsubsection{Test di unità}
+\input{3-progettazione/7-progettazione_del_collaudo/1-test_di_unita.tex}
+\subsubsection{Test di API}
+\input{3-progettazione/7-progettazione_del_collaudo/2-test_di_api.tex}
+
+\subsection{Progettazione del deployment}
+\subsubsection{Artefatti}
+\input{3-progettazione/8-progettazione_del_deployment/1-artefatti.tex}
+\subsubsection{Diagramma di deployment}
+\input{3-progettazione/8-progettazione_del_deployment/2-diagramma_di_deployment.tex}
 
 \end{document}

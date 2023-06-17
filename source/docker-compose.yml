@@ -1,24 +1,16 @@
 version: '3'
 
 services:
-  codemonkey-nginx:
-    image: codemonkey-nginx
-    container_name: codemonkey-nginx-compose
-    ports:
-      - '8081:80'
-    networks:
-      - codemonkey-network
-
   codemonkey-database:
-    image: codemonkey-database
+    #image: codemonkey-database
+    image: iacobucci/codemonkey-database
     container_name: codemonkey-database-compose
-    depends_on:
-      - codemonkey-nginx
     networks:
       - codemonkey-network
 
   codemonkey-backend:
-    image: codemonkey-backend
+    #image: codemonkey-backend
+    image: iacobucci/codemonkey-backend
     environment:
       - BACKEND_DATABASE_USER=admin
       - BACKEND_DATABASE_PASSWORD=password
@@ -31,10 +23,23 @@ services:
       - codemonkey-network
 
   codemonkey-frontend:
-    image: codemonkey-frontend
+    #image: codemonkey-frontend
+    image: iacobucci/codemonkey-frontend
     container_name: codemonkey-frontend-compose
     depends_on:
       - codemonkey-backend
+    networks:
+      - codemonkey-network
+
+  codemonkey-nginx:
+    #image: codemonkey-nginx
+    image: iacobucci/codemonkey-nginx
+    container_name: codemonkey-nginx-compose
+    ports:
+      - '8081:80'
+    depends_on:
+      - codemonkey-backend
+      - codemonkey-frontend
     networks:
       - codemonkey-network
 

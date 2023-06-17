@@ -1,7 +1,6 @@
 TODO
     aggiungere actions negli uml
     diagramma dei package
-    mock.rb
     diagrammi di dettaglio
     collaudo
 
@@ -13,7 +12,7 @@ docs
             [x] funzionali
             [x] non funzionali
             [x] dominio
-        [ ] scenari
+        [x] scenari
         [ ] analisi del rischio
             [ ] valutazione dei beni
             [ ] minacce e controlli
@@ -191,35 +190,35 @@ docs
                     downloadLog()
                     visualizzaLog()
                 progettazione
-                    ActionAccesso extends Action
+                    LogAccesso extends Log
                         registrazione
                         login
                         cancella
-                    ActionAccount extends Action
+                    LogAccount extends Log
                         setPassword
                         setBiografia
                         setImmagineProfilo
                         setTags
                         setEmail
-                    ActionCollaborazione extends Action
+                    LogCollaborazione extends Log
                         proponiCollaborazione
                         modificaCollaborazione
                         accettaCollaborazione
                         rifiutaCollaborazione
                         interrompiCollaborazione
                         terminaCollaborazione
-                    ActionTag extends Action
+                    LogTag extends Log
                         proponiTag
                         approvaTag
                         rifiutaTag
-                    ActionReport extends Action
+                    LogReport extends Log
                         setUserStatus
                         reportUser
         [ ] architettura logica
             [ ] diagramma dei package
                 interfacce
                     InterfacciaTag
-                    InterfacciaAction
+                    InterfacciaLog
                     InterfacciaReport
                     InterfacciaLogin
                     InterfacciaRegistrazione

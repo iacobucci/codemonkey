@@ -3,26 +3,26 @@
     \begin{tikzpicture}
         \fontsize{8}{9.5}\selectfont
 
-        \begin{class}[text width=5cm, fill=green!20, draw=black]{Action}{0,0}
+        \begin{class}[text width=5cm, fill=green!20, draw=black]{Log}{0,0}
             \attribute{user: RegistredUser}
-            \attribute{tipo: TipoAction}
-            \attribute{descrizione: DescrizioneAction}
+            \attribute{tipo: TipoLog}
+            \attribute{descrizione: DescrizioneLog}
             \attribute{data: DateTime}
         \end{class}
 
         %%%%%%%%%% 
         
-        \begin{class}[text width=5cm, fill=green!20, draw=black, left=4cm of Report, yshift=-9cm]{DescrizioneAction}{0,0}
-            \attribute{descrizioneAction : String}
-            \operation{getDescrizioneAction() : String}
-            \operation{setDescrizioneAction(String) : void}
+        \begin{class}[text width=5cm, fill=green!20, draw=black, left=4cm of Segnalazione, yshift=-9cm]{DescrizioneLog}{0,0}
+            \attribute{descrizioneLog : String}
+            \operation{getDescrizioneLog() : String}
+            \operation{setDescrizioneLog(String) : void}
         \end{class}
         
-        \draw [{Diamond}-] (Action) -- (DescrizioneAction);
+        \draw [{Diamond}-] (Log) -- (DescrizioneLog);
         
         %%%%%%%%%%%
 
-        \begin{class}[text width=5cm, fill=green!20, draw=black, rectangle split parts=2, left=4cm of Report, yshift=-4cm]{TipoAction}{0,0}
+        \begin{class}[text width=5cm, fill=green!20, draw=black, rectangle split parts=2, left=4cm of Segnalazione, yshift=-4cm]{TipoLog}{0,0}
 
             \attribute{REGISTRAZIONE}
             \attribute{LOGIN}
@@ -42,28 +42,28 @@
             \attribute{APPROVATAG}
             \attribute{RIFIUTATAG}
             \attribute{SETUSERSTATUS}
-            \attribute{REPORTUSER}
+            \attribute{SEGNALAZIONEUSER}
         \end{class}
 
-        \node [above of=TipoAction, node distance=3.7cm] (enumeration) {$<<$enumeration$>>$};
+        \node [above of=TipoLog, node distance=3.7cm] (enumeration) {$<<$enumeration$>>$};
         
-        \draw [{Diamond}-] (Action) -- (TipoAction);
+        \draw [{Diamond}-] (Log) -- (TipoLog);
         
         %%%%%%%%%%%
 
-        \begin{class}[text width=5cm, fill=green!20, draw=black,  below=8cm of Report, xshift=-1cm]{RegistredUser}{0,0}
+        \begin{class}[text width=5cm, fill=green!20, draw=black,  below=8cm of Segnalazione, xshift=-1cm]{RegistredUser}{0,0}
         \end{class}
         
-        \draw [{Latex}-] (Action) -- (RegistredUser);
+        \draw [{Latex}-] (Log) -- (RegistredUser);
         
         %%%%%%%%%%% 
 
-        \begin{class}[text width=5cm, fill=green!20, draw=black,  below=8cm of Report, xshift=5cm]{Admin}{0,0}
+        \begin{class}[text width=5cm, fill=green!20, draw=black,  below=8cm of Segnalazione, xshift=5cm]{Admin}{0,0}
             \operation{downloadLog(): File}
-            \operation{getLog(): List<Action>}
+            \operation{getLog(): List<Log>}
         \end{class}
 
-        \draw [{Latex}-] (Action) -- (Admin);
+        \draw [{Latex}-] (Log) -- (Admin);
     \end{tikzpicture}
 
 }
