@@ -1,0 +1,105 @@
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  frame=single,
+  breaklines=true,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+  showstringspaces=false,
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray},
+  stringstyle=\color{orange}
+}
+
+Test di unità con il framework Rails di esempio per il modello \texttt{Collaborazione}, vengono riportate le validazioni che devono essere soddisfatte per poter salvare un'istanza di \texttt{Collaborazione} nel database:
+
+\begin{lstlisting}[language=Ruby]
+class Collaborazione < ActiveRecord::Base
+  belongs_to :codemonkey
+  belongs_to :company
+  belongs_to :technologies
+
+  # Database fields
+  validates :titolo, presence: true, length: { maximum: 256 }
+  validates :descrizione, length: { maximum: 4096 }
+  validates :stato, presence: true
+  validates :suggest_time, presence: true
+  validates :start_time, presence: true
+  validates :end_time, presence: true
+  validates :valutazione, numericality: { only_integer: true, allow_nil: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 5 } 
+  validates :comment, length: { maximum: 1024 }
+end
+\end{lstlisting}
+
+Test di unità con il framework Angular di esempio per il componente \texttt{UserCardComponent}, vengono riportati i test per la creazione del componente:
+
+\begin{lstlisting}[language=Java]
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
+
+import { UserComponent } from './user.component';
+
+describe('UserComponent', () => {
+  let component: UserComponent;
+  let fixture: ComponentFixture<UserComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      declarations: [UserComponent],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            paramMap: of({ get: () => 'test-username' })
+          }
+        }
+      ]
+    }).compileComponents();
+  });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(UserComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+\end{lstlisting}
+
+Test per i controller con Curl, vengono riportati i test per il controller \texttt{RegistrazioneContoller}:
+
+\begin{lstlisting}[language=bash]
+#!/bin/bash
+
+function user/registrazione {
+  NAME=$1
+  PASSWORD=$2
+  EMAIL=$3
+  TYPE=$4
+  curl -X POST http://localhost:8080/api/user/registrazione -H "Content-Type: application/json" -d "{\"registrazione\": {\"username\": \"$NAME\", \"email\": \"$EMAIL\", \"password\": \"$PASSWORD\", \"type\": \"$TYPE\" }}"
+}
+
+# Test case 1: Valid signup
+response=$(user/registrazione 'gracehopper' '12345678' 'gracehopper@example.com' 'Codemonkey')
+if [[ "$response" == '{"username":"gracehopper","type":"Codemonkey","otp_provisioning_uri":"otpauth://totp/gracehopper?secret='*'"}' ]]; then
+  echo "Test case 1: Passed"
+else
+  echo "Test case 1: Failed"
+  exit 1
+fi
+
+# Test case 2: Malformed email
+response=$(user/registrazione 'edsgerdjikstra' '12345678' 'edsgerdjikstra@malformedemail' 'Codemonkey')
+expected_response='{"status":500,"errors":["Malformed Email"]}'
+if [[ "$response" == "$expected_response" ]]; then
+  echo "Test case 2: Passed"
+else
+  echo "Test case 2: Failed"
+  exit 1
+fi
+\end{lstlisting}

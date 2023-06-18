@@ -48,13 +48,13 @@ docs
             [ ] diagramma casi d'uso
                 [ ] img
         [x] scenari
-        [ ] analisi del rischio
+        [x] analisi del rischio
             [x] valutazione dei beni
             [x] minacce e controlli
             [x] tecnologia e vulnerabilità
             [x] diagramma security use case e misuse case
                 [ ] img
-            [ ] security use case e misuse case
+            [x] security use case e misuse case
         [x] aggiornamento requisiti
             [x] funzionali
             [x] non funzionali
@@ -253,9 +253,9 @@ docs
                     [ ] svg
         [ ] piano del collaudo
             [ ] listing
-        [ ] piano di lavoro
-            [ ] divisione dei lavori
-            [ ] sviluppi fururi
+        [x] piano di lavoro
+            [x] divisione dei lavori
+            [x] sviluppi fururi
     [ ] progettazione
         [ ] progettazione architetturale
             [ ] requisiti non funzionali
@@ -265,7 +265,7 @@ docs
                 [ ] backend
                 [ ] database
         [ ] progettazione di dettaglio
-            [ ] dominio
+            [x] dominio
                 gestione accesso
                     [x] Totp
                         [x] value: String
@@ -296,7 +296,7 @@ docs
                     LogReport extends Log
                         setUserStatus(RegistredUser, DescrizioneLog)
                         reportUser(RegistredUser, DescrizioneLog)
-            [ ] interfacce
+            [x] interfacce
                 [x] ILog
                 [x] ILogAccesso
                 [x] ILogAccount
@@ -411,9 +411,9 @@ backend
             [x] id
                 primary key int autoincrement
             [x] title
-                varchar(255)
+                varchar(256)
             [x] description
-                varchar(4095)
+                varchar(4096)
 
             [x] status
                 string
