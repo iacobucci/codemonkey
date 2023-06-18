@@ -1,17 +1,7 @@
 TODO
-    review di analisi dei requisiti    
     review di lucidchart
     casi d'uso
     security use case e misuse case
-    modello di dominio
-        cambiare associazioni
-    modello di dominio di dettaglio
-        log
-            logaccesso
-            logcollaborazione
-            logsegnalazione
-            logtag
-            logaccount
     collaudo
         unit test
     screenshot 
@@ -59,30 +49,29 @@ docs
                 [ ] img
         [x] scenari
         [ ] analisi del rischio
-            [ ] valutazione dei beni
-            [ ] minacce e controlli
-            [ ] tecnologia e vulnerabilità
-            [ ] diagramma security use case e misuse case
+            [x] valutazione dei beni
+            [x] minacce e controlli
+            [x] tecnologia e vulnerabilità
+            [x] diagramma security use case e misuse case
                 [ ] img
             [ ] security use case e misuse case
-        [ ] aggiornamento requisiti
-            [ ] funzionali
-            [ ] non funzionali
-            [ ] vocabolario
-            [ ] casi d'uso
-    [ ] analisi del problema
-        [ ] analisi funzionalità
-            [ ] tabelle funzionalità
-            [ ] tabelle informazioni di flusso
-            [ ] analisi vincoli
-            [ ] analisi interazioni
-        [ ] analisi ruoli
-            [ ] analisi ruoli e responsabilità
-            [ ] tabelle ruolo e informazioni
-        [ ] scomposizione del probelma
-            [ ] tabella scomposizione funzionalita
-            [ ] tabella sotto funzionalita
-        [ ] modello di dominio
+        [x] aggiornamento requisiti
+            [x] funzionali
+            [x] non funzionali
+            [x] vocabolario
+            [x] casi d'uso
+    [x] analisi del problema
+        [x] analisi funzionalità
+            [x] tabelle funzionalità
+            [x] tabelle informazioni di flusso
+            [x] analisi vincoli
+            [x] analisi interazioni
+        [x] analisi ruoli
+            [x] analisi ruoli e responsabilità
+            [x] tabelle ruolo e informazioni
+        [x] scomposizione del probelma
+            [x] tabella scomposizione funzionalita
+        [x] modello di dominio
             [x] Accesso
                 User
                 Registrazione
@@ -278,10 +267,10 @@ docs
         [ ] progettazione di dettaglio
             [ ] dominio
                 gestione accesso
-                    [ ] Totp
-                        [ ] value: String
-                    [ ] Qrcode
-                        [ ] data: String
+                    [x] Totp
+                        [x] value: String
+                    [x] Qrcode
+                        [x] data: String
                 gestione dei log
                     LogAccesso extends Log
                         registrazione(RegistredUser, DescrizioneLog)
@@ -320,7 +309,7 @@ docs
                 [x] IUtente
                 [x] ICliente
                 [x] ICodemonkey
-                [ ] ICollaborazione
+                [x] ICollaborazione
                 [ ] svg
         [ ] progettazione di dettaglio controllers
             [ ] accesso
@@ -344,21 +333,6 @@ docs
                 [ ] svg
             [ ] amministratore
                 [ ] svg
-            ViewGestioneTag
-            HomeAmministratore
-            ViewVisualizzaLog
-            ViewGestisciUtentiRegistrati
-            ViewGestioneTag
-            HomeProfiloCodemonkey
-            ViewProfiloCodemonkey
-            ViewGestioneCollaborazioniCodemonkey
-            ViewGestioneAccountCodemonkey
-            HomeProfiloCliente
-            ViewProfiloCliente
-            ViewGestioneCollaborazioniCliente
-            ViewGestioneAccountCliente
-            ViewHomepage
-            ViewProponiLavoro           
         [ ] progettazione di dettaglio interazioni
             [ ] accesso
                 [ ] svg
