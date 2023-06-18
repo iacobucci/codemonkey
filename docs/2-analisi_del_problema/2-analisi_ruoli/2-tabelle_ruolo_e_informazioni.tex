@@ -11,7 +11,6 @@
         \large \textbf{Informazione}    & \centering\large\textbf{Tipo Accesso}
         \n      Lista Codemonkey        & Lettura
         \n      Informazioni Codemonkey & Lettura
-        \n      Informazioni Cliente    & Lettura
         \n
     \end{tabularx}\label{tab:monkeytable:problema:tabellaRuoloInformazioni:Utente}
 
@@ -23,14 +22,13 @@
         \multicolumn{2}{|c|}{\Large\textbf{Codemonkey: Tabella Ruolo-Informazioni}}
         \n      \rowcolor{tableCyan!40}
         \large \textbf{Informazione}      & \centering\large\textbf{Tipo Accesso}
-        \n      Username                  & Lettura/Scrittura
+        \n      Username                  & Lettura
+        \n      Email                     & Lettura/Scrittura
         \n      Password                  & Scrittura
         \n      Lista Collaborazioni      & Lettura
         \n      Valutazione               & Lettura
         \n      Dati Personali Codemonkey & Lettura/Scrittura
-        \n      Lista Tecnologie          & Lettura/Scrittura
-        \n      Informazioni Cliente      & Lettura
-        \n      Messaggio Segnalazione    & Scrittura
+        \n      Lista Tag                 & Lettura/Scrittura
 
         \n
     \end{tabularx}\label{tab:monkeytable:problema:tabellaRuoloInformazioni:Codemonkey}
@@ -45,7 +43,8 @@
         \multicolumn{2}{|c|}{\Large\textbf{Cliente: Tabella Ruolo-Informazioni}}
         \n      \rowcolor{tableCyan!40}
         \large \textbf{Informazione}        & \centering\large\textbf{Tipo Accesso}
-        \n      Username                    & Lettura/Scrittura
+        \n      Username                    & Lettura
+        \n      Email                       & Lettura/Scrittura
         \n      Password                    & Scrittura
         \n      Lista Collaborazioni        & Lettura
         \n      Dati Personali Cliente      & Lettura/Scrittura
@@ -53,7 +52,6 @@
         \n      Informazioni Codemonkey     & Lettura
         \n      Valutazione Lavoro          & Scrittura
         \n      Proponi Lavoro a Codemonkey & Scrittura
-        \n      Messaggio Segnalazione      & Scrittura
         \n
     \end{tabularx}\label{tab:monkeytable:problema:tabellaRuoloInformazioni:Cliente}
 
@@ -67,12 +65,11 @@
         \multicolumn{2}{|c|}{\Large\textbf{Amministratore: Tabella Ruolo-Informazioni}}
         \n      \rowcolor{tableCyan!40}
         \large \textbf{Informazione}  & \centering\large\textbf{Tipo Accesso}
-        \n      Username              & Lettura/Scrittura
-        \n      Password              & Scrittura
         \n      Lista CodeMonkey      & Lettura
         \n      Lista Utenti          & Lettura
         \n      Segnalazioni          & Lettura
-        \n      Configurazione Utenti & Lettura/Scrittura
+        \n      Gestione Utenti & Lettura/Scrittura
+        \n      Gestione Tag & Lettura/Scrittura
         \n      Log                   & Lettura
         \n
     \end{tabularx}\label{tab:monkeytable:problema:tabellaRuoloInformazioni:Amministratore}
