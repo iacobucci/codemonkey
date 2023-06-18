@@ -46,11 +46,11 @@
 
             <div *ngIf="this.user">
                 <div style="width: 40%">
-                    <p style="font-size: 40pt; font-weight: bold; margin: auto;">{{this.name}}</p>
-                    <p style="margin:auto;">@{{this.user.username}}</p>
+                    <p style="font-size: 40pt; font-weight: bold; margin: auto;">@{{this.user.username}}</p>
+                    <!-- <p style="margin:auto;">@{{this.user.username}}</p> -->
                     <span style="margin:24px;"></span>
                     <div *ngIf="this.hasRating">
-                        <app-valutazione [rating]="0"></app-valutazione>
+                        <app-valutazione [rating]="3.5"></app-valutazione>
                     </div>
                 </div>
 

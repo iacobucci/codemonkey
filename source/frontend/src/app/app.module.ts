@@ -40,6 +40,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { ThemeSwitcherComponent } from './components/theme-switcher/theme-switcher.component';
 import { ValutazioneComponent } from './components/valutazione/valutazione.component';
 import { RegistrazionePopupComponent } from './components/popup/registrazione-popup/registrazione-popup.component';
+import { ProponiPopupComponent } from './components/popup/proponi-popup/proponi-popup.component';
 import { LoginPopupComponent } from './components/popup/login-popup/login-popup.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { ImageUploaderComponent } from './components/image-uploader/image-uploader.component';
@@ -67,6 +68,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
     ThemeSwitcherComponent,
     ValutazioneComponent,
     RegistrazionePopupComponent,
+    ProponiPopupComponent,
     LoginPopupComponent,
     LogoutComponent,
     ImageUploaderComponent,

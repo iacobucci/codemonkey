@@ -6,35 +6,24 @@ TODO
         unit test
     screenshot 
         [x] login
-            [ ] png
         [x] registrazione
-            [ ] png
-        [ ] home
-            [ ] png
+        [x] home
         [x] profilo
-            [ ] png
         [ ] modifica profilo
-            [ ] png
-        [ ] proposta collaborazione
-            [ ] png
-        [ ] lista collaborazioni
-            [ ] png
-        [ ] accetta o rifiuta collaborazione
-            [ ] png
-        [ ] interrompi collaborazione
-            [ ] png
-        [ ] termina collaborazione
-            [ ] png
-        [ ] report utente
-            [ ] png
         [ ] proposta tag
-            [ ] png
-        [ ] gestione tag
-            [ ] 
-        [ ] visualizza log
-            [ ] png
-        [ ] gestione utenti
-            [ ] png
+
+        [x] report utente
+        [x] proposta collaborazione
+
+        [x] lista collaborazioni
+        [x] accetta o rifiuta collaborazione
+        [ ] interrompi collaborazione
+        [ ] termina collaborazione
+
+        admin
+            [ ] gestione tag
+            [ ] visualizza log
+            [ ] gestione utenti
 
 docs
     [x] abstract
@@ -251,19 +240,18 @@ docs
                     [ ] svg
                 [ ] admin
                     [ ] svg
-        [ ] piano del collaudo
-            [ ] listing
+        [x] piano del collaudo
         [x] piano di lavoro
             [x] divisione dei lavori
             [x] sviluppi fururi
     [ ] progettazione
-        [ ] progettazione architetturale
-            [ ] requisiti non funzionali
-            [ ] scelte tecnologiche
-            [ ] scelta dell'architettura
-                [ ] frontend
-                [ ] backend
-                [ ] database
+        [x] progettazione architetturale
+            [x] requisiti non funzionali
+            [x] scelte tecnologiche
+            [x] scelta dell'architettura
+                [x] frontend
+                [x] backend
+                [x] database
         [ ] progettazione di dettaglio
             [x] dominio
                 gestione accesso
@@ -347,10 +335,12 @@ docs
         [ ] progettazione persistenza
             [ ] diagramma er
                 [ ] svg
-            [ ] formato files di logs
-        [ ] progettazione collaudo
-            [ ] unit test
-            [ ] test curl
+            [x] formato files di logs
+        [x] progettazione collaudo
+            [x] unit test
+                [x] backend
+                [x] frontend
+            [x] test curl
         [ ] deployment
             [ ] artefatti
                 [ ] svg
@@ -851,13 +841,13 @@ debug
             eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODQ4NTc2NDcsInVzZXJfaWQiOiJtYXJpbyJ9.mPayYPyy45Sz26vkvjus2gupb9ZrG0KdJrsSaYdctJk
 
     users
-        [ ] Charles Babbage
-        [ ] Geoge Boole
-        [ ] Alan Turing
-        [ ] Claude Shannon
+        [x] Charles Babbage
+        [x] Geoge Boole
+        [x] Alan Turing
+        [x] Claude Shannon
+        [x] John Von Neumann
+        [x] Marvin Minsky
         [ ] Norbert Weiner
-        [ ] John Von Neumann
-        [ ] Marvin Minsky
         [ ] Ray Solomonoff
         [ ] John McCarthy
         [ ] Dennis Ritchie

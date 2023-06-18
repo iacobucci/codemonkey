@@ -1,3 +1,52 @@
-<p>settings works!</p>
+<style>
+	.text-center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+	}
+  .mycard {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+</style>
+<div style="margin-bottom: 24px;"></div>
+<div style="font-size: 20pt; font-weight: bold; text-align: center;">Lista Collaborazioni</div>
+<div style="margin-bottom: 48px;"></div>
 
-<app-image-uploader endpoint="/api/user/propic/upload"></app-image-uploader>
+<div style="display: flex; flex-direction: column; align-items: center;">
+<mat-card class="mycard">
+  <mat-card-header>
+    <mat-card-title>Collaborazioni proposte</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="text-center">
+  </mat-card-content>
+</mat-card>
+
+<div style="margin-bottom: 48px;"></div>
+
+<mat-card class="mycard">
+  <mat-card-header>
+    <mat-card-title>Collaborazioni in corso</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <!-- Contenuto delle collaborazioni in corso -->
+	<div style="margin-bottom: 8px;"></div>
+	<app-project-card [project]="this.project"></app-project-card>
+	<div style="margin-bottom: 8px;"></div>
+  </mat-card-content>
+</mat-card>
+
+<div style="margin-bottom: 48px;"></div>
+
+<mat-card class="mycard">
+  <mat-card-header>
+    <mat-card-title>Collaborazioni terminate</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <!-- Contenuto delle collaborazioni terminate -->
+  </mat-card-content>
+</mat-card>
+</div>
+<!-- <app-image-uploader endpoint="/api/user/propic/upload"></app-image-uploader> -->

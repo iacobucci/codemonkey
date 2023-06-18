@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.element {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.element-1 {
+    flex-grow: 1;
+}
+
+.element-2 {
+    flex-grow: 2;
+}
+
+.custom-card {
+  width: 480px;
+  height: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.centered-text {
+  text-align: center;
+}
+
+mat-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
