@@ -1,9 +1,10 @@
 <style>
-	.text-center{
+  .text-center {
     display: flex;
     flex-direction: column;
     align-items: center;
-	}
+  }
+
   .mycard {
     width: 80%;
     display: flex;
@@ -11,42 +12,119 @@
     align-items: center;
   }
 </style>
-<div style="margin-bottom: 24px;"></div>
-<div style="font-size: 20pt; font-weight: bold; text-align: center;">Lista Collaborazioni</div>
-<div style="margin-bottom: 48px;"></div>
+<div style="margin-bottom: 16px;"></div>
+<div style="font-size: 20pt; font-weight: bold; text-align: center;">Dashboard Amministratore</div>
+<div style="margin-bottom: 16px;"></div>
+
+
 
 <div style="display: flex; flex-direction: column; align-items: center;">
-<mat-card class="mycard">
-  <mat-card-header>
-    <mat-card-title>Collaborazioni proposte</mat-card-title>
-  </mat-card-header>
-  <mat-card-content class="text-center">
-  </mat-card-content>
-</mat-card>
+  <mat-card class="mycard">
+    <mat-card-header>
+      <mat-card-title>Gestione tags</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <!-- Contenuto delle collaborazioni terminate -->
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="nome">
+          <th mat-header-cell *matHeaderCellDef>NOME</th>
+          <td mat-cell *matCellDef="let element">{{ element.nome }}</td>
+        </ng-container>
 
-<div style="margin-bottom: 48px;"></div>
+        <ng-container matColumnDef="operazione">
+          <th mat-header-cell *matHeaderCellDef>OPERAZIONE</th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button color="primary">Accetta</button>
+            <button mat-button color="warn">Rifiuta</button>
+          </td>
+        </ng-container>
 
-<mat-card class="mycard">
-  <mat-card-header>
-    <mat-card-title>Collaborazioni in corso</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <!-- Contenuto delle collaborazioni in corso -->
-	<div style="margin-bottom: 8px;"></div>
-	<app-project-card [project]="this.project"></app-project-card>
-	<div style="margin-bottom: 8px;"></div>
-  </mat-card-content>
-</mat-card>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
 
-<div style="margin-bottom: 48px;"></div>
 
-<mat-card class="mycard">
-  <mat-card-header>
-    <mat-card-title>Collaborazioni terminate</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <!-- Contenuto delle collaborazioni terminate -->
-  </mat-card-content>
-</mat-card>
+    </mat-card-content>
+  </mat-card>
+
+  <div style="margin-bottom: 16px;"></div>
+
+  <mat-card class="mycard">
+    <mat-card-header>
+      <mat-card-title>Visualizza log</mat-card-title>
+    </mat-card-header>
+    <mat-card-content style="display: flex; align-items: center; flex-direction: column;">
+      <div style="margin-bottom: 8px;"></div>
+
+      <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
+        <ng-container matColumnDef="username">
+          <th mat-header-cell *matHeaderCellDef>Username</th>
+          <td mat-cell *matCellDef="let log">{{ log.username }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="tipo">
+          <th mat-header-cell *matHeaderCellDef>Tipo</th>
+          <td mat-cell *matCellDef="let log">{{ log.tipo }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="descrizione">
+          <th mat-header-cell *matHeaderCellDef>Descrizione</th>
+          <td mat-cell *matCellDef="let log">{{ log.descrizione }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="data">
+          <th mat-header-cell *matHeaderCellDef>Data</th>
+          <td mat-cell *matCellDef="let log">{{ log.data | date }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+      </table>
+
+      <div style="margin-bottom: 12px; display: flex;"></div>
+
+
+      <button mat-raised-button color="primary" style="display: flex;">Scarica logs</button>
+    </mat-card-content>
+  </mat-card>
+
+  <div style="margin-bottom: 16px;"></div>
+
+  <mat-card class="mycard">
+    <mat-card-header>
+      <mat-card-title>Gestione utenti registrati</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div style="margin-bottom: 8px;"></div>
+
+      <table mat-table [dataSource]="dataSource3" class="mat-elevation-z8">
+        <ng-container matColumnDef="username">
+          <th mat-header-cell *matHeaderCellDef>Username</th>
+          <td mat-cell *matCellDef="let log">{{ log.username }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="stato">
+          <th mat-header-cell *matHeaderCellDef>Stato</th>
+          <td mat-cell *matCellDef="let log">
+
+            <mat-form-field style="margin-bottom: -1.25em; display: flex; align-items: center ; width: 128px;">
+              <mat-label>ATTIVO</mat-label>
+              <mat-select multiple>
+              </mat-select>
+            </mat-form-field>
+          </td>
+
+
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns3"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns3;"></tr>
+      </table>
+
+    </mat-card-content>
+  </mat-card>
+
+  <div style="margin-bottom: 16px;"></div>
+
 </div>
 <!-- <app-image-uploader endpoint="/api/user/propic/upload"></app-image-uploader> -->

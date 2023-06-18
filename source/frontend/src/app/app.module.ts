@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
@@ -91,6 +92,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTableModule,
     MatToolbarModule,
     MatCardModule,
     MatListModule,

@@ -7,16 +7,41 @@ import { Technology } from 'src/app/model/interfaces/technology.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { ProponiPopupComponent } from 'src/app/components/popup/proponi-popup/proponi-popup.component';
 
+import { MatTableModule } from '@angular/material/table';
+
+export interface TagTable {
+  name: string;
+}
+
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.scss']
+  styleUrls: ['./settings.component.scss'],
 })
+
 export class SettingsComponent implements OnInit {
+  displayedColumns: string[] = ['nome', 'operazione'];
+  dataSource: any[] = [
+    { nome: 'UML', operazione: '' },
+    { nome: 'SVELTE', operazione: '' },
+    // Aggiungi altre righe con i dati desiderati
+  ];
+  displayedColumns2: string[] = ['username', 'tipo', 'descrizione', 'data'];
+  dataSource2: any[] = [
+    { username: 'richardstallman', tipo: 'PROPONICOLLABORAZIONE', descrizione: 'codemonkey=georgeboole;titolo:"Implemen...', data: new Date() },
+    { username: 'georgeboole', tipo: 'ACCETTACOLLABORAZIONE', descrizione: 'id=1234567890', data: new Date() },
+    // Aggiungi altre righe con i dati desiderati
+  ];
+
+  displayedColumns3: string[] = ['username', 'stato'];
+  dataSource3: any[] = [
+    // Aggiungi altre righe con i dati desiderati
+    {username:"georgeboole", stato:"PENDING"},
+  ];
 
   value: string = "";
-  technologies: Technology[] = [{name: "ANGULAR"}, {name: "DOCKER"}];
+  technologies: Technology[] = [{ name: "ANGULAR" }, { name: "DOCKER" }];
   project: Project = {
     id: 0,
     rating: 0,
@@ -36,12 +61,12 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchWhoAmI();
-    
-    this.dialog.open(ProponiPopupComponent);
+
+    // this.dialog.open(ProponiPopupComponent);
   }
-    
+
   fetchWhoAmI(): void {
-    this.httpClient.post('/api/whoami',{}).subscribe(
+    this.httpClient.post('/api/whoami', {}).subscribe(
       (response) => {
         console.log('Response:', response);
       },
@@ -50,5 +75,5 @@ export class SettingsComponent implements OnInit {
       }
     );
   }
-  
+
 }

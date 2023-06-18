@@ -9,20 +9,19 @@ TODO
         [x] registrazione
         [x] home
         [x] profilo
-        [ ] modifica profilo
-        [ ] proposta tag
+        [x] modifica profilo
+        [x] proposta tag
 
         [x] report utente
         [x] proposta collaborazione
 
         [x] lista collaborazioni
         [x] accetta o rifiuta collaborazione
-        [ ] interrompi collaborazione
-        [ ] termina collaborazione
+        [x] termina collaborazione
 
         admin
             [ ] gestione tag
-            [ ] visualizza log
+            [ ] visualizzazione log
             [ ] gestione utenti
 
 docs
