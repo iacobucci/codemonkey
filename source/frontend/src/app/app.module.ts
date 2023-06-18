@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
@@ -40,6 +41,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { ThemeSwitcherComponent } from './components/theme-switcher/theme-switcher.component';
 import { ValutazioneComponent } from './components/valutazione/valutazione.component';
 import { RegistrazionePopupComponent } from './components/popup/registrazione-popup/registrazione-popup.component';
+import { ProponiPopupComponent } from './components/popup/proponi-popup/proponi-popup.component';
 import { LoginPopupComponent } from './components/popup/login-popup/login-popup.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { ImageUploaderComponent } from './components/image-uploader/image-uploader.component';
@@ -67,6 +69,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
     ThemeSwitcherComponent,
     ValutazioneComponent,
     RegistrazionePopupComponent,
+    ProponiPopupComponent,
     LoginPopupComponent,
     LogoutComponent,
     ImageUploaderComponent,
@@ -89,6 +92,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTableModule,
     MatToolbarModule,
     MatCardModule,
     MatListModule,

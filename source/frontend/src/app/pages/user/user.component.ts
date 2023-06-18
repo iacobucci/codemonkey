@@ -14,6 +14,7 @@ import { User } from "src/app/model/interfaces/user.interface"
 import { Codemonkey } from 'src/app/model/interfaces/codemonkey.interface';
 import { Company } from 'src/app/model/interfaces/company.interface';
 import { Technology } from 'src/app/model/interfaces/technology.interface';
+import { ProponiPopupComponent } from 'src/app/components/popup/proponi-popup/proponi-popup.component';
 
 @Component({
   selector: 'app-user',
@@ -39,7 +40,7 @@ export class UserComponent extends Tagged implements OnInit {
 
   selectedTechnologies: Technology[] = [];
 
-  constructor(private route: ActivatedRoute, http: HttpClient) {
+  constructor(private route: ActivatedRoute, http: HttpClient, public dialog: MatDialog) {
     super(http);
   }
 
@@ -51,6 +52,8 @@ export class UserComponent extends Tagged implements OnInit {
     this.fetchPropic();
     this.feed();
     this.feedTechnologies();
+    this.dialog.open(ProponiPopupComponent, { data: { username: this.username } });
+
   }
 
   onTechnologyUpdate() {

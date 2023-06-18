@@ -1,50 +1,28 @@
 TODO
-    review di analisi dei requisiti    
     review di lucidchart
     casi d'uso
     security use case e misuse case
-    modello di dominio
-        cambiare associazioni
-    modello di dominio di dettaglio
-        log
-            logaccesso
-            logcollaborazione
-            logsegnalazione
-            logtag
-            logaccount
     collaudo
         unit test
     screenshot 
         [x] login
-            [ ] png
         [x] registrazione
-            [ ] png
-        [ ] home
-            [ ] png
+        [x] home
         [x] profilo
-            [ ] png
-        [ ] modifica profilo
-            [ ] png
-        [ ] proposta collaborazione
-            [ ] png
-        [ ] lista collaborazioni
-            [ ] png
-        [ ] accetta o rifiuta collaborazione
-            [ ] png
-        [ ] interrompi collaborazione
-            [ ] png
-        [ ] termina collaborazione
-            [ ] png
-        [ ] report utente
-            [ ] png
-        [ ] proposta tag
-            [ ] png
-        [ ] gestione tag
-            [ ] 
-        [ ] visualizza log
-            [ ] png
-        [ ] gestione utenti
-            [ ] png
+        [x] modifica profilo
+        [x] proposta tag
+
+        [x] report utente
+        [x] proposta collaborazione
+
+        [x] lista collaborazioni
+        [x] accetta o rifiuta collaborazione
+        [x] termina collaborazione
+
+        admin
+            [x] gestione tag
+            [x] visualizzazione log
+            [x] gestione utenti
 
 docs
     [x] abstract
@@ -55,34 +33,31 @@ docs
             [x] funzionali
             [x] non funzionali
             [x] dominio
-            [ ] diagramma casi d'uso
-                [ ] img
+            [x] diagramma casi d'uso
         [x] scenari
-        [ ] analisi del rischio
-            [ ] valutazione dei beni
-            [ ] minacce e controlli
-            [ ] tecnologia e vulnerabilità
-            [ ] diagramma security use case e misuse case
-                [ ] img
-            [ ] security use case e misuse case
-        [ ] aggiornamento requisiti
-            [ ] funzionali
-            [ ] non funzionali
-            [ ] vocabolario
-            [ ] casi d'uso
-    [ ] analisi del problema
-        [ ] analisi funzionalità
-            [ ] tabelle funzionalità
-            [ ] tabelle informazioni di flusso
-            [ ] analisi vincoli
-            [ ] analisi interazioni
-        [ ] analisi ruoli
-            [ ] analisi ruoli e responsabilità
-            [ ] tabelle ruolo e informazioni
-        [ ] scomposizione del probelma
-            [ ] tabella scomposizione funzionalita
-            [ ] tabella sotto funzionalita
-        [ ] modello di dominio
+        [x] analisi del rischio
+            [x] valutazione dei beni
+            [x] minacce e controlli
+            [x] tecnologia e vulnerabilità
+            [x] diagramma security use case e misuse case
+            [x] security use case e misuse case
+        [x] aggiornamento requisiti
+            [x] funzionali
+            [x] non funzionali
+            [x] vocabolario
+            [x] casi d'uso
+    [x] analisi del problema
+        [x] analisi funzionalità
+            [x] tabelle funzionalità
+            [x] tabelle informazioni di flusso
+            [x] analisi vincoli
+            [x] analisi interazioni
+        [x] analisi ruoli
+            [x] analisi ruoli e responsabilità
+            [x] tabelle ruolo e informazioni
+        [x] scomposizione del probelma
+            [x] tabella scomposizione funzionalita
+        [x] modello di dominio
             [x] Accesso
                 User
                 Registrazione
@@ -262,26 +237,25 @@ docs
                     [ ] svg
                 [ ] admin
                     [ ] svg
-        [ ] piano del collaudo
-            [ ] listing
-        [ ] piano di lavoro
-            [ ] divisione dei lavori
-            [ ] sviluppi fururi
+        [x] piano del collaudo
+        [x] piano di lavoro
+            [x] divisione dei lavori
+            [x] sviluppi fururi
     [ ] progettazione
-        [ ] progettazione architetturale
-            [ ] requisiti non funzionali
-            [ ] scelte tecnologiche
-            [ ] scelta dell'architettura
-                [ ] frontend
-                [ ] backend
-                [ ] database
+        [x] progettazione architetturale
+            [x] requisiti non funzionali
+            [x] scelte tecnologiche
+            [x] scelta dell'architettura
+                [x] frontend
+                [x] backend
+                [x] database
         [ ] progettazione di dettaglio
-            [ ] dominio
+            [x] dominio
                 gestione accesso
-                    [ ] Totp
-                        [ ] value: String
-                    [ ] Qrcode
-                        [ ] data: String
+                    [x] Totp
+                        [x] value: String
+                    [x] Qrcode
+                        [x] data: String
                 gestione dei log
                     LogAccesso extends Log
                         registrazione(RegistredUser, DescrizioneLog)
@@ -307,7 +281,7 @@ docs
                     LogReport extends Log
                         setUserStatus(RegistredUser, DescrizioneLog)
                         reportUser(RegistredUser, DescrizioneLog)
-            [ ] interfacce
+            [x] interfacce
                 [x] ILog
                 [x] ILogAccesso
                 [x] ILogAccount
@@ -320,7 +294,7 @@ docs
                 [x] IUtente
                 [x] ICliente
                 [x] ICodemonkey
-                [ ] ICollaborazione
+                [x] ICollaborazione
                 [ ] svg
         [ ] progettazione di dettaglio controllers
             [ ] accesso
@@ -344,21 +318,6 @@ docs
                 [ ] svg
             [ ] amministratore
                 [ ] svg
-            ViewGestioneTag
-            HomeAmministratore
-            ViewVisualizzaLog
-            ViewGestisciUtentiRegistrati
-            ViewGestioneTag
-            HomeProfiloCodemonkey
-            ViewProfiloCodemonkey
-            ViewGestioneCollaborazioniCodemonkey
-            ViewGestioneAccountCodemonkey
-            HomeProfiloCliente
-            ViewProfiloCliente
-            ViewGestioneCollaborazioniCliente
-            ViewGestioneAccountCliente
-            ViewHomepage
-            ViewProponiLavoro           
         [ ] progettazione di dettaglio interazioni
             [ ] accesso
                 [ ] svg
@@ -373,10 +332,12 @@ docs
         [ ] progettazione persistenza
             [ ] diagramma er
                 [ ] svg
-            [ ] formato files di logs
-        [ ] progettazione collaudo
-            [ ] unit test
-            [ ] test curl
+            [x] formato files di logs
+        [x] progettazione collaudo
+            [x] unit test
+                [x] backend
+                [x] frontend
+            [x] test curl
         [ ] deployment
             [ ] artefatti
                 [ ] svg
@@ -437,9 +398,9 @@ backend
             [x] id
                 primary key int autoincrement
             [x] title
-                varchar(255)
+                varchar(256)
             [x] description
-                varchar(4095)
+                varchar(4096)
 
             [x] status
                 string
@@ -877,13 +838,13 @@ debug
             eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODQ4NTc2NDcsInVzZXJfaWQiOiJtYXJpbyJ9.mPayYPyy45Sz26vkvjus2gupb9ZrG0KdJrsSaYdctJk
 
     users
-        [ ] Charles Babbage
-        [ ] Geoge Boole
-        [ ] Alan Turing
-        [ ] Claude Shannon
+        [x] Charles Babbage
+        [x] Geoge Boole
+        [x] Alan Turing
+        [x] Claude Shannon
+        [x] John Von Neumann
+        [x] Marvin Minsky
         [ ] Norbert Weiner
-        [ ] John Von Neumann
-        [ ] Marvin Minsky
         [ ] Ray Solomonoff
         [ ] John McCarthy
         [ ] Dennis Ritchie

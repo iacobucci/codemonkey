@@ -8,12 +8,15 @@
         <span style="width: 8px;"></span>
         <img #profilePicCodemonkey mat-card-avatar src="" alt="Immagine di profilo">
         <mat-card-title>{{this.project?.title}}</mat-card-title>
-        <mat-card-subtitle><a [routerLink]="[visitUrl('company', this.project?.company)]" class="custom-link"> @{{this.project?.company}}</a> <a [routerLink]="[visitUrl('codemonkey', this.project?.codemonkey)]"class="custom-link">@{{this.project?.codemonkey}}</a></mat-card-subtitle>
+        <mat-card-subtitle style="margin-bottom: 4px;"><a [routerLink]="[visitUrl('company', this.project?.company)]" class="custom-link"> @{{this.project?.company}}</a><br> <a [routerLink]="[visitUrl('codemonkey', this.project?.codemonkey)]"class="custom-link">@{{this.project?.codemonkey}}</a></mat-card-subtitle>
         <span class="example-spacer"></span> 
 
-        <div style="align-items: center;">
+        <!-- <div style="align-items: center;">
             <app-valutazione [rating]="(this.project) ? this.project.rating : null"></app-valutazione>
-        </div>
+        </div> -->
+        <button mat-stroked-button disabled>IN ATTESA</button>
+
+
     </mat-card-header>
     <mat-divider></mat-divider>
 
