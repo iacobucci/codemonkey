@@ -20,9 +20,9 @@ TODO
         [x] termina collaborazione
 
         admin
-            [ ] gestione tag
-            [ ] visualizzazione log
-            [ ] gestione utenti
+            [x] gestione tag
+            [x] visualizzazione log
+            [x] gestione utenti
 
 docs
     [x] abstract
@@ -33,15 +33,13 @@ docs
             [x] funzionali
             [x] non funzionali
             [x] dominio
-            [ ] diagramma casi d'uso
-                [ ] img
+            [x] diagramma casi d'uso
         [x] scenari
         [x] analisi del rischio
             [x] valutazione dei beni
             [x] minacce e controlli
             [x] tecnologia e vulnerabilità
             [x] diagramma security use case e misuse case
-                [ ] img
             [x] security use case e misuse case
         [x] aggiornamento requisiti
             [x] funzionali
