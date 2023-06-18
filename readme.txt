@@ -217,26 +217,18 @@ docs
                     downloadLog()
                     visualizzaLog()
         [ ] analisi logica
-            [ ] diagramma dei package
-                [ ] svg
-            [ ] diagrammi delle classi
-                [ ] accesso
-                    [ ] svg
-                [ ] amministrazione
-                    [ ] svg
-                [ ] utenti
-                    [ ]
+            [x] diagramma dei package
+            [x] diagrammi delle classi
+                [x] accesso
+                [x] amministrazione
+                [x] utenti
+                [x] homepage
             [ ] diagrammi di sequenza
                 [ ] accesso
-                    [ ] svg
                 [ ] utente
-                    [ ] svg
                 [ ] codemonkey
-                    [ ] svg
                 [ ] cliente
-                    [ ] svg
                 [ ] admin
-                    [ ] svg
         [x] piano del collaudo
         [x] piano di lavoro
             [x] divisione dei lavori
@@ -249,7 +241,9 @@ docs
                 [x] frontend
                 [x] backend
                 [x] database
-        [ ] progettazione di dettaglio
+            [x] diagramma dei package
+            [x] diagramma dei componenti
+        [x] progettazione di dettaglio
             [x] dominio
                 gestione accesso
                     [x] Totp
@@ -295,54 +289,34 @@ docs
                 [x] ICliente
                 [x] ICodemonkey
                 [x] ICollaborazione
-                [ ] svg
-        [ ] progettazione di dettaglio controllers
-            [ ] accesso
-                [ ] svg
-            [ ] utente
-                [ ] svg
-            [ ] codemonkey
-                [ ] svg
-            [ ] cliente
-                [ ] svg
-            [ ] amministratore
-                [ ] svg
-        [ ] progettazione di dettaglio views
-            [ ] accesso
-                [ ] svg
-            [ ] utente
-                [ ] svg
-            [ ] codemonkey
-                [ ] svg
-            [ ] cliente
-                [ ] svg
-            [ ] amministratore
-                [ ] svg
+        [x] progettazione di dettaglio controllers
+            [x] accesso
+            [x] utente
+            [x] codemonkey
+            [x] cliente
+            [x] amministratore
+        [x] progettazione di dettaglio views
+            [x] accesso
+            [x] utente
+            [x] codemonkey
+            [x] cliente
+            [x] amministratore
         [ ] progettazione di dettaglio interazioni
             [ ] accesso
-                [ ] svg
             [ ] utente
-                [ ] svg
             [ ] codemonkey
-                [ ] svg
             [ ] cliente
-                [ ] svg
             [ ] amministratore
-                [ ] svg
-        [ ] progettazione persistenza
-            [ ] diagramma er
-                [ ] svg
+        [x] progettazione persistenza
+            [x] diagramma er
             [x] formato files di logs
         [x] progettazione collaudo
             [x] unit test
                 [x] backend
                 [x] frontend
             [x] test curl
-        [ ] deployment
-            [ ] artefatti
-                [ ] svg
-            [ ] diagramma di deployment
-                [ ] svg
+        [x] deployment
+            [x] artefatti
             
 backend
     migrations
