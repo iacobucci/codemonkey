@@ -1,0 +1,300 @@
+L'aggiornamento del modello del dominio consiste in una rivisitazione del sistema di accesso, con l'utilizzo di two factor authentication con un codice Qr che viene fornito all'utente in fase di registrazione, per generare un codice numerico Totp, che verrà usato per effettuare l'accesso al sistema.
+\linebreak
+\noindent\resizebox{\textwidth}{!}{
+    \begin{tikzpicture}
+        \fontsize{8}{9.5}\selectfont
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black]{RegistredUser}{0,0}
+            \attribute{username : Username}
+            \attribute{password : Password}
+            \attribute{email: Email}
+            \operation{setPassword(Password) : void}
+            \operation{setEmail(Email) : void}
+        \end{class}
+
+        %%%%%%%%%% 
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black, left=12cm of RegistredUser]{Registrazione}{0,0}
+            \operation{registra(Username, Password, Email,Tipo) : RegistredUser}
+        \end{class}
+
+        \draw [-](Registrazione.west) -- ([xshift=-0.75cm]Registrazione.west);
+        \draw [-]([xshift=-0.75cm]Registrazione.west) -- ([xshift=-0.75cm,yshift=-2.8cm]Registrazione.west);
+        \draw [-]([xshift=-0.75cm,yshift=-2.8cm]Registrazione.west) -- ([yshift=-2.8cm,xshift=-0.3cm]RegistredUser.south);
+        \draw [-{Latex}]([yshift=-2.8cm,xshift=-0.3cm]RegistredUser.south) -- ([xshift=-0.3cm]RegistredUser.south);
+
+
+        %%%%%%%%%%
+
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black, rectangle split parts=2, left=12cm of RegistredUser, yshift=-2cm]{Tipo}{0,0}
+            \attribute{CODEMONKEY}
+            \attribute{CLIENTE}
+        \end{class}
+
+        \node [above of=Tipo, node distance=0.8cm] (enumeration) {$<<$enumeration$>>$};
+
+        \draw [{Latex}-] (Tipo) -- (Registrazione);
+
+
+
+        %%%%%%%%%%
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black, left=12cm of RegistredUser, yshift=2cm]{Login}{0,0}
+            \operation{login(Username, Password, Totp) : User}
+        \end{class}
+
+        \draw [-] (Login.west) -- ([xshift=-1cm]Login.west);
+
+
+        %%%%%%%%%%
+
+        \draw [-]([xshift=-1cm]Login.west) -- ([xshift=-1cm,yshift=-5cm]Login.west);
+        \draw [-]([xshift=-1cm,yshift=-5cm]Login.west) -- ([yshift=-3cm]RegistredUser.south);
+        \draw [-{Latex}]([yshift=-3cm]RegistredUser.south) -- (RegistredUser.south);
+
+
+        %%%%%%%%%%
+
+        \begin{class} [text width=5cm, fill=green!20, draw=black, above=6cm of Login, xshift=-10cm]{User}{0,0}
+            % \attribute{username : Username}
+            % \attribute{password : Password}
+            % \attribute{email: Email}
+        \end{class}
+
+        \draw [{Latex}-] (User) -- (Login);
+        \draw [{Latex}-] (User) -- (Registrazione);
+        \draw [{Latex[open]}-,dashed] (User) -- (RegistredUser);
+
+
+        %%%%%%%%%%
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black, left=4cm of RegistredUser, yshift=0cm]{Username}{0,0}
+            \attribute{username : String}
+            \operation{getUsername() : String}
+        \end{class}
+
+        \draw [-{Latex}] (RegistredUser) -- (Username) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
+
+        \draw [-{Latex}] (Login) -- (Username) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
+
+        \draw [-{Latex}] (Registrazione) -- (Username) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
+
+
+        %%%%%%%%%%
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black, left=4cm of RegistredUser, yshift=2cm]{Password}{0,0}
+            \attribute{password : String}
+            \operation{setPassword(String) : void}
+            \operation{getPassword() : String}
+        \end{class}
+
+        \draw [-{Latex}] (RegistredUser) -- (Password) node[pos=0.25, above] {1} node[pos=0.5, above] {1};
+
+        \draw [-{Latex}] (Login) -- (Password) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
+
+        \draw [-{Latex}] (Registrazione) -- (Password) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
+
+        %%%%%%%%%%
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black, left=4cm of RegistredUser, yshift=-2cm]{Email}{0,0}
+            \attribute{email : String}
+            \operation{setEmail(String) : void}
+            \operation{getEmail() : String}
+        \end{class}
+
+        \draw [-{Latex}] (RegistredUser) -- (Email) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
+
+        \draw [-{Latex}] (Registrazione) -- (Email) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
+
+
+        %%%%%%%%%%
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black, left=4cm of RegistredUser, yshift=-4cm]{Totp}{0,0}
+            \attribute{email : String}
+            \operation{setEmail(String) : void}
+            \operation{getEmail() : String}
+        \end{class}
+
+        \draw [-{Latex}] (Login) -- (Totp) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
+
+
+        %%%%%%%%%%
+        
+        \begin{class}[text width=5cm, fill=green!20, draw=black, left=4cm of RegistredUser, yshift=-6cm]{Qrcode}{0,0}
+            \attribute{email : String}
+            \operation{setEmail(String) : void}
+            \operation{getEmail() : String}
+        \end{class}
+
+        \draw [-{Latex}] (Registrazione) -- (Qrcode) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
+
+
+        %%%%%%%%%%
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black, below=8cm of RegistredUser, xshift=-6cm]{Cliente}{0,0}
+        \end{class}
+
+        \draw [{Latex[open]}-,dashed] (RegistredUser) -- (Cliente);
+
+        %%%%%%%%%%
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black, below=8cm of RegistredUser, xshift=1cm]{Codemonkey}{0,0}
+        \end{class}
+
+        \draw [{Latex[open]}-,dashed] (RegistredUser) -- (Codemonkey);
+
+
+        %%%%%%%%%%
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black]{Log}{-18,4}
+        \end{class}
+        \draw [-{Latex[]}] (Login) -- (Log);
+        \draw [-{Latex[]}] (Registrazione) -- (Log);
+
+        %%%%%%%%%%
+        \begin{class}[text width=5cm, fill=green!20, draw=black, below=8cm of RegistredUser, xshift=-14cm]{Admin}{0,0}
+        \end{class}
+
+        \draw[-{Latex[open]},dashed] (Admin) -- (User);
+
+        \draw [-] (Login.west) -- ([xshift=-1cm]Login.west);
+        \draw [-] ([xshift=-1cm]Login.west) -- ([xshift=-3cm,yshift=-2cm]Login.west);
+        \draw [-{Latex[]}] ([xshift=-3cm,yshift=-2cm]Login.west) -- (Admin.west);
+
+
+        %%%%%%%%%%
+
+        \node [below of=RegistredUser, node distance=1.8cm] (completedisjointregistredusers) {complete, disjoint};
+        \node [below of=User, node distance=1.2cm] (completedisjointusers) {complete, disjoint};
+
+
+        % \node[draw, black, fill=white, rotate=45, minimum size=1cm, anchor=center] (my_square) at ([xshift=-1cm]Registrazione.west) {};
+
+
+    \end{tikzpicture}
+}
+
+\noindent\resizebox{\textwidth}{!}{
+    \begin{tikzpicture}
+        \fontsize{8}{9.5}\selectfont
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black]{Log}{0,0}
+            \attribute{user: RegistredUser}
+            \attribute{tipo: TipoLog}
+            \attribute{descrizione: DescrizioneLog}
+            \attribute{data: DateTime}
+        \end{class}
+
+        %%%%%%%%%% 
+        
+        \begin{class}[text width=5cm, fill=green!20, draw=black, left=4cm of Log, yshift=-9cm]{DescrizioneLog}{0,0}
+            \attribute{descrizioneLog : String}
+            \operation{getDescrizioneLog() : String}
+            \operation{setDescrizioneLog(String) : void}
+        \end{class}
+        
+        \draw [-{Latex}] (Log) -- (DescrizioneLog);
+        
+        %%%%%%%%%%
+        
+        \begin{class}[text width=5cm, fill=green!20, draw=black, left=13cm of Log, yshift=3cm]{LogAccesso}{0,0}
+            \operation{\underline{registrazione(Utente,DescrizioneLog) : Log}}
+            \operation{\underline{login(Utente,DescrizioneLog) : Log}}
+            \operation{\underline{cancella(Utente,DescrizioneLog) : Log}}
+        \end{class}
+        
+        \draw [-{Latex[open]},dashed] (LogAccesso) -- (Log);
+        
+        %%%%%%%%%% 
+
+        \begin{class}[text width=6cm, fill=green!20, draw=black, left=7cm of Log, yshift=3cm]{LogAccount}{0,0}
+            \operation{\underline{setPassword(Utente,DescrizioneLog) : Log}}
+            \operation{\underline{setBiografia(Utente,DescrizioneLog) : Log}}
+            \operation{\underline{setImmagineProfilo(Utente,DescrizioneLog) : Log}}
+            \operation{\underline{setEmail(Utente,DescrizioneLog) : Log}}
+        \end{class}
+        
+        \draw [-{Latex[open]},dashed] (LogAccount) -- (Log);
+        
+        %%%%%%%%%% 
+
+        \begin{class}[text width=7cm, fill=green!20, draw=black, left=0cm of Log, yshift=3cm]{LogCollaborazione}{0,0}
+            \operation{\underline{proponiCollaborazione(Utente,DescrizioneLog) : Log}}
+            \operation{\underline{accettaCollaborazione(Utente,DescrizioneLog) : Log}}
+            \operation{\underline{rifiutaCollaborazione(Utente,DescrizioneLog) : Log}}
+            \operation{\underline{interrompiCollaborazione(Utente,DescrizioneLog) : Log}}
+            \operation{\underline{terminaCollaborazione(Utente,DescrizioneLog) : Log}}
+        \end{class}
+        
+        \draw [-{Latex[open]},dashed] (LogCollaborazione) -- (Log);
+        
+        %%%%%%%%%% 
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black, right=1cm of Log, yshift=3cm]{LogSegnalazione}{0,0}
+            \operation{\underline{segnala(Utente,DescrizioneLog) : Log}}
+            \operation{\underline{impostaStato(Utente,DescrizioneLog) : Log}}
+        \end{class}
+        
+        \draw [-{Latex[open]},dashed] (LogSegnalazione) -- (Log);
+        
+        %%%%%%%%%% 
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black, right=8cm of Log, yshift=3cm]{LogTag}{0,0}
+            \operation{\underline{proponiTag(Utente,DescrizioneLog) : Log}}
+            \operation{\underline{approvaTag(Utente,DescrizioneLog) : Log}}
+            \operation{\underline{rifiutaTag(Utente,DescrizioneLog) : Log}}
+            \operation{\underline{setTag(Utente,DescrizioneLog) : Log}}
+        \end{class}
+        
+        \draw [-{Latex[open]},dashed] (LogTag) -- (Log);
+        
+
+        
+        %%%%%%%%%%%
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black, rectangle split parts=2, left=4cm of Segnalazione, yshift=-4cm]{TipoLog}{0,0}
+
+            \attribute{REGISTRAZIONE}
+            \attribute{LOGIN}
+            \attribute{CANCELLA}
+            \attribute{SETPASSWORD}
+            \attribute{SETBIOGRAFIA}
+            \attribute{SETIMMAGINEPROFILO}
+            \attribute{SETTAGS}
+            \attribute{SETEMAIL}
+            \attribute{PROPONICOLLABORAZIONE}
+            \attribute{MODIFICACOLLABORAZIONE}
+            \attribute{ACCETTACOLLABORAZIONE}
+            \attribute{RIFIUTACOLLABORAZIONE}
+            \attribute{INTERROMPICOLLABORAZIONE}
+            \attribute{TERMINACOLLABORAZIONE}
+            \attribute{PROPONITAG}
+            \attribute{APPROVATAG}
+            \attribute{RIFIUTATAG}
+            \attribute{SETUSERSTATUS}
+            \attribute{SEGNALAZIONEUSER}
+        \end{class}
+
+        \node [above of=TipoLog, node distance=3.7cm] (enumeration) {$<<$enumeration$>>$};
+        
+        \draw [-{Latex}] (Log) -- (TipoLog);
+        
+        %%%%%%%%%%%
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black,  below=8cm of Segnalazione, xshift=-1cm]{RegistredUser}{0,0}
+        \end{class}
+        
+        \draw [{Latex}-] (Log) -- (RegistredUser);
+        
+        %%%%%%%%%%% 
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black,  below=8cm of Segnalazione, xshift=5cm]{Admin}{0,0}
+            \operation{downloadLog(): File}
+            \operation{getLog(TipoLog): List \textless Log \textgreater}
+        \end{class}
+
+        \draw [{Latex}-] (Log) -- (Admin);
+    \end{tikzpicture}
+
+}

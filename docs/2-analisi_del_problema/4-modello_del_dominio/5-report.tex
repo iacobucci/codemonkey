@@ -38,11 +38,11 @@
             \operation{segnalazioneUser(RegistredUser, Motivazione) : void}
         \end{class}
         
-        \draw [-{Latex[open]}] (RegistredUser) -- (Segnalazione);
+        \draw [] (RegistredUser) -- (Segnalazione);
         
-        \draw [{Diamond}-] (Segnalazione) -- (Motivazione);
+        \draw [-{Latex}] (Segnalazione) -- (Motivazione);
         
-        \draw [{Diamond}-] (RegistredUser) -- (StatoUser);
+        \draw [-{Latex}] (RegistredUser) -- (StatoUser);
         
         %%%%%%%%%%
         
@@ -50,17 +50,17 @@
             \operation{setStatoUser(RegistredUser,StatoUser) : void}
         \end{class}
         
-        \draw [-{Latex[open]}] (Admin) -- (RegistredUser);
+        \draw [-{Latex}] (Admin) -- (RegistredUser);
 
-        \draw [-{Latex[open]}] (Admin) -- (StatoUser);
+        \draw [-{Latex}] (Admin) -- (StatoUser);
         
         %%%%%%%%%%
 
         
         \begin{class}[text width=5cm, fill=green!20, draw=black, below=9cm of Segnalazione]{Log}{0,0}
         \end{class}
-        \draw [-{Latex[]}] (RegistredUser) -- (Log);
-        \draw [-{Latex[]}] (Admin) -- (Log);
+        \draw [-{Latex}] (RegistredUser) -- (Log);
+        \draw [-{Latex}] (Admin) -- (Log);
 
        
        

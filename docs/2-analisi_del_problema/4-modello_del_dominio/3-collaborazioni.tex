@@ -28,7 +28,7 @@
 
         \node [above of=StatoCollaborazione, node distance=1.6cm] (enumeration) {$<<$enumeration$>>$};
 
-        \draw [{Diamond}-] (Collaborazione) -- (StatoCollaborazione) node[pos=0.25, above] {1} node[pos=0.75, above] {n};
+        \draw [-{Latex}] (Collaborazione) -- (StatoCollaborazione) node[pos=0.25, above] {1} node[pos=0.75, above] {n};
 
         %%%%%%%%%%
         
@@ -41,7 +41,7 @@
             \operation{getCommento() : String}
         \end{class}
 
-        \draw [{Diamond}-] (Collaborazione) -- (Valutazione) node[pos=0.25, above] {1} node[pos=0.75, above] {n};
+        \draw [-{Latex}] (Collaborazione) -- (Valutazione) node[pos=0.25, above] {1} node[pos=0.75, above] {n};
 
         %%%%%%%%%% 
 
@@ -51,7 +51,7 @@
             \operation{getNome() : String}
         \end{class}
 
-        \draw [{Diamond}-] (Collaborazione) -- (Tag) node[pos=0.25, above] {1} node[pos=0.75, above] {n};
+        \draw [-{Latex}] (Collaborazione) -- (Tag) node[pos=0.25, above] {1} node[pos=0.75, above] {n};
 
         %%%%%%%%%% 
 
@@ -61,7 +61,7 @@
             \operation{getTitolo() : String}
         \end{class}
 
-        \draw [{Diamond}-] (Collaborazione) -- (Titolo) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
+        \draw [-{Latex}] (Collaborazione) -- (Titolo) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
 
 
         %%%%%%%%%% 
@@ -72,7 +72,7 @@
             \operation {getDescrizioneCollaborazione() : String}
         \end{class}
 
-        \draw [{Diamond}-] (Collaborazione) -- (DescrizioneCollaborazione) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
+        \draw [-{Latex}] (Collaborazione) -- (DescrizioneCollaborazione) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
 
         %%%%%%%%%% 
 
@@ -83,12 +83,12 @@
             \operation{terminaCollaborazione(Collaborazione, Valutazione) : void}
         \end{class}
 
-        \draw [-{Stealth[]}, dashed] (Collaborazione) -- (Cliente) node[pos=0.25, right] {1} node[pos=0.75, left] {n};
+        \draw [-] (Collaborazione) -- (Cliente) node[pos=0.25, right] {1} node[pos=0.75, left] {n};
 
 
-        \draw [{Diamond}-] (Cliente.west) -- ++(-1,0cm) node[midway, above] {1};
+        \draw [-] (Cliente.west) -- ++(-1,0cm) node[midway, above] {1};
         \draw [-] ([xshift=-1cm]Cliente.west) -- ([xshift=-1cm]Valutazione.west);
-        \draw [-] ([xshift=-1cm]Valutazione.west) -- (Valutazione.west) node[midway, above] {n};
+        \draw [-{Latex}] ([xshift=-1cm]Valutazione.west) -- (Valutazione.west) node[midway, above] {n};
         
         %%%%%%%%%% 
 
@@ -98,7 +98,7 @@
             \operation{interrompiCollaborazione(Collaborazione) : void}
         \end{class}
 
-        \draw [-{Stealth[]}, dashed] (Collaborazione) -- (Codemonkey) node[pos=0.25, above] {1} node[pos=0.75, above] {n};
+        \draw [-] (Collaborazione) -- (Codemonkey) node[pos=0.25, above] {1} node[pos=0.75, above] {n};
         
         %%%%%%%%%%%
 

@@ -22,7 +22,7 @@
             \operation{getUsername() : String}
         \end{class}
 
-        \draw [{Diamond}-] (RegistredUser) -- (Username) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
+        \draw [-{Latex}] (RegistredUser) -- (Username) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
         
         %%%%%%%%%%
 
@@ -31,7 +31,7 @@
             \operation{setPassword(String) : void}
         \end{class}
 
-        \draw [{Diamond}-] (RegistredUser) -- (Password) node[pos=0.25, above] {1} node[pos=0.5, above] {1};
+        \draw [-{Latex}] (RegistredUser) -- (Password) node[pos=0.25, above] {1} node[pos=0.5, above] {1};
         
         %%%%%%%%%%
 
@@ -41,7 +41,7 @@
             \operation{getEmail() : String}
         \end{class}
 
-        \draw [{Diamond}-] (RegistredUser) -- (Email) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
+        \draw [-{Latex}] (RegistredUser) -- (Email) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
         
 
         %%%%%%%%%%
@@ -52,7 +52,7 @@
             \operation{getBiografia() : String}
         \end{class}
 
-        \draw [{Diamond}-] (RegistredUser) -- (Biografia) node[pos=0.25, above] {1} node[pos=0.50, above] {1};
+        \draw [-{Latex}] (RegistredUser) -- (Biografia) node[pos=0.25, above] {1} node[pos=0.50, above] {1};
 
         %%%%%%%%%%
 
@@ -62,7 +62,7 @@
             \operation{getImmagineProfilo() : Bytes}
         \end{class}
         
-        \draw [{Diamond}-] (RegistredUser) -- (ImmagineProfilo) node[pos=0.25, above] {1} node[pos=0.35, above] {1};
+        \draw [-{Latex}] (RegistredUser) -- (ImmagineProfilo) node[pos=0.25, above] {1} node[pos=0.35, above] {1};
         
         %%%%%%%%%%
 
@@ -78,7 +78,7 @@
             \operation{getTag() : String}
         \end{class}
 
-        \draw [{Latex[open]}-] (RegistredUser) -- (Codemonkey);
+        \draw [{Latex[open]}-,dashed] (RegistredUser) -- (Codemonkey);
 
         %%%%%%%%%%
         
@@ -86,7 +86,7 @@
             \attribute{name: String}
         \end{class}
         
-        \draw [{Diamond}-] (Codemonkey) -- (Tag);
+        \draw [-{Latex}] (Codemonkey) -- (Tag);
         
         %%%%%%%%%%
         

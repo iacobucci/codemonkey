@@ -18,7 +18,7 @@
 
         \node [above of=StatoTag, node distance=1.6cm] (enumeration) {$<<$enumeration$>>$};
 
-        \draw [{Diamond}-] (Tag) -- (StatoTag) node[pos=0.25, above] {1} node[pos=0.75, above] {n};
+        \draw [-{Latex}] (Tag) -- (StatoTag) node[pos=0.25, above] {1} node[pos=0.75, above] {n};
 
         %%%%%%%%%%
         
@@ -26,7 +26,7 @@
             \operation{proponiTag(String) : void}
         \end{class}
         
-        \draw [-{Latex[open]}] (Codemonkey) -- (Tag);
+        \draw [-{Latex}] (Codemonkey) -- (Tag);
 
         %%%%%%%%%%
         
@@ -35,7 +35,7 @@
             \operation{rifiutaTag(Tag) : void}
         \end{class}
         
-        \draw [-{Latex[open]}] (Admin) -- (Tag);
+        \draw [-{Latex}] (Admin) -- (Tag);
 
         %%%%%%%%%%%
 

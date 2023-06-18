@@ -1,10 +1,11 @@
 TODO
     review di analisi dei requisiti    
+    review di lucidchart
+    casi d'uso
+    security use case e misuse case
     modello di dominio
         cambiare associazioni
     modello di dominio di dettaglio
-        totp
-        qrcode
         log
             logaccesso
             logcollaborazione
@@ -13,6 +14,37 @@ TODO
             logaccount
     collaudo
         unit test
+    screenshot 
+        [x] login
+            [ ] png
+        [x] registrazione
+            [ ] png
+        [ ] home
+            [ ] png
+        [x] profilo
+            [ ] png
+        [ ] modifica profilo
+            [ ] png
+        [ ] proposta collaborazione
+            [ ] png
+        [ ] lista collaborazioni
+            [ ] png
+        [ ] accetta o rifiuta collaborazione
+            [ ] png
+        [ ] interrompi collaborazione
+            [ ] png
+        [ ] termina collaborazione
+            [ ] png
+        [ ] report utente
+            [ ] png
+        [ ] proposta tag
+            [ ] png
+        [ ] gestione tag
+            [ ] 
+        [ ] visualizza log
+            [ ] png
+        [ ] gestione utenti
+            [ ] png
 
 docs
     [x] abstract
@@ -30,6 +62,8 @@ docs
             [ ] valutazione dei beni
             [ ] minacce e controlli
             [ ] tecnologia e vulnerabilità
+            [ ] diagramma security use case e misuse case
+                [ ] img
             [ ] security use case e misuse case
         [ ] aggiornamento requisiti
             [ ] funzionali
@@ -51,6 +85,9 @@ docs
         [ ] modello di dominio
             [x] Accesso
                 User
+                Registrazione
+                Login
+                Tipo
                 Username
                     username
                 Email
@@ -61,10 +98,9 @@ docs
                     username
                     email
                     password
-                progettazione
-                    ActionAccesso
-                        registrazione 
-                        login
+                Cliente
+                Codemonkey
+                Admin
             [x] Account
                 RegistredUser
                     username
@@ -220,11 +256,11 @@ docs
                     [ ] svg
                 [ ] utente
                     [ ] svg
-                [ ] admin
-                    [ ] svg
                 [ ] codemonkey
                     [ ] svg
                 [ ] cliente
+                    [ ] svg
+                [ ] admin
                     [ ] svg
         [ ] piano del collaudo
             [ ] listing
@@ -241,51 +277,78 @@ docs
                 [ ] database
         [ ] progettazione di dettaglio
             [ ] dominio
+                gestione accesso
+                    [ ] Totp
+                        [ ] value: String
+                    [ ] Qrcode
+                        [ ] data: String
                 gestione dei log
                     LogAccesso extends Log
-                        registrazione
-                        login
-                        cancella
+                        registrazione(RegistredUser, DescrizioneLog)
+                        login(RegistredUser, DescrizioneLog)
+                        cancella(RegistredUser, DescrizioneLog)
                     LogAccount extends Log
-                        setPassword
-                        setBiografia
-                        setImmagineProfilo
-                        setTags
-                        setEmail
+                        setPassword(RegistredUser, DescrizioneLog)
+                        setBiografia(RegistredUser, DescrizioneLog)
+                        setImmagineProfilo(RegistredUser, DescrizioneLog)
+                        setTags(RegistredUser, DescrizioneLog)
+                        setEmail(RegistredUser, DescrizioneLog)
                     LogCollaborazione extends Log
-                        proponiCollaborazione
-                        modificaCollaborazione
-                        accettaCollaborazione
-                        rifiutaCollaborazione
-                        interrompiCollaborazione
-                        terminaCollaborazione
+                        proponiCollaborazione(RegistredUser, DescrizioneLog)
+                        modificaCollaborazione(RegistredUser, DescrizioneLog)
+                        accettaCollaborazione(RegistredUser, DescrizioneLog)
+                        rifiutaCollaborazione(RegistredUser, DescrizioneLog)
+                        interrompiCollaborazione(RegistredUser, DescrizioneLog)
+                        terminaCollaborazione(RegistredUser, DescrizioneLog)
                     LogTag extends Log
-                        proponiTag
-                        approvaTag
-                        rifiutaTag
+                        proponiTag(RegistredUser, DescrizioneLog)
+                        approvaTag(RegistredUser, DescrizioneLog)
+                        rifiutaTag(RegistredUser, DescrizioneLog)
                     LogReport extends Log
-                        setUserStatus
-                        reportUser
-                [ ] aggiunta di Action
-                [ ] aggiunta di TOTP
+                        setUserStatus(RegistredUser, DescrizioneLog)
+                        reportUser(RegistredUser, DescrizioneLog)
             [ ] interfacce
-                ILog
-                ILogAccesso
-                ILogAccount
-                ILogCollaborazione
-                ILogSegnalazione
-                ILogTag
-                IAutenticazione
-                IRegistrazione
-                IAmministratore
-                IUtente
-                ICliente
-                ICodemonkey
-        [ ] viste applicazione
+                [x] ILog
+                [x] ILogAccesso
+                [x] ILogAccount
+                [x] ILogCollaborazione
+                [x] ILogSegnalazione
+                [x] ILogTag
+                [x] IAutenticazione
+                [x] IRegistrazione
+                [x] IAmministratore
+                [x] IUtente
+                [x] ICliente
+                [x] ICodemonkey
+                [ ] ICollaborazione
+                [ ] svg
+        [ ] progettazione di dettaglio controllers
+            [ ] accesso
+                [ ] svg
+            [ ] utente
+                [ ] svg
+            [ ] codemonkey
+                [ ] svg
+            [ ] cliente
+                [ ] svg
+            [ ] amministratore
+                [ ] svg
+        [ ] progettazione di dettaglio views
+            [ ] accesso
+                [ ] svg
+            [ ] utente
+                [ ] svg
+            [ ] codemonkey
+                [ ] svg
+            [ ] cliente
+                [ ] svg
+            [ ] amministratore
+                [ ] svg
             ViewGestioneTag
             HomeAmministratore
             ViewVisualizzaLog
             ViewGestisciUtentiRegistrati
+            ViewGestioneTag
             HomeProfiloCodemonkey
             ViewProfiloCodemonkey
             ViewGestioneCollaborazioniCodemonkey
@@ -294,14 +357,31 @@ docs
             ViewProfiloCliente
             ViewGestioneCollaborazioniCliente
             ViewGestioneAccountCliente
-        [ ] altri diagrammi di sequenza
-            [ ] salvataggio log
-            [ ] accesso con TOTP
+            ViewHomepage
+            ViewProponiLavoro           
+        [ ] progettazione di dettaglio interazioni
+            [ ] accesso
+                [ ] svg
+            [ ] utente
+                [ ] svg
+            [ ] codemonkey
+                [ ] svg
+            [ ] cliente
+                [ ] svg
+            [ ] amministratore
+                [ ] svg
         [ ] progettazione persistenza
-        [ ] formato log
+            [ ] diagramma er
+                [ ] svg
+            [ ] formato files di logs
         [ ] progettazione collaudo
+            [ ] unit test
+            [ ] test curl
         [ ] deployment
-        [ ] hosting
+            [ ] artefatti
+                [ ] svg
+            [ ] diagramma di deployment
+                [ ] svg
             
 backend
     migrations
@@ -661,14 +741,9 @@ frontend
 
         [ ] /
             parametri
-                [ ] radio button
-                    ?tipo=company
-                    ?tipo=codemonkey
-                    ?tipo=tutto
-                [ ] select.tecnologie
+                [x] select.tecnologie
                     ?tecnologie=<tecnologia1,tecnologia2,...>
-            [ ] lista card.codemonkey
-            [ ] lista card.company
+            [x] lista card codemonkey
 
 
         [ ] /settings
