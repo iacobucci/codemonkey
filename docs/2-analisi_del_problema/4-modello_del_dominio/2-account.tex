@@ -1,0 +1,100 @@
+\noindent\resizebox{\textwidth}{!}{
+    \begin{tikzpicture}
+        \fontsize{8}{9.5}\selectfont
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black]{RegistredUser}{0,0}
+            \attribute{username : Username}
+            \attribute{password : Password}
+            \attribute{email: Email}
+            \attribute{biografia: Biografia}
+            \attribute{immagineProfilo: ImmagineProfilo}    
+            \operation{setPassword(Password) : void}
+            \operation{setEmail(Email) : void}
+            \operation{setBiografia(Biografia) : void}
+            \operation{setImmagineProfilo(ImmagineProfilo) : void}
+            \operation{eliminaAccount() : void}
+        \end{class}
+
+        %%%%%%%%%% 
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black, left=4cm of RegistredUser, yshift=0cm]{Username}{0,0}
+            \attribute{username : String}
+            \operation{getUsername() : String}
+        \end{class}
+
+        \draw [-{Latex}] (RegistredUser) -- (Username) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
+        
+        %%%%%%%%%%
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black, left=4cm of RegistredUser, yshift=2cm]{Password}{0,0}
+            \attribute{password : String}
+            \operation{setPassword(String) : void}
+        \end{class}
+
+        \draw [-{Latex}] (RegistredUser) -- (Password) node[pos=0.25, above] {1} node[pos=0.5, above] {1};
+        
+        %%%%%%%%%%
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black, left=4cm of RegistredUser, yshift=-2cm]{Email}{0,0}
+            \attribute{email : String}
+            \operation{setEmail(String) : void}
+            \operation{getEmail() : String}
+        \end{class}
+
+        \draw [-{Latex}] (RegistredUser) -- (Email) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
+        
+
+        %%%%%%%%%%
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black, left=4cm of RegistredUser, yshift=-4cm]{Biografia}{0,0}
+            \attribute{biografia : String}
+            \operation{setBiografia(String) : void}
+            \operation{getBiografia() : String}
+        \end{class}
+
+        \draw [-{Latex}] (RegistredUser) -- (Biografia) node[pos=0.25, above] {1} node[pos=0.50, above] {1};
+
+        %%%%%%%%%%
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black, left=4cm of RegistredUser, yshift=-6cm]{ImmagineProfilo}{0,0}
+            \attribute{immagineProfilo : Bytes}
+            \operation{setImmagineProfilo(Bytes) : void}
+            \operation{getImmagineProfilo() : Bytes}
+        \end{class}
+        
+        \draw [-{Latex}] (RegistredUser) -- (ImmagineProfilo) node[pos=0.25, above] {1} node[pos=0.35, above] {1};
+        
+        %%%%%%%%%%
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black, below=8cm of RegistredUser, xshift=-6cm]{Cliente}{0,0}
+        \end{class}
+        
+        \draw [{Latex[open]}-, dashed] (RegistredUser) -- (Cliente) node[pos=0.25, above] {1} node[pos=0.75, above] {1};
+        
+        %%%%%%%%%%
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black, below=8cm of RegistredUser, xshift=1cm]{Codemonkey}{0,0}
+            \operation{setTag(Tag) : void}
+            \operation{getTag() : String}
+        \end{class}
+
+        \draw [{Latex[open]}-,dashed] (RegistredUser) -- (Codemonkey);
+
+        %%%%%%%%%%
+        
+        \begin{class}[text width=5cm, fill=green!20, draw=black]{Tag} {1,-11}
+            \attribute{name: String}
+        \end{class}
+        
+        \draw [-{Latex}] (Codemonkey) -- (Tag);
+        
+        %%%%%%%%%%
+        
+        \begin{class}[text width=5cm, fill=green!20, draw=black, right=3cm of RegistredUser]{Log}{0,0}
+        \end{class}
+        \draw [-{Latex[]}] (RegistredUser) -- (Log);
+
+
+
+    \end{tikzpicture}
+}

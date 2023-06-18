@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t codemonkey-database .
+docker build -t iacobucci/codemonkey-database .

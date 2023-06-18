@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t codemonkey-frontend .
+docker build -t iacobucci/codemonkey-frontend .

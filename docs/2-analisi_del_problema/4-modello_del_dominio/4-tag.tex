@@ -1,0 +1,48 @@
+\noindent\resizebox{\textwidth}{!}{
+    \begin{tikzpicture}
+        \fontsize{8}{9.5}\selectfont
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black]{Tag}{0,0}
+            \attribute{nome: String}
+            \attribute{stato: StatoTag}
+            \attribute{dataProposta: DateTime}
+        \end{class}
+
+        %%%%%%%%%% 
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black, rectangle split parts=2, left=4cm of Tag]{StatoTag}{0,0}
+            \attribute{IN\_ATTESA}
+            \attribute{APPROVATO}
+            \attribute{RIFIUTATO}
+        \end{class}
+
+        \node [above of=StatoTag, node distance=1.6cm] (enumeration) {$<<$enumeration$>>$};
+
+        \draw [-{Latex}] (Tag) -- (StatoTag) node[pos=0.25, above] {1} node[pos=0.75, above] {n};
+
+        %%%%%%%%%%
+        
+        \begin{class}[text width=5cm, fill=green!20, draw=black, below=4cm of Tag, xshift=-4cm]{Codemonkey}{0,0}
+            \operation{proponiTag(String) : void}
+        \end{class}
+        
+        \draw [-{Latex}] (Codemonkey) -- (Tag);
+
+        %%%%%%%%%%
+        
+        \begin{class}[text width=5cm, fill=green!20, draw=black, below=4cm of Tag, xshift=4cm]{Admin}{0,0}
+            \operation{accettaTag(Tag) : void}
+            \operation{rifiutaTag(Tag) : void}
+        \end{class}
+        
+        \draw [-{Latex}] (Admin) -- (Tag);
+
+        %%%%%%%%%%%
+
+        \begin{class}[text width=5cm, fill=green!20, draw=black, below=6cm of Tag]{Log}{0,0}
+        \end{class}
+        \draw [-{Latex[]}] (Codemonkey) -- (Log);
+        \draw [-{Latex[]}] (Admin) -- (Log);
+
+    \end{tikzpicture}
+}

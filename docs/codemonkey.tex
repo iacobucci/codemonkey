@@ -16,13 +16,10 @@
 \renewcommand{\contentsname}{Sommario}
 \tableofcontents
 
-\pagebreak
-
 %%%%%%%%%%%%%%%%%%%%
 
 \subsection{Abstract}
 \input{0-abstract/1-abstract.tex}
-\pagebreak
 
 %%%%%%%%%%%%%%%%%%%%
 
@@ -40,6 +37,8 @@
 \input{1-analisi_dei_requisiti/3-requisiti/2-requisiti_non_funzionali.tex}
 \subsubsection{Requisiti di dominio}
 \input{1-analisi_dei_requisiti/3-requisiti/3-requisiti_di_dominio.tex}
+\subsubsection{Diagramma dei casi d'uso}
+\input{1-analisi_dei_requisiti/3-requisiti/4-casi_uso.tex}
 
 \subsection{Scenari}
 \input{1-analisi_dei_requisiti/4-scenari/1-scenari.tex}
@@ -51,8 +50,10 @@
 \input{1-analisi_dei_requisiti/5-analisi_del_rischio/2-minacce_e_controlli.tex}
 \subsubsection{Tecnologia e vulnerabilità}
 \input{1-analisi_dei_requisiti/5-analisi_del_rischio/3-tecnologia_e_vulnerabilita.tex}
+\subsubsection{Diagramma dei security use case e misuse case}
+\input{1-analisi_dei_requisiti/5-analisi_del_rischio/4-security_use_case_e_misuse_case.tex}
 \subsubsection{Security use case e misuse case}
-\input{1-analisi_dei_requisiti/5-analisi_del_rischio/4-security_use_case_and_misuse_case_scenari.tex}
+\input{1-analisi_dei_requisiti/5-analisi_del_rischio/5-security_use_case_and_misuse_case_scenari.tex}
 
 \subsection{Aggiornamento requisiti}
 \subsubsection{Requisiti funzionali aggiornati}
@@ -85,30 +86,129 @@
 \subsubsection{Tabelle dei ruoli e delle informazioni}
 \input{2-analisi_del_problema/2-analisi_ruoli/2-tabelle_ruolo_e_informazioni.tex}
 \pagebreak
+
 \subsection{Scomposizione del Problema}
 \subsubsection{Scomposizione delle funzionalità}
-\input{2-analisi_del_problema/2-analisi_ruoli/3-scomposizione_del_problema.tex}
-\subsubsection{Sotto funzionalitá}
-\input{2-analisi_del_problema/2-analisi_ruoli/4-sotto_funzionalita.tex}
+\input{2-analisi_del_problema/3-scomposizione_del_problema/1-scomposizione_delle_funzionalita.tex}
+% \subsubsection{Sotto funzionalitá}
+% \input{2-analisi_del_problema/3-scomposizione_del_problema/2-sotto_funzionalita.tex}
 
 \subsection{Analisi del modello di dominio}
 \subsubsection{Accesso al sistema}
-\input{2-analisi_del_problema/3-modello_del_dominio/1-accesso.tex}
+\input{2-analisi_del_problema/4-modello_del_dominio/1-accesso.tex}
 \subsubsection{Gestione dell'account personale}
-\input{2-analisi_del_problema/3-modello_del_dominio/2-account.tex}
+\input{2-analisi_del_problema/4-modello_del_dominio/2-account.tex}
 \subsubsection{Gestione delle Collaborazioni}
-\input{2-analisi_del_problema/3-modello_del_dominio/3-collaborazioni.tex}
+\input{2-analisi_del_problema/4-modello_del_dominio/3-collaborazioni.tex}
 \subsubsection{Gestione dei Tag}
-\input{2-analisi_del_problema/3-modello_del_dominio/4-tag.tex}
+\input{2-analisi_del_problema/4-modello_del_dominio/4-tag.tex}
 \subsubsection{Gestione delle Segnalazioni}
-\input{2-analisi_del_problema/3-modello_del_dominio/5-report.tex}
+\input{2-analisi_del_problema/4-modello_del_dominio/5-report.tex}
 \subsubsection{Gestione dei Log}
-\input{2-analisi_del_problema/3-modello_del_dominio/6-log.tex}
+\input{2-analisi_del_problema/4-modello_del_dominio/6-log.tex}
 
+\subsection{Analisi logica}
+\subsubsection{Diagramma dei package}
+\input{2-analisi_del_problema/5-analisi_logica/1-diagramma_dei_package/1-diagramma_dei_package.tex}
+\subsubsection{Diagrammi delle classi}
+\subsubsubsection{Accesso}
+\input{2-analisi_del_problema/5-analisi_logica/2-diagrammi_delle_classi/1-accesso.tex}
+\subsubsubsection{Amministrazione}
+\input{2-analisi_del_problema/5-analisi_logica/2-diagrammi_delle_classi/2-amministrazione.tex}
+\input{2-analisi_del_problema/5-analisi_logica/2-diagrammi_delle_classi/3-utenti.tex}
+\subsubsubsection{Utenti}
+\subsubsection{Diagrammi di sequenza}
+\subsubsubsection{Accesso}
+\input{2-analisi_del_problema/5-analisi_logica/3-diagrammi_di_sequenza/1-accesso.tex}
+\subsubsubsection{Utente}
+\input{2-analisi_del_problema/5-analisi_logica/3-diagrammi_di_sequenza/2-utente.tex}
+\subsubsubsection{Codemonkey}
+\input{2-analisi_del_problema/5-analisi_logica/3-diagrammi_di_sequenza/3-codemonkey.tex}
+\subsubsubsection{Cliente}
+\input{2-analisi_del_problema/5-analisi_logica/3-diagrammi_di_sequenza/4-cliente.tex}
+\subsubsubsection{Amministratore}
+\input{2-analisi_del_problema/5-analisi_logica/3-diagrammi_di_sequenza/5-amministratore.tex}
+
+\subsection{Piano del collaudo}
+\input{2-analisi_del_problema/6-piano_del_collaudo/1-piano_del_collaudo.tex}
+
+\subsection{Piano di lavoro}
+\input{2-analisi_del_problema/7-piano_di_lavoro/1-divisione_dei_lavori.tex}
+\input{2-analisi_del_problema/7-piano_di_lavoro/2-sviluppi_futuri.tex}
+
+%%%%%%%%%%%%%%%%%%%%
 
 \pagebreak
-\input{2-analisi_del_problema/5-piano_di_lavoro/1-divisione_dei_lavori.tex}
-\input{2-analisi_del_problema/5-piano_di_lavoro/2-sviluppi_futuri.tex}
+\section{Progettazione}
 
+\subsection{Progettazione architetturale}
+\subsubsection{Requisiti non funzionali}
+\input{3-progettazione/1-progettazione_architetturale/1-requisiti_non_funzionali.tex}
+\subsubsection{Scelta dell'architettura}
+\input{3-progettazione/1-progettazione_architetturale/2-scelta_dell_architettura.tex}
+\subsubsection{Diagramma dei package}
+\input{3-progettazione/1-progettazione_architetturale/3-diagramma_dei_package.tex}
+\subsubsection{Diagramma dei componenti}
+\input{3-progettazione/1-progettazione_architetturale/4-diagramma_dei_componenti.tex}
+
+\subsection{Progettazione di dettaglio}
+\subsubsection{Diagramma di dettglio del dominio}
+\input{3-progettazione/2-progettazione_di_dettaglio/1-diagramma_di_dettaglio_del_dominio.tex}
+\subsubsection{Diagramma delle interfacce}
+\input{3-progettazione/2-progettazione_di_dettaglio/2-diagramma_delle_interfacce.tex}
+
+\subsection{Progettazione di dettaglio controllers}
+\subsubsubsection{Accesso}
+\input{3-progettazione/3-progettazione_di_dettaglio_controller/1-accesso.tex}
+\subsubsubsection{Utente}
+\input{3-progettazione/3-progettazione_di_dettaglio_controller/2-utente.tex}
+\subsubsubsection{Codemonkey}
+\input{3-progettazione/3-progettazione_di_dettaglio_controller/3-codemonkey.tex}
+\subsubsubsection{Cliente}
+\input{3-progettazione/3-progettazione_di_dettaglio_controller/4-cliente.tex}
+\subsubsubsection{Admin}
+\input{3-progettazione/3-progettazione_di_dettaglio_controller/5-amministratore.tex}
+
+\subsection{Progettazione di dettaglio views}
+\subsubsubsection{Views per Accesso}
+\input{3-progettazione/4-progettazione_di_dettaglio_views/1-accesso.tex}
+\subsubsubsection{Views rese disponibili all'Utente}
+\input{3-progettazione/4-progettazione_di_dettaglio_views/2-utente.tex}
+\subsubsubsection{Views rese disponibili alla Codemonkey}
+\input{3-progettazione/4-progettazione_di_dettaglio_views/3-codemonkey.tex}
+\subsubsubsection{Views rese disponibili al Cliente}
+\input{3-progettazione/4-progettazione_di_dettaglio_views/4-cliente.tex}
+\subsubsubsection{Views rese disponibili all'Admin}
+\input{3-progettazione/4-progettazione_di_dettaglio_views/5-amministratore.tex}
+
+\subsection{Progettazione delle interazioni}
+\subsubsubsection{Accesso}
+\input{3-progettazione/5-progettazione_delle_interazioni/1-accesso.tex}
+\subsubsubsection{Utente}
+\input{3-progettazione/5-progettazione_delle_interazioni/2-utente.tex}
+\subsubsubsection{Codemonkey}
+\input{3-progettazione/5-progettazione_delle_interazioni/3-codemonkey.tex}
+\subsubsubsection{Cliente}
+\input{3-progettazione/5-progettazione_delle_interazioni/4-cliente.tex}
+\subsubsubsection{Admin}
+\input{3-progettazione/5-progettazione_delle_interazioni/5-amministratore.tex}
+
+\subsection{Progettazione della persistenza}
+\subsubsection{Diagramma E-R}
+\input{3-progettazione/6-progettazione_della_persistenza/1-diagramma_er.tex}
+\subsubsection{Formato files di log}
+\input{3-progettazione/6-progettazione_della_persistenza/2-formato_files_log.tex}
+
+\subsection{Progettazione del collaudo}
+\subsubsection{Test di unità}
+\input{3-progettazione/7-progettazione_del_collaudo/1-test_di_unita.tex}
+\subsubsection{Test di API}
+\input{3-progettazione/7-progettazione_del_collaudo/2-test_di_api.tex}
+
+\subsection{Progettazione del deployment}
+\subsubsection{Artefatti}
+\input{3-progettazione/8-progettazione_del_deployment/1-artefatti.tex}
+\subsubsection{Diagramma di deployment}
+\input{3-progettazione/8-progettazione_del_deployment/2-diagramma_di_deployment.tex}
 
 \end{document}

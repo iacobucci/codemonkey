@@ -8,13 +8,37 @@
     \tableCyan      Postcondizioni                                 &
     \ntableCyan     Scenario Principale                            &
     \begin{enumerate}
-        \item L'amministratore si autentica
-        \item L'amministratore accede alla sezione dei Log
-        \item L'amministraatore del gruppo può visualizzare i Log di sistema
-        \item L'amministratore puó scaricare il file di Log
+        \item Un Amministratore si autentica
+        \item L'Amministratore accede alla sezione dei Log
+        \item L'Amministraatore può visualizzare i Log di sistema
+        \item L'Amministratore puó scaricare il file di Log
     \end{enumerate}
     \tableCyan      Scenari Alternativi                            &
     \ntableCyan     Requisiti NF                                   &
     \tableCyan      Punti Aperti                                   &
+    \n
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}
+    {|>{\arraybackslash}m{3cm}|>{\arraybackslash}X|}
+
+    \hline \rowcolor{tableCyan!37}
+    \large\centering\textbf{Titolo}     & \large\centering\textbf{Autenticazione}
+    \tableCyan      Descrizione         & Sezione dedicata all'Autenticazione di un Utente
+    \ntableCyan     Attori              & Utente
+    \tableCyan      Relazioni           & Gestione Profilo, Proponi Lavoro, Fornisci recensione, Area personale, Gestione Utenti  
+    \ntableCyan     Precondizioni       & L'Utente deve essere giá registrato all'interno del sistema oppure deve essere un Amministratore.
+    \tableCyan      Postcondizioni      & L'Utente sarà Utente Autenticato oppure Amministratore.
+    \ntableCyan     Scenario Principale &
+    \begin{enumerate}
+        \item Un utente registrato avrà ricevuto un Qr code per l'autenticazione a due fattori
+        \item L'Utente salva il Qr code sul proprio Autenticatore
+        \item L'Utente che vole accedere fornisce le credenziali di accesso al sistema e il Totp generato dall'autenticatore   \item L'Utente conferma di voler entrare con le credenziali immesse
+        \item Nel caso in cui le credenziali siano corrette, Codemonkey o Cliente saranno reindirizzati alla Gestione del Profilo, invece l'Amministratore sará reindirizzato verso la Gestione del Sistema
+    \end{enumerate}
+    \tableCyan      Scenari Alternativi & 3.1 Nel caso l'Utente abbia dimenticato la Password oppure non abbia più la possibilità di usare il suo Autenticatore, può chiedere ad un Amministratore la reimpostazione della password e un nuovo Qr code.
+     \newline 4.1 Nel caso che i dati forniti per l'autenticazione siano incorretti verrá visualizzato un messaggio di errore\newline Nel caso l'utente sia stato bloccato da un Amministratore verrá fornito un messaggio di errore.
+    \ntableCyan     Requisiti NF        & 
+    \tableCyan      Punti Aperti        & 
     \n
 \end{tabularx}
