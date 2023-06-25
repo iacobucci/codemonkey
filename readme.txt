@@ -1,28 +1,5 @@
 TODO
-    review di lucidchart
-    casi d'uso
-    security use case e misuse case
-    collaudo
-        unit test
-    screenshot 
-        [x] login
-        [x] registrazione
-        [x] home
-        [x] profilo
-        [x] modifica profilo
-        [x] proposta tag
-
-        [x] report utente
-        [x] proposta collaborazione
-
-        [x] lista collaborazioni
-        [x] accetta o rifiuta collaborazione
-        [x] termina collaborazione
-
-        admin
-            [x] gestione tag
-            [x] visualizzazione log
-            [x] gestione utenti
+    refactoring company cliente
 
 docs
     [x] abstract
@@ -38,7 +15,7 @@ docs
         [x] analisi del rischio
             [x] valutazione dei beni
             [x] minacce e controlli
-            [x] tecnologia e vulnerabilità
+            [x] tag e vulnerabilità
             [x] diagramma security use case e misuse case
             [x] security use case e misuse case
         [x] aggiornamento requisiti
@@ -216,24 +193,24 @@ docs
                 Admin
                     downloadLog()
                     visualizzaLog()
-        [ ] analisi logica
+        [x] analisi logica
             [x] diagramma dei package
             [x] diagrammi delle classi
                 [x] accesso
                 [x] amministrazione
                 [x] utenti
                 [x] homepage
-            [ ] diagrammi di sequenza
-                [ ] accesso
-                [ ] utente
-                [ ] codemonkey
-                [ ] cliente
-                [ ] admin
+            [x] diagrammi di sequenza
+                [x] accesso
+                [x] utente
+                [x] codemonkey
+                [x] cliente
+                [x] admin
         [x] piano del collaudo
         [x] piano di lavoro
             [x] divisione dei lavori
             [x] sviluppi fururi
-    [ ] progettazione
+    [x] progettazione
         [x] progettazione architetturale
             [x] requisiti non funzionali
             [x] scelte tecnologiche
@@ -301,12 +278,12 @@ docs
             [x] codemonkey
             [x] cliente
             [x] amministratore
-        [ ] progettazione di dettaglio interazioni
-            [ ] accesso
-            [ ] utente
-            [ ] codemonkey
-            [ ] cliente
-            [ ] amministratore
+        [x] progettazione di dettaglio interazioni
+            [x] accesso
+            [x] utente
+            [x] codemonkey
+            [x] cliente
+            [x] amministratore
         [x] progettazione persistenza
             [x] diagramma er
             [x] formato files di logs
@@ -330,7 +307,7 @@ backend
             [x] email
                 varchar(255)
             [x] type
-                enum (codemonkey, company, admin)
+                enum (codemonkey, cliente, admin)
 
         [x] codemonkeys extends user
             [x] first_name
@@ -393,10 +370,10 @@ backend
                 
             [x] codemonkey
                 foreign key a codemonkey
-            [x] company
-                foreign key a company
-            [x] tecnologies
-                foreign key a tecnologie
+            [x] cliente
+                foreign key a cliente
+            [x] tags
+                foreign key a tag
         
         [x] technologies_projects
             [x] project
@@ -448,42 +425,42 @@ backend
             delete
             accept?project=<project.id>
             reject?project=<project.id>
-            settings?nome=password&<nome>&cognome=<cognome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
-            suggest?tecnologia=<tecnologia>
-            report?[codemonkey=<codemonkey.username>||company=<codemonkey.username>]
-        company
+            gestione?nome=password&<nome>&cognome=<cognome>&bio=<bio>&propic=<propic>&email=<email>&tag=<tag1,tag2,...>
+            suggest?tag=<tag>
+            report?[codemonkey=<codemonkey.username>||cliente=<codemonkey.username>]
+        cliente
             signup
             login
             logout
-            new?title=<project.id>&codemonkey=<codemonkey.username>&descrizione=<descrizione>&tecnologie=<tecnologia1,tecnologia2,...>
+            new?title=<project.id>&codemonkey=<codemonkey.username>&descrizione=<descrizione>&tag=<tag1,tag2,...>
             terminate?project=<project.id>
-            settings?nome=password&<nome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
-            suggest?tecnologia=<tecnologia>
-            report?[codemonkey=<codemonkey.username>||company=<codemonkey.username>]
+            gestione?nome=password&<nome>&bio=<bio>&propic=<propic>&email=<email>&tag=<tag1,tag2,...>
+            suggest?tag=<tag>
+            report?[codemonkey=<codemonkey.username>||cliente=<codemonkey.username>]
         admin
             login
             logout
-            set?[codemonkey=<codemonkey.username>||company=<codemonkey.username>]&stato=<attivo|bannato|sospeso>
-            add?tecnologia=<tecnologia>
-            approve?tecnologia=<tecnologia>
-            rifiuta?tecnologia=<tecnologia>
+            set?[codemonkey=<codemonkey.username>||cliente=<codemonkey.username>]&stato=<attivo|bannato|sospeso>
+            add?tag=<tag>
+            approve?tag=<tag>
+            rifiuta?tag=<tag>
 
     endpoint
         /api
             endpoint di popolamento dell'interfaccia
                 /feed
                     [x] /home
-                        si filtra per codemonkey||company||tutti
-                        si filtra per tecnologia
+                        si filtra per codemonkey||cliente||tutti
+                        si filtra per tag
                         l'ordine è casuale
                         vengono inviate 5 card alla volta
                         bisogna controllare quale card sono state gia visualizzate
-                        /home?seen=<username1,username2,...>&technologies=<tecnologia1,tecnologia2,...>&type=<codemonkey|company|all>
+                        /home?seen=<username1,username2,...>&technologies=<tag1,tag2,...>&type=<codemonkey|cliente|all>
                     [x] /user
-                        si filtra per tecnologia
+                        si filtra per tag
                         l'ordine è project.suggest_time.asc
                         vengono inviate 5 card alla volta
-                        /user?page=<num>&technologies=<tecnologia1,tecnologia2,...>
+                        /user?page=<num>&technologies=<tag1,tag2,...>
                     [x] technologies
                 /dashboard
                     [x] actions
@@ -513,7 +490,7 @@ backend
                     [x] /login
                     [x] /delete
                     [x] /logout
-                    [x] /settings
+                    [x] /gestione
                     [x] /rating_by_technologies
                         /propic
                         [x] /upload
@@ -534,38 +511,34 @@ frontend
                         [x] component valutazione
                     [x] mailto
                     [x] bio
-                    [x] tecnologie
-                        [x] list.tecnologie
+                    [x] tag
+                        [x] list.tag
 
-                [x] company
+                [x] cliente
                     [x] username
-                        link a /company/<username>
+                        link a /cliente/<username>
                     [x] nome
                     [x] propic
                     [x] mailto
                     [x] bio
-                    [x] tecnologie
-                        [x] list.tecnologie
+                    [x] tag
+                        [x] list.tag
 
             [x] project
-                [x] company
-                    [x] link a /company/<username>
+                [x] cliente
+                    [x] link a /cliente/<username>
                     [x] username
-                    [x] nome
                     [x] propic
-                [ ] codemonkey
+                [x] codemonkey
                     [x] link a /codemonkey/<username>
                     [x] username
-                    [x] nome
-                    [x] cognome
                     [x] propic
                 [x] titolo
                 [x] descrizione
-                [x] tecnologie
-                    [x] list.tecnologie
+                [x] tag
 
                 se data_inizio != null
-                    se loggato come company e <username>==<company.username>
+                    se loggato come cliente e <username>==<cliente.username>
                         [ ] termina
                             [ ] dialog lavoro.valutazione
                     [ ] data_inizio
@@ -584,19 +557,8 @@ frontend
                             [ ] dialog lavoro.conferma
                                 action=rifiuta
 
-        [ ] row
-            [ ] azione
-                [ ] data
-                [ ] nome
-                [ ] username
-                    se codemonkey
-                        link a /codemonkey/<codemonkey.username>
-                    se company
-                        link a /company/<company.username>
-                [ ] descrizione
-        
         [ ] dialog
-            [ ] signup
+            [x] signup
                 [x] qrdata
 
             [ ] errore
@@ -615,79 +577,65 @@ frontend
                     [ ] accetta
                     [ ] rifiuta
                 [ ] valutazione
-
-            [ ] ban
-                [ ] conferma
-        
-        [ ] form
-            [x] signup
-                [x] username
-                [x] email
-                    [x] controllo email valida
-                [x] password
-                [x] password_confirmation
-                    [x] controllo password == password_confirmation
-                [x] company/codemonkey
-
-            [x] login
-                [x] username
-                [x] password
-                [x] totp
-
-            [ ] settings
-                [ ] upload
-            [ ] suggest
-            [ ] rate
-            [ ] ban
-        
-        [ ] select
-            [ ] tecnologie
-                [ ] lista di checkbox scrollabile verticalmente
             
-        [ ] list
-            [ ] tecnologie
-                [ ] lista scrollabile orizzontalmente
-                se in card codemonkey
-                    [ ] link a /codemonkey/<codemonkey.username>?tecnologia=<tecnologia.id>
-                se in card company
-                    [ ] link a /codemonkey/<codemonkey.username>?tecnologia=<tecnologia.id>
-
-        [ ] chips
-            [ ] tecnologie
+            [ ] segnala
+                [ ] motivazione
+                [ ] conferma
+            
+            [ ] proponi collaborazione
+                [ ] titolo
+                [ ] descrizione
+                [ ] tag
+                [ ] conferma
 
         
+        [ ] tag
+            [ ] lista scrollabile orizzontalmente
+            se in card codemonkey
+                [ ] link a /codemonkey/<codemonkey.username>?tag=<tag.id>
+            se in card cliente
+                [ ] link a /codemonkey/<codemonkey.username>?tag=<tag.id>
+
         [ ] valutazione
             [ ] n/5
             [ ] 0..5 stelline
+        
+        [ ] tag selector component
+            [ ] keyboard search and add
+            [ ] collegamento con componente padre
+                [ ] binding del dato al parametro nell'url
 
     pages
-        [ ] /signup
-            form.signup
-            [ ] forward a /impostazioni
+        [x] /signup
+            [x] username
+            [x] email
+                [x] controllo email valida
+            [x] password
+            [x] password_confirmation
+                [x] controllo password == password_confirmation
+            [x] cliente/codemonkey
+            [ ] forward a /gestione
                         
         [ ] /login
-            form.login
+            [x] username
+            [x] password
+            [x] totp
             se codemonkey  
-                [ ] vai a /feed?tipo=company
-            se company
+                [ ] vai a /collaborazioni
+            se cliente
                 [ ] vai a /feed?tipo=codemonkey
             se admin
                 [ ] vai a /dashboard
 
         [ ] /
             parametri
-                [x] select.tecnologie
-                    ?tecnologie=<tecnologia1,tecnologia2,...>
+                [x] tag selector
+                    ?tag=<tag1,tag2,...>
             [x] lista card codemonkey
 
 
-        [ ] /settings
-            form.impostazioni
-                se codemonkey
-                    [ ] nome
-                    [ ] cognome
-                se company
-                    [ ] nome
+        [ ] /gestione
+            se utente registrato
                 [ ] email
                     [ ] controllo email valida
                 password
@@ -697,21 +645,21 @@ frontend
                         [ ] controllo nuova password == conferma nuova password
                 [ ] bio
                 [ ] propic
-                [ ] tecnologie
-                    [ ] select.tecnologie
-
-        [ ] /dashboard
-            [ ] tabella con row.azioni
-                [ ] filtri
-                    [ ] data
-                    [ ] username
-                        se codemonkey
-                            [ ] link a /codemonkey/<username>
-                        se company
-                            [ ] link a /company/<username>
-                    [ ] titolo
-                    [ ] descrizione
+                [ ] tag
+                    [ ] select.tag
+            se admin
+                [ ] gestione tags
+                    [ ] accetta
+                    [ ] rifiuta
+                [ ] visualizza log
+                    [ ] scarica log
+                    filtri
+                        [ ] tipo
+                        [ ] username
+                        [ ] data
+                [ ] gestione utenti
                 
+
         [ ] /codemonkey/<username>
             se loggato come <username>
                 [ ] lista card.l
@@ -719,59 +667,22 @@ frontend
                 [ ] lista lavori.in_corso
                     [ ] card.lavoro
             
-            se loggato come company
+            se loggato come cliente
                 [ ] /proponi
                     parametri
                         [ ] titolo
                         [ ] descrizione
-                        [ ] tecnologie
-                            [ ] selezione da select.tecnologia
-                        [ ] company = <company.username>
+                        [ ] tag
+                            [ ] selezione da select.tag
+                        [ ] cliente = <cliente.username>
                         [ ] codemonkey = <codemonkey.username>
-                        [ ] data_inizio = null
+                        [ ] data_inizio = Date.now()
                         [ ] data_fine = null
                         [ ] valutazione = null
                         [ ] commento = null
 
-
-            se loggato come admin
-                [ ] tasto ban
-
             [ ] lista card.lavoro
-            
-            [ ] /lavori
-                se loggato come <username>
-                    [ ] lista card di lavoro con accettato = false
-                [ ] /<id_lavoro>
-                    [ ] card lavoro
-                se lavori in corso
-                    [ ] card lavoro in corso
-
-                [ ] lavori effettuati
                 
-        [ ] /company/<username>
-            se loggato come <username>
-                [ ] tasto modifica
-                [ ] /modifica
-                    parametri
-                        [ ] email
-                        [ ] password
-                            [ ] vecchia password
-                            [ ] nuova password
-                            [ ] conferma nuova password
-                        [ ] nome
-                        [ ] cognome
-                        [ ] bio
-                        [ ] propic
-                            [ ] caricamento immagine
-                        [ ] tecnologie
-                [ ] tasto logout
-                    [ ] /logout
-
-            [ ] /lavori
-                [ ] lavoro in corso
-                [ ] lavori effettuati
-
 deployment
     [x] development environment
         [x] rails
