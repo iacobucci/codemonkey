@@ -89,7 +89,9 @@ username lettura/scrittura
 
 uml
 	sintassi usata: non UML!!
+
 	mischiamo classi con controller con attributi
+
 	password nel modello del dominio: NO!
 		così è in memoria
 	
@@ -149,6 +151,9 @@ diagrammi di sequenza
 		
 		segnalazione
 		crea oggetto segnalazione
+
+
+PROGETTAZIONE:
 
 API
 	non scrivere così:
@@ -214,3 +219,32 @@ mancano i diagrammi di deployment!!
 	
 	
 Cose da aggiustare principalmente: DIAGRAMMA DI DOMINIO
+
+---
+
+Errori elencati dal professore sulla prima parte
+
+Seconda parte
+
+[ ] Le precondizioni nella gestione account non è precondizione, ma deve tipo apprire ngeli usi
+
+[x] Un cliente non sospeso è precondizione per fare la richiesta (non scenario alternativo)
+Per lo scenario di errore progettazione dell' interfaccia
+
+Ultimo scenario rimuovere il log che è stato trattato sott
+
+Il backup non va fatto prima della progettazione della persistenza
+
+
+UML valerio saprà
+
+
+Interazione col modello di dominio nei diagrammi di sequenza ????
+
+Si prevede di effettuare test automatici sulle API del sistema sostituisci api con entità (sezione dedicata al test del programma) 
+
+
+Rimuovere il log dal dbms, viene salvato su un file
+
+Nel diagramma di seq bisogna passare dal broker (era tipo per leggere e salvare dati, non lo conosco quinid sarà il broker in mezzo a fare maggie)
+Scegliere se mettere nel diagramma di dettaglio se abbiamo una funzione che demanda la scrittura a controller log o fa il controller scrittura su log

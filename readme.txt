@@ -1,6 +1,35 @@
 TODO
     refactoring company cliente
 
+revision
+    ATTENZIONE ALL'UPDATE DEI RIFERIMENTI
+    analisi dei requisiti
+        requisiti
+            [x] spostare r17f in r4nf
+            [x] spostare r2nf in r18f
+            [x] spostare r4nf in r19f
+            [ ] togliere requisito non funzionale backup
+        diagramma casi d'uso
+            [ ] togliere homepage
+        scenari
+            [x] spostare "Un Cliente Sospeso non puó fare alcuna richiesta di Lavoro" in precodnizioni
+    analisi del problema
+        tabella informazioni flusso
+            modifica dati personali
+                [ ] togliere salva modifiche
+            modifica password
+                [ ] togliere salva modifiche
+        analisi dei ruoli e delle responsabilità
+            [ ] cambiare numerosità da "potenzialmente infinito" a stima
+        tabella ruolo informazioni
+            [ ] username è lettura/scrittura
+        modello del dominio
+            [ ] togliere frecce con punta nera
+        diagramma dei package
+            [ ] scegliere cosa fare con log
+        
+    progettazione
+
 docs
     [x] abstract
     [x] analisi dei requisiti   
