@@ -1,0 +1,29 @@
+@startuml
+	class Segnalazione{
+		- mittente: RegistredUser
+		- destinatario: RegistredUser
+		- motivazione: String
+		- data: DateTime
+	}
+
+	class RegistredUser {
+		- stato: StatoUser
+		segnala(RegistredUser, String): Segnalazione
+	}
+
+	enum StatoUser {
+		IN_ATTESA
+		ATTIVO
+		LIMITATO
+		SOSPESO
+		BLOCCATO
+	}
+
+	class Admin {
+		impostaStato(RegistredUser,StatoUser): void
+	}
+
+	StatoUser -- RegistredUser
+	RegistredUser -- Segnalazione
+
+@enduml

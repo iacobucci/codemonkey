@@ -1,0 +1,23 @@
+@startuml
+class User{
+}
+
+class RegistredUser{
+	- username : String
+	- email: String
+}
+
+class Cliente{
+}
+
+class Codemonkey{
+}
+
+class Admin{
+}
+
+User <|-- RegistredUser
+User <|-- Admin
+RegistredUser <|-- Cliente
+RegistredUser <|-- Codemonkey
+@enduml

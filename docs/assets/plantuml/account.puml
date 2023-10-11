@@ -1,0 +1,34 @@
+@startuml
+
+class RegistredUser {
+	- username : String
+	- email : String
+	- biografia: String
+	- immagineProfilo: ImmagineProfilo
+}
+
+class Cliente {
+
+}
+
+class Codemonkey {
+	- tags: Tag[]
+}
+
+class ImmagineProfilo {
+	- immagine : byte[]
+}
+
+class Tag{
+	- nome : String
+}
+
+ImmagineProfilo -- RegistredUser
+
+RegistredUser <|-- Cliente
+RegistredUser <|-- Codemonkey
+
+Codemonkey -- Tag
+
+
+@enduml

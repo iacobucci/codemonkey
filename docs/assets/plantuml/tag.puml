@@ -1,0 +1,27 @@
+
+@startuml
+enum StatoTag{
+	IN_ATTESA
+	APPROVATO
+	RIFIUTATO
+}
+
+class Tag{
+	- nome: String
+	- stato: StatoTag
+	- dataProposta: DateTime
+}
+
+class Codemonkey {
+	proponiTag(String): Tag
+}
+
+class Admin {
+	accettaTag(Tag): Tag
+	rifiutaTag(Tag): Tag
+}
+
+StatoTag -- Tag
+
+
+@enduml

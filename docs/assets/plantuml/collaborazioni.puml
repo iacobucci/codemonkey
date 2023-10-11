@@ -1,0 +1,53 @@
+@startuml
+class Collaborazione{
+	- id : int
+	- cliente : Cliente
+	- codemonkey : Codemonkey
+	- tags : Tag[]
+	- stato: StatoCollaborazione
+	- valutazione: Valutazione
+	- dataProposta: DateTime
+	- dataAccettazione: DateTime
+	- dataTerminazione: DateTime
+}
+
+class Cliente{
+	- collaborazioni: Collaborazione[]
+	proponiCollaborazione(Codemonkey, Tag[], String, String): Collaborazione
+	modificaCollaborazione(Collaborazione, Codemonkey, Tag[], String, String): Collaborazione
+	terminaCollaborazione(Collaborazione, Valutazione): Collaborazione
+}
+
+class Codemonkey{
+	- valutazione: Valutazione
+	- collaborazioni: Collaborazione[]
+	accettaCollaborazione(Collaborazione): Collaborazione
+	rifiutaCollaborazione(Collaborazione): Collaborazione
+	terminaCollaborazione(Collaborazione, Valutazione): Collaborazione
+}
+
+class Tag {
+	- nome: String
+}
+
+enum StatoCollaborazione {
+	PROPOSTA
+	ACCETTATA
+	RIFIUTATA
+	INTERROTTA
+	TERMINATA
+}
+
+class Valutazione {
+	- rating: float
+	- commento: String
+}
+
+Tag -- Collaborazione
+Valutazione -- Collaborazione
+StatoCollaborazione -- Collaborazione
+Collaborazione -- Cliente
+Collaborazione -- Codemonkey
+Valutazione -- Codemonkey
+
+@enduml

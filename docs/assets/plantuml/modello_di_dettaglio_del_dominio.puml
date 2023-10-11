@@ -1,0 +1,167 @@
+@startuml
+
+class User{
+}
+
+class RegistredUser{
+	- username : String
+	- email: String
+}
+
+class RegistredUser {
+	- username : String
+	- email : String
+	- biografia: String
+	- immagineProfilo: ImmagineProfilo
+}
+
+class Codemonkey {
+	- tags: Tag[]
+}
+
+class ImmagineProfilo {
+	- immagine : byte[]
+}
+
+class Tag{
+	- nome : String
+}
+
+class Collaborazione{
+	- id : int
+	- cliente : Cliente
+	- codemonkey : Codemonkey
+	- tags : Tag[]
+	- stato: StatoCollaborazione
+	- valutazione: Valutazione
+	- dataProposta: DateTime
+	- dataAccettazione: DateTime
+	- dataTerminazione: DateTime
+}
+
+class Cliente{
+	- collaborazioni: Collaborazione[]
+	proponiCollaborazione(Codemonkey, Tag[], String, String): Collaborazione
+	modificaCollaborazione(Collaborazione, Codemonkey, Tag[], String, String): Collaborazione
+	terminaCollaborazione(Collaborazione, Valutazione): Collaborazione
+}
+
+class Codemonkey{
+	- valutazione: Valutazione
+	- collaborazioni: Collaborazione[]
+	accettaCollaborazione(Collaborazione): Collaborazione
+	rifiutaCollaborazione(Collaborazione): Collaborazione
+	terminaCollaborazione(Collaborazione, Valutazione): Collaborazione
+}
+
+class Tag {
+	- nome: String
+}
+
+enum StatoCollaborazione {
+	PROPOSTA
+	ACCETTATA
+	RIFIUTATA
+	INTERROTTA
+	TERMINATA
+}
+
+class Valutazione {
+	- rating: float
+	- commento: String
+}
+
+enum TipoLog{
+	REGISTRAZIONE
+	LOGIN
+	CANCELLA
+	SETPASSWORD
+	SETBIOGRAFIA
+	SETIMMAGINEPROFILO
+	SETTAGS
+	SETEMAIL
+	PROPONICOLLABORAZIONE
+	MODIFICACOLLABORAZIONE
+	ACCETTACOLLABORAZIONE
+	RIFIUTACOLLABORAZIONE
+	INTERROMPICOLLABORAZIONE
+	TERMINACOLLABORAZIONE
+	PROPONITAG
+	APPROVATAG
+	RIFIUTATAG
+	SETUSERSTATUS
+	SEGNALAZIONEUSER
+}
+
+class Log {
+	user: RegistredUser
+	tipo: TipoLog
+	descrizione: String
+	data: DateTime
+}
+
+class Segnalazione{
+	- mittente: RegistredUser
+	- destinatario: RegistredUser
+	- motivazione: String
+	- data: DateTime
+}
+
+class RegistredUser {
+	- stato: StatoUser
+	segnala(RegistredUser, String): Segnalazione
+}
+
+enum StatoUser {
+	IN_ATTESA
+	ATTIVO
+	LIMITATO
+	SOSPESO
+	BLOCCATO
+}
+
+class Admin {
+	impostaStato(RegistredUser,StatoUser): void
+}
+
+enum StatoTag{
+	IN_ATTESA
+	APPROVATO
+	RIFIUTATO
+}
+
+class Tag{
+	- nome: String
+	- stato: StatoTag
+	- dataProposta: DateTime
+}
+
+class Codemonkey {
+	proponiTag(String): Tag
+}
+
+class Admin {
+	accettaTag(Tag): Tag
+	rifiutaTag(Tag): Tag
+}
+
+User <|-- RegistredUser: Extends
+User <|-- Admin: Extends
+RegistredUser <|-- Cliente: Extends
+RegistredUser <|-- Codemonkey: Extends
+
+ImmagineProfilo <-- RegistredUser
+Codemonkey --> Tag
+Tag <-- Collaborazione
+Valutazione <-- Collaborazione
+Valutazione <-- Codemonkey
+StatoCollaborazione <-- Collaborazione
+Collaborazione <--> Cliente
+Collaborazione <--> Codemonkey
+TipoLog <-- Log
+Log --> RegistredUser
+StatoUser <-- RegistredUser
+RegistredUser <-- Segnalazione
+StatoTag <-- Tag
+
+@enduml
