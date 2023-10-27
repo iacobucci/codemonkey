@@ -13,6 +13,7 @@ revision
             [ ] togliere homepage
         scenari
             [x] spostare "Un Cliente Sospeso non puó fare alcuna richiesta di Lavoro" in precodnizioni
+
     analisi del problema
         tabella informazioni flusso
             modifica dati personali
@@ -24,7 +25,7 @@ revision
         tabella ruolo informazioni
             [ ] username è lettura/scrittura
         modello del dominio
-            [ ] togliere frecce con punta nera
+            [ ] controllare da dettaglio a problema
         diagramma dei package
             [ ] scegliere cosa fare con log
         

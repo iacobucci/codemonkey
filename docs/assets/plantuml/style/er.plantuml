@@ -1,0 +1,167 @@
+' This is a plantuml style file
+' To use this style include it into your plantuml diagrams, e.g.:
+' !include modern-style.plantuml
+
+' Color schema
+!$primaryColor = "#E6E6E63F"
+!$secondaryColor = "#cccccc"
+
+' General settings
+hide empty methods
+hide empty attributes
+hide circle
+
+skinparam {
+    DefaultFontName Helvetica 
+    defaultTextAlignment center
+    RoundCorner 14
+    Shadowing false
+
+    ' Title Styling
+    TitleFontSize 24
+    TitleFontStyle Bold
+
+    ' Class Diagrams
+    minClassWidth 125
+    maxClassWidth 300
+    nodesep 30
+    ranksep 30
+    CircledCharacterRadius 10
+    CircledCharacterFontSize 8
+    CircledCharacterFontColor Gray
+    Class {
+        hide circle
+        FontSize 16
+        ' FontStyle Bold
+        BackgroundColor $primaryColor
+        BorderThickness 0.5
+        BorderColor Gray
+        ArrowThickness 2
+        ArrowColor Gray
+        AttributeIconSize 9
+    }
+
+    ' Sequence Diagrams
+    Sequence {
+        MessageAlign Center
+        FontSize 16
+        FontStyle Bold
+        ParticipantBackgroundColor $primaryColor
+        ParticipantBorderColor Gray
+        ParticipantFontStyle Bold
+        BorderColor Gray
+        ArrowThickness 1.1
+        ArrowColor Gray
+        LifeLineBorderThickness 1
+        LifeLineBorderColor Gray
+        ActorBackgroundColor $primaryColor
+        ActorBorderColor Gray
+        ActorBorderThickness 2
+        ActorFontStyle Bold
+    }
+
+    ' UseCase Diagrams
+    UseCase {
+        FontSize 16
+        FontStyle Bold
+        BorderColor Gray
+        ArrowThickness 1.1
+        ArrowColor Gray
+        ActorBackgroundColor $primaryColor
+        BackgroundColor $primaryColor
+        ActorBorderColor Gray
+        ActorBorderThickness 2
+        ActorFontStyle Bold
+    }
+
+    ' Activity Diagrams
+    Activity {
+        BorderColor Gray
+        ArrowThickness 1.1
+        ArrowColor Gray
+        BackgroundColor $primaryColor
+    }
+
+    ' Component Diagrams
+    Component {
+        BorderColor Gray
+        ArrowThickness 1.1
+        ArrowColor Gray
+        BackgroundColor $primaryColor
+    }
+    InterfaceBackgroundColor $primaryColor
+    InterfaceBorderColor Gray
+
+    ' State Diagrams
+    State {
+        BorderColor Gray
+        ArrowThickness 1.1
+        ArrowColor Gray
+        BackgroundColor $primaryColor
+    }
+
+    ' Deployment Elements
+    FrameBackgroundColor $primaryColor
+    FrameBorderColor Gray
+    AgentBackgroundColor $primaryColor
+    AgentBorderColor Gray
+    ArtifactBackgroundColor $primaryColor
+    ArtifactBorderColor Gray
+    BoundaryBackgroundColor $primaryColor
+    BoundaryBorderColor Gray
+    CardBackgroundColor $primaryColor
+    CardBorderColor Gray
+    CloudBackgroundColor $primaryColor
+    CloudBorderColor Gray
+    CollectionsBackgroundColor $primaryColor
+    CollectionsBorderColor Gray
+    ControlBackgroundColor $primaryColor
+    ControlBorderColor Gray
+    DatabaseBackgroundColor $primaryColor
+    DatabaseBorderColor Gray
+    EntityBackgroundColor $primaryColor
+    EntityBorderColor Gray
+    FileBackgroundColor $primaryColor
+    FileBorderColor Gray
+    FolderBackgroundColor $primaryColor
+    FolderBorderColor Gray
+    NodeBackgroundColor $primaryColor
+    NodeBorderColor Gray
+    PackageBackgroundColor $primaryColor
+    PackageBorderColor Gray
+    QueueBackgroundColor $primaryColor
+    QueueBorderColor Gray
+    StackBackgroundColor $primaryColor
+    StackBorderColor Gray
+    RectangleBackgroundColor $primaryColor
+    RectangleBorderColor Gray
+    StorageBackgroundColor $primaryColor
+    StorageBorderColor Gray
+
+    ' Objects 
+    Object {
+        BackgroundColor $primaryColor
+        BorderColor Gray
+        FontStyle Bold
+    }
+
+    ' Notes
+    Note {
+        BackgroundColor $secondaryColor
+        BorderThickness 1
+        BorderColor White
+        FontSize 10
+    }
+}
+
+' !include ../examples/diagrams/class.plantuml
+' !include ../examples/diagrams/sequence.plantuml
+' !include ../examples/diagrams/usecase.plantuml
+' !include ../examples/diagrams/activity.plantuml
+' !include ../examples/diagrams/component.plantuml
+' !include ../examples/diagrams/state.plantuml
+' !include ../examples/diagrams/deployment.plantuml
+' !include ../examples/diagrams/object.plantuml
+' !include ../examples/diagrams/timing.plantuml
+
+
