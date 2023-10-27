@@ -1,37 +1,79 @@
 @startuml
 !include style/er.plantuml
 
-
 !define ENTITY entity
 
 !define PRIMARY_KEY <<PK>>
 !define FOREIGN_KEY <<FK>>
 
 ENTITY Codemonkeys {
-  + username : STRING <<PRIMARY_KEY>>
-  + email : STRING 
-  + tag: STRING
+  - username: STRING <<PRIMARY_KEY>>
+  + email: STRING 
+  + biografia: STRING
+  + password_digest: STRING
+  + stato: STRING
+  + rating: FLOAT
 }
 
 ENTITY Clienti {
-  + username : STRING <<PRIMARY_KEY>>
-  + email : STRING 
+  - username: STRING <<PRIMARY_KEY>>
+  + stato: STRING
+  + password_digest: STRING
 }
 
 ENTITY Admins {
-  + username : STRING <<PRIMARY_KEY>>
+  - username: STRING <<PRIMARY_KEY>>
+  + password_digest: STRING
 }
 
 ENTITY Collaborazioni {
-  + id : INT <<PRIMARY_KEY>>
-  + codemonkey : STRING <<FOREIGN_KEY>>
+  - id: INT <<PRIMARY_KEY>>
+  - codemonkey: STRING <<FOREIGN_KEY>>
+  - cliente: STRING <<FOREIGN_KEY>>
+  + descrizione: STRING
+  + data_proposta: DATETIME
+  + data_inizio: DATETIME
+  + data_fine: DATETIME
+  + rating: FlOAT
+  + commento: STRING
 }
 
 ENTITY Tags {
-  + id : INT <<PRIMARY_KEY>>
+  - id: INT <<PRIMARY_KEY>>
+  + nome: STRING
+  + data_proposta: DATETIME
+  + stato: STRING
+}
+
+ENTITY CodemonkeysTags {
+  - codemonkey: STRING <<FOREIGN_KEY>>
+  - tag: STRING <<FOREIGN_KEY>>
+}
+
+ENTITY CollaborazioniTags {
+  - collaborazione: STRING <<FOREIGN_KEY>>
+  - tag: STRING <<FOREIGN_KEY>>
+}
+
+ENTITY Segnalazioni {
+  - id: INT <<PRIMARY_KEY>>
+  - mittente: STRING <<FOREIGN_KEY>>
+  - destinatatrio: STRING <<FOREIGN_KEY>>
+  + motivazione: STRING
+  + orario: DATETIME
 }
 
 
+Codemonkeys "1" --o "N" Collaborazioni
+Clienti "1" --o "N" Collaborazioni
 
-Codemonkeys "1" --o "N" Collaborazioni : Partecipa a
+Codemonkeys "1" --o "N" CodemonkeysTags
+Tags "1" --o "N" CodemonkeysTags
+
+Collaborazioni "1" --o "N" CollaborazioniTags
+Tags "1" --o "N" CollaborazioniTags
+
+Codemonkeys "1" --o "N" Segnalazioni
+Clienti "1" --o "N" Segnalazioni
+
 @enduml
