@@ -1,4 +1,4 @@
-@startuml
+@startuml modello_di_dettaglio_del_dominio
 
 class User{
 }

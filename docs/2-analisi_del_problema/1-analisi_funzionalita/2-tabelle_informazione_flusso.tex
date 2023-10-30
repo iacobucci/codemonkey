@@ -20,7 +20,7 @@
             \multicolumn{5}{|c|}{\Large\textbf{Registrazione}}
             \headerFlusso
             \n  Username & Semplice & Medio      & Input & Lunghezza di Massimo 32 caratteri\newline Non saranno accettati caratteri speciali
-            \n  Password & Semplice  & Molto Alto & Input & Almeno 8 caratteri Massimo 32
+            \n  Password & Semplice & Molto Alto & Input & Almeno 8 caratteri Massimo 32
             \n
         \end{tabularx}\label{tab:monkeytable:problema:tabFlusso:registrazione}}
 
@@ -37,23 +37,26 @@
         \end{tabularx}\label{tab:monkeytable:problema:tabFlusso:autenticazione}}
 
 
-    \resizebox{1\textwidth}{!}{
-        \begin{tabularx}{1.1\textwidth}
-            {|>{\centering}m{2.7cm}|>{\centering}m{1.9cm}|>{\centering}m{2.6cm}|>{\centering}m{2.2cm}|>{\raggedright} X|}
-            \hline
-            \rowcolor{tableGreen!70}
-            \multicolumn{5}{|c|}{\Large\textbf{Homepage}}
-            \headerFlusso
-            \n               Profilo pubblico Codemonkey & Complesso & Pubblico & Output &
-            \tabularnewline \textbf{Composto da:}        &           &          &        &
-            \tabularnewline  Tag            & Semplice  & Pubblico & Output & Filtri di Massimo 32 caratteri, Massimo 32 filtri per Codemonkey
-            \tabularnewline Biografia                  & Semplice  & Pubblico & Output &  Massimo 4096 caratteri
-            \tabularnewline Valutazioni Codemonkey       & Semplice & Pubblico & Output & Le Valutazioni generali e filtrate delle Codemonkey andranno da un minimo di 0 a un Massimo di 5 stelle
-            \tabularnewline Immagine Profilo Codemonkey  & Semplice  & Pubblico & Output & Immagine di dimensioni limitate a 400x400 pixel
-            \tabularnewline Lista Collaborazioni passate & Semplice  & Pubblico & Output &
-            \n              Ricerca Codemonkey           & Semplice  & Pubblico & Input & La ricerca avviene per lista di Tag
-            \n
-        \end{tabularx}\label{tab:monkeytable:problema:tabFlusso:homepage}}
+    % IL professore ha chiarito che la homepage non é una funzionalitá del nostro sistema, ma sará un qualcosa che dovrá coparire piú avanti in progettazione, nel dubbio lascio qui come l'ho fatta e strutturata.
+
+    % \resizebox{1\textwidth}{!}{
+    %     \begin{tabularx}{1.1\textwidth}
+    %         {|>{\centering}m{2.7cm}|>{\centering}m{1.9cm}|>{\centering}m{2.6cm}|>{\centering}m{2.2cm}|>{\raggedright} X|}
+    %         \hline
+    %         \rowcolor{tableGreen!70}
+    %         \multicolumn{5}{|c|}{\Large\textbf{Homepage}}
+    %         \headerFlusso
+    %         \n               Profilo pubblico Codemonkey & Complesso & Pubblico & Output &
+    %         \tabularnewline \textbf{Composto da:}        &           &          &        &
+    %         \tabularnewline  Tag                         & Semplice  & Pubblico & Output & Filtri di Massimo 32 caratteri, Massimo 32 filtri per Codemonkey
+    %         \tabularnewline Biografia                    & Semplice  & Pubblico & Output & Massimo 4096 caratteri
+    %         \tabularnewline Valutazioni Codemonkey       & Semplice  & Pubblico & Output & Le Valutazioni generali e filtrate delle Codemonkey andranno da un minimo di 0 a un Massimo di 5 stelle
+    %         \tabularnewline Immagine Profilo Codemonkey  & Semplice  & Pubblico & Output & Immagine di dimensioni limitate a 400x400 pixel
+    %         \tabularnewline Lista Collaborazioni passate & Semplice  & Pubblico & Output &
+    %         \n              Ricerca Codemonkey           & Semplice  & Pubblico & Input  & La ricerca avviene per lista di Tag
+    %         \n
+    %     \end{tabularx}\label{tab:monkeytable:problema:tabFlusso:homepage}}
+
 
     \resizebox{1\textwidth}{!}{
         \begin{tabularx}{1.1\textwidth}
@@ -62,11 +65,10 @@
             \rowcolor{tableGreen!70}
             \multicolumn{5}{|c|}{\Large\textbf{Modifica Dati Personali}}
             \headerFlusso
-            \n              Nome Utente           & Semplice & Basso      & Input-Output & Massio 32 caratteri
-            \n              Biografia & Semplice & Basso      & Input-Output & Massimo 4096 caratteri
-            \n              Immagine del profilo  & Semplice & Basso      & Input-Output & Immagine Immagine in input di dimensioni non limitate, in output ridimensionamento a 400x400 pixel
-            \n              Password              & Semplice & Molto alto & Input        & Massimo 32 caratteri
-            \n              Salva modifiche       & Semplice & basso      & Input        &
+            \n              Nome Utente          & Semplice & Basso      & Input-Output & Massio 32 caratteri
+            \n              Biografia            & Semplice & Basso      & Input-Output & Massimo 4096 caratteri
+            \n              Immagine del profilo & Semplice & Basso      & Input-Output & Immagine Immagine in input di dimensioni non limitate, in output ridimensionamento a 400x400 pixel
+            \n              Password             & Semplice & Molto alto & Input        & Massimo 32 caratteri
             \n
         \end{tabularx}\label{tab:monkeytable:problema:tabFlusso:modificaDatiPersonali}}
 
@@ -82,7 +84,6 @@
             \n              Vecchia Password  & Semplice & Molto Alto & Input & Almeno 8 caratteri, Massimo 32
             \n              Nuova Password    & Semplice & Molto Alto & Input & Almeno 8 caratteri, Massimo 32
             \n              Conferma Password & Semplice & Molto Alto & Input & Almeno 8 caratteri, Massimo 32
-            \n              Salva             & Semplice & Medio      & Input &
             \n
         \end{tabularx}\label{tab:monkeytable:problema:tabFlusso:modificaPassword}}
 
@@ -106,10 +107,8 @@
             \rowcolor{tableGreen!70}
             \multicolumn{5}{|c|}{\Large\textbf{Lista Collaborazioni}}
             \headerFlusso
-            \n              Collaborazioni        & Semplice & Medio-Basso & Output & 
-            \n              Filtra Collaborazioni & Semplice & Basso       & Input  &
-            \n              Ordina Collaborazioni & Semplice & Basso       & Input  &
-            \n              Visualizza di piú     & Semplice & Basso       & Input  &
+            \n              Collaborazioni        & Semplice & Medio-Basso & Output &
+            \n              Filtri Collaborazioni & Semplice & Basso       & Input  &
             \n
         \end{tabularx}\label{tab:monkeytable:problema:tabFlusso:listaCollaborazioni}}
 
@@ -134,10 +133,10 @@
             \rowcolor{tableGreen!70}
             \multicolumn{5}{|c|}{\Large\textbf{Imposta Tag}}
             \headerFlusso
-            \n              Lista Tag              & Complesso & Basso &        & Massimo 50 Tag di ricerca per Codemonkey
+            \n              Lista Tag                 & Complesso & Basso &        & Massimo 50 Tag di ricerca per Codemonkey
             \tabularnewline     \textbf{Composto da:} &           &       &        &
-            \tabularnewline Tag                    & Semplice  & Basso & Output &
-            \n              Nuovo Tag              & Semplice  & Basso & Input  & Massimo 32 caratteri
+            \tabularnewline Tag                       & Semplice  & Basso & Output &
+            \n              Nuovo Tag                 & Semplice  & Basso & Input  & Massimo 32 caratteri
             \n
         \end{tabularx}\label{tab:monkeytable:problema:tabFlusso:impostaFiltriDiRicerca}}
 
@@ -150,8 +149,7 @@
             \rowcolor{tableGreen!70}
             \multicolumn{5}{|c|}{\Large\textbf{Interrompi Lavoro}}
             \headerFlusso
-            \n                  Interrompi Lavoro & Semplice & Medio & Input &
-            \n                  Motivazione       & Semplice & Medio & Input & Massimo 2048 caratteri
+            \n                  Motivazione & Semplice & Medio & Input & Massimo 2048 caratteri
             \n
         \end{tabularx}\label{tab:monkeytable:problema:tabFlusso:interrompiLavoro}}
 
@@ -164,12 +162,10 @@
             \rowcolor{tableGreen!70}
             \multicolumn{5}{|c|}{\Large\textbf{Accetta/Rifiuta Proposta di Lavoro}}
             \headerFlusso
-            \n                  Proposta di Lavoro             & Complesso & Medio & Output &
-            \tabularnewline         \textbf{Composto da:}      &           &       &        &
-            \tabularnewline     Username Cliente                   & Semplice  & Basso & Output & Nome del Cliente di Massimo 32 caratteri
-            \tabularnewline     Descrizione Cliente            & Semplice  & Basso & Output & Descrizione del cliente di Massimo 2048 caratteri
-            \n                  Accetta Lavoro                 & Semplice  & Basso & Input  &
-            \n                  Rifiuta Lavoro                 & Semplice  & Basso & Input  &
+            \n                  Proposta di Lavoro        & Complesso & Medio & Output &
+            \tabularnewline         \textbf{Composto da:} &           &       &        &
+            \tabularnewline     Username Cliente          & Semplice  & Basso & Output & Nome del Cliente di Massimo 32 caratteri
+            \tabularnewline     Descrizione Cliente       & Semplice  & Basso & Output & Descrizione del cliente di Massimo 2048 caratteri
             \n
         \end{tabularx}\label{tab:monkeytable:problema:tabFlusso:accettaRifiutaPropostaDiLavoro}}
 
@@ -181,10 +177,9 @@
             \rowcolor{tableGreen!70}
             \multicolumn{5}{|c|}{\Large\textbf{Proponi Lavoro}}
             \headerFlusso
-            \n              Codemonkey & Semplice & Medio & Input &
+            \n              Codemonkey   & Semplice & Medio & Input &
             \n              Lista di Tag & Semplice & Medio & Input & Massimo 50 Tag associati
-            \n              Descrizione & Semplice & Medio & Input & Massimo 2048 caratteri
-            \n              Invia      & Sempice  & Medio & Input &
+            \n              Descrizione  & Semplice & Medio & Input & Massimo 2048 caratteri
             \n
         \end{tabularx}\label{tab:monkeytable:problema:tabFlusso:proponiLavoro}}
 
@@ -196,11 +191,10 @@
             \rowcolor{tableGreen!70}
             \multicolumn{5}{|c|}{\Large\textbf{Termina Collaborazione e Valuta Codemonkey}}
             \headerFlusso
-            \n                  Termina Collaborazione        & Semplice & Medio & Input &
-            \n                  Recensione Codemonkey         & Complesso &       &       &
-            \tabularnewline         \textbf{Composto da:}     &          &       &       &
-            \tabularnewline     Valutazione Codemonkey        & Semplice & Basso & Input &
-            \tabularnewline     Descrizione & Semplice & Basso & Input & Massimo 512 caratteri
+            \n                  Recensione Codemonkey     & Complesso &       &       &
+            \tabularnewline         \textbf{Composto da:} &           &       &       &
+            \tabularnewline     Valutazione Codemonkey    & Semplice  & Basso & Input &
+            \tabularnewline     Descrizione               & Semplice  & Basso & Input & Massimo 512 caratteri
             \n
         \end{tabularx}\label{tab:monkeytable:problema:tabFlusso:terminaCollaborazioneEValutaCodemonkey}}
 
@@ -213,10 +207,6 @@
             \rowcolor{tableGreen!70}
             \multicolumn{5}{|c|}{\Large\textbf{Gestisci Utenti Registrati}}
             \headerFlusso
-            \n              Limita Utente Registrato     & Semplice & Alto  & Input  &
-            \n              Sospendi Utente Registrato   & Semplice & Alto  & Input  &
-            \n              Blocca Utente Registrato     & Semplice & Alto  & Input  &
-            \n              Elimina Utente Registrato    & Semplice & Alto  & Input  &
             \n              Motivazione                  & Semplice & Alto  & Input  & Massimo 512 caratteri
             \n              Ricerca Utente               & Semplice & Medio & Input  &
             \n              Lista Utenti con restrizioni & Semplice & Alto  & Output &
@@ -232,12 +222,10 @@
             \rowcolor{tableGreen!70}
             \multicolumn{5}{|c|}{\Large\textbf{Gestione Tag}}
             \headerFlusso
-            \n              Lista Tag              & Complesso & Basso    &        &
+            \n              Lista Tag                 & Complesso & Basso    &        &
             \tabularnewline     \textbf{Composto da:} &           &          &        &
-            \tabularnewline Tag Attivi             & Semplice  & Pubblico & Output &
-            \tabularnewline Tag da revisionare       & Semplice  & Basso    & Output &
-            \n              Accetta Tag            & Semplice  & Basso    & Input  &
-            \n              Rifiuta Tag            & Semplice  & Basso    & Input  &
+            \tabularnewline Tag Attivi                & Semplice  & Pubblico & Output &
+            \tabularnewline Tag da revisionare        & Semplice  & Basso    & Output &
             \n
         \end{tabularx}\label{tab:monkeytable:problema:tabFlusso:gestioneFiltriDiRicerca}}
 
@@ -252,14 +240,14 @@
             \rowcolor{tableGreen!70}
             \multicolumn{5}{|c|}{\Large\textbf{Visualizza Log}}
             \headerFlusso
-            \n            Scarica File di Log & Semplice & Alto & Output &
-            \n            Ricerca             & Semplice & Alto & Input  & La ricerca avviene selezionando il tipo di Log
-            \n Log              & Complesso & Alto &        &
+            \n              File di Log               & Semplice  & Alto  & Output &
+            \n              Ricerca                   & Semplice  & Alto  & Input  & La ricerca avviene selezionando il tipo di Log
+            \n              Log                       & Complesso & Alto  &        &
             \tabularnewline     \textbf{Composto da:} &           &       &        &
             \tabularnewline Tipo di log               & Semplice  & Medio & Output & Il tipo di azione che è stata compiuta, generata in automatico
-            \tabularnewline Nome utente  & Semplice  & Medio & Output  & 
-            \tabularnewline Descrizione del Log  & Semplice  & Medio & Output  & 
-            \tabularnewline Data e ora  & Semplice  & Medio & Output  & 
+            \tabularnewline Nome utente               & Semplice  & Medio & Output &
+            \tabularnewline Descrizione del Log       & Semplice  & Medio & Output &
+            \tabularnewline Data e ora                & Semplice  & Medio & Output &
             \n
         \end{tabularx}\label{tab:monkeytable:problema:tabFlusso:visualizzaLog}}
 

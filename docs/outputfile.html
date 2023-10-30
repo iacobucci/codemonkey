@@ -1,0 +1,2744 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Codemonkey</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Codemonkey</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#abstract" id="toc-abstract">Abstract</a></li>
+<li><a href="#analisi-dei-requisiti"
+id="toc-analisi-dei-requisiti">Analisi dei requisiti</a>
+<ul>
+<li><a href="#raccolta-dei-requisiti"
+id="toc-raccolta-dei-requisiti">Raccolta dei requisiti</a></li>
+<li><a href="#vocabolario" id="toc-vocabolario">Vocabolario</a></li>
+<li><a href="#tabelle-requisiti" id="toc-tabelle-requisiti">Tabelle
+requisiti</a>
+<ul>
+<li><a href="#requisiti-funzionali"
+id="toc-requisiti-funzionali">Requisiti funzionali</a></li>
+<li><a href="#requisiti-non-funzionali"
+id="toc-requisiti-non-funzionali">Requisiti non funzionali</a></li>
+<li><a href="#requisiti-di-dominio"
+id="toc-requisiti-di-dominio">Requisiti di dominio</a></li>
+<li><a href="#diagramma-dei-casi-duso"
+id="toc-diagramma-dei-casi-duso">Diagramma dei casi d’uso</a></li>
+</ul></li>
+<li><a href="#scenari" id="toc-scenari">Scenari</a></li>
+<li><a href="#analisi-del-rischio" id="toc-analisi-del-rischio">Analisi
+del rischio</a>
+<ul>
+<li><a href="#valutazione-dei-beni"
+id="toc-valutazione-dei-beni">Valutazione dei beni</a></li>
+<li><a href="#minacce-e-controlli" id="toc-minacce-e-controlli">Minacce
+e controlli</a></li>
+<li><a href="#tecnologia-e-vulnerabilità"
+id="toc-tecnologia-e-vulnerabilità">Tecnologia e vulnerabilità</a></li>
+<li><a href="#diagramma-dei-security-use-case-e-misuse-case"
+id="toc-diagramma-dei-security-use-case-e-misuse-case">Diagramma dei
+security use case e misuse case</a></li>
+<li><a href="#security-use-case-e-misuse-case"
+id="toc-security-use-case-e-misuse-case">Security use case e misuse
+case</a></li>
+</ul></li>
+<li><a href="#aggiornamento-requisiti"
+id="toc-aggiornamento-requisiti">Aggiornamento requisiti</a>
+<ul>
+<li><a href="#requisiti-funzionali-aggiornati"
+id="toc-requisiti-funzionali-aggiornati">Requisiti funzionali
+aggiornati</a></li>
+<li><a href="#requisiti-non-funzionali-aggiornati"
+id="toc-requisiti-non-funzionali-aggiornati">Requisiti non funzionali
+aggiornati</a></li>
+<li><a href="#vocabolario-aggiornato"
+id="toc-vocabolario-aggiornato">Vocabolario aggiornato</a></li>
+<li><a href="#casi-duso-aggiornati" id="toc-casi-duso-aggiornati">Casi
+d’uso aggiornati</a></li>
+<li><a href="#diagramma-dei-casi-duso-aggiornati"
+id="toc-diagramma-dei-casi-duso-aggiornati">Diagramma dei casi d’uso
+aggiornati</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#analisi-del-problema"
+id="toc-analisi-del-problema">Analisi del problema</a>
+<ul>
+<li><a href="#analisi-delle-funzionalità"
+id="toc-analisi-delle-funzionalità">Analisi delle funzionalità</a>
+<ul>
+<li><a href="#tabelle-delle-funzionalità"
+id="toc-tabelle-delle-funzionalità">Tabelle delle funzionalità</a></li>
+<li><a href="#tabelle-di-informazione-e-flusso"
+id="toc-tabelle-di-informazione-e-flusso">Tabelle di informazione e
+flusso</a></li>
+<li><a href="#analisi-dei-vincoli" id="toc-analisi-dei-vincoli">Analisi
+dei vincoli</a></li>
+<li><a href="#analisi-delle-interazioni"
+id="toc-analisi-delle-interazioni">Analisi delle interazioni</a></li>
+</ul></li>
+<li><a href="#analisi-dei-ruoli-e-delle-responsabilità"
+id="toc-analisi-dei-ruoli-e-delle-responsabilità">Analisi dei ruoli e
+delle responsabilità</a>
+<ul>
+<li><a href="#tabella-dei-ruoli-e-delle-responsabilità"
+id="toc-tabella-dei-ruoli-e-delle-responsabilità">Tabella dei ruoli e
+delle responsabilità</a></li>
+<li><a href="#tabelle-dei-ruoli-e-delle-informazioni"
+id="toc-tabelle-dei-ruoli-e-delle-informazioni">Tabelle dei ruoli e
+delle informazioni</a></li>
+</ul></li>
+<li><a href="#scomposizione-del-problema"
+id="toc-scomposizione-del-problema">Scomposizione del Problema</a>
+<ul>
+<li><a href="#scomposizione-delle-funzionalità"
+id="toc-scomposizione-delle-funzionalità">Scomposizione delle
+funzionalità</a></li>
+<li><a href="#sotto-funzionalitá" id="toc-sotto-funzionalitá">Sotto
+funzionalitá</a></li>
+</ul></li>
+<li><a href="#analisi-del-modello-di-dominio"
+id="toc-analisi-del-modello-di-dominio">Analisi del modello di
+dominio</a>
+<ul>
+<li><a href="#accesso-al-sistema" id="toc-accesso-al-sistema">Accesso al
+sistema</a></li>
+<li><a href="#gestione-dellaccount-personale"
+id="toc-gestione-dellaccount-personale">Gestione dell’account
+personale</a></li>
+<li><a href="#gestione-delle-collaborazioni"
+id="toc-gestione-delle-collaborazioni">Gestione delle
+Collaborazioni</a></li>
+<li><a href="#gestione-dei-tag" id="toc-gestione-dei-tag">Gestione dei
+Tag</a></li>
+<li><a href="#gestione-delle-segnalazioni"
+id="toc-gestione-delle-segnalazioni">Gestione delle
+Segnalazioni</a></li>
+<li><a href="#gestione-dei-log" id="toc-gestione-dei-log">Gestione dei
+Log</a></li>
+</ul></li>
+<li><a href="#analisi-logica" id="toc-analisi-logica">Analisi logica</a>
+<ul>
+<li><a href="#diagramma-dei-package"
+id="toc-diagramma-dei-package">Diagramma dei package</a></li>
+<li><a href="#diagrammi-delle-classi"
+id="toc-diagrammi-delle-classi">Diagrammi delle classi</a></li>
+<li><a href="#diagrammi-di-sequenza"
+id="toc-diagrammi-di-sequenza">Diagrammi di sequenza</a></li>
+</ul></li>
+<li><a href="#piano-del-collaudo" id="toc-piano-del-collaudo">Piano del
+collaudo</a></li>
+<li><a href="#piano-di-lavoro" id="toc-piano-di-lavoro">Piano di
+lavoro</a>
+<ul>
+<li><a href="#divisione-dei-lavori"
+id="toc-divisione-dei-lavori">Divisione dei lavori</a></li>
+<li><a href="#sviluppi-futuri" id="toc-sviluppi-futuri">Sviluppi
+futuri</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#progettazione" id="toc-progettazione">Progettazione</a>
+<ul>
+<li><a href="#progettazione-architetturale"
+id="toc-progettazione-architetturale">Progettazione architetturale</a>
+<ul>
+<li><a href="#requisiti-non-funzionali-1"
+id="toc-requisiti-non-funzionali-1">Requisiti non funzionali</a></li>
+<li><a href="#scelta-dellarchitettura"
+id="toc-scelta-dellarchitettura">Scelta dell’architettura</a></li>
+<li><a href="#diagramma-dei-package-1"
+id="toc-diagramma-dei-package-1">Diagramma dei package</a></li>
+<li><a href="#diagramma-dei-componenti"
+id="toc-diagramma-dei-componenti">Diagramma dei componenti</a></li>
+</ul></li>
+<li><a href="#progettazione-di-dettaglio"
+id="toc-progettazione-di-dettaglio">Progettazione di dettaglio</a>
+<ul>
+<li><a href="#diagramma-di-dettglio-del-dominio"
+id="toc-diagramma-di-dettglio-del-dominio">Diagramma di dettglio del
+dominio</a></li>
+<li><a href="#diagramma-delle-interfacce"
+id="toc-diagramma-delle-interfacce">Diagramma delle interfacce</a></li>
+</ul></li>
+<li><a href="#progettazione-di-dettaglio-controllers"
+id="toc-progettazione-di-dettaglio-controllers">Progettazione di
+dettaglio controllers</a></li>
+<li><a href="#progettazione-di-dettaglio-views"
+id="toc-progettazione-di-dettaglio-views">Progettazione di dettaglio
+views</a></li>
+<li><a href="#progettazione-delle-interazioni"
+id="toc-progettazione-delle-interazioni">Progettazione delle
+interazioni</a></li>
+<li><a href="#progettazione-della-persistenza"
+id="toc-progettazione-della-persistenza">Progettazione della
+persistenza</a>
+<ul>
+<li><a href="#diagramma-e-r" id="toc-diagramma-e-r">Diagramma
+E-R</a></li>
+<li><a href="#formato-files-di-log"
+id="toc-formato-files-di-log">Formato files di log</a></li>
+</ul></li>
+<li><a href="#progettazione-del-collaudo"
+id="toc-progettazione-del-collaudo">Progettazione del collaudo</a>
+<ul>
+<li><a href="#test-di-unità" id="toc-test-di-unità">Test di
+unità</a></li>
+<li><a href="#test-di-api" id="toc-test-di-api">Test di API</a></li>
+</ul></li>
+<li><a href="#progettazione-del-deployment"
+id="toc-progettazione-del-deployment">Progettazione del deployment</a>
+<ul>
+<li><a href="#artefatti" id="toc-artefatti">Artefatti</a></li>
+<li><a href="#diagramma-di-deployment"
+id="toc-diagramma-di-deployment">Diagramma di deployment</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+<p><img src="assets/img/icon.png" alt="image" /></p>
+<div class="titlepage">
+<p><span>Codemonkey</span><br />
+<span>Stefano Allevi 0000990314,<br />
+Valerio Iacobucci 0000976541,<br />
+Alessandro Ricci-Armandi 0000978068 </span></p>
+</div>
+<p><span id="fig:nome-etichetta" label="fig:nome-etichetta"></span></p>
+<h2 id="abstract">Abstract</h2>
+<p>L’obiettivo è sviluppare una piattaforma web che espone programmatori
+a realtà lavorative che ne hanno bisogno. Sia i programmatori che le
+aziende si registrano al sito, e sono interfacciati al servizio
+Codemonkey attraverso pannelli diversi. Un programmatore registrato
+inserisce i propri contatti, una breve descrizione e un elenco degli
+strumenti software nei quali ha competenze. Un’azienda registrata può
+cercare programmatori filtrandoli per gli strumenti software dei quali
+ha esigenza. Quando l’azienda sceglie un programmatore, a questo arriva
+una notifica e può decidere di accettare il lavoro. A lavoro concluso,
+l’azienda valuta il programmatore con un sistema di quotazione. Il
+profilo del programmatore è aggiornato con i suoi lavori recenti.</p>
+<h1 id="analisi-dei-requisiti">Analisi dei requisiti</h1>
+<h2 id="raccolta-dei-requisiti">Raccolta dei requisiti</h2>
+<ul>
+<li><p>Gli utenti del servizio Codemonkey si registrano da una pagina e
+indicano se intendono registrarsi come Codemonkey o Clienti</p></li>
+<li><p>La Codemonkey potrá accedere, modificare i suoi dati e accettare
+eventuali lavori dopo aver eseguito l’Autenticazione</p></li>
+<li><p>Un Cliente potrá accedere, modificare i suoi dati e gestire le
+Collaborazioni dopo aver eseguito il l’Autenticazione</p></li>
+<li><p>Gli Utenti possono sfogliare il sito. Solo i clienti possono
+mandare richieste di Lavoro alle Codemonkey</p></li>
+<li><p>Le Codemonkey possono accettare o rifiutare i lavori</p></li>
+<li><p>I clienti possono valutare la Codemonkey solo dopo aver terminato
+la collaborazione e la valutazione potrá ache opzionalmente contenere
+una recensione</p></li>
+<li><p>Si potranno cercare Codemonkey utlizzando dei filtri
+specifici</p></li>
+</ul>
+<h2 id="vocabolario">Vocabolario</h2>
+<div class="center">
+
+</div>
+<h2 id="tabelle-requisiti">Tabelle requisiti</h2>
+<h3 id="requisiti-funzionali">Requisiti funzionali</h3>
+<div class="center">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>ID</strong></th>
+<th style="text-align: left;"><strong>Requisito</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">RF</td>
+<td style="text-align: left;">Deve esistere un sistema per Registrare
+nuovi Utenti</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">RF</td>
+<td style="text-align: left;">Deve essere disposto un sistema di
+Autenticazione per Utenti giá Registrati</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">RF</td>
+<td style="text-align: left;">Deve essere possibile eseguire una Ricerca
+di Codemonkey con utilizzo di Filtri</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">RF</td>
+<td style="text-align: left;">Una Codemonkey e un Cliente potranno
+modificare l’E-mail e la Password legate all’Account</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">RF</td>
+<td style="text-align: left;">Una Codemonkey e un Cliente potranno
+modificare la propria descrizione, nome Utente, immagine di profilo e
+biografia legate al proprio Account</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">RF</td>
+<td style="text-align: left;">Una Codemonkey e un Cliente potranno
+visualizzare tutte le richieste di Lavoro che li riguardano</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">RF</td>
+<td style="text-align: left;">Una Codemonkey e un Cliente possono in
+qualsiasi momento effettuare una segnalazione ad un altro Utente
+Registrato</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">RF</td>
+<td style="text-align: left;">Una Codemonkey deve poter gestire i propri
+Tag</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">RF</td>
+<td style="text-align: left;">Una Codemonkey dovrá avere la possibilitá
+di Accettare o Rifiutare una proposta di Lavoro presentata da un
+Cliente</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">RF</td>
+<td style="text-align: left;">Una Codemonkey avrá la possibilitá di
+Interrompere una Collaborazione con un Cliente</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>ID</strong></th>
+<th style="text-align: left;"><strong>Requisito</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">RF</td>
+<td style="text-align: left;">Una Codemonkey potrá essere visualizzata
+solo se ha un Profilo Completo</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">RF</td>
+<td style="text-align: left;">Un Cliente puó effettuare proposte di
+Collaborazione ad una Codemonkey</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">RF</td>
+<td style="text-align: left;">Un Cliente potrá terminare una
+Collaborazione con una Codemonkey fornendo una valutazione e potrá
+inoltre scrivere una breve recensione</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">RF</td>
+<td style="text-align: left;">Un Amministratore deve poter essere in
+grado di Eliminare, Bloccare, Sospendere e Limitare qualsiasi Utente
+Registrato</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">RF</td>
+<td style="text-align: left;">Un Amministratore deve approvare i Tag
+proposti dalle Codemonkey</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">RF</td>
+<td style="text-align: left;">Un Cliente in stato di Sospensione non
+potrá piú proporre Collaborazioni a Codemonkey, potrá solo portare a
+termine quelle giá avviate</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">RF</td>
+<td style="text-align: left;">Un Utente Registrato quando viene Bloccato
+termina immediatamente tutte le Collaborazioni e non potrá piú avviarne
+di nuove</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">RF</td>
+<td style="text-align: left;">Si potrá vedere quanti lavori una
+Codemonkey sta attualmente svolgendo</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">RF</td>
+<td style="text-align: left;">Sará possibile vedere la Valutazione della
+Codemonkey</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="requisiti-non-funzionali">Requisiti non funzionali</h3>
+<div class="center">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>ID</strong></th>
+<th style="text-align: left;"><strong>Requisito</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">RNF</td>
+<td style="text-align: left;">Il sito deve essere facile da
+navigare</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">RNF</td>
+<td style="text-align: left;">Sará possibile vedere a quali
+Collaborazioni la Codemonkey ha preso parte</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">RNF</td>
+<td style="text-align: left;">Il sito avrà facilitazioni per
+l’accessibilità, compresa una modalità "Scura"</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">RNF</td>
+<td style="text-align: left;">Una Codemonkey sospesa non deve piú
+comparire nelle ricerche effettuate dagli Utenti</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="requisiti-di-dominio">Requisiti di dominio</h3>
+<div class="center">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>ID</strong></th>
+<th style="text-align: left;"><strong>Requisito</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">RD</td>
+<td style="text-align: left;">Non é necessaria l’Autenticazione per
+eseguire una Ricerca di Codemonkey</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">RD</td>
+<td style="text-align: left;">Gli Amministratori del sistema devono
+essere creati prima dell’avvio del sistema</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">RD</td>
+<td style="text-align: left;">Un Utente Registrato potrà essere
+esclusivamente un Cliente o una Codemonkey</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">RD</td>
+<td style="text-align: left;">Un Utente Registrato in qualsiasi momento
+puó richiedere l’eliminazione del suo Account</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="diagramma-dei-casi-duso">Diagramma dei casi d’uso</h3>
+<p><img src="assets/img/requisiti/casi_uso.png" style="width:100.0%"
+alt="image" /><br />
+</p>
+<h2 id="scenari">Scenari</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Titolo</strong></th>
+<th style="text-align: left;"><strong>Homepage</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Descrizione</td>
+<td style="text-align: left;">Sezione principale nella quale si possono
+eseguire ricerche di Codemonkey</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Attori</td>
+<td style="text-align: left;">Utente, Cliente</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Relazioni</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Precondizioni</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Postcondizioni</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Scenario Principale</td>
+<td style="text-align: left;">Un Utente attraverso l’utilizzo di Tag puó
+trovare la Codemonkey ideale per sviluppare il suo progetto</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Scenari Alternativi</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Requisiti NF</td>
+<td style="text-align: left;">Interfaccia grafica intuitiva e
+dall’estetica pulita</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Punti Aperti</td>
+<td style="text-align: left;">Per efficienza nell’esecuzione del
+sistema, non si potranno scaricare tutti i profili aderenti ai Tag in
+una sola volta, come si potrebbe implementare? Si potrà scaricare la
+lista delle Codemonkey aderenti ai Tag in? Come funzionerà il
+caricamento di nuovi profili un avolta raggiunta la fine della
+pagina?</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Titolo</strong></th>
+<th style="text-align: left;"><strong>Registrazione</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Descrizione</td>
+<td style="text-align: left;">Sezione che consente la Registrazione di
+un Utente</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Attori</td>
+<td style="text-align: left;">Utente</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Relazioni</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Precondizioni</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Postcondizioni</td>
+<td style="text-align: left;">L’Utente viene registrato nel sistema come
+Codemonkey o come Cliente</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Scenario Principale</td>
+<td style="text-align: left;"><ol>
+<li><p>L’Utente inserisce le credenziali (Username, Email, Password) per
+la creazione di un Account</p></li>
+<li><p>L’Utente specifica se vuole essere registrato come Cliente o
+Codemonkey</p></li>
+<li><p>L’Utente conferma di volersi registrare</p></li>
+</ol></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Scenari Alternativi</td>
+<td style="text-align: left;">Se lo Username é giá stato scelto o
+l’Email immessa é collegata a un Account giá registrato non sará
+possibile procedere alla Registrazione dell’Utente</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Requisiti NF</td>
+<td style="text-align: left;">Sia nel caso in cui venga inserito un
+Username giá esistente, sia nel caso venga inserita una Email associata
+ad un Account esistente, dovrá essere segnalato all’Utente che non é
+stato possibile effettuare la Registrazione spiegandone la
+motivazione</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Punti Aperti</td>
+<td style="text-align: left;">Verrá abilitata l’autenticazione a 2
+fattori giá in fase di Registrazione? Bisognerá assicurarsi che l’Utente
+non si sbagli a digitare la Password, ci sarà un campo di conferma
+Password?</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Titolo</strong></th>
+<th style="text-align: left;"><strong>Autenticazione</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Descrizione</td>
+<td style="text-align: left;">Sezione dedicata all’Autenticazione di un
+Utente</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Attori</td>
+<td style="text-align: left;">Utente</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Relazioni</td>
+<td style="text-align: left;">Gestione Profilo, Proponi Lavoro, Fornisci
+recensione, Area personale, Gestione Utenti</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Precondizioni</td>
+<td style="text-align: left;">L’Utente deve essere giá registrato
+all’interno del sistema oppure deve essere un Amministratore.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Postcondizioni</td>
+<td style="text-align: left;">L’Utente sarà Utente Autenticato oppure
+Amministratore.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Scenario Principale</td>
+<td style="text-align: left;"><ol>
+<li><p>L’Utente fornisce le credenziali di accesso al sistema</p></li>
+<li><p>L’Utente conferma di voler entrare con le credenziali
+immesse</p></li>
+<li><p>Nel caso in cui le credenziali siano corrette, Codemonkey o
+Cliente saranno reindirizzati alla Gestione del Profilo, invece
+l’Amministratore sará reindirizzato verso la Gestione del
+Sistema</p></li>
+</ol></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Scenari Alternativi</td>
+<td style="text-align: left;">Nel caso che i dati forniti per
+l’autenticazione siano incorretti verrá visualizzato un messaggio di
+erroreNel caso l’utente sia stato bloccato da un Amministratore verrá
+fornito un messaggio di errore.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Requisiti NF</td>
+<td style="text-align: left;">Sará sempre presente un bottone per
+inoltrare una richiesta di recupero Password all’Amministratore.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Punti Aperti</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Titolo</strong></th>
+<th style="text-align: left;"><strong>Gestione Profilo</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Descrizione</td>
+<td style="text-align: left;">Sezione dedicata alla gestione dei dati di
+un Account</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Attori</td>
+<td style="text-align: left;">Cliente, Codemonkey</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Relazioni</td>
+<td style="text-align: left;">Autenticazione</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Precondizioni</td>
+<td style="text-align: left;">La Codemonkey o il Cliente devono aver
+effettuato l’Autenticazione</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Postcondizioni</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Scenario Principale</td>
+<td style="text-align: left;"><ol>
+<li><p>Un Utente Autenticato accede alla funzionalitá di Gestione
+Account</p></li>
+<li><p>L’Utente Autenticato potrá quindi modificare Password,
+Email</p></li>
+<li><p>Le modifiche apportate quindi saranno salvate solo se confermate
+dall’utente</p></li>
+</ol></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Scenari Alternativi</td>
+<td style="text-align: left;">. Una Codemonkey potrà modificare i propri
+Tag</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Requisiti NF</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Punti Aperti</td>
+<td style="text-align: left;">Se un Utente Registrato cambia la sua
+email potrebbero esserci incomprensioni?</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Titolo</strong></th>
+<th style="text-align: left;"><strong>Imposta Tag di
+Ricerca</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Descrizione</td>
+<td style="text-align: left;">Gestione dei Tag della Codemonkey</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Attori</td>
+<td style="text-align: left;">Codemonkey</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Relazioni</td>
+<td style="text-align: left;">Autenticazione</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Precondizioni</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Postcondizioni</td>
+<td style="text-align: left;">I Tag vengono aggiornati</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Scenario Principale</td>
+<td style="text-align: left;"><ol>
+<li><p>La Codemonkey apre la pagina dedicata alla gestione dei
+Tag</p></li>
+<li><p>La Codemonkey aggiunge o rimuove un Tag tra quelli
+disponibili</p></li>
+<li><p>La Codemonkey conferma i cambiamenti</p></li>
+</ol></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Scenari Alternativi</td>
+<td style="text-align: left;">. Se il Tag che si vuole aggiungere non é
+presente tra quelli disponibili, la Codemonkey puó inviare una richiesta
+per aggiungerlo</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Requisiti NF</td>
+<td style="text-align: left;">I Tag vengono aggiunti digitando in una
+casella di testo</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Punti Aperti</td>
+<td style="text-align: left;">Cosa succede se si tenta di aggiunere un
+nuovo Tag? Bisognerá che un Amministratore controlli il Tag prima di
+aggiungerlo?</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Titolo</strong></th>
+<th style="text-align: left;"><strong>Segnalazione ad
+Amministratore</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Descrizione</td>
+<td style="text-align: left;">Funzionalitá per effettuare una
+Segnalazione ad un Amministratore</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Attori</td>
+<td style="text-align: left;">Codemonkey, Cliente</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Relazioni</td>
+<td style="text-align: left;">Lista Collaborazioni</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Precondizioni</td>
+<td style="text-align: left;">Codemonkey e Cliente devono essere
+autenticati</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Postcondizioni</td>
+<td style="text-align: left;">La richiesta sará inoltrata ad un
+Amministratore</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Scenario Principale</td>
+<td style="text-align: left;"><ol>
+<li><p>La Codemonkey o il Cliente potranno avviare una Segnalazione ad
+un altro Utente</p></li>
+<li><p>La Codemonkey o il Cliente compilano un form per motivare la
+Segnalazione</p></li>
+<li><p>Viene confermata l’invio della Segnalazione</p></li>
+</ol></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Scenari Alternativi</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Requisiti NF</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Punti Aperti</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Titolo</strong></th>
+<th style="text-align: left;"><strong>Proponi Lavoro</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Descrizione</td>
+<td style="text-align: left;">Sezione dedicata all’invio di una proposta
+di Lavoro ad una Codemonkey</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Attori</td>
+<td style="text-align: left;">Cliente, Utente</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Relazioni</td>
+<td style="text-align: left;">Autenticazione</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Precondizioni</td>
+<td style="text-align: left;">Un Cliente Sospeso non puó fare alcuna
+richiesta di Lavoro</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Postcondizioni</td>
+<td style="text-align: left;">La richiesta di Lavoro viene inoltrata
+alla Codemonkey</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Scenario Principale</td>
+<td style="text-align: left;"><ol>
+<li><p>Un Utente o un Cliente ha trovato la Codemonkey ideale per
+sviluppare il suo progetto e puó proporle un Lavoro</p></li>
+<li><p>L’Utente viene reindirizzato alla sezione di Autenticazione prima
+di poter iniziare l’inoltro della richiesta</p></li>
+<li><p>Per mandare la richiesta di Lavoro il Cliente compila un modulo
+nel quale descrive brevemente l’attività che la Codemonkey svolgerà e i
+Tag associati a tale attività</p></li>
+<li><p>Il Cliente conferma di voler contattare la Codemonkey</p></li>
+</ol></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Scenari Alternativi</td>
+<td style="text-align: left;">Un Cliente può procedere senza dovere
+effettuare l’Autenticazione nuovamente.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Requisiti NF</td>
+<td style="text-align: left;">Se il Cliente è Sospeso verrá visualizzata
+una pagina di errore che lo avvisa di non poter effettuare la richiesta
+di Lavoro</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Punti Aperti</td>
+<td style="text-align: left;">Per evitare che vengano inviate richieste
+di Lavoro non sufficentemente dettagliate ci sarà un numero minimo di
+caratteri da inserire nel campo di testo</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Titolo</strong></th>
+<th style="text-align: left;"><strong>Lista Collaborazioni</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Descrizione</td>
+<td style="text-align: left;">Lista di tutte le collaborazioni</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Attori</td>
+<td style="text-align: left;">Codemonkey, Cliente</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Relazioni</td>
+<td style="text-align: left;">Gestione Profilo</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Precondizioni</td>
+<td style="text-align: left;">Codemonkey e Cliente devono essere
+autenticati</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Postcondizioni</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Scenario Principale</td>
+<td style="text-align: left;"><ol>
+<li><p>La Codemonkey o il Cliente dalla Gestione dell’Account potranno
+accedere alla Lista collaborazioni</p></li>
+<li><p>Possono visualizzare le collaborazioni attive e passate</p></li>
+</ol></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Scenari Alternativi</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Requisiti NF</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Punti Aperti</td>
+<td style="text-align: left;">Cosa succede se una Codemonkey Interrompe
+un Lavoro giá iniziato? Il Cliente potrà ancora effettuare una
+Valutazione?</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Titolo</strong></th>
+<th style="text-align: left;"><strong>Accetta/Rifiuta proposta di
+Lavoro</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Descrizione</td>
+<td style="text-align: left;">Sezione per la gestione delle
+Collaborazioni della Codemonkey</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Attori</td>
+<td style="text-align: left;">Codemonkey</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Relazioni</td>
+<td style="text-align: left;">Autenticazione</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Precondizioni</td>
+<td style="text-align: left;">Il Lavoro é stato proposto alla
+Codemonkey</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Postcondizioni</td>
+<td style="text-align: left;">Il Lavoro diventa “in Corso”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Scenario Principale</td>
+<td style="text-align: left;"><ol>
+<li><p>Alla Codemonkey viene effettuata una proposta di Lavoro da parte
+di un Cliente</p></li>
+<li><p>La Codemonkey accetta la proposta</p></li>
+<li><p>La Codemonkey poi potrá interrompere la richiesta di Lavoro in
+qualsiasi momento fino a quando non viene terminata da un
+Cliente</p></li>
+</ol></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Scenari Alternativi</td>
+<td style="text-align: left;">. La Codemonkey rifiuta la proposta</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Requisiti NF</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Punti Aperti</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Titolo</strong></th>
+<th style="text-align: left;"><strong>Interrompi Lavoro</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Descrizione</td>
+<td style="text-align: left;">Funzionalità per l’interruzione di una
+Collaborazione in corso da parte della Codemonkey</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Attori</td>
+<td style="text-align: left;">Codemonkey</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Relazioni</td>
+<td style="text-align: left;">Autenticazione</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Precondizioni</td>
+<td style="text-align: left;">Il Lavoro é stato già accetato dalla
+Codemonkey</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Postcondizioni</td>
+<td style="text-align: left;">Il Lavoro diventa “Interrotto”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Scenario Principale</td>
+<td style="text-align: left;"><ol>
+<li><p>La Codemonkey sceglie un Lavoro che ha in corso per
+interromperlo</p></li>
+<li><p>La Codemonkey interrompe il Lavoro e aggiunge un commento
+sull’interruzione</p></li>
+</ol></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Scenari Alternativi</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Requisiti NF</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Punti Aperti</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Titolo</strong></th>
+<th style="text-align: left;"><strong>Termina Collaborazione e Valuta
+Codemonkey</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Descrizione</td>
+<td style="text-align: left;">Sezione per terminare un Lavoro e fornire
+una Valutazione ad una Codemonkey</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Attori</td>
+<td style="text-align: left;">Cliente</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Relazioni</td>
+<td style="text-align: left;">Autenticazione</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Precondizioni</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Postcondizioni</td>
+<td style="text-align: left;">Viene terminato il Lavoro</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Scenario Principale</td>
+<td style="text-align: left;"><ol>
+<li><p>Un Cliente consulta le sue Collaborazioni attive</p></li>
+<li><p>Il Cliente avvia la procedura per terminare la
+Collaborazione</p></li>
+<li><p>Il Cliente Fornisce una valutazione da 0 a 5 alla
+Codemonkey</p></li>
+<li><p>Il Cliente puó scrivere quindi una recensione alla Codemonkey
+(opzionale)</p></li>
+<li><p>Il Cliente da conferma di voler terminare il Lavoro</p></li>
+</ol></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Scenari Alternativi</td>
+<td style="text-align: left;">Nel caso il Cliente sia stato Limitato o
+Sospeso non potrá fornire una valutazione scritta alla Codemonkey</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Requisiti NF</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Punti Aperti</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Titolo</strong></th>
+<th style="text-align: left;"><strong>Gestione Sistema</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Descrizione</td>
+<td style="text-align: left;">Sezione dedicata agli Amministratori per
+la gestione del sistema</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Attori</td>
+<td style="text-align: left;">Amministratore</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Relazioni</td>
+<td style="text-align: left;">Autenticazione</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Precondizioni</td>
+<td style="text-align: left;">L’Amministratore deve avere effettuato
+l’Autenticazione</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Postcondizioni</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Scenario Principale</td>
+<td style="text-align: left;"><ol>
+<li><p>L’Amministratore accede alla sezione dedicata alla gestione degli
+Utenti</p></li>
+<li><p>L’Amministratore quindi potrá Limitare, Sospendere e Bloccare o
+Eliminare un Utente Registrato che sceglierà da una lista</p></li>
+<li><p>L’Amministratore accede alla sezione dedicata alla gestione dei
+Tag</p></li>
+<li><p>L’Amministratore quindi puó approvare un Tag proposto o eliminare
+un Tag esistente</p></li>
+<li><p>L’Amministratore accede alla sezione dedicata visualizzazione dei
+Log di Sistema, dalla quale potrà filtrare anche le Segnalazioni. Potrà
+scaricare i Log sul disco.</p></li>
+</ol></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Scenari Alternativi</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Requisiti NF</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Punti Aperti</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="analisi-del-rischio">Analisi del rischio</h2>
+<h3 id="valutazione-dei-beni">Valutazione dei beni</h3>
+<div class="center">
+
+</div>
+<h3 id="minacce-e-controlli">Minacce e controlli</h3>
+<div class="center">
+
+</div>
+<h3 id="tecnologia-e-vulnerabilità">Tecnologia e vulnerabilità</h3>
+<div class="center">
+<div class="tabular">
+<p>|&gt;</p>
+<p>m<span>4cm</span>|&gt;</p>
+<p>m<span>7.75cm</span>|</p>
+<p><strong>Tecnologia</strong> &amp; <strong>Vulnerabilità</strong></p>
+<p>Autenticazione &amp; Un Utente registrato rivela Username e Password
+volontariamente o per errore</p>
+<p>Architettura Client/Server &amp; Attacco Denial of
+ServiceIntercettazione delle comunicazioni:-Man in the
+middle-Sniffing</p>
+</div>
+<p><span id="tab:monkeytable:monkerisk:monkeVulnerabile"
+label="tab:monkeytable:monkerisk:monkeVulnerabile"></span></p>
+</div>
+<h3 id="diagramma-dei-security-use-case-e-misuse-case">Diagramma dei
+security use case e misuse case</h3>
+<p><img
+src="assets/img/analisi_del_rischio/security_use_case_e_misuse_case.png"
+style="width:100.0%" alt="image" /><br />
+</p>
+<h3 id="security-use-case-e-misuse-case">Security use case e misuse
+case</h3>
+<div class="center">
+<div class="tabularx">
+<p>|&gt;</p>
+<p>X|m<span>5cm</span>|m<span>5cm</span>|</p>
+<p><strong>Titolo</strong> &amp;</p>
+<p>Descrizione &amp;</p>
+<p>Misuse Case &amp;</p>
+<p>Precondizioni &amp;</p>
+<p>Postcondizioni &amp;</p>
+<p>Scenario Principale &amp; Sistema Registra l’attacco nei Log ed
+eventualmente esegue un ripristino &amp; Attaccante avvia l’attacco</p>
+<p>Scenario di attacco avvenuto con successo &amp; Sistema Non riesce a
+contenere l’attacco Non è possibile il ripristino immediato del sistema
+&amp; Attaccante Riesce a creare un grande flusso di dati Riesce a
+creare un disservizio</p>
+</div>
+<p><span id="tab:monkeytable:riskmonke:lianaSicuraOMarcia:Disponibilitá"
+label="tab:monkeytable:riskmonke:lianaSicuraOMarcia:Disponibilitá"></span></p>
+<div class="tabularx">
+<p>|&gt;</p>
+<p>X|m<span>5cm</span>|m<span>5cm</span>|</p>
+<p><strong>Titolo</strong> &amp;</p>
+<p>Descrizione &amp;</p>
+<p>Misuse Case &amp;</p>
+<p>Precondizioni &amp;</p>
+<p>Postcondizioni &amp;</p>
+<p>Scenario Principale &amp; Sistema Cerca di garantire che i dati
+inviati all’Utente siano protetti, cifrati e non possano essere
+modificati &amp; Attaccanti - Cercano di intercettare e manomettere le
+comunicazioni - Cercano di estrarre dati o penetrare nel sistema in modo
+non autorizzato</p>
+<p>Scenario di attacco avvenuto con successo &amp; Sistema - Garantisce
+che i dati sensibili siano cifrati in maniera robusta - Cerca di
+garantire la sicurezza da vulnerabilità &amp; Attaccante - Cerca di
+aggirare la cifratura per ottenere le informazioni sensibili - Cerca e
+trova delle vulnerabilità per superare le difese del sistema</p>
+</div>
+<p><span
+id="tab:monkeytable:riskmonke:lianaSicuraOMarciaGarantireProtezione"
+label="tab:monkeytable:riskmonke:lianaSicuraOMarciaGarantireProtezione"></span></p>
+<div class="tabularx">
+<p>|&gt;</p>
+<p>X|m<span>5cm</span>|m<span>5cm</span>|</p>
+<p><strong>Titolo</strong> &amp;</p>
+<p>Descrizione &amp;</p>
+<p>Misuse Case &amp;</p>
+<p>Precondizioni &amp;</p>
+<p>Postcondizioni &amp;</p>
+<p>Scenario Principale &amp; Sistema L’accesso viene negato perchè le
+credenziali sono errate. Il tentativo di accesso viene registrati in un
+file di Log. Dopo un numero di tentativi di accesso, limitati nel tempo
+ed errati consecutivamente viene bloccato l’accesso &amp; Attaccante
+Cerca di individuare ed inserire piu volte le Credenziali di un altro
+Utente registrato/Amministratore</p>
+<p>Scenario di attacco avvenuto con successo &amp; Sistema Concede
+l’accesso all’account e ai gruppi a cui l’account è collegato Registra
+l’accesso nei Log &amp; Attaccante Accede al Sistema Riesce a scaricare
+dati sensibili</p>
+</div>
+<p><span
+id="tab:monkeytable:riskmonke:lianaSicuraOMarciaControlloAccesso"
+label="tab:monkeytable:riskmonke:lianaSicuraOMarciaControlloAccesso"></span></p>
+</div>
+<h2 id="aggiornamento-requisiti">Aggiornamento requisiti</h2>
+<h3 id="requisiti-funzionali-aggiornati">Requisiti funzionali
+aggiornati</h3>
+<div class="center">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>ID</strong></th>
+<th style="text-align: left;"><strong>Requisito</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">RF</td>
+<td style="text-align: left;">Conservazione di Log per tenere traccia
+delle operazioni eseguite da tutti gli Utenti</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">RF</td>
+<td style="text-align: left;">Devono essere forniti all’Amministratore
+strumenti per scaricare e analizzare i Log</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">RF</td>
+<td style="text-align: left;">L’Amministratore avrá la possibilitá di
+vedere tutte le operazioni salvate all’interno dei Log e porá anche
+scaricare il un file dei Log su disco</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="requisiti-non-funzionali-aggiornati">Requisiti non funzionali
+aggiornati</h3>
+<div class="center">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>ID</strong></th>
+<th style="text-align: left;"><strong>Requisito</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">RNF</td>
+<td style="text-align: left;">Il sistema deve ripristinarsi velocemene
+in caso di attacco</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">RNF</td>
+<td style="text-align: left;">Verrá eseguito un backup periodico dello
+stato del sistema</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="vocabolario-aggiornato">Vocabolario aggiornato</h3>
+<div class="center">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>Voce</strong></th>
+<th style="text-align: left;"><strong>Definizione</strong></th>
+<th style="text-align: left;"><strong>Sinonimo</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Log</td>
+<td style="text-align: left;">registrazione di un evento di sistema,
+utile per il tracciamento</td>
+<td style="text-align: left;">Action</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Totp</td>
+<td style="text-align: left;">Time-based One-Time Password, codice
+numerico generato da un <em>Autenticatore</em> (un servizio di
+generazione token temporanei secondo e RFC 6238), utilizzato per
+l’autenticazione a due fattori</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Autenticazione</td>
+<td style="text-align: left;">Metodo di accesso al servizio, basato su
+Username, Password e TOTP</td>
+<td style="text-align: left;">Log in</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="casi-duso-aggiornati">Casi d’uso aggiornati</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>Titolo</strong></th>
+<th style="text-align: left;"><strong>Visualizza Log</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Descrizione</td>
+<td style="text-align: left;">Pagina di monitoraggio dei Log</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Attori</td>
+<td style="text-align: left;">Amministratore</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Relazioni</td>
+<td style="text-align: left;">Autenticazione</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Precondizioni</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Postcondizioni</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Scenario Principale</td>
+<td style="text-align: left;"><ol>
+<li><p>Un Amministratore si autentica</p></li>
+<li><p>L’Amministratore accede alla sezione dei Log</p></li>
+<li><p>L’Amministraatore può visualizzare i Log di sistema</p></li>
+<li><p>L’Amministratore puó scaricare il file di Log</p></li>
+</ol></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Scenari Alternativi</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Requisiti NF</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Punti Aperti</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Titolo</strong></th>
+<th style="text-align: left;"><strong>Autenticazione</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Descrizione</td>
+<td style="text-align: left;">Sezione dedicata all’Autenticazione di un
+Utente</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Attori</td>
+<td style="text-align: left;">Utente</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Relazioni</td>
+<td style="text-align: left;">Gestione Profilo, Proponi Lavoro, Fornisci
+recensione, Area personale, Gestione Utenti</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Precondizioni</td>
+<td style="text-align: left;">L’Utente deve essere giá registrato
+all’interno del sistema oppure deve essere un Amministratore.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Postcondizioni</td>
+<td style="text-align: left;">L’Utente sarà Utente Autenticato oppure
+Amministratore.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Scenario Principale</td>
+<td style="text-align: left;"><ol>
+<li><p>Un utente registrato avrà ricevuto un Qr code per
+l’autenticazione a due fattori</p></li>
+<li><p>L’Utente salva il Qr code sul proprio Autenticatore</p></li>
+<li><p>L’Utente che vole accedere fornisce le credenziali di accesso al
+sistema e il Totp generato dall’autenticatore</p></li>
+<li><p>L’Utente conferma di voler entrare con le credenziali
+immesse</p></li>
+<li><p>Nel caso in cui le credenziali siano corrette, Codemonkey o
+Cliente saranno reindirizzati alla Gestione del Profilo, invece
+l’Amministratore sará reindirizzato verso la Gestione del
+Sistema</p></li>
+</ol></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Scenari Alternativi</td>
+<td style="text-align: left;">Nel caso l’Utente abbia dimenticato la
+Password oppure non abbia più la possibilità di usare il suo
+Autenticatore, può chiedere ad un Amministratore la reimpostazione della
+password e un nuovo Qr code. Nel caso che i dati forniti per
+l’autenticazione siano incorretti verrá visualizzato un messaggio di
+erroreNel caso l’utente sia stato bloccato da un Amministratore verrá
+fornito un messaggio di errore.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Requisiti NF</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Punti Aperti</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="diagramma-dei-casi-duso-aggiornati">Diagramma dei casi d’uso
+aggiornati</h3>
+<p><img src="assets/img/requisiti/casi_uso_aggiornati.png"
+style="width:100.0%" alt="image" /><br />
+</p>
+<h1 id="analisi-del-problema">Analisi del problema</h1>
+<h2 id="analisi-delle-funzionalità">Analisi delle funzionalità</h2>
+<h3 id="tabelle-delle-funzionalità">Tabelle delle funzionalità</h3>
+<div class="center">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Funzionalitá</strong></th>
+<th style="text-align: left;"><strong>Tipo</strong></th>
+<th style="text-align: left;"><strong>Complessitá</strong></th>
+<th style="text-align: left;"><strong>Reqisiti</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"> Registrazione</td>
+<td style="text-align: left;">Memorizzazione dati</td>
+<td style="text-align: left;">Semplice</td>
+<td style="text-align: left;">R1F</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Autenticazione</td>
+<td style="text-align: left;">Interazione con l’esternoGestione
+dati</td>
+<td style="text-align: left;">Semplice</td>
+<td style="text-align: left;">R2F</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Homepage</td>
+<td style="text-align: left;">Interazione con l’estreno</td>
+<td style="text-align: left;">Complessa</td>
+<td style="text-align: left;">R3F, R12F, R16F, R19F</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Gestione Account</td>
+<td style="text-align: left;">Interazione con l’esternoMemorizzazione
+datiGestione dati</td>
+<td style="text-align: left;">Complessa</td>
+<td style="text-align: left;">R4F, R5F, R16F</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Modifica dati personali</td>
+<td style="text-align: left;">Interazione con l’esternoMemorizzazione
+datiGestione dati</td>
+<td style="text-align: left;">Semplice</td>
+<td style="text-align: left;">R5F</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Modifica password</td>
+<td style="text-align: left;">Interazione con l’esternoMemorizzazione
+datiGestione dati</td>
+<td style="text-align: left;">Semplice</td>
+<td style="text-align: left;">R4F</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Elimina account</td>
+<td style="text-align: left;">Interazione con l’esternoMemorizzazione
+datiGestione dati</td>
+<td style="text-align: left;">Semplice</td>
+<td style="text-align: left;">R4D</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Lista collaborazioni</td>
+<td style="text-align: left;">Interazione con l’esterno</td>
+<td style="text-align: left;">Semplice</td>
+<td style="text-align: left;">R6F</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Segnala ad Amministratore</td>
+<td style="text-align: left;">Memorizzazione datiGestione dati</td>
+<td style="text-align: left;">Semplice</td>
+<td style="text-align: left;">R18F</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Imposta Tag</td>
+<td style="text-align: left;">Interazione con l’esternoMemorizzazione
+datiGestione dati</td>
+<td style="text-align: left;">Semplice</td>
+<td style="text-align: left;">R7F</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Accetta/Rifiuta proposta di Lavoro</td>
+<td style="text-align: left;">Gestione dati</td>
+<td style="text-align: left;">Semplice</td>
+<td style="text-align: left;">R10F</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Interrompi Lavoro</td>
+<td style="text-align: left;">Memorizzazione datiGestione dati</td>
+<td style="text-align: left;">Semplice</td>
+<td style="text-align: left;">R11F</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Proponi lavoro</td>
+<td style="text-align: left;">Interazione con l’esternoMemorizzazione
+datiGestione dati</td>
+<td style="text-align: left;">Semplice</td>
+<td style="text-align: left;">R13F, R15F, R19F</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Termina Collaborazione e Valuta
+Codemonkey</td>
+<td style="text-align: left;">Interazione con l’esternoMemorizzazione
+datiGestione dati</td>
+<td style="text-align: left;">Semplice</td>
+<td style="text-align: left;">R14F</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gestione Sistema</td>
+<td style="text-align: left;">Interazione con l’esternoMemorizzazione
+datiGestione dati</td>
+<td style="text-align: left;">Complessa</td>
+<td style="text-align: left;">R8F, R9F, R19F</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Gestisci Utenti Registrati</td>
+<td style="text-align: left;">Interazione con l’esternoMemorizzazione
+datiGestione dati</td>
+<td style="text-align: left;">Semplice</td>
+<td style="text-align: left;">R8F</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ricerca Codemonkey</td>
+<td style="text-align: left;">Interazione con l’esternoGestione
+dati</td>
+<td style="text-align: left;">Semplice</td>
+<td style="text-align: left;">R9F</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Visualizza Segnalazioni</td>
+<td style="text-align: left;">Interazione con l’esterno</td>
+<td style="text-align: left;">Semplice</td>
+<td style="text-align: left;">R4D</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Visualizza Log</td>
+<td style="text-align: left;">Interazione con l’esterno</td>
+<td style="text-align: left;">Semplice</td>
+<td style="text-align: left;">R21F</td>
+</tr>
+</tbody>
+</table>
+<p><span id="tab:monkeytable:problema:analisiFunzionalita"
+label="tab:monkeytable:problema:analisiFunzionalita"></span></p>
+</div>
+<h3 id="tabelle-di-informazione-e-flusso">Tabelle di informazione e
+flusso</h3>
+<div class="center">
+
+</div>
+<h3 id="analisi-dei-vincoli">Analisi dei vincoli</h3>
+<div class="center">
+<div class="tabular">
+<p>|&gt;</p>
+<p>m<span>4cm</span>|&gt;m<span>3cm</span>|&gt;m<span>3.5cm</span>|&gt;</p>
+<p>m<span>2.75cm</span>|</p>
+<p><strong>Requisito</strong> &amp; <strong>Categoria</strong> &amp;
+<strong>Impatto</strong> &amp; <strong>Funzionalitá</strong></p>
+<p>Interfaccia intuitiva(R1F) &amp; Usabilitá &amp; Migliorare
+esperienza &amp; Homepage, Gestione Profilo</p>
+<p>Informazioni aggiuntive sullo stato attuale di impegno lavorativo
+della Codemonkey(R2F) &amp; Usabilitá &amp; Migliorare esperienza &amp;
+Homepage</p>
+<p>Informazioni aggiuntive sullo storico lavorativo della
+Codemonkey(R3F) &amp; Usabilitá &amp; Migliorare esperienza &amp;
+Homepage</p>
+<p>Informazioni aggiuntive sulle valutazioni della Codemonkey(R4F) &amp;
+Usabilitá &amp; Migliorare esperienza &amp; Homepage</p>
+</div>
+<p><span id="tab:monkeytable:problema:Vincoli"
+label="tab:monkeytable:problema:Vincoli"></span></p>
+</div>
+<h3 id="analisi-delle-interazioni">Analisi delle interazioni</h3>
+<div class="center">
+<div class="adjustwidth">
+<p><span>-1.9cm</span><span>0cm</span></p>
+<div class="longtable">
+<p>|&gt;</p>
+<p>m<span>3.5cm</span>|&gt;</p>
+<p>m<span>7.5cm</span>|&gt;</p>
+<p>m<span>3cm</span>|</p>
+<p><strong>Maschera</strong> &amp; <strong>Informazione</strong> &amp;
+<strong>Funzionalitá</strong> <strong>Maschera</strong> &amp;
+<strong>Informazione</strong> &amp; <strong>Funzionalitá</strong> View
+Registrazione &amp; Username, Password &amp; Registrazione</p>
+<p>View Autenticazione &amp; Username, Password, Registrazione, Recupero
+credenziali &amp; Autenticazione</p>
+<p>View Homepage &amp; Lista di Codemonkey, Casella di ricerca per
+trovare i Tag adatti, pulsante per Autenticarsi e per Registrarsi,
+Pulsante per la gestione dell’account nel caso di Utente Autenticato
+&amp; Homepage</p>
+<p>View Homepage Codemonkey &amp; Immagine di profilo, descrizione e
+valutazioni della Codemonkey, lista di Lavori svolti e numero di Lavori
+ai quali sta partecipando la Codemonkey, pulsante Proponi Lavoro &amp;
+Homepage</p>
+<p>View Proponi Lavoro &amp; Bottone Invia Proposta di Lavoro e casella
+di testo per la descrizione del LavoroNel caso l’Utente non sia stato
+autenticato dovrá prima prima passare dalla View Autenticazione &amp;
+Proponi Lavoro</p>
+<p>View Gestione Account &amp; Lista di opzioni per:Modificare i dati
+personaliModificare la passwordEliminare l’accountLista
+CollaborazioniNel caso di Codemonkey sará presente anche un sistema per
+impostare i Tag &amp; Gestione account</p>
+<p>View Modifica dati personali &amp; Casella di testo modificabile
+della propria Biografia, una casella di testo dove modificare la
+Password (previa conferma della nuova Password e di quella precedente),
+un bottone per inserire una nuova immagine di profilo e un bottone per
+salvare le modifiche &amp; Modifica dati personali</p>
+<p>View Imposta Tag &amp; Casella testuale per l’inserimento di un nuovo
+TagLista di Tag simili suggeritiBottone aggiungi TagLista Tag giá
+aggiuntiBottone Rimuovi Tag &amp; Imposta Tag</p>
+<p>View Elimina Account &amp; inserimento Password per conferma, Bottone
+elimina Account &amp; Elimina Account</p>
+<p>View Collaborazioni Cliente &amp; 3 Liste di Collaborazioni: In
+attesa di accettazione, In corso e Terminate &amp; Lista
+Collaborazioni</p>
+<p>View Collaborazione Cliente &amp; Nome Codemonkey, nome Cliente,
+immagine di profilo Codemonkey, immagine di profilo Cliente, Tag
+associati alla Collaborazione, Descrizione Lavoro, pulsante “Termina
+Collaborazione e valuta Codemonkey” se é una Collaborazione in corso
+oppure valutazione Codemonkey e recensione se é terminata &amp; Termina
+Lavoro/lista Collaborazioni</p>
+<p>View Termina Collaborazione Cliente &amp; Inserimento valori da 1 a 5
+stelle per fornire la valutazione, casella di testo per immettere una
+recensione &amp; Termina Collaborazione e valuta Codemonkey</p>
+<p>View Collaborazioni Codemonkey &amp; 3 Liste di Collaborazioni:
+Proposte, In corso e Terminate, una casella di testo per cercare una
+collaborazione specifica &amp; Lista Collaborazioni</p>
+<p>View Collaborazione Codemonkey &amp; Descrizione della
+Collaborazione, Nome Clinete, descrizione personale Cliente, immagine di
+profilo del Cliente, pulsante “Termina Collaborazione” se é una
+collaborazione in corso oppure pulsanti Accetta Lavoro e Rifiuta Lavoro
+se si tratta di una proposta di lavoro, pulsante segnala ad
+Amministratore &amp; Accetta/Rifiuta /Termina Lavoro</p>
+<p>View segnala ad Amministratore &amp; Casella testuale per scrivere la
+segnalazione e bottone per inviare la segnalazione &amp; Segnala ad
+Amministratore</p>
+<p>View Pagina Amministratore &amp; Lista delle pagine a cui l’admin ha
+accesso, &amp; Gestione Sistema</p>
+<p>View Gestisci Utenti Registrati &amp; Lista di Utenti Registrati con
+restrizioniCasella di ricerca per trovare un Utente
+RegistratoBottoni:Limita UtenteSospendi UtenteBlocca UtenteElimina
+Utente &amp; Gestisci Utenti Registrati</p>
+<p>View Visualizza Log &amp; Lista di tutte le azioni compiute dagli
+admin e dagli UtentiCasella di testo per ricercare un eveno
+specificoBottone Scarica File di Log &amp; Visualizza Log</p>
+<p>View Gestione Filtri &amp; Lista di tutti i filtri di ricercaBottone
+Elimina FiltroLista di tutti i Filtri propostBottone Accetta
+FiltroBottone Rifiuta Filtro Visualizza Log &amp; Gestisci Filtri di
+Ricerca</p>
+</div>
+</div>
+<p><span id="tab:monkeytable:problema:tabellaMaschere"
+label="tab:monkeytable:problema:tabellaMaschere"></span></p>
+</div>
+<h2 id="analisi-dei-ruoli-e-delle-responsabilità">Analisi dei ruoli e
+delle responsabilità</h2>
+<h3 id="tabella-dei-ruoli-e-delle-responsabilità">Tabella dei ruoli e
+delle responsabilità</h3>
+<div class="center">
+<div class="adjustwidth">
+<p><span>-1.9cm</span><span>0cm</span></p>
+</div>
+<p><span id="tab:monkeytable:problema:tabellaRuoli"
+label="tab:monkeytable:problema:tabellaRuoli"></span></p>
+</div>
+<h3 id="tabelle-dei-ruoli-e-delle-informazioni">Tabelle dei ruoli e
+delle informazioni</h3>
+<div class="center">
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Informazione</strong></td>
+<td style="text-align: left;"><strong>Tipo Accesso</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Lista Codemonkey</td>
+<td style="text-align: left;">Lettura</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Informazioni Codemonkey</td>
+<td style="text-align: left;">Lettura</td>
+</tr>
+</tbody>
+</table>
+<p><span id="tab:monkeytable:problema:tabellaRuoloInformazioni:Utente"
+label="tab:monkeytable:problema:tabellaRuoloInformazioni:Utente"></span></p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Informazione</strong></td>
+<td style="text-align: left;"><strong>Tipo Accesso</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Username</td>
+<td style="text-align: left;">Lettura</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Email</td>
+<td style="text-align: left;">Lettura/Scrittura</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Password</td>
+<td style="text-align: left;">Scrittura</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lista Collaborazioni</td>
+<td style="text-align: left;">Lettura</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Valutazione</td>
+<td style="text-align: left;">Lettura</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dati Personali Codemonkey</td>
+<td style="text-align: left;">Lettura/Scrittura</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Lista Tag</td>
+<td style="text-align: left;">Lettura/Scrittura</td>
+</tr>
+</tbody>
+</table>
+<p><span
+id="tab:monkeytable:problema:tabellaRuoloInformazioni:Codemonkey"
+label="tab:monkeytable:problema:tabellaRuoloInformazioni:Codemonkey"></span></p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Informazione</strong></td>
+<td style="text-align: left;"><strong>Tipo Accesso</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Username</td>
+<td style="text-align: left;">Lettura</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Email</td>
+<td style="text-align: left;">Lettura/Scrittura</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Password</td>
+<td style="text-align: left;">Scrittura</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lista Collaborazioni</td>
+<td style="text-align: left;">Lettura</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dati Personali Cliente</td>
+<td style="text-align: left;">Lettura/Scrittura</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lista Codemonkey</td>
+<td style="text-align: left;">Lettura</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Informazioni Codemonkey</td>
+<td style="text-align: left;">Lettura</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Valutazione Lavoro</td>
+<td style="text-align: left;">Scrittura</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Proponi Lavoro a Codemonkey</td>
+<td style="text-align: left;">Scrittura</td>
+</tr>
+</tbody>
+</table>
+<p><span id="tab:monkeytable:problema:tabellaRuoloInformazioni:Cliente"
+label="tab:monkeytable:problema:tabellaRuoloInformazioni:Cliente"></span></p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Informazione</strong></td>
+<td style="text-align: left;"><strong>Tipo Accesso</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Lista CodeMonkey</td>
+<td style="text-align: left;">Lettura</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lista Utenti</td>
+<td style="text-align: left;">Lettura</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Configurazione Utenti</td>
+<td style="text-align: left;">Lettura/Scrittura</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Log</td>
+<td style="text-align: left;">Lettura</td>
+</tr>
+</tbody>
+</table>
+<p><span
+id="tab:monkeytable:problema:tabellaRuoloInformazioni:Amministratore"
+label="tab:monkeytable:problema:tabellaRuoloInformazioni:Amministratore"></span></p>
+</div>
+<h2 id="scomposizione-del-problema">Scomposizione del Problema</h2>
+<h3 id="scomposizione-delle-funzionalità">Scomposizione delle
+funzionalità</h3>
+<div class="center">
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Funzionalitá</strong></td>
+<td style="text-align: left;"><strong>Scomposizione</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Homepage</td>
+<td style="text-align: left;">Ricerca Codmonkeys, Visualizza profilo
+Codmonkey</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gestione Acoount</td>
+<td style="text-align: left;">Modifica Dati personali, Modifica
+Contatti, Modifica Password, Elimina Account</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Gestione Sistema</td>
+<td style="text-align: left;">Gestisci Utenti Registrati, Gestisci
+Filtri di Ricerca, Visualizza Log</td>
+</tr>
+</tbody>
+</table>
+<p><span
+id="tab:monkeytable:problema:tabellaScomposizioneDelleFunzionalita"
+label="tab:monkeytable:problema:tabellaScomposizioneDelleFunzionalita"></span></p>
+</div>
+<h3 id="sotto-funzionalitá">Sotto funzionalitá</h3>
+<div class="center">
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Sotto Funzionalitá</strong></td>
+<td style="text-align: left;"><strong>Sotto Funzionalitá</strong></td>
+<td style="text-align: left;"><strong>Legame</strong></td>
+<td style="text-align: left;"><strong>Informazioni</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="analisi-del-modello-di-dominio">Analisi del modello di
+dominio</h2>
+<h3 id="accesso-al-sistema">Accesso al sistema</h3>
+<div class="center">
+<p><img src="assets/plantuml/accesso.png
+" style="width:40.0%" alt="image" /></p>
+</div>
+<h3 id="gestione-dellaccount-personale">Gestione dell’account
+personale</h3>
+<div class="center">
+<p><img src="assets/plantuml/account.png" style="width:35.0%"
+alt="image" /><br />
+</p>
+</div>
+<h3 id="gestione-delle-collaborazioni">Gestione delle
+Collaborazioni</h3>
+<div class="center">
+<p><img src="assets/plantuml/collaborazioni.png" style="width:100.0%"
+alt="image" /><br />
+</p>
+</div>
+<h3 id="gestione-dei-tag">Gestione dei Tag</h3>
+<div class="center">
+<p><img src="assets/plantuml/tag.png" style="width:50.0%"
+alt="image" /><br />
+</p>
+</div>
+<h3 id="gestione-delle-segnalazioni">Gestione delle Segnalazioni</h3>
+<div class="center">
+<p><img src="assets/plantuml/report.png" style="width:40.0%"
+alt="image" /><br />
+</p>
+</div>
+<h3 id="gestione-dei-log">Gestione dei Log</h3>
+<div class="center">
+<p><img src="assets/plantuml/log.png" style="width:25.0%"
+alt="image" /><br />
+</p>
+</div>
+<h2 id="analisi-logica">Analisi logica</h2>
+<h3 id="diagramma-dei-package">Diagramma dei package</h3>
+<p><img src="assets/img/architettura_logica/package.png"
+style="width:100.0%" alt="image" /><br />
+</p>
+<h3 id="diagrammi-delle-classi">Diagrammi delle classi</h3>
+<h4 id="accesso">Accesso</h4>
+<p><br />
+<img src="assets/img/classi/accesso.png" style="width:100.0%"
+alt="image" /><br />
+</p>
+<h4 id="amministrazione">Amministrazione</h4>
+<p><br />
+<img src="assets/img/classi/amministrazione.png" style="width:100.0%"
+alt="image" /><br />
+</p>
+<h4 id="utenti">Utenti</h4>
+<p><br />
+<img src="assets/img/classi/utenti.png" style="width:100.0%"
+alt="image" /><br />
+</p>
+<h4 id="homepage">Homepage</h4>
+<p><br />
+<img src="assets/img/classi/homepage.png" style="width:100.0%"
+alt="image" /><br />
+</p>
+<h3 id="diagrammi-di-sequenza">Diagrammi di sequenza</h3>
+<h4 id="accesso-1">Accesso</h4>
+<p><br />
+<img src="assets/img/sequenza/accesso-1.png" style="width:100.0%"
+alt="image" /><br />
+<img src="assets/img/sequenza/accesso-2.png" style="width:100.0%"
+alt="image" /><br />
+</p>
+<h4 id="utente">Utente</h4>
+<p><br />
+<img src="assets/img/sequenza/homepage-1.png" style="width:100.0%"
+alt="image" /><br />
+</p>
+<h4 id="codemonkey">Codemonkey</h4>
+<p><br />
+<img src="assets/img/sequenza/codemonkey-1.png" style="width:100.0%"
+alt="image" /><br />
+<img src="assets/img/sequenza/codemonkey-2.png" style="width:100.0%"
+alt="image" /><br />
+</p>
+<h4 id="cliente">Cliente</h4>
+<p><br />
+<img src="assets/img/sequenza/cliente-1.png" style="width:100.0%"
+alt="image" /><br />
+<img src="assets/img/sequenza/cliente-2.png" style="width:100.0%"
+alt="image" /><br />
+</p>
+<h4 id="amministratore">Amministratore</h4>
+<p><br />
+<img src="assets/img/sequenza/admin-1.png" style="width:100.0%"
+alt="image" /><br />
+<img src="assets/img/sequenza/admin-2.png" style="width:100.0%"
+alt="image" /><br />
+<img src="assets/img/sequenza/admin-3.png" style="width:100.0%"
+alt="image" /><br />
+</p>
+<h2 id="piano-del-collaudo">Piano del collaudo</h2>
+<p>Si prevede di effettuare test automatici sulle unità di codice del
+sistema, sia dal lato client che dal lato server, in modo da garantire
+che ogni unità funzioni correttamente. Inoltre, si prevede di effettuare
+test automatici sulle API del sistema, in modo da garantire che la
+comunicazione tra i due lati avvenga correttamente.</p>
+<h2 id="piano-di-lavoro">Piano di lavoro</h2>
+<h3 id="divisione-dei-lavori">Divisione dei lavori</h3>
+<div class="center">
+<p>Il progetto e lo sviluppo del sistema sono assegnati a diversi team
+come indicato nella tabella sottostante:<br />
+</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Team</strong></th>
+<th style="text-align: left;"><strong>Persone assegnate</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Team Prgettazione</td>
+<td style="text-align: left;">Alessandro, Stefano, Valerio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Team sviluppo</td>
+<td style="text-align: left;">Alessandro, Stefano, Valerio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Team DB</td>
+<td style="text-align: left;">Alessandro, Stefano, Valerio</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Team sicurezza</td>
+<td style="text-align: left;">Alessandro, Stefano, Valerio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Team grafico</td>
+<td style="text-align: left;">Alessandro, Stefano, Valerio</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Package</strong></th>
+<th style="text-align: left;"><strong>Progetto</strong></th>
+<th style="text-align: left;"><strong>Sviluppo</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Dominio</td>
+<td style="text-align: left;">Team progettazione + Team DB</td>
+<td style="text-align: left;">Team sviluppo + Team DB</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Interfaccia Registrazione</td>
+<td style="text-align: left;">Team Progettazione + Team Grafico</td>
+<td style="text-align: left;">Team Sicurezza + Team Grafico</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Interfaccia Utente</td>
+<td style="text-align: left;">Team Progettazione + Team Grafico</td>
+<td style="text-align: left;">Team Sviluppo + Team Grafico</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Interfaccia Cliente</td>
+<td style="text-align: left;">Team Progettazione + Team Grafico</td>
+<td style="text-align: left;">Team Sviluppo + Team Grafico</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Interfaccia Codemonkey</td>
+<td style="text-align: left;">Team Progettazione + Team Grafico</td>
+<td style="text-align: left;">Team Sviluppo + Team Grafico</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Interfaccia Utente Registrato</td>
+<td style="text-align: left;">Team Progettazione + Team Grafico</td>
+<td style="text-align: left;">Team Sviluppo + Team Grafico</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Interfaccia Autenticazione</td>
+<td style="text-align: left;">Team Progettazione + Team Grafico</td>
+<td style="text-align: left;">Team Sicurezza + Team Grafico</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Interfaccia Amministratore</td>
+<td style="text-align: left;">Team Progettazione + Team Grafico</td>
+<td style="text-align: left;">Team Sviluppo + Team Grafico</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Registrazione</td>
+<td style="text-align: left;">Team Sicurezza</td>
+<td style="text-align: left;">Team Sviluppo Sicurezza</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Autenticazione</td>
+<td style="text-align: left;">Team Sicurezza</td>
+<td style="text-align: left;">Team Sviluppo Sicurezza</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Log</td>
+<td style="text-align: left;">Team Sicurezza</td>
+<td style="text-align: left;">Team Sviluppo Sicurezza</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Homepage</td>
+<td style="text-align: left;">Team progettazione + Team Grafico</td>
+<td style="text-align: left;">Team Sviluppo + Team Grafico</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Package</strong></th>
+<th style="text-align: left;"><strong>Progetto</strong></th>
+<th style="text-align: left;"><strong>Sviluppo</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Gestione Collaborazioni Cliente</td>
+<td style="text-align: left;">Team Progettazione</td>
+<td style="text-align: left;">Team Sviluppo</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Gestione Collaborazioni Codemonkey</td>
+<td style="text-align: left;">Team Progettazione</td>
+<td style="text-align: left;">Team Sviluppo</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gestione Collaborazioni</td>
+<td style="text-align: left;">Team Progettazione + Team DB</td>
+<td style="text-align: left;">Team Sviluppo + Team DB</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Gestione Account Utente</td>
+<td style="text-align: left;">Team Progettazione + Team DB</td>
+<td style="text-align: left;">Team Sviluppo + Team DB</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Amministrazione</td>
+<td style="text-align: left;">Team Progettazione + Team DB</td>
+<td style="text-align: left;">Team Sviluppo + Team DB</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="sviluppi-futuri">Sviluppi futuri</h3>
+<p>Nel futuro verrá costruita una chat interna alla piattaforma per
+permettere un dialogo fra Codemonkey e Cliente, eliminando il bisogno di
+utlilizzare strumenti esterni.</p>
+<h1 id="progettazione">Progettazione</h1>
+<h2 id="progettazione-architetturale">Progettazione architetturale</h2>
+<h3 id="requisiti-non-funzionali-1">Requisiti non funzionali</h3>
+<p>Requisiti non funzionali: Durante l’analisi del problema, sono emersi
+alcuni requisiti non funzionali che impongono dei vincoli per il
+sistema. I requisiti principali sono:</p>
+<ul>
+<li><p>Interfaccia utente intuitiva: L’applicazione dovrà fornire
+un’interfaccia utente intuitiva e facile da usare, in modo che gli
+utenti possano interagire facilmente con le funzionalità offerte
+dall’applicazione.</p></li>
+<li><p>Sicurezza: La sicurezza dei dati e delle comunicazioni è un
+requisito fondamentale per l’applicazione. Sarà necessario implementare
+meccanismi di sicurezza, come l’utilizzo del protocollo HTTPS per
+garantire una connessione sicura tramite crittografia, proteggendo così
+le informazioni sensibili degli utenti.</p></li>
+<li><p>Buone prestazioni: L’applicazione dovrà essere veloce ed
+efficiente nel caricamento e scaricamento di dati, in modo da offrire
+un’esperienza utente fluida. Sarà necessario ottimizzare le prestazioni
+dell’applicazione attraverso l’ottimizzazione del codice e l’uso
+efficiente delle risorse del sistema.</p></li>
+</ul>
+<p>Per</p>
+<h3 id="scelta-dellarchitettura">Scelta dell’architettura</h3>
+<p>L’applicazione è sviluppata come applicazione web, in modo da essere
+acces sibile dai dispositivi che supportano le tecnologie web moderne e
+abbiano a disposizione un web browser.</p>
+<ul>
+<li><p><span><strong>Frontend:</strong></span>Il client (web browser)
+esegue l’applicazione Angular che permette all’utente di interagire con
+l’applicazione. L’applicazione comunica con il server attraverso
+richieste HTTP. Angular è un framework Javascript che realizza
+applicazioni web basate su componenti e che si occupa in automatico
+dell’ottimizzazione delle prestazioni. In più è stato scelta la libreria
+Material Design per la stilizzazione dei componenti, in modo da
+migliorare l’esperienza utente. È disposta anche una API pubblica per
+richieste REST.</p></li>
+<li><p><span><strong>Backend:</strong></span> L’applicazione lato server
+è sviluppata utilizzando il framework Rails per Ruby. Ruby è un
+linguaggio di scripting orientato agli oggetti, che permette di scrivere
+codice in modo semplice e veloce. Rails è un framework che permette di
+sviluppare applicazioni web in modo semplice e veloce, seguendo il
+pattern MVC. Rails si occupa di gestire le richieste HTTP e di gestire
+la comunicazione con il client. Il framework si occupa della maggior
+parte delle transazioni con il database, offrendo prestazioni e agilità
+nello sviluppo. Questo servizio è esposto attraverso API REST.</p></li>
+<li><p><span><strong>Persistenza:</strong></span> È stato scelto di
+utilizzare il database PostgreSQL, che è un database relazionale open
+source, in modo da garantire la persistenza dei dati. Postgresql si
+integra bene con Rails grazie ai bindings (collegamenti) forniti da
+librerie esterne. Per il salvataggio e il recupero delle immagini è
+stato scelto di utilizzare un servizio di cloud storage, cioè un server
+chiamato <em>Bucket</em>.</p></li>
+</ul>
+<p>È stato adottato il Pattern Broker per la gestione della sessione e
+per proteggere ulteriormente lo strato dei server. Questa scelta
+consente di disaccoppiare il client dal backend, fornendo un’interfaccia
+di comunicazione tramite API REST.<br />
+Nella configurazione dell’applicazione, il client richiede al server
+frontend di scaricare l’applicazione Angular. Una volta che
+l’applicazione è stata scaricata nel browser del client, essa utilizza
+le API REST per contattare il backend e ottenere i dati necessari per la
+visualizzazione corretta dell’interfaccia utente.<br />
+Il server frontend funge da intermediario tra il client e il backend.
+Riceve le richieste del client, le instrada al backend appropriato e
+restituisce le risposte al client. In questo modo, il frontend nasconde
+la struttura dei server backend, consentendo una maggiore flessibilità
+nel sistema (Dependency inversion principle).<br />
+</p>
+<h3 id="diagramma-dei-package-1">Diagramma dei package</h3>
+<p><img src="assets/img/progettazione_architetturale/package.png"
+style="width:100.0%" alt="image" /><br />
+</p>
+<h3 id="diagramma-dei-componenti">Diagramma dei componenti</h3>
+<p><img src="assets/img/progettazione_architetturale/componenti.png"
+style="width:100.0%" alt="image" /><br />
+</p>
+<h2 id="progettazione-di-dettaglio">Progettazione di dettaglio</h2>
+<h3 id="diagramma-di-dettglio-del-dominio">Diagramma di dettglio del
+dominio</h3>
+<p>L’aggiornamento del modello del dominio consiste in una rivisitazione
+del sistema di accesso, con l’utilizzo di two factor authentication con
+un codice Qr che viene fornito all’utente in fase di registrazione, per
+generare un codice numerico Totp, che verrà usato per effettuare
+l’accesso al sistema.</p>
+<p><img src="assets/plantuml/modello_di_dettaglio_del_dominio.png"
+style="width:100.0%" alt="image" /><br />
+</p>
+<h3 id="diagramma-delle-interfacce">Diagramma delle interfacce</h3>
+<p><img src="assets/img/progettazione_dettaglio/interfacce.png"
+style="width:100.0%" alt="image" /><br />
+</p>
+<h2 id="progettazione-di-dettaglio-controllers">Progettazione di
+dettaglio controllers</h2>
+<h4 id="accesso-2">Accesso</h4>
+<p><br />
+<img src="assets/img/controllers/accesso.png" style="width:100.0%"
+alt="image" /><br />
+</p>
+<h4 id="utente-1">Utente</h4>
+<p><br />
+<img src="assets/img/controllers/utente.png" style="width:100.0%"
+alt="image" /><br />
+</p>
+<h4 id="codemonkey-1">Codemonkey</h4>
+<p><br />
+<img src="assets/img/controllers/codemonkey.png" style="width:100.0%"
+alt="image" /><br />
+</p>
+<h4 id="cliente-1">Cliente</h4>
+<p><br />
+<img src="assets/img/controllers/cliente.png" style="width:100.0%"
+alt="image" /><br />
+</p>
+<h4 id="amministratore-1">Amministratore</h4>
+<p><br />
+<img src="assets/img/controllers/amministratore.png"
+style="width:100.0%" alt="image" /><br />
+</p>
+<h2 id="progettazione-di-dettaglio-views">Progettazione di dettaglio
+views</h2>
+<h4 id="views-per-accesso">Views per Accesso</h4>
+<p><br />
+<img src="assets/img/views/accesso.png" style="width:100.0%"
+alt="image" /><br />
+</p>
+<h4 id="views-rese-disponibili-allutente">Views rese disponibili
+all’Utente</h4>
+<p><br />
+<img src="assets/img/views/utente.png" style="width:100.0%"
+alt="image" /><br />
+</p>
+<h4 id="views-rese-disponibili-alla-codemonkey">Views rese disponibili
+alla Codemonkey</h4>
+<p><br />
+<img src="assets/img/views/codemonkey.png" style="width:100.0%"
+alt="image" /><br />
+</p>
+<h4 id="views-rese-disponibili-al-cliente">Views rese disponibili al
+Cliente</h4>
+<p><br />
+<img src="assets/img/views/cliente.png" style="width:100.0%"
+alt="image" /><br />
+</p>
+<h4 id="views-rese-disponibili-allamministratore">Views rese disponibili
+all’Amministratore</h4>
+<p><br />
+<img src="assets/img/views/amministratore.png" style="width:100.0%"
+alt="image" /><br />
+</p>
+<h4 id="screenshots">Screenshots</h4>
+<p><br />
+</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><img
+src="assets/img/screenshots/1-registrazione.png" style="width:30.0%"
+alt="image" /></td>
+<td style="text-align: center;"><img
+src="assets/img/screenshots/2-qrcode.png" style="width:30.0%"
+alt="image" /></td>
+<td style="text-align: center;"><img
+src="assets/img/screenshots/3-login.png" style="width:30.0%"
+alt="image" /></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><img
+src="assets/img/screenshots/4-errore_login.png" style="width:30.0%"
+alt="image" /></td>
+<td style="text-align: center;"><img
+src="assets/img/screenshots/5-homepage.png" style="width:30.0%"
+alt="image" /></td>
+<td style="text-align: center;"><img
+src="assets/img/screenshots/6-tags.png" style="width:30.0%"
+alt="image" /></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><img
+src="assets/img/screenshots/7-profilo_codemonkey.png"
+style="width:30.0%" alt="image" /></td>
+<td style="text-align: center;"><img
+src="assets/img/screenshots/8-proponi_collaborazione.png"
+style="width:30.0%" alt="image" /></td>
+<td style="text-align: center;"><img
+src="assets/img/screenshots/9-segnala_utente.png" style="width:30.0%"
+alt="image" /></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><img
+src="assets/img/screenshots/10-lista_collaborazioni.png"
+style="width:30.0%" alt="image" /></td>
+<td style="text-align: center;"><img
+src="assets/img/screenshots/11-accetta_rifiuta.png" style="width:30.0%"
+alt="image" /></td>
+<td style="text-align: center;"><img
+src="assets/img/screenshots/12-termina.png" style="width:30.0%"
+alt="image" /></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><img
+src="assets/img/screenshots/13-gestione_account.png" style="width:30.0%"
+alt="image" /></td>
+<td style="text-align: center;"><img
+src="assets/img/screenshots/14-dashboard.png" style="width:30.0%"
+alt="image" /></td>
+<td style="text-align: center;"><img
+src="assets/img/screenshots/15-light.png" style="width:30.0%"
+alt="image" /></td>
+</tr>
+</tbody>
+</table>
+<h2 id="progettazione-delle-interazioni">Progettazione delle
+interazioni</h2>
+<h4 id="accesso-3">Accesso</h4>
+<p><br />
+<img src="assets/img/sequenza_dettaglio/accesso-1.png"
+style="width:100.0%" alt="image" /><br />
+<img src="assets/img/sequenza_dettaglio/accesso-2.png"
+style="width:100.0%" alt="image" /><br />
+</p>
+<h4 id="utente-2">Utente</h4>
+<p><br />
+<img src="assets/img/sequenza_dettaglio/homepage-1.png"
+style="width:100.0%" alt="image" /><br />
+</p>
+<h4 id="codemonkey-2">Codemonkey</h4>
+<p><br />
+<img src="assets/img/sequenza_dettaglio/codemonkey-1.png"
+style="width:100.0%" alt="image" /><br />
+<img src="assets/img/sequenza_dettaglio/codemonkey-2.png"
+style="width:100.0%" alt="image" /><br />
+</p>
+<h4 id="cliente-2">Cliente</h4>
+<p><br />
+<img src="assets/img/sequenza_dettaglio/cliente-1.png"
+style="width:100.0%" alt="image" /><br />
+<img src="assets/img/sequenza_dettaglio/cliente-2.png"
+style="width:100.0%" alt="image" /><br />
+</p>
+<h4 id="amministratore-2">Amministratore</h4>
+<p><br />
+<img src="assets/img/sequenza_dettaglio/admin-1.png"
+style="width:100.0%" alt="image" /><br />
+<img src="assets/img/sequenza_dettaglio/admin-2.png"
+style="width:100.0%" alt="image" /><br />
+<img src="assets/img/sequenza_dettaglio/admin-3.png"
+style="width:100.0%" alt="image" /><br />
+</p>
+<h2 id="progettazione-della-persistenza">Progettazione della
+persistenza</h2>
+<h3 id="diagramma-e-r">Diagramma E-R</h3>
+<p><img src="assets/plantuml/er.png" style="width:100.0%"
+alt="image" /><br />
+</p>
+<h3 id="formato-files-di-log">Formato files di log</h3>
+<p>Il formato per i files di Log scelto è csv con semicolon (;) come
+separatore.:
+<code> &lt;Username Utente&gt;;&lt;TipoLog&gt;;&lt;DescrizioneLog&gt;;&lt;Data&gt; </code>
+Questo è un esempio di un file di Log:
+<code> dennisritchie;PROPONICOLLABORAZIONE;codemonkey="briankernighan",titolo="The C Programming Language",descrizione="Mi serve un’altra mano per scrivere un manuale di programmazione per il linguaggio C",tags="C:documentazione";1978-02-22 12:00:00 briankernighan;ACCETTACOLLABORAZIONE;id="123456789";February 22, 19781978-02-22 12:01:00 dennisritchie;TERMINACOLLABORAZIONE;id="123456789",valutazione="5",commento="Ottimo lavoro!";1978-02-22 12:02:00 </code>’</p>
+<h2 id="progettazione-del-collaudo">Progettazione del collaudo</h2>
+<h3 id="test-di-unità">Test di unità</h3>
+<p>Test di unità con il framework Rails di esempio per il modello
+<code>Collaborazione</code>, vengono riportate le validazioni che devono
+essere soddisfatte per poter salvare un’istanza di
+<code>Collaborazione</code> nel database:</p>
+<div class="sourceCode" id="cb1" data-language="Ruby"><pre
+class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">class</span> <span class="dt">Collaborazione</span> <span class="kw">&lt;</span> <span class="dt">ActiveRecord</span><span class="kw">::</span><span class="dt">Base</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  belongs_to <span class="wa">:codemonkey</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  belongs_to <span class="wa">:company</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  belongs_to <span class="wa">:technologies</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Database fields</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  validates <span class="wa">:titolo</span>, <span class="wa">presence: </span><span class="dv">true</span>, <span class="wa">length: </span><span class="kw">{</span> <span class="wa">maximum: </span><span class="dv">256</span> <span class="kw">}</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  validates <span class="wa">:descrizione</span>, <span class="wa">length: </span><span class="kw">{</span> <span class="wa">maximum: </span><span class="dv">4096</span> <span class="kw">}</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  validates <span class="wa">:stato</span>, <span class="wa">presence: </span><span class="dv">true</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  validates <span class="wa">:suggest_time</span>, <span class="wa">presence: </span><span class="dv">true</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  validates <span class="wa">:start_time</span>, <span class="wa">presence: </span><span class="dv">true</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  validates <span class="wa">:end_time</span>, <span class="wa">presence: </span><span class="dv">true</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  validates <span class="wa">:valutazione</span>, <span class="wa">numericality: </span><span class="kw">{</span> <span class="wa">only_integer: </span><span class="dv">true</span>, <span class="wa">allow_nil: </span><span class="dv">true</span>, <span class="wa">greater_than_or_equal_to: </span><span class="dv">0</span>, <span class="wa">less_than_or_equal_to: </span><span class="dv">5</span> <span class="kw">}</span> </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  validates <span class="wa">:comment</span>, <span class="wa">length: </span><span class="kw">{</span> <span class="wa">maximum: </span><span class="dv">1024</span> <span class="kw">}</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+<p>Test di unità con il framework Angular di esempio per il componente
+<code>UserCardComponent</code>, vengono riportati i test per la
+creazione del componente:</p>
+<div class="sourceCode" id="cb2" data-language="Java"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">{ ComponentFixture, TestBed } from &#39;@angular/core/testing&#39;</span><span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">{ HttpClientTestingModule } from &#39;@angular/common/http/testing&#39;</span><span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">{ ActivatedRoute } from &#39;@angular/router&#39;</span><span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">{ of } from &#39;rxjs&#39;</span><span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">{ UserComponent } from &#39;</span><span class="op">.</span><span class="im">/user</span><span class="op">.</span><span class="im">component&#39;</span><span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span><span class="op">(</span><span class="er">&#39;</span>UserComponent<span class="er">&#39;</span><span class="op">,</span> <span class="op">()</span> <span class="op">=&gt;</span> <span class="op">{</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  let component<span class="op">:</span> UserComponent<span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  let fixture<span class="op">:</span> ComponentFixture<span class="op">&lt;</span>UserComponent<span class="op">&gt;;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">beforeEach</span><span class="op">(</span><span class="fu">async</span> <span class="op">()</span> <span class="op">=&gt;</span> <span class="op">{</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    await TestBed<span class="op">.</span><span class="fu">configureTestingModule</span><span class="op">({</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>      imports<span class="op">:</span> <span class="op">[</span>HttpClientTestingModule<span class="op">],</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>      declarations<span class="op">:</span> <span class="op">[</span>UserComponent<span class="op">],</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>      providers<span class="op">:</span> <span class="op">[</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>          provide<span class="op">:</span> ActivatedRoute<span class="op">,</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>          useValue<span class="op">:</span> <span class="op">{</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>            paramMap<span class="op">:</span> <span class="fu">of</span><span class="op">({</span> get<span class="op">:</span> <span class="op">()</span> <span class="op">=&gt;</span> <span class="er">&#39;</span>test<span class="op">-</span>username<span class="er">&#39;</span> <span class="op">})</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>          <span class="op">}</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>      <span class="op">]</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="op">}).</span><span class="fu">compileComponents</span><span class="op">();</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="op">});</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">beforeEach</span><span class="op">(()</span> <span class="op">=&gt;</span> <span class="op">{</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    fixture <span class="op">=</span> TestBed<span class="op">.</span><span class="fu">createComponent</span><span class="op">(</span>UserComponent<span class="op">);</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    component <span class="op">=</span> fixture<span class="op">.</span><span class="fu">componentInstance</span><span class="op">;</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    fixture<span class="op">.</span><span class="fu">detectChanges</span><span class="op">();</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="op">});</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">it</span><span class="op">(</span><span class="er">&#39;</span>should create<span class="er">&#39;</span><span class="op">,</span> <span class="op">()</span> <span class="op">=&gt;</span> <span class="op">{</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expect</span><span class="op">(</span>component<span class="op">).</span><span class="fu">toBeTruthy</span><span class="op">();</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  <span class="op">});</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="op">});</span></span></code></pre></div>
+<p>Test per i controller con Curl, vengono riportati i test per il
+controller <code>RegistrazioneContoller</code>:</p>
+<div class="sourceCode" id="cb3" data-language="bash"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> user/registrazione</span> <span class="kw">{</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">NAME</span><span class="op">=</span><span class="va">$1</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">PASSWORD</span><span class="op">=</span><span class="va">$2</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="va">EMAIL</span><span class="op">=</span><span class="va">$3</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">TYPE</span><span class="op">=</span><span class="va">$4</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">curl</span> <span class="at">-X</span> POST http://localhost:8080/api/user/registrazione <span class="at">-H</span> <span class="st">&quot;Content-Type: application/json&quot;</span> <span class="at">-d</span> <span class="st">&quot;{</span><span class="dt">\&quot;</span><span class="st">registrazione</span><span class="dt">\&quot;</span><span class="st">: {</span><span class="dt">\&quot;</span><span class="st">username</span><span class="dt">\&quot;</span><span class="st">: </span><span class="dt">\&quot;</span><span class="va">$NAME</span><span class="dt">\&quot;</span><span class="st">, </span><span class="dt">\&quot;</span><span class="st">email</span><span class="dt">\&quot;</span><span class="st">: </span><span class="dt">\&quot;</span><span class="va">$EMAIL</span><span class="dt">\&quot;</span><span class="st">, </span><span class="dt">\&quot;</span><span class="st">password</span><span class="dt">\&quot;</span><span class="st">: </span><span class="dt">\&quot;</span><span class="va">$PASSWORD</span><span class="dt">\&quot;</span><span class="st">, </span><span class="dt">\&quot;</span><span class="st">type</span><span class="dt">\&quot;</span><span class="st">: </span><span class="dt">\&quot;</span><span class="va">$TYPE</span><span class="dt">\&quot;</span><span class="st"> }}&quot;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Test case 1: Valid signup</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="va">response</span><span class="op">=</span><span class="va">$(</span><span class="ex">user/registrazione</span> <span class="st">&#39;gracehopper&#39;</span> <span class="st">&#39;12345678&#39;</span> <span class="st">&#39;gracehopper@example.com&#39;</span> <span class="st">&#39;Codemonkey&#39;</span><span class="va">)</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="st">&quot;</span><span class="va">$response</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&#39;{&quot;username&quot;:&quot;gracehopper&quot;,&quot;type&quot;:&quot;Codemonkey&quot;,&quot;otp_provisioning_uri&quot;:&quot;otpauth://totp/gracehopper?secret=&#39;</span><span class="pp">*</span><span class="st">&#39;&quot;}&#39;</span> <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">&quot;Test case 1: Passed&quot;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">&quot;Test case 1: Failed&quot;</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="bu">exit</span> 1</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Test case 2: Malformed email</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="va">response</span><span class="op">=</span><span class="va">$(</span><span class="ex">user/registrazione</span> <span class="st">&#39;edsgerdjikstra&#39;</span> <span class="st">&#39;12345678&#39;</span> <span class="st">&#39;edsgerdjikstra@malformedemail&#39;</span> <span class="st">&#39;Codemonkey&#39;</span><span class="va">)</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="va">expected_response</span><span class="op">=</span><span class="st">&#39;{&quot;status&quot;:500,&quot;errors&quot;:[&quot;Malformed Email&quot;]}&#39;</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="st">&quot;</span><span class="va">$response</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;</span><span class="va">$expected_response</span><span class="st">&quot;</span> <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">&quot;Test case 2: Passed&quot;</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">&quot;Test case 2: Failed&quot;</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="bu">exit</span> 1</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code></pre></div>
+<h3 id="test-di-api">Test di API</h3>
+<h2 id="progettazione-del-deployment">Progettazione del deployment</h2>
+<h3 id="artefatti">Artefatti</h3>
+<p>Durante la fase di implementazione è stato usata la “Modalità
+sviluppo” per frontend e backend, in modo da poter testare velocemente
+le funzionalità dell’applicazione. L’artefatto prodotto dalla fase di
+build (costruzione) è un Docker Compose, cioè un file che contiene le
+configurazioni per l’esecuzione dei container Docker. È stato infatti
+adoperato il modello a container per la distribuzione dell’applicazione,
+in modo da rendere le dipendenze esterne dei packages prodotti
+trasparenti e portabili per il deployment su qualsiasi macchina che
+utilizza Docker.<br />
+</p>
+<h3 id="diagramma-di-deployment">Diagramma di deployment</h3>
+</body>
+</html>
