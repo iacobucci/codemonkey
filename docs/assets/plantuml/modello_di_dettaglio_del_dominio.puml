@@ -3,11 +3,6 @@
 class User{
 }
 
-class RegistredUser{
-	- username : String
-	- email: String
-}
-
 class RegistredUser {
 	- username : String
 	- email : String
@@ -21,10 +16,6 @@ class Codemonkey {
 
 class ImmagineProfilo {
 	- immagine : byte[]
-}
-
-class Tag{
-	- nome : String
 }
 
 class Collaborazione{
@@ -52,10 +43,6 @@ class Codemonkey{
 	accettaCollaborazione(Collaborazione): Collaborazione
 	rifiutaCollaborazione(Collaborazione): Collaborazione
 	terminaCollaborazione(Collaborazione, Valutazione): Collaborazione
-}
-
-class Tag {
-	- nome: String
 }
 
 enum StatoCollaborazione {
@@ -161,6 +148,7 @@ Collaborazione <--> Codemonkey
 TipoLog <-- Log
 Log --> RegistredUser
 StatoUser <-- RegistredUser
+RegistredUser <-- Segnalazione
 RegistredUser <-- Segnalazione
 StatoTag <-- Tag
 

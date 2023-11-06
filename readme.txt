@@ -33,6 +33,7 @@ revision
 
 docs
     [x] abstract
+<<<<<<< Updated upstream
     [x] analisi dei requisiti   
         [x] raccolta dei requisiti
         [x] vocabolario
@@ -41,6 +42,23 @@ docs
             [x] non funzionali
             [x] dominio
             [x] diagramma casi d'uso
+=======
+    raccolta dei requisiti
+    analisi dei requisiti   
+        [x] vocabolario
+            utente registrato
+            progetto
+                proposta
+                accettazione
+                rifiuto
+                interruzione
+                terminazione
+                modifica
+            ricerca sinonimo: feed
+            valutazioni
+            ricerca
+            
+>>>>>>> Stashed changes
         [x] scenari
         [x] analisi del rischio
             [x] valutazione dei beni
@@ -242,6 +260,7 @@ docs
             [x] sviluppi fururi
     [x] progettazione
         [x] progettazione architetturale
+<<<<<<< Updated upstream
             [x] requisiti non funzionali
             [x] scelte tecnologiche
             [x] scelta dell'architettura
@@ -299,6 +318,269 @@ docs
         [x] progettazione di dettaglio controllers
             [x] accesso
             [x] utente
+=======
+            [x] client (frontend)
+            [x] server (backend)
+            [x] persistenza (database)
+        [ ] collaudo (test)
+        deployment
+            [x] containerizzazione
+            [ ] deploy
+
+misc
+    frontend
+        [x] toolbar
+            [x] bug scrolling viewport
+        [x] theme
+            [x] dark mode
+            [x] light mode
+            [x] colors
+                [x] accent
+                [x] primary
+        [x] login
+            [x] salvataggio stato con JWT
+            [ ] bug forward a /feed
+        [x] signup
+            [x] matching passwords
+            [x] qr code
+                [x] bug libreria
+	    [x] capire come ottenere parametri da componente genitore
+            premendo sul componente technologies dalla card user si viene reindirizzati a /<username>?technologies=<tecnologies>
+        [ ] ssr
+
+    backend
+        [x] database connection
+        [x] ActiveRecord
+        [x] 2FA totp
+        [x] JWT
+        [x] activerecord
+            model.property = new_property
+            controller -> save
+        [ ] check stato utenti in model
+        [ ] refactoring di stile
+        [ ] controllo actions per ogni controller
+
+    database
+        [x] modellare tabelle con rails db:migration
+        [x] sti
+            grande tablela user con type
+        [x] salvataggio propic come jpeg
+            
+        
+db
+    [x] users
+        [x] username
+            primary key varchar(255)
+        [x] password_digest
+            varchar(255)
+        [x] totp_secret
+            varchar(255)
+        [x] email
+            varchar(255)
+        [x] tipo
+            enum (codemonkey, company, admin)
+
+    [x] codemonkeys extends user
+        [x] first_name
+            varchar(255)
+        [x] bio
+            varchar(4095)
+        [x] propic
+            blob
+        [x] status
+            enum (active, banned)
+        [x] last_name
+            varchar(255)
+        [x] rating
+            int null
+                
+    [x] companies extends user
+        [x] name
+            varchar(255)
+        [x] bio
+            varchar(4095)
+        [x] propic
+            blob
+        [x] status
+            enum (active, banned)
+
+    [x] admin extends user
+
+    [x] technologies
+        [x] id
+            primary key int autoincrement
+        [x] name
+            varchar(255)
+        [x] suggest_time
+            datetime
+        [x] approved
+            boolean
+        [x] rejected
+            boolean
+
+    [x] projects
+        [x] id
+            primary key int autoincrement
+        [x] title
+            varchar(255)
+        [x] description
+            varchar(4095)
+
+        [x] status
+            string
+
+        [x] suggest_time
+            datetime
+        [x] start_time
+            date
+        [x] end_time
+            date
+
+        [x] rating
+            int null
+        [x] comment
+            varchar(1024)
+            
+        [x] codemonkey
+            foreign key a codemonkey
+        [x] company
+            foreign key a company
+        [x] tecnologies
+            foreign key a tecnologie
+    
+    [x] technologies_projects
+        [x] project
+            foreign key a project
+        [x] technology
+            foreign key a technology
+    
+    [x] projects_users
+        [x] user
+            foreign key a user
+        [x] technology
+            foreign key a technology
+    
+    [x] technologies_users
+        [x] user
+            foreign key a user
+        [x] technology
+            foreign key a technology
+
+    [x] reports
+        [x] id 
+            primary key int autoincrement
+        [x] from
+            foreign key a user
+        [x] to
+            foreign key a user
+        [x] data
+            datetime
+        [x] descrizione
+            varchar(1024)
+
+    [x] actions 1:N
+        [x] id
+            primary key int autoincrement
+        [x] name
+            varchar(255)
+        [x] user
+            foreign key a user
+        [x] time
+            datetime
+        [x] description
+            varchar(8191)
+
+actions
+    codemonkey
+        signup
+        login
+        logout
+        delete
+        accept?project=<project.id>
+        reject?project=<project.id>
+        settings?nome=password&<nome>&cognome=<cognome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
+        suggest?tecnologia=<tecnologia>
+        report?[codemonkey=<codemonkey.username>||company=<codemonkey.username>]
+    company
+        signup
+        login
+        logout
+        new?title=<project.id>&codemonkey=<codemonkey.username>&descrizione=<descrizione>&tecnologie=<tecnologia1,tecnologia2,...>
+        terminate?project=<project.id>
+        settings?nome=password&<nome>&bio=<bio>&propic=<propic>&email=<email>&tecnologie=<tecnologia1,tecnologia2,...>
+        suggest?tecnologia=<tecnologia>
+        report?[codemonkey=<codemonkey.username>||company=<codemonkey.username>]
+    admin
+        login
+        logout
+        set?[codemonkey=<codemonkey.username>||company=<codemonkey.username>]&stato=<attivo|bannato|sospeso>
+        add?tecnologia=<tecnologia>
+        approve?tecnologia=<tecnologia>
+        rifiuta?tecnologia=<tecnologia>
+
+model
+    user
+        codemonkey
+        company
+        admin
+    project
+    action 
+    technology
+    report
+
+endpoint
+    /api
+        endpoint di popolamento dell'interfaccia
+            /feed
+                [x] /home
+                    si filtra per codemonkey||company||tutti
+                    si filtra per tecnologia
+                    l'ordine è casuale
+                    vengono inviate 5 card alla volta
+                    bisogna controllare quale card sono state gia visualizzate
+                    /home?seen=<username1,username2,...>&technologies=<tecnologia1,tecnologia2,...>&type=<codemonkey|company|all>
+                [x] /user
+                    si filtra per tecnologia
+                    l'ordine è project.suggest_time.asc
+                    vengono inviate 5 card alla volta
+                    /user?page=<num>&technologies=<tecnologia1,tecnologia2,...>
+            /dashboard
+                [x] actions
+                    lista di tutte le actions
+                    l'ordine è actions.time.desc
+                    vengono inviate 20 card alla volta
+                    /dashboard?page=<num>
+                    ovviamente si possono perdere di vista le actions per via della paginazione
+                [x] technologies
+        endpoint di controllo
+            /project
+                [x] /accept
+                [x] /reject
+                [x] /new
+                [x] /terminate
+                [x] /edit
+            /report
+                [x] /send
+                [x] /ban
+            /technology
+                [x] /suggest
+                [x] /approve
+                [x] /reject
+            /user
+                [x] /signup
+                [x] /login
+                [x] /delete
+                [x] /logout
+                [x] /settings
+                    /propic
+                    [x] /upload
+                    [x] /delete
+                    [x] /download
+
+components
+    [ ] card
+        [x] user
+>>>>>>> Stashed changes
             [x] codemonkey
             [x] cliente
             [x] amministratore
