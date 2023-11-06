@@ -34,6 +34,7 @@ revision
 docs
     [x] abstract
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     [x] analisi dei requisiti   
         [x] raccolta dei requisiti
         [x] vocabolario
@@ -43,6 +44,9 @@ docs
             [x] dominio
             [x] diagramma casi d'uso
 =======
+    raccolta dei requisiti
+=======
+>>>>>>> Stashed changes
     raccolta dei requisiti
     analisi dei requisiti   
         [x] vocabolario
@@ -58,6 +62,21 @@ docs
             valutazioni
             ricerca
             
+<<<<<<< Updated upstream
+            utente registrato
+            progetto
+                proposta
+                accettazione
+                rifiuto
+                interruzione
+                terminazione
+                modifica
+            ricerca sinonimo: feed
+            valutazioni
+            ricerca
+            
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         [x] scenari
         [x] analisi del rischio
