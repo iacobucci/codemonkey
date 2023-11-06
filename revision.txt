@@ -22,7 +22,7 @@ uml
 			è un commento all'uml
 
 er
-	gli username di Clienti Codemonkeys e Admins potrebbero essere ripetuti
+	gli username di Clienti Codemonkeys e Admins non dovrebbero essere ripetuti
 		Users
 			username: string
 		RegistredUsers

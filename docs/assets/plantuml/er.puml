@@ -3,27 +3,28 @@
 
 !define ENTITY entity
 
-!define PRIMARY_KEY <<PK>>
-!define FOREIGN_KEY <<FK>>
+!define PRIMARY_KEY PK
+!define FOREIGN_KEY FK
+
+ENTITY Users {
+  - username: STRING <<PRIMARY_KEY>>
+  + password_digest: STRING
+}
+
+ENTITY RegistredUsers{
+  + email: STRING
+  + stato: STRING
+}
 
 ENTITY Codemonkeys {
-  - username: STRING <<PRIMARY_KEY>>
-  + email: STRING 
   + biografia: STRING
-  + password_digest: STRING
-  + stato: STRING
   + rating: FLOAT
 }
 
 ENTITY Clienti {
-  - username: STRING <<PRIMARY_KEY>>
-  + stato: STRING
-  + password_digest: STRING
 }
 
 ENTITY Admins {
-  - username: STRING <<PRIMARY_KEY>>
-  + password_digest: STRING
 }
 
 ENTITY Collaborazioni {
@@ -63,6 +64,20 @@ ENTITY Segnalazioni {
   + orario: DATETIME
 }
 
+note bottom of Segnalazioni
+  Nella tabella Segnalazioni
+  mittente e destinatario sono foreign key
+  alle tabelle Clienti e Codemonkeys
+  ma ci sono solo due casi:
+  mittente <<FK>> Codemonkeys e destinatario <<FK>> Clienti
+  mittente <<FK>> Clienti e destinatario <<FK>> Codemonkeys
+end note
+
+
+Users <|-- RegistredUsers
+Users <|-- Admins
+RegistredUsers <|-- Codemonkeys
+RegistredUsers <|-- Clienti
 
 Codemonkeys "1" --o "N" Collaborazioni
 Clienti "1" --o "N" Collaborazioni

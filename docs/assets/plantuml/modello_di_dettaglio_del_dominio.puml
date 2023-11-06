@@ -1,9 +1,9 @@
 @startuml modello_di_dettaglio_del_dominio
 
-class User{
+class User<<abstract>>{
 }
 
-class RegistredUser {
+class RegistredUser<<abstract>> {
 	- username : String
 	- email : String
 	- biografia: String
@@ -87,12 +87,21 @@ class Log {
 	data: DateTime
 }
 
-class Segnalazione{
-	- mittente: RegistredUser
-	- destinatario: RegistredUser
+class Segnalazione<<Mittente: RegistredUser, Destinatario: RegistredUser>>{
+	- mittente: Mittente
+	- destinatario: Destinatario
 	- motivazione: String
 	- data: DateTime
 }
+
+note bottom of Segnalazione
+	Segnalazione è una classe generic
+	con due parametri di tipo: Mittente e Destinatario
+	che possono essere
+	Mittente: Codemonkey e Destinatario: Cliente
+	oppure
+	Mittente: Cliente e Destinatario: Codemonkey
+end note
 
 class RegistredUser {
 	- stato: StatoUser
@@ -131,6 +140,7 @@ class Admin {
 	accettaTag(Tag): Tag
 	rifiutaTag(Tag): Tag
 }
+
 
 User <|-- RegistredUser: Extends
 User <|-- Admin: Extends
