@@ -35,6 +35,7 @@ docs
     [x] abstract
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     [x] analisi dei requisiti   
         [x] raccolta dei requisiti
         [x] vocabolario
@@ -45,6 +46,8 @@ docs
             [x] diagramma casi d'uso
 =======
     raccolta dei requisiti
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     raccolta dei requisiti
@@ -63,6 +66,7 @@ docs
             ricerca
             
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             utente registrato
             progetto
                 proposta
@@ -75,6 +79,8 @@ docs
             valutazioni
             ricerca
             
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
