@@ -10,6 +10,8 @@ L’applicazione è sviluppata come applicazione web, in modo da essere acces si
 
 È stato adottato il Pattern Broker per la gestione della sessione e per proteggere ulteriormente lo strato dei server. Questa scelta consente di disaccoppiare il client dal backend, fornendo un'interfaccia di comunicazione tramite API REST.\\
 
+Per la gestione della persistenza è stato adottato il pattern "forza bruta", disponendo dei metodi CRUD per ogni entità.\\
+
 Nella configurazione dell'applicazione, il client richiede al server frontend di scaricare l'applicazione Angular. Una volta che l'applicazione è stata scaricata nel browser del client, essa utilizza le API REST per contattare il backend e ottenere i dati necessari per la visualizzazione corretta dell'interfaccia utente.\\
 
 Il server frontend funge da intermediario tra il client e il backend. Riceve le richieste del client, le instrada al backend appropriato e restituisce le risposte al client. In questo modo, il frontend nasconde la struttura dei server backend, consentendo una maggiore flessibilità nel sistema (Dependency inversion principle).\\
