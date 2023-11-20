@@ -1,14 +1,14 @@
 L’applicazione é sviluppata come applicazione web, in modo da essere accessibile dai dispositivi che supportano le tecnologie web moderne e abbiano a disposizione un web browser.
 \begin{itemize}
-	\item \large{\textbf{Frontend:}}\newline Il client (web browser) esegue l'applicazione Angular che permette all'utente di interagire con l'applicazione. L'applicazione comunica con il server attraverso richieste HTTP. Angular é un framework Javascript che realizza applicazioni web basate su componenti e che si occupa in automatico dell'ottimizzazione delle prestazioni. In più é stato scelta la libreria Material Design per la stilizzazione dei componenti, in modo da migliorare l'esperienza utente. È disposta anche una API pubblica per richieste REST. 
+	\item \large{\textbf{Frontend:}}\newline Il client (web browser) esegue l'applicazione Angular che permette all'utente di interagire con l'applicazione. L'applicazione comunica con il server attraverso richieste HTTP. Angular é un framework Javascript che realizza applicazioni web basate su componenti e che si occupa in automatico dell'ottimizzazione delle prestazioni. In più é stato scelta la libreria Material Design per la stilizzazione dei componenti, in modo da migliorare l'esperienza utente. É disposta anche una API pubblica per richieste REST. 
 	\item \large{\textbf{Backnd:}}\newline
 	L'applicazione lato server é sviluppata utilizzando il framework Rails per Ruby. Ruby é un linguaggio di scripting orientato agli oggetti, che permette di scrivere codice in modo semplice e veloce. Rails é un framework che permette di sviluppare applicazioni web in modo semplice e veloce, seguendo il pattern MVC. Rails si occupa di gestire le richieste HTTP e di gestire la comunicazione con il client. Il framework si occupa della maggior parte delle transazioni con il database, offrendo prestazioni e agilità nello sviluppo. Questo servizio é esposto attraverso API REST.
 	\item \large{\textbf{Persistenza:}}\newline
-	È stato scelto di utilizzare il database PostgreSQL, che é un database relazionale open source, in modo da garantire la persistenza dei dati. Postgresql si integra bene con Rails grazie ai bindings (collegamenti) forniti da librerie esterne.
+	É stato scelto di utilizzare il database PostgreSQL, che é un database relazionale open source, in modo da garantire la persistenza dei dati. Postgresql si integra bene con Rails grazie ai bindings (collegamenti) forniti da librerie esterne.
 	Per il salvataggio e il recupero delle immagini é stato scelto di utilizzare un servizio di cloud storage, cioè un server chiamato \textit{Bucket}.
 \end{itemize}
 
-È stato adottato il Pattern Broker per la gestione della sessione e per proteggere ulteriormente lo strato dei server. Questa scelta consente di disaccoppiare il client dal backend, fornendo un'interfaccia di comunicazione tramite API REST.\\
+É stato adottato il Pattern Broker per la gestione della sessione e per proteggere ulteriormente lo strato dei server. Questa scelta consente di disaccoppiare il client dal backend, fornendo un'interfaccia di comunicazione tramite API REST.\\
 
 Per la gestione della persistenza é stato adottato il pattern "forza bruta", disponendo dei metodi CRUD per ogni entità.\\
 

@@ -95,7 +95,7 @@ class Segnalazione<<Mittente: RegistredUser, Destinatario: RegistredUser>>{
 }
 
 note bottom of Segnalazione
-	Segnalazione è una classe generic
+	Segnalazione é una classe generic
 	con due parametri di tipo: Mittente e Destinatario
 	che possono essere
 	Mittente: Codemonkey e Destinatario: Cliente
