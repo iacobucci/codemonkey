@@ -4,7 +4,7 @@
   "description": "",
   "main": "marp.js",
   "scripts": {
-	"build":"marp -c marp.config.js presentazione.md -o presentazione.pdf"
+	"build":"marp --html --allow-local-files -c marp.config.js presentazione.md -o presentazione.pdf"
   },
   "author": "",
   "license": "ISC",

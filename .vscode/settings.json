@@ -11,5 +11,6 @@
             "username": "admin",
             "password": "password"
         }
-    ]
+    ],
+    "markdown.marp.enableHtml": true
 }
