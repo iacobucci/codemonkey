@@ -1,0 +1,16 @@
+{
+  "name": "uml",
+  "version": "1.0.0",
+  "description": "",
+  "main": "marp.js",
+  "scripts": {
+	"build":"marp -c marp.config.js presentazione.md -o presentazione.pdf"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@marp-team/marp-core": "^3.9.0",
+    "markdown-it": "^13.0.2",
+    "markdown-it-plantuml": "^1.4.1"
+  }
+}
