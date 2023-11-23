@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@marp-team/marp-cl" : "^3.2.0",
+    "@marp-team/marp-cli" : "^3.2.0",
     "@marp-team/marp-core": "^3.9.0",
     "markdown-it": "^13.0.2",
     "markdown-it-plantuml": "^1.4.1"
