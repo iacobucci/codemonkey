@@ -1,46 +1,40 @@
-er
-	gerarchia registred user
-		ha sotto cliente e codemonkey ed è doppiamente 1-N con RegistredUsers
-		fare inheritance
-	senno gli username potrebbero essere ripetuti
+REQUISITI:
 
-uml
-	segnalazione deve avere mittente e destinatario che sono di tipi mutualmente esclusivi
-		alternativa 1
-			SegnalazioneClienteCodemonkey
-				mittente: Cliente
-				destinatario: Codemonkey
-			SegnalazioneCodemonkeyCliente
-				mittente: Codemonkey
-				destinatario: Cliente
-		alternativa 2
-			Segnalazione<Mittente, Destinatario>
-				mittente: Mittente
-				destinatario: Destinatario
-		alternativa 3
-			vincolo che mittente e destinatario appartengano a due classi diverse
-			è un commento all'uml
+Tabella requisiti: R17F è NF. R2NF-R4NF sono F.
 
-er
-	gli username di Clienti Codemonkeys e Admins non dovrebbero essere ripetuti
-		Users
-			username: string
-		RegistredUsers
-			email: string
-		Clienti inherits RegistredUsers
-		Codemonkeys inherits RegistredUsers
-		RegistredUsers inherits Users
-		Admins inherits Users
-		
+Diagramma CdU: Homepage di Utente?
 
-	
+Scenari: scenari inclusi (Login) messi come precondizione. Estendenti non indicati nell'esteso. In ProponiLavoro gli scenari alternativi sono precondizioni. In GestioneAmministratore si parla già di log.
 
+Requisiti sicurezza: R7NF è F (poi sparisce)
 
-logica di interazione dbms è in un controller
+ 
 
-utente astratto
-	non ha attributi ed associazioni
+ANALISI:
 
-registred user astratto
+Tabelle informazioni/flusso: diverse informazioni legate all'interfaccia.
 
-datapersistance - serverlog
+Tabella ruoli: la numerosità è input, non output.
+
+Tabelle ruolo/informazioni: username è input/output.
+
+Modello del dominio: che roba è?
+
+DIagramma dei package: cos'è InterfacciaLog?
+
+Diagrammi di sequenza: interazione col dominio quasi nulla. Manca totalmente la scrittura sul log.
+
+Piano del collaudo: API?
+
+ 
+
+PROGETTAZIONE:
+
+Interfacce: a che serve ILog vuota? Chi scrive sul log?
+
+Diagrammi di dettaglio: ma non unsavano l'ORM di Rails? DI nuovo manca il log.
+
+E/R: il log sul DB? Tipo in Utente è già progettazione logica.
+
+Diagrammi di deployment: assenti.
+

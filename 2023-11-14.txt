@@ -1,4 +1,0 @@
-cambiare occorrenze di lavoro -> collaborazione
-	controllare in tutte le pagine se ci sono occorrenze di lavoro
-	cambiare articoli
-	find -type f -exec sed -i 's/Lavoro/Collaborazione/g' {} +
