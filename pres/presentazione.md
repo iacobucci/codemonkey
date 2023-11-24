@@ -23,21 +23,13 @@ paginate: true
 
 Codemonkey è un'applicazione che espone programmatori (**Codemonkeys**) a realtà lavorative che ne hanno bisogno (**Clienti**).
 
-I clienti possono sfogliare i profili delle codemonkeys e proporre loro una **collaborazione**, che la codemonkey può accettare o rifiutare.
+I clienti possono sfogliare i profili delle codemonkeys in base a **tag** e proporre loro una **collaborazione**, che la codemonkey può accettare o rifiutare.
 
 A lavoro concluso, il cliente può valutare la collaborazione ed il profilo della codemonkey è aggiornato con la nuova **valutazione**.
 
-<!-- Codemonkey é un’applicazione di matching che ha l’obiettivo di mettere in comunicazione dei programmatori di base con aziende che ne hanno bisogno
-Le aziende identificate come Clienti avranno la possibilità di osservare tutte le Codemonkey iscritte alla piattaforma e potranno presentare delle proposte di lavoro note come Collaborazioni
-I programmatori identificati come Codemonkey metteranno a disposizione delle aziende una certa tipologia di servizi -->
-
-<!-- Ogni persona potrà consultare il sito web e visionare la lista di Codemonkey disponibili
-Un qualsiasi Cliente\Utente potrà proporre lavoro ad una Codemonkey (l’Utente dovrà poi o Autenticarsi o Registrarsi al sistema come Cliente)
-Una Codemonkey avrà la possibilità di registrarsi alla piattaforma e rendersi visibile -->
-
 ---
 
-# Gestione dei profili e delle collaborazioni
+# Modello dei dati
 
 Codemonkey|Cliente
 ----------|-------
@@ -46,6 +38,33 @@ Visualizzazione e gestione delle collaborazioni con possibilità di accettare, r
 Selezione dei tag|
 
 ---
+
+# Sviluppo
+Gli sviluppatori lavorano in **feature branch** separati e **merge request** nella repository **git** del progetto.
+Modalità di sviluppo
+
+
+---
+
+# Architettura
+
+@startuml
+
+Rest -> Nginx
+Nginx -> Rails
+Rails -> PostgreSQL
+Rest <- Rails
+Frontend <- Nginx
+
+
+@enduml
+
+
+
+
+---
+
+![bg fit right:33%](res/componenti.jpeg)
 
 # Implementazione
 

@@ -2,6 +2,11 @@ todo
     frontend
         [ ] forward a pagina di profilo dopo login
         [ ] card di errore login
+        pagina di impostazioni
+            [ ] cliente
+            [ ] codemonkeyN
+            [ ] admin
+            [ ] lavori
 
     backend
         [ ] check stato utenti in model
