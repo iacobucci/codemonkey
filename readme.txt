@@ -1,35 +1,13 @@
-TODO
-    refactoring company cliente
+todo
+    frontend
+        [ ] forward a pagina di profilo dopo login
+        [ ] card di errore login
 
-revision
-    ATTENZIONE ALL'UPDATE DEI RIFERIMENTI
-    analisi dei requisiti
-        requisiti
-            [x] spostare r17f in r4nf
-            [x] spostare r2nf in r18f
-            [x] spostare r4nf in r19f
-            [ ] togliere requisito non funzionale backup
-        diagramma casi d'uso
-            [ ] togliere homepage
-        scenari
-            [x] spostare "Un Cliente Sospeso non puó fare alcuna richiesta di Lavoro" in precodnizioni
+    backend
+        [ ] check stato utenti in model
+        [ ] refactoring di stile
 
-    analisi del problema
-        tabella informazioni flusso
-            modifica dati personali
-                [ ] togliere salva modifiche
-            modifica password
-                [ ] togliere salva modifiche
-        analisi dei ruoli e delle responsabilità
-            [ ] cambiare numerosità da "potenzialmente infinito" a stima
-        tabella ruolo informazioni
-            [ ] username è lettura/scrittura
-        modello del dominio
-            [ ] controllare da dettaglio a problema
-        diagramma dei package
-            [ ] scegliere cosa fare con log
-        
-    progettazione
+    database
 
 docs
     [x] abstract
@@ -249,7 +227,6 @@ docs
             [x] sviluppi fururi
     [x] progettazione
         [x] progettazione architetturale
-<<<<<<< Updated upstream
             [x] requisiti non funzionali
             [x] scelte tecnologiche
             [x] scelta dell'architettura
@@ -307,54 +284,14 @@ docs
         [x] progettazione di dettaglio controllers
             [x] accesso
             [x] utente
-=======
             [x] client (frontend)
             [x] server (backend)
             [x] persistenza (database)
-        [ ] collaudo (test)
+        [x] collaudo (test)
         deployment
             [x] containerizzazione
-            [ ] deploy
-
-misc
-    frontend
-        [x] toolbar
-            [x] bug scrolling viewport
-        [x] theme
-            [x] dark mode
-            [x] light mode
-            [x] colors
-                [x] accent
-                [x] primary
-        [x] login
-            [x] salvataggio stato con JWT
-            [ ] bug forward a /feed
-        [x] signup
-            [x] matching passwords
-            [x] qr code
-                [x] bug libreria
-	    [x] capire come ottenere parametri da componente genitore
-            premendo sul componente technologies dalla card user si viene reindirizzati a /<username>?technologies=<tecnologies>
-        [ ] ssr
-
-    backend
-        [x] database connection
-        [x] ActiveRecord
-        [x] 2FA totp
-        [x] JWT
-        [x] activerecord
-            model.property = new_property
-            controller -> save
-        [ ] check stato utenti in model
-        [ ] refactoring di stile
-        [ ] controllo actions per ogni controller
-
-    database
-        [x] modellare tabelle con rails db:migration
-        [x] sti
-            grande tablela user con type
-        [x] salvataggio propic come jpeg
-            
+            [x] deploy
+           
         
 db
     [x] users
@@ -516,85 +453,6 @@ model
     action 
     technology
     report
-
-endpoint
-    /api
-        endpoint di popolamento dell'interfaccia
-            /feed
-                [x] /home
-                    si filtra per codemonkey||company||tutti
-                    si filtra per tecnologia
-                    l'ordine è casuale
-                    vengono inviate 5 card alla volta
-                    bisogna controllare quale card sono state gia visualizzate
-                    /home?seen=<username1,username2,...>&technologies=<tecnologia1,tecnologia2,...>&type=<codemonkey|company|all>
-                [x] /user
-                    si filtra per tecnologia
-                    l'ordine è project.suggest_time.asc
-                    vengono inviate 5 card alla volta
-                    /user?page=<num>&technologies=<tecnologia1,tecnologia2,...>
-            /dashboard
-                [x] actions
-                    lista di tutte le actions
-                    l'ordine è actions.time.desc
-                    vengono inviate 20 card alla volta
-                    /dashboard?page=<num>
-                    ovviamente si possono perdere di vista le actions per via della paginazione
-                [x] technologies
-        endpoint di controllo
-            /project
-                [x] /accept
-                [x] /reject
-                [x] /new
-                [x] /terminate
-                [x] /edit
-            /report
-                [x] /send
-                [x] /ban
-            /technology
-                [x] /suggest
-                [x] /approve
-                [x] /reject
-            /user
-                [x] /signup
-                [x] /login
-                [x] /delete
-                [x] /logout
-                [x] /settings
-                    /propic
-                    [x] /upload
-                    [x] /delete
-                    [x] /download
-
-components
-    [ ] card
-        [x] user
->>>>>>> Stashed changes
-            [x] codemonkey
-            [x] cliente
-            [x] amministratore
-        [x] progettazione di dettaglio views
-            [x] accesso
-            [x] utente
-            [x] codemonkey
-            [x] cliente
-            [x] amministratore
-        [x] progettazione di dettaglio interazioni
-            [x] accesso
-            [x] utente
-            [x] codemonkey
-            [x] cliente
-            [x] amministratore
-        [x] progettazione persistenza
-            [x] diagramma er
-            [x] formato files di logs
-        [x] progettazione collaudo
-            [x] unit test
-                [x] backend
-                [x] frontend
-            [x] test curl
-        [x] deployment
-            [x] artefatti
             
 backend
     migrations
@@ -772,6 +630,14 @@ backend
                         ovviamente si possono perdere di vista le actions per via della paginazione
                     [x] technologies
                     [x] download
+                /project
+                    /index
+                /report
+                    /index
+                /technology
+                    /index
+                /user
+                    /index
             endpoint di controllo
                 /project
                     [x] /accept

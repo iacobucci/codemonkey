@@ -37,7 +37,7 @@ Una Codemonkey avrà la possibilità di registrarsi alla piattaforma e rendersi 
 
 ---
 
-# Gestione dei profili
+# Gestione dei profili e delle collaborazioni
 
 Codemonkey|Cliente
 ----------|-------
