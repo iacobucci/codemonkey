@@ -2,17 +2,13 @@
   "name": "uml",
   "version": "1.0.0",
   "description": "",
-  "main": "marp.js",
   "scripts": {
-    "build": "marp --pdf-notes --html --allow-local-files -c marp.config.js presentazione.md -o presentazione.pdf"
+    "build": "marp --html --allow-local-files presentazione.md -o presentazione.pdf"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@marp-team/marp-cli": "^3.2.0",
-    "@marp-team/marp-core": "^3.9.0",
-    "@marp-team/marpit": "^2.6.1",
-    "markdown-it": "^13.0.2",
-    "markdown-it-plantuml": "^1.4.1"
+    "mermaid": "^10.6.1"
   }
 }

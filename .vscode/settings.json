@@ -12,5 +12,7 @@
             "password": "password"
         }
     ],
-    "markdown.marp.enableHtml": true
+    "markdown.marp.enableHtml": true,
+    "markdown.preview.scrollEditorWithPreview": false,
+    "cmake.configureOnOpen": false
 }
