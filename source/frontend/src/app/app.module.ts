@@ -106,10 +106,10 @@ import { SettingsComponent } from './pages/settings/settings.component';
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent },
+      { path: '', component: FeedComponent },
       { path: 'login', component: LoginComponent },
       { path: 'registrazione', component: SignupComponent },
-      { path: 'feed', component: FeedComponent, canActivate: [AuthGuard] },
+      { path: 'start', component: HomeComponent },
 
       { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
 

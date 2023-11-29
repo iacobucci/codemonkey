@@ -34,14 +34,15 @@ A lavoro concluso, il cliente può valutare la collaborazione ed il profilo dell
 
 ## Codemonkey
 - Modifica di dati personali (email, password, bio)
-- Gestione delle collaborazioni
-    - Accettazione
-    - Rifiuto
-    - Interruzione
 - Gestione dei tag personali
     - Aggiunta
     - Rimozione
     - Proposta
+- Gestione delle collaborazioni
+    - Accettazione
+    - Rifiuto
+    - Interruzione
+    - Segnalazione
 </div>
 
 <div class="content" style="height:100%">
@@ -49,11 +50,12 @@ A lavoro concluso, il cliente può valutare la collaborazione ed il profilo dell
 ## Cliente
 - Modifica di dati personali (email, password)
 - Ricerca di Codemonkey attraverso feed
-    - Può filtrare per tag
+    - Può filtrare per tag e vedere valutazioni passate
 - Gestione delle collaborazioni
     - Proposta
     - Interruzione 
     - Terminazione e valutazione
+    - Segnalazione
 </div>
 </div>                                               
 
@@ -65,7 +67,12 @@ A lavoro concluso, il cliente può valutare la collaborazione ed il profilo dell
 Sono previsti degli amministratori, che avranno accesso ad una **dashboard** dove:
 - Accettare o rifiutare tags
 - Visionare il file di log
-- Gestire gli utenti aggiungendo o rimuovendo limitazioni
+- Gestire gli utenti assegnando uno stato:
+    - *in attesa*
+    - attivo
+    - limitato (Cliente)
+    - sospeso
+    - bloccato
 
 ---
 
@@ -78,17 +85,75 @@ Sono previsti degli amministratori, che avranno accesso ad una **dashboard** dov
 
 I server dedicati alla registrazione, all'accesso, alle operazioni utente ed alla gestione delle collaborazioni sono realizzati con servizi di **Frontend** e **Backend**.
 
-**PostgreSQL** è il DBMS relazionale scelto.
-
-**Nginx** è un web server HTTP e reverse proxy, fa da broker.
+**Nginx** è un web server HTTP e reverse proxy. Fa da broker: instrada le richieste del client al server corretto.
 
 Un semplice applicativo in un server *Linux* fa da **Server Log**.
+
+**PostgreSQL** è il DBMS relazionale scelto.
 
 </div>
 
 <div class="content">
 
-[![](https://mermaid.ink/img/pako:eNp1kl9PwjAUxb_KUl9BBBRwMSbsD8ZEnvCBuPlQ2rutsWtn12II2Xe366ag0T313N-557Zdj4hICshHGZcfpMBKe89RKjz7bZOQMxD6tZPLJFDyDVQvt95weO8tO1GbXa5wVXg1qD2ouqsGyUpJoUHQvidMAkzeTtqu-mzvrk0Lfqjwh4qTjcv2nmTet_fD3EZWSRSsN3-AhyQwdqbui70jduwxOQvTBw72VBnj3L9YRVG8nJ-ToCehQ-ck_JfEvwgaoBJUiRm1F35snSnSBZSQIt8uBRitME_RoEM1vBsQBEIpMpa3nmOXnqKSKSXVkmhpL9uCDPMaWtikonGDsNFycxAE-VoZGCBTUawhYtj-qBL5rmGAKixepDxpoMxGrrsn4V7GV2fsyLeRS0zByiPSh6o156zW1kzcXtu6UdyWC62r2h-NWnyZM12Y3SWR5ahmtH1sxf52NppNZgs8mcJsPsU30yklu_HtIptcjzM6vxpPMGqa5hPsKtRh?type=png)](https://mermaid.live/edit#pako:eNp1kl9PwjAUxb_KUl9BBBRwMSbsD8ZEnvCBuPlQ2rutsWtn12II2Xe366ag0T313N-557Zdj4hICshHGZcfpMBKe89RKjz7bZOQMxD6tZPLJFDyDVQvt95weO8tO1GbXa5wVXg1qD2ouqsGyUpJoUHQvidMAkzeTtqu-mzvrk0Lfqjwh4qTjcv2nmTet_fD3EZWSRSsN3-AhyQwdqbui70jduwxOQvTBw72VBnj3L9YRVG8nJ-ToCehQ-ck_JfEvwgaoBJUiRm1F35snSnSBZSQIt8uBRitME_RoEM1vBsQBEIpMpa3nmOXnqKSKSXVkmhpL9uCDPMaWtikonGDsNFycxAE-VoZGCBTUawhYtj-qBL5rmGAKixepDxpoMxGrrsn4V7GV2fsyLeRS0zByiPSh6o156zW1kzcXtu6UdyWC62r2h-NWnyZM12Y3SWR5ahmtH1sxf52NppNZgs8mcJsPsU30yklu_HtIptcjzM6vxpPMGqa5hPsKtRh)
+[![](https://mermaid.ink/img/pako:eNqNk8tunDAUhl8FOVuSuZDABFWRuEaRmtVkERW6MPYBrIBNjUk1GvHutYFkJlIVDWz8n_87F6PDERFBAfmobMRfUmOprJc455Z-XrOoYcDV71kGWSjFG8hFvlrX1w9WMIt-KCqJu9rqQb6D7OdomKVScAWcLjlRFmLydtL6tNS2fphq4RcVfVFJtp9qWz9FtaQvzaZB0iwOn_f_MR6zcNA91RJciGTynrKzYurQgL5VyZrGv0rjOAk8u1fmyv4V9YpiR87BcAGjifwEg7vQidbnYHQpmHwP6lfNYPAxo5vu0hMYr2MvTk5Yehn2eBn29B2GbNSCbDGjepGO5lI5UjW0kCNfHzkMSuImR_Zs9fBnAE4gErxklWGO84fIUcukFDIgSugl0kaJmx6MOeZ81G3woMT-wAnylRzARkNHsYKYYb1-LfIn3EYd5r-EOGmgTBd8nhd92vePzGRyPsFGYApaHpE6dAauWK80TKZJTXyQjQ7XSnW9v1oZ-6Ziqh6KGyLaVc-o-YXq93t35W7dHd464HoOvnMcSorN_a7c3m5K6q03W4zGcfwH1tEX-Q?type=png)](https://mermaid.live/edit#pako:eNqNk8tunDAUhl8FOVuSuZDABFWRuEaRmtVkERW6MPYBrIBNjUk1GvHutYFkJlIVDWz8n_87F6PDERFBAfmobMRfUmOprJc455Z-XrOoYcDV71kGWSjFG8hFvlrX1w9WMIt-KCqJu9rqQb6D7OdomKVScAWcLjlRFmLydtL6tNS2fphq4RcVfVFJtp9qWz9FtaQvzaZB0iwOn_f_MR6zcNA91RJciGTynrKzYurQgL5VyZrGv0rjOAk8u1fmyv4V9YpiR87BcAGjifwEg7vQidbnYHQpmHwP6lfNYPAxo5vu0hMYr2MvTk5Yehn2eBn29B2GbNSCbDGjepGO5lI5UjW0kCNfHzkMSuImR_Zs9fBnAE4gErxklWGO84fIUcukFDIgSugl0kaJmx6MOeZ81G3woMT-wAnylRzARkNHsYKYYb1-LfIn3EYd5r-EOGmgTBd8nhd92vePzGRyPsFGYApaHpE6dAauWK80TKZJTXyQjQ7XSnW9v1oZ-6Ziqh6KGyLaVc-o-YXq93t35W7dHd464HoOvnMcSorN_a7c3m5K6q03W4zGcfwH1tEX-Q)
+</div>
+</div>
+
+---
+<!-- ![bg fit right:33%](res/rails.png) -->
+
+<div class="container">
+<div class="content">
+
+# Backend
+**Rails**, routes /api
+In fase di implementazione è stato utilizzata una variazione sul pattern **MVC**, perchè la view è stata implementata con *Angular*.
+- **Model**: gestisce i dati e le relazioni
+- **Controller**: gestisce le richieste e le risposte
+
+È stato utilizzato l'**ORM** *ActiveRecord* per la gestione delle entità e delle relazioni.
+</div>
+<div class="content">
+
+```shell
+backend
+├─ app
+│  ├─ controllers
+│  │  ├─ collaborazione
+│  │  │  ├─ accetta_controller.rb
+│  │  │  ├─ modifica_controller.rb
+│  │  │  ├─ proponi_controller.rb
+│  │  │  ...
+│  │  ...
+│  └─ models
+│     ├─ cliente.rb
+│     ├─ codemonkey.rb
+│     ├─ collaborazione.rb
+│     ...
+├─ config
+│  ├─ database.yml
+│  ├─ environments
+│  │  ├─ development.rb
+│  │  ├─ production.rb
+│  └─ routes.rb
+├─ db
+│  └─ migrate # dall'e-r 
+│     ├─ clienti.rb
+│     ├─ codemonkeys.rb
+│     ├─ collaborazioni.rb
+│     ...
+├─ Dockerfile
+├─ lib
+│  └─ json_web_token.rb
+└─ test
+   ├─ controllers
+   │  ├─ collaborazione
+   │  │  ├─ accetta_controller_test.rb
+   │  │  ...
+   └─ models
+      ├─ codemonkey.rb
+      ...
+```
 
 </div>
 </div>
@@ -97,12 +162,12 @@ Un semplice applicativo in un server *Linux* fa da **Server Log**.
 
 <!-- ![bg fit right:33%](res/angular.png) -->
 
-
 <div class="container">
 <div class="content">
 
 # Frontend
-**Angular** è un framework per la creazione di applicazioni orientate a **componenti**
+**Angular**, routes /
+Framework per la creazione di applicazioni orientate a **componenti**
 - basato su *typescript*
 - permette di creare *single page applications*
 - può essere utilizzato per creare applicazioni web, desktop e mobile
@@ -121,95 +186,38 @@ frontend
       ├─ app.component.html
       ├─ app.component.ts
       ├─ components
-      │  └─ card
-      │     ├─ collaborazione-card
-      │     │  ├─ collaborazione-card.component.html
-      │     │  └─ collaborazione-card.component.ts
-      │     └─ user-card
-      │        ├─ codemonkey
-      │        │  └── codemonkey-card.component.ts
-      │        ├─ cliente
-      │        │  └── company-card.component.ts
-      │        ├─ user-card.component.html
-      │        └─ user-card.component.ts
+      │  ├─ card
+      │  |  ├─ collaborazione-card
+      │  |  │  ├─ collaborazione-card.component.html
+      │  |  │  └─ collaborazione-card.component.ts
+      │  |  └─ user-card
+      │  |     ├─ cliente
+      │  |     │  └── cliente-card.component.ts
+      │  |     ├─ codemonkey
+      │  |     │  └── codemonkey-card.component.ts
+      │  |     ├─ user-card.component.html
+      │  |     └─ user-card.component.ts
+      |  ...
       ├─ model
       │  └─ interfaces
+      │     ├─ cliente.interface.ts
       │     ├─ codemonkey.interface.ts
-      │     ├─ company.interface.ts
       │     ├─ collaborazione.interface.ts
       │     ...
       └─ pages
          ├─ home
          │  ├─ home.component.html
          │  └─ home.component.ts
-         └─ login
-            ├─ login.component.html
-            └─ login.component.ts
+         ├─ login
+         |  ├─ login.component.html
+         |  └─ login.component.ts
+         ...
 ```
 </div>
 </div>
 
 ---
-<!-- ![bg fit right:33%](res/rails.png) -->
 
-<div class="container">
-<div class="content">
-
-# Backend
-**Rails**
-In fase di implementazione è stato utilizzata una variazione sul pattern MVC, perchè la view è stata implementata in Angular.
-- **Model**: gestisce i dati e le relazioni
-- **Controller**: gestisce le richieste e le risposte
-
-È stato utilizzato l'**ORM** *ActiveRecord* per la gestione delle entità e delle relazioni.
-</div>
-<div class="content">
-
-```shell
-backend
-├─ app
-│  ├─ controllers
-│  │  ├─ collaborazione
-│  │  │  ├─ accetta_controller.rb
-│  │  │  ├─ modifica_controller.rb
-│  │  │  ├─ proponi_controller.rb
-│  │  │  └─ ...
-│  │  └─ ...
-│  └─ models
-│     ├─ codemonkey.rb
-│     ├─ cliente.rb
-│     ├─ collaborazione.rb
-│     └─ ...
-├─ config
-│  ├─ database.yml
-│  ├─ environments
-│  │  ├─ development.rb
-│  │  ├─ production.rb
-│  └─ routes.rb
-├─ db
-│  └─ migrate # dall'e-r 
-│     ├─ codemonkeys.rb
-│     ├─ collaborazioni.rb
-│     ├─ clienti.rb
-│     └─ ...
-├─ Dockerfile
-├─ lib
-│  └─ json_web_token.rb
-└─ test
-   ├─ controllers
-   │  ├─ collaborazione
-   │  │  ├─ accetta_controller_test.rb
-   │  │  └─ ...
-   └─ models
-      ├─ codemonkey.rb
-      └─ ...
-```
-
-</div>
-</div>
-
-
----
 
 ![bg right:33%](res/git.png)
 
@@ -224,7 +232,7 @@ Quando i cambiamenti sono pronti in `dev-X` viene effettuato un merge nel branch
 
 # Deployment
 
-Per il rilascio i sorgenti vengono trasferiti in un ambiente **Docker** e compilati. Si crea un'immagine da caricare su un servizio di **cloud computing**.
+Per il rilascio i sorgenti vengono trasferiti in un ambiente **Docker** e compilati. Si crea un'*immagine* da caricare su un servizio di **cloud computing**.
 
 <div class="container">
 <div class="content">
@@ -247,11 +255,41 @@ Viene predisposto l'utilizzo di **object server** per il caricamento/scaricament
 > Le richieste e le risposte sono cifrate con TLS.
 
 **TOTP** per l'autenticazione a due fattori.
-> Alla registrazione viene generato un codice QR che l'utente può scansionare con un'applicazione che genera un codice di verifica usa e getta.
-
-**Hashing** e **Salting** per la memorizzazione delle password.
-> Le password non vengono mai salvate in chiaro.
+> Alla registrazione viene generato un codice QR che l'utente può scansionare con un'applicazione che genera codici di verifica usa e getta.
 
 **JWT** per l'autenticazione.
 > Il client (browser web) salva il token in localStorage e lo invia al server in ogni richiesta.
 
+**Hashing** e **Salting** per la memorizzazione delle password.
+> Le password non vengono mai salvate in chiaro.
+
+---
+
+<div style="height=80%">
+<div>
+<div class="container">
+<div class="content">
+    <img src="res/profilo_codemonkey.png" height="30%"/>
+</div>
+<div class="content">
+    <img src="res/gestione_account.png" height="30%"/>
+</div>
+<div class="content">
+    <img src="res/lista_collaborazioni.png" height="30%"/>
+</div>
+</div>
+</div>
+<div>
+<div class="container">
+<div class="content">
+    <img src="res/qrcode.png" height="30%"/>
+</div>
+<div class="content">
+    <img src="res/tags.png" height="30%"/>
+</div>
+<div class="content">
+    <img src="res/proponi_collaborazione.png" height="30%"/>
+</div>
+</div>
+</div>
+</div>

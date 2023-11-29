@@ -52,7 +52,7 @@ export class UserComponent extends Tagged implements OnInit {
     this.fetchPropic();
     this.feed();
     this.feedTechnologies();
-    this.dialog.open(ProponiPopupComponent, { data: { username: this.username } });
+    // this.dialog.open(ProponiPopupComponent, { data: { username: this.username } });
 
   }
 

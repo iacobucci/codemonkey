@@ -6,7 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { AuthenticationService } from 'src/app/authentication.service';
 
-import {Tagged} from 'src/app/model/tagged.abstract'
+import { Tagged } from 'src/app/model/tagged.abstract'
 
 import { User } from "src/app//model/interfaces/user.interface"
 import { Codemonkey } from "src/app/model/interfaces/codemonkey.interface"
@@ -20,11 +20,11 @@ import { Technology } from 'src/app/model/interfaces/technology.interface';
   styleUrls: ['./feed.component.scss']
 })
 
-export class FeedComponent extends Tagged implements OnInit  {
+export class FeedComponent extends Tagged implements OnInit {
 
   constructor(http: HttpClient, private authenticationService: AuthenticationService, private dialog: MatDialog) {
     super(http);
-   }
+  }
 
   cards: User[] = [];
   seen: string[] = [];
@@ -44,13 +44,13 @@ export class FeedComponent extends Tagged implements OnInit  {
   isCompany(user: User): user is Company {
     return user.type === 'Company';
   }
-  
+
   onTechnologyUpdate() {
     this.cards = [];
     this.seen = [];
     this.feed();
   }
-    
+
 
   feed(): void {
     const url = '/api/feed/home';

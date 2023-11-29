@@ -1,18 +1,30 @@
 todo
     frontend
         [ ] forward a pagina di profilo dopo login
-        [ ] card di errore login
+        [ ] dashboard admin
+            [ ] accetta tag
+            [ ] scarica log
+            [ ] imposta stato utente
+        [ ] model di errore
+        popup di errore
+            [ ] login
+            [ ] collaborazione
+            [ ] permessi
+        pagina di profilo
+            codemonkey
+                [ ] proponi collaborazione
         pagina di impostazioni
             [ ] cliente
-            [ ] codemonkeyN
-            [ ] admin
-            [ ] lavori
+            [ ] codemonkey
+                [ ] proponi tag
+        card collaborazione
+            [ ] segnalazione
+        valutazione
+            [ ] impostazione della valutazione
 
     backend
         [ ] check stato utenti in model
-        [ ] refactoring di stile
-
-    database
+        [ ] feed anche senza jwt
 
 docs
     [x] abstract
