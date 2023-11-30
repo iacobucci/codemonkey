@@ -8,11 +8,11 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-proponi-popup',
-  templateUrl: './proponi-popup.component.html',
-  styleUrls: ['./proponi-popup.component.scss']
+  selector: 'app-segnala-popup',
+  templateUrl: './segnala-popup.component.html',
+  styleUrls: ['./segnala-popup.component.scss']
 })
-export class ProponiPopupComponent {
+export class SegnalaPopupComponent {
 
   // @Input() value: string = "";
 

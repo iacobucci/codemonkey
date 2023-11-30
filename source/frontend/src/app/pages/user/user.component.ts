@@ -15,6 +15,7 @@ import { Codemonkey } from 'src/app/model/interfaces/codemonkey.interface';
 import { Company } from 'src/app/model/interfaces/company.interface';
 import { Technology } from 'src/app/model/interfaces/technology.interface';
 import { ProponiPopupComponent } from 'src/app/components/popup/proponi-popup/proponi-popup.component';
+import { SegnalaPopupComponent } from 'src/app/components/popup/segnala-popup/segnala-popup.component';
 
 @Component({
   selector: 'app-user',
@@ -56,6 +57,10 @@ export class UserComponent extends Tagged implements OnInit {
 
   }
 
+  mail(): void {
+    window.location.href = `mailto:${this.user?.email}`;
+  }
+
   onTechnologyUpdate() {
     this.cards = [];
     this.seen = [];
@@ -81,6 +86,20 @@ export class UserComponent extends Tagged implements OnInit {
     );
   }
 
+  rating(): number {
+
+    if (this.user)
+      if (this.user.type === "Codemonkey") {
+        return (this.user as Codemonkey).rating;
+      }
+    return 0;
+  }
+
+  bio(): string {
+    if (this.user)
+      return this.user.bio;
+    return "";
+  }
 
   fetchPropic(): void {
     this.http.post("/api/user/propic/download", { propic_download: { username: this.username } }, { responseType: 'blob' }).subscribe((data: any) => {
@@ -110,5 +129,13 @@ export class UserComponent extends Tagged implements OnInit {
     });
   }
 
+
+  proponi(): void {
+    this.dialog.open(ProponiPopupComponent, { data: { username: this.username } });
+  }
+
+  segnala(): void {
+    this.dialog.open(SegnalaPopupComponent, { data: { username: this.username } });
+  }
 }
 

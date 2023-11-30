@@ -1,4 +1,4 @@
-class Api::Feed::UserController < AuthenticationController
+class Api::Feed::UserController < ApplicationController
   before_action :validate_params
 
   def user

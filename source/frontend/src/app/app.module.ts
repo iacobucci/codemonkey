@@ -24,7 +24,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRippleModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
@@ -42,6 +42,7 @@ import { ThemeSwitcherComponent } from './components/theme-switcher/theme-switch
 import { ValutazioneComponent } from './components/valutazione/valutazione.component';
 import { RegistrazionePopupComponent } from './components/popup/registrazione-popup/registrazione-popup.component';
 import { ProponiPopupComponent } from './components/popup/proponi-popup/proponi-popup.component';
+import { SegnalaPopupComponent } from './components/popup/segnala-popup/segnala-popup.component';
 import { LoginPopupComponent } from './components/popup/login-popup/login-popup.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { ImageUploaderComponent } from './components/image-uploader/image-uploader.component';
@@ -70,6 +71,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
     ValutazioneComponent,
     RegistrazionePopupComponent,
     ProponiPopupComponent,
+    SegnalaPopupComponent,
     LoginPopupComponent,
     LogoutComponent,
     ImageUploaderComponent,
