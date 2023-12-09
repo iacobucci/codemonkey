@@ -4,15 +4,13 @@ todo
         [ ] card di errore login
         pagina di impostazioni
             [ ] cliente
-            [ ] codemonkeyN
+            [ ] codemonkey
             [ ] admin
             [ ] lavori
 
     backend
         [ ] check stato utenti in model
         [ ] refactoring di stile
-
-    database
 
 docs
     [x] abstract
